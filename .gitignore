@@ -32,10 +32,6 @@ yarn-error.log*
 
 /prisma/generated
 
-
-# prisma
-/prisma/generated/type-graphql
-
 # vercel
 .vercel
 

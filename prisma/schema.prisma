@@ -1,0 +1,113 @@
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// generator typegraphql {
+//   provider            = "typegraphql-prisma"
+//   output              = "../prisma/generated/type-graphql"
+//   emitTranspiledCode  = "true"
+//   formatGeneratedCode = "false"
+// }
+
+// datasource postgres {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// model User {
+//   id            String      @id @default(cuid())
+//   email         String      @unique
+//   firstName     String
+//   lastName      String
+//   password      String
+//   role          Role        @default(ADMIN)
+//   image         String?
+//   createdAt     DateTime    @default(now())
+//   updatedAt     DateTime
+//   workspaces Workspace[]
+// }
+
+// model Workspace {
+//   id        String     @id @default(uuid())
+//   createdAt DateTime   @default(now())
+//   updatedAt DateTime   @updatedAt
+//   name      String
+//   userId    String?
+//   user      User?      @relation(fields: [userId], references: [id])
+// }
+
+// enum Role {
+//   ADMIN
+//   USER
+// }
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider            = "typegraphql-prisma"
+  output              = "../prisma/generated/type-graphql"
+  emitTranspiledCode  = "true"
+  formatGeneratedCode = "false"
+}
+
+datasource postgres {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                 String    @id @default(cuid())
+  userId             String
+  providerType       String
+  providerId         String
+  providerAccountId  String
+  refreshToken       String?
+  accessToken        String?
+  accessTokenExpires DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  user               User      @relation(fields: [userId], references: [id])
+
+  @@unique([providerId, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  expires      DateTime
+  sessionToken String   @unique
+  accessToken  String   @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationRequest {
+  id         String   @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([identifier, token])
+}
+
+enum Role {
+  ADMIN
+  USER
+}

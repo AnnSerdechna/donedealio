@@ -11,7 +11,7 @@ const { Title, Text } = Typography;
 export const LoginForm = () => {
   const router = useRouter();
 
-  const userId = '1'
+  const userId = '1';
 
   return (
     <Form 

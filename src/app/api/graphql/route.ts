@@ -12,7 +12,7 @@ import prisma from '../../../../lib/prisma';
 
 export type Context = {
   prisma: PrismaClient;
-}
+};
 
 async function createContext(): Promise<Context> {
   return {
@@ -28,7 +28,7 @@ async function emitSchemaDefinitionWithDirectivesFile(
 ): Promise<void> {
   const schemaFileContent = printSchemaWithDirectives(lexicographicSortSchema(schema));
   await fs.writeFile(schemaFilePath, schemaFileContent);
-}
+};
 
 async function createApolloServer() {
   const schema = await buildSchema({
@@ -43,7 +43,7 @@ async function createApolloServer() {
   await emitSchemaDefinitionWithDirectivesFile("src/graphql/schema.graphql", schema);
 
   await apolloServer.start();
-}
+};
 
 const handler = async (req: Request) => {
   if (!apolloServer) {

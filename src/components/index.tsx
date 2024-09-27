@@ -1,1 +1,1 @@
-export { TasksLayout } from './layout/tasks/layout'
+export { TasksLayout } from './layout/tasks/layout';

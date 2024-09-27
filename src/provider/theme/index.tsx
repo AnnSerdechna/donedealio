@@ -1,5 +1,5 @@
 'use client';
-import { ConfigProvider, theme, } from 'antd';
+import { ConfigProvider } from 'antd';
 import { FC, PropsWithChildren } from 'react';
 import { Inter } from 'next/font/google';
 

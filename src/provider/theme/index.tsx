@@ -27,7 +27,7 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
           Menu: {
             darkItemBg: darkBgColor,
             darkItemSelectedBg: darkSelectedBgColor,
-            
+            darkPopupBg: darkBgColor,
             darkSubMenuItemBg: darkBgColor
           },
           Layout: {

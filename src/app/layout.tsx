@@ -5,14 +5,15 @@ import { Inter } from 'next/font/google';
 import { getServerSession } from 'next-auth';
 
 import { ThemeProvider, ApolloProvider, SessionProvider } from '@/provider';
+import { TasksLayout } from '@/components';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Template',
-  description: 'Next JS, Prisma, Typegraphql',
-  keywords: ['Next JS', 'prisma', 'graphql', 'typegraphql', 'antd']
+  title: 'DoneDealio',
+  description: 'Task management app',
+  keywords: ['task', 'todo', 'colaborate', 'team']
 };
 
 export default async function RootLayout({
@@ -29,7 +30,9 @@ export default async function RootLayout({
           <SessionProvider session={session}>
             <AntdRegistry>
               <ThemeProvider>
-                {children}
+                <TasksLayout>
+                  {children}
+                </TasksLayout>
               </ThemeProvider>
             </AntdRegistry>
           </SessionProvider>

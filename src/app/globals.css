@@ -40,3 +40,7 @@ a {
     color-scheme: dark;
   }
 }
+
+.ant-menu-item-divider {
+  background-color: #444;
+}

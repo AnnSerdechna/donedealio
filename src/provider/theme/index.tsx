@@ -1,10 +1,13 @@
-import { ConfigProvider } from 'antd';
+'use client';
+import { ConfigProvider, theme, } from 'antd';
 import { FC, PropsWithChildren } from 'react';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
 const colorPrimary = '#1677ff';
+const darkBgColor = '#333';
+const darkSelectedBgColor = "#444";
 
 export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -21,9 +24,18 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             titleMarginTop: 0,
             fontSizeHeading1: 28,
           },
+          Menu: {
+            darkItemBg: darkBgColor,
+            darkItemSelectedBg: darkSelectedBgColor,
+            
+            darkSubMenuItemBg: darkBgColor
+          },
           Layout: {
             headerBg: 'transparent',
+            siderBg: darkBgColor,
+            triggerBg: darkBgColor
           },
+        
           Badge: {
             colorError: colorPrimary,
           },

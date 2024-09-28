@@ -1,49 +1,52 @@
-'use client';
+'use client'
 import { ConfigProvider } from 'antd';
 import { FC, PropsWithChildren } from 'react';
 import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+import variables from '@/styles/variables.module.scss';
 
-const colorPrimary = '#1677ff';
-const darkBgColor = '#333';
-const darkSelectedBgColor = "#444";
+const inter = Inter({ subsets: ['latin'] });
 
 export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: colorPrimary,
-          fontSize: 14,
+          colorPrimary: variables.primaryColor,
+          fontSize: 16,
           fontFamily: inter.style.fontFamily,
         },
         components: {
           Typography: {
             titleMarginBottom: 0,
             titleMarginTop: 0,
-            fontSizeHeading1: 28,
+            fontSizeHeading1: 40,
+            fontSizeHeading2: 32,
+            fontSizeHeading3: 28,
+            fontSizeHeading4: 24,
           },
           Menu: {
-            darkItemBg: darkBgColor,
-            darkItemSelectedBg: darkSelectedBgColor,
-            darkPopupBg: darkBgColor,
-            darkSubMenuItemBg: darkBgColor
+            darkItemBg: variables.darkBg,
+            darkItemSelectedBg: variables.darkBgSelected,
+            darkPopupBg: variables.darkBg,
+            darkSubMenuItemBg: variables.darkBg,
+            darkItemHoverBg: variables.darkBgSelected,
           },
           Layout: {
-            headerBg: 'transparent',
-            siderBg: darkBgColor,
-            triggerBg: darkBgColor
+            headerBg: variables.whiteColor,
+            siderBg: variables.darkBg,
+            triggerBg: variables.darkBg,
+            headerPadding: `0 ${variables.sizeMd}`
           },
         
           Badge: {
-            colorError: colorPrimary,
+            colorError: variables.primaryColor,
           },
           Form: {
-            itemMarginBottom: 16
+            itemMarginBottom: 16,
           },
           Avatar: {
-            colorTextPlaceholder: colorPrimary,
+            colorTextPlaceholder: variables.primaryColor,
           },
           Checkbox: {
             controlInteractiveSize: 18

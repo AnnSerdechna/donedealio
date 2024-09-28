@@ -1,0 +1,31 @@
+$primary-color: #1677ff;
+$dark-bg: #333;
+$dark-bg-selected: #444;
+$white-color: #fff;
+
+$header-height: 64px;
+
+$round-sm: 8px;
+$round-md: 16px;
+
+$size-sm: 16px;
+$size-md: 18px;
+$size-lg: 24px;
+
+$logo-size: 28px;
+
+:export {
+  primaryColor: $primary-color;
+  darkBg: $dark-bg;
+  darkBgSelected: $dark-bg-selected;
+  whiteColor: $white-color;
+
+  headerHeight: $header-height;
+
+  roundSm: $round-sm;
+  roundMd: $round-md;
+
+  sizeSm: $size-sm;
+  sizeMd: $size-md;
+  sizeLg: $size-lg;
+}

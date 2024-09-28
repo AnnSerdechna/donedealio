@@ -4,8 +4,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Inter } from 'next/font/google';
 
 import { ThemeProvider, ApolloProvider } from '@/provider';
-import { TasksLayout } from '@/components';
-import './globals.css';
+import '@/styles/global.scss';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,9 +25,7 @@ export default async function RootLayout({
         <ApolloProvider>
           <AntdRegistry>
             <ThemeProvider>
-              <TasksLayout>
-                {children}
-              </TasksLayout>
+              {children}
             </ThemeProvider>
           </AntdRegistry>
         </ApolloProvider>

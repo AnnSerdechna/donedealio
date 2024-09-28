@@ -99,7 +99,6 @@ const bottomItems: MenuItem[] = [
       <SettingOutlined />
     </Link>
   ),
-  { type: 'divider' },
 ]?.filter(Boolean) as MenuItem[]
 
 

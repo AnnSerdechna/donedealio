@@ -1,3 +1,11 @@
+@import '@/styles/variables.module.scss';
+
 .menuContainer {
+  display: flex;
   height: 90%;
+
+  @media only screen and (max-width: $screen-md) {
+    height: 100%;
+  }
 }
+

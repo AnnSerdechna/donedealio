@@ -1,7 +1,7 @@
 export default function Settings() {
   return (
     <section>
-      Profile
+      Settings
     </section>
   );
 };

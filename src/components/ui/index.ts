@@ -7,3 +7,4 @@ export { Form } from './form';
 export { FormItem } from './form-item';
 
 export { Button } from './button';
+export { LinkBtn } from './link-btn';

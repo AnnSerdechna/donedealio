@@ -1,8 +1,8 @@
 import { Flex, Layout } from 'antd';
 import { FC } from 'react'
-import Link from 'next/link';
 
 import { Logo } from '@/components/elements';
+import { LinkBtn } from '@/components/ui';
 
 const { Header } = Layout;
 
@@ -12,12 +12,8 @@ export const HomeHeader: FC = () => (
       <Logo />
 
       <Flex align={'center'} gap={16}>
-        <Link href={'/auth/login'}>
-          Log in
-        </Link>
-        <Link href={'/auth/register'}>
-          Sign up
-        </Link>
+        <LinkBtn href={'/auth/login'} text={'Log in'} />
+        <LinkBtn href={'/auth/register'} text={'Sign up'} type={'outlined'} />
       </Flex>
     </Flex>
   </Header>

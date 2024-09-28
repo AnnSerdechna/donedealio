@@ -1,4 +1,3 @@
-
 @import '@/styles/variables.module.scss';
 
 .tasksLayout {
@@ -6,6 +5,12 @@
 
   .logoWrap {
     height: $header-height;
+  }
+
+  .sider {
+    @media only screen and (max-width: $screen-md) {
+      display: none;
+    }
   }
 
   .content {

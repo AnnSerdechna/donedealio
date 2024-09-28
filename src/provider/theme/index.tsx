@@ -51,6 +51,15 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
           Checkbox: {
             controlInteractiveSize: 18
           },
+          Button: {
+            onlyIconSizeSM: 20
+          },
+          Drawer: {
+            colorBgElevated: variables.darkBg,
+            colorIcon: variables.textDarkColor,
+            colorText: variables.textDarkColor,
+            colorSplit: 'transparent',
+          }
         },
       }}
     >

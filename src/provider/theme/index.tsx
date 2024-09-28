@@ -1,4 +1,3 @@
-'use client';
 import { ConfigProvider } from 'antd';
 import { FC, PropsWithChildren } from 'react';
 import { Inter } from 'next/font/google';
@@ -15,25 +14,29 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
       theme={{
         token: {
           colorPrimary: colorPrimary,
-          fontSize: 14,
+          fontSize: 16,
           fontFamily: inter.style.fontFamily,
         },
         components: {
           Typography: {
             titleMarginBottom: 0,
             titleMarginTop: 0,
-            fontSizeHeading1: 28,
+            fontSizeHeading1: 40,
+            fontSizeHeading2: 32,
+            fontSizeHeading3: 28,
+            fontSizeHeading4: 24,
           },
           Menu: {
             darkItemBg: darkBgColor,
             darkItemSelectedBg: darkSelectedBgColor,
             darkPopupBg: darkBgColor,
-            darkSubMenuItemBg: darkBgColor
+            darkSubMenuItemBg: darkBgColor,
+            darkItemHoverBg: darkSelectedBgColor,
           },
           Layout: {
             headerBg: 'transparent',
             siderBg: darkBgColor,
-            triggerBg: darkBgColor
+            triggerBg: darkBgColor,
           },
         
           Badge: {

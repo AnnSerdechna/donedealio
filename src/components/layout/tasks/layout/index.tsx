@@ -2,7 +2,7 @@
 
 import React, { FC, PropsWithChildren, useState } from 'react';
 import { Layout, Row, theme } from 'antd';
-import { Logo } from '@/components/logo';
+import { Logo } from '@/components/elements/logo';
 import { TasksMenu } from '../menu';
 import { TasksHeader } from '../header';
 

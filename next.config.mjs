@@ -7,7 +7,7 @@ function defineNextConfig(config) {
 export default defineNextConfig({
   reactStrictMode: true,
   productionBrowserSourceMaps: true,
-  
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -16,5 +16,5 @@ export default defineNextConfig({
 
     return config
   }
-  
+
 });

@@ -1,0 +1,21 @@
+
+@import '@/styles/variables.module.scss';
+
+.tasksLayout {
+  height: 100vh;
+
+  .logoWrap {
+    height: $header-height;
+  }
+
+  .content {
+    margin: 16px;
+
+    .contentWrap {
+      min-height: 100%;
+      padding: 24px;
+      background-color: $white-color;
+      border-radius: $round-sm;
+    }
+  }
+}

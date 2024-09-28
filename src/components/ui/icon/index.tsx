@@ -6,7 +6,7 @@ type StyledIconProps = {
   color?: string;
 }
 
-export const Icon: FC<StyledIconProps> = ({ icon, size = '1.2em', color = '#333' }) => {
+export const Icon: FC<StyledIconProps> = ({ icon, size = '1.2em', color = '' }) => {
   return (
     <span style={{ fontSize: size, color }}>
       {icon}

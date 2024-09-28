@@ -1,40 +1,40 @@
 'use client';
 
-import { Button, Flex, Form, Input, Typography } from 'antd';
+import { Flex, Input } from 'antd';
 import Link from 'next/link';
 
-const { Item } = Form;
-const { Title } = Typography;
+import { Form, FormItem, Button } from '@/components/ui';
+import { AuthFormContent } from '@/components/elements';
 
 export const ForgotPasswordForm = () => {
   return (
-    <Form layout={'vertical'} style={{width: '100%'}}>
-      <Title style={{textAlign: 'center', marginTop: 0}}>Forgot password</Title>
+    <Form>
+      <AuthFormContent title={'Forgot password'}>
+        <FormItem
+          name={'email'}
+          label={'Email'}
+          rules={[
+            {
+              type: 'email',
+              message: 'The input is not valid E-mail!',
+            },
+            {
+              required: true,
+              message: 'Please input your E-mail!',
+            },
+          ]}
+        >
+          <Input type={'email'} size={'large'} />
+        </FormItem>
 
-      <Item
-        name={'email'}
-        label={'Email'}
-        rules={[
-          {
-            type: 'email',
-            message: 'The input is not valid E-mail!',
-          },
-          {
-            required: true,
-            message: 'Please input your E-mail!',
-          },
-        ]}
-      >
-        <Input type={'email'} size={'large'} />
-      </Item>
+        <FormItem>
+          <Button text={'Send'} htmlType={'submit'} />
+        </FormItem>
 
-      <Item>
-        <Button type={'primary'} size={'large'} htmlType={'submit'} style={{width: '100%'}}>Send</Button>
-      </Item>
-    
-      <Flex justify={'flex-end'} align={'center'} gap={16}>
-        <Link href={'/auth/login'} style={{fontSize: 16}}>Log in</Link>
-      </Flex>
+        <Flex justify={'flex-end'} align={'center'} gap={16}>
+          <Link href={'/auth/login'} style={{ fontSize: 16 }}>Log in</Link>
+        </Flex>
+      </AuthFormContent>
     </Form>
   )
 }

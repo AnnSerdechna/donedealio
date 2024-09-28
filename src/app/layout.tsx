@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Inter } from 'next/font/google';
+
 import { ThemeProvider, ApolloProvider } from '@/provider';
-import './global.scss';
+import '@/styles/global.scss';
 
 const inter = Inter({ subsets: ['latin'] });
-
 
 export const metadata: Metadata = {
   title: 'DoneDealio',

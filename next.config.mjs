@@ -7,6 +7,10 @@ function defineNextConfig(config) {
 export default defineNextConfig({
   reactStrictMode: true,
   productionBrowserSourceMaps: true,
+  sassOptions: {
+    implementation: 'sass-embedded',
+    export: true
+  },
 
   webpack(config) {
     config.module.rules.push({

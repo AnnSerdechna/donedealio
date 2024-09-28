@@ -1,7 +1,8 @@
-import { Logo } from '@/components/elements/logo';
 import { Flex, Layout } from 'antd';
 import { FC } from 'react'
 import Link from 'next/link';
+
+import { Logo } from '@/components/elements';
 
 const { Header } = Layout;
 

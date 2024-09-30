@@ -6,10 +6,11 @@ import {
   UserOutlined,
   BulbOutlined,
 } from '@ant-design/icons';
-import { Flex, Menu as AntMenu, MenuProps } from 'antd';
+import { Flex, MenuProps } from 'antd';
 import { useRouter } from 'next/navigation';
 
 import { MenuItemProps } from '@/types';
+import { Menu } from './menu';
 import styles from './index.module.scss';
 
 function getItem(
@@ -17,9 +18,8 @@ function getItem(
   key: Key,
   icon?: ReactNode,
 ): MenuItemProps {
-  
-  // Access routes by role
 
+  // Access routes by role
   return {
     key,
     icon,
@@ -60,17 +60,6 @@ const bottomItems: MenuItemProps[] = [
     <SettingOutlined />
   ),
 ]?.filter(Boolean) as MenuItemProps[]
-
-const Menu: FC<MenuProps & { items: MenuItemProps[] }> = ({ items, ...props }) => {
-  return (
-    <AntMenu
-      theme={'dark'}
-      mode={'inline'}
-      items={items}
-      {...props}
-    />
-  )
-}
 
 export const SideMenu: FC = () => {
   const router = useRouter()

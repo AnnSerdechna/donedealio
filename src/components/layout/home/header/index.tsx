@@ -2,7 +2,9 @@ import { Flex, Layout } from 'antd';
 import { FC } from 'react'
 
 import { Logo } from '@/components/elements';
-import { Button, LinkBtn } from '@/components/ui';
+import { Button } from '@/components/ui';
+
+import variables from '@/styles/variables.module.scss';
 
 const { Header } = Layout;
 
@@ -12,7 +14,7 @@ type HomeHeaderProps = {
 }
 
 export const HomeHeader: FC<HomeHeaderProps> = ({ onLogin, onRegister }) => (
-  <Header>
+  <Header style={{ padding: `0 ${variables.sizeXl}` }}>
     <Flex align={'center'} justify={'space-between'}>
       <Logo />
 

@@ -36,7 +36,7 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             headerBg: 'transparent',
             siderBg: variables.darkBg,
             triggerBg: variables.darkBg,
-            headerPadding: `0 ${variables.sizeMd}`
+            // headerPadding: `0 ${variables.sizeLg}`
           },
         
           Badge: {

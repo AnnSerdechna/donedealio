@@ -3,7 +3,7 @@ $secondary-color: #5f74d4;
 $dark-bg: #333;
 $dark-bg-selected: #444;
 $white-color: #fff;
-$text-color: #091133;
+$text-color: rgb(9, 17, 51);
 $text-secondary-color: rgb(80, 95, 152);
 $text-dark-color: rgba(255, 255, 255, 0.65);
 
@@ -19,6 +19,7 @@ $round-md: 16px;
 $size-sm: 16px;
 $size-md: 18px;
 $size-lg: 24px;
+$size-xl: 40px;
 
 $logo-size: 28px;
 
@@ -46,6 +47,7 @@ $screen-lg: 1024px;
   sizeSm: $size-sm;
   sizeMd: $size-md;
   sizeLg: $size-lg;
+  sizeXL: $size-xl;
 
   screenSM: $screen-sm;
   screenXS: $screen-xs;

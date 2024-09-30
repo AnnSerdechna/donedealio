@@ -2,15 +2,9 @@
 
 .contentWrap {
   height: 100%;
-  flex-wrap: nowrap !important;
-
-  @media only screen and (max-width: $screen-md) {
-    flex-wrap: wrap !important;
-  }
-
+  
   .contentCol {
     height: 100% !important;
-    // padding: $size-sm;
   }
 
   .content {

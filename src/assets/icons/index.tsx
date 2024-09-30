@@ -2,7 +2,7 @@ import { FC, SVGProps } from "react";
 import Logo from "./logo.svg";
 
 const icons = {
-  logo: Logo,
+  'logo': Logo,
 };
 
 type SvgIconProps = SVGProps<SVGSVGElement> & { type: keyof typeof icons };

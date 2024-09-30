@@ -18,6 +18,7 @@ export const Button: FC<CustomButtonProps> = ({ text, wide = 'true', type, size,
       className={classNames(
         styles.button, 
         {[styles.wide]: wide},
+        {[styles.outlined]: wide },
         {[styles.iconOnly]: !!icon },
         { [styles.darkTheme]: theme === 'dark' }
       )}

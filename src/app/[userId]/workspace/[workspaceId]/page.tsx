@@ -1,7 +1,7 @@
 export default function Workspace() {
   return (
     <section>
-      Workspace
+      Workspace 1
     </section>
   );
 };

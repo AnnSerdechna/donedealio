@@ -1,0 +1,14 @@
+@import '@/styles/variables.module.scss';
+
+.contentWrap {
+  height: 100%;
+  
+  .contentCol {
+    height: 100% !important;
+  }
+
+  .content {
+    height: 100%;
+    padding: $size-sm;
+  }
+}

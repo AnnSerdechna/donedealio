@@ -1,7 +1,6 @@
 @import '@/styles/variables.module.scss';
 
 .homeContent {
-  height: calc(100vh - $header-height);
   padding: $size-sm;
-  background-color: $white-color;
+  background-color: transparent;
 }

@@ -1,7 +1,7 @@
 import { FC, Fragment, ReactNode } from 'react'
-import { Title } from '../../ui'
 import { Flex } from 'antd'
 
+import { Title } from '@/components/ui';
 import variables from '@/styles/variables.module.scss';
 
 type AuthFormContentProps = {

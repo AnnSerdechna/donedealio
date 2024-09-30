@@ -7,6 +7,7 @@ import {
 } from '@ant-design/icons';
 import { Avatar, Badge, Col, Flex, Input, Layout } from 'antd';
 
+import variables from '@/styles/variables.module.scss';
 import styles from './index.module.scss';
 
 import { Button, Icon } from '@/components/ui';
@@ -15,7 +16,7 @@ const { Header } = Layout;
 
 export const TasksHeader: FC<{ onShowDrawer: VoidFunction }> = ({ onShowDrawer  }) => {
   return (
-    <Header>
+    <Header style={{padding: `0 ${variables.sizeSm}`}}>
       <Flex justify={'space-between'} align={'center'} gap={16}>
         <div className={styles.menuBtnWrap}>
           <Button

@@ -2,20 +2,26 @@ import { Flex, Layout } from 'antd';
 import { FC } from 'react'
 
 import { Logo } from '@/components/elements';
-import { LinkBtn } from '@/components/ui';
+import { Button } from '@/components/ui';
+
+import variables from '@/styles/variables.module.scss';
 
 const { Header } = Layout;
 
-export const HomeHeader: FC = () => (
-  <Header>
+type HomeHeaderProps = {
+  onLogin: VoidFunction, 
+  onRegister: VoidFunction
+}
+
+export const HomeHeader: FC<HomeHeaderProps> = ({ onLogin, onRegister }) => (
+  <Header style={{ padding: `0 ${variables.sizeXl}` }}>
     <Flex align={'center'} justify={'space-between'}>
       <Logo />
 
       <Flex align={'center'} gap={16}>
-        <LinkBtn href={'/auth/login'} text={'Log in'} />
-        <LinkBtn href={'/auth/register'} text={'Sign up'} type={'outlined'} />
+        <Button text={'Log in'} type={'default'} onClick={onLogin} />
+        <Button text={'Sign up'} onClick={onRegister} />
       </Flex>
     </Flex>
   </Header>
-
 )

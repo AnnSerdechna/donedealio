@@ -21,6 +21,11 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+
+  &:hover {
+    color: $primary-color;
+    opacity: 0.8;
+  }
 }
 
 .ant-menu-item-divider {

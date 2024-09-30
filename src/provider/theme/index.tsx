@@ -1,11 +1,11 @@
 'use client'
 import { ConfigProvider } from 'antd';
 import { FC, PropsWithChildren } from 'react';
-import { Inter } from 'next/font/google';
+import { Noto_Sans } from 'next/font/google';
 
 import variables from '@/styles/variables.module.scss';
 
-const inter = Inter({ subsets: ['latin'] });
+const notoSans = Noto_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '700', '900' ]});
 
 export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -14,7 +14,7 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
         token: {
           colorPrimary: variables.primaryColor,
           fontSize: 16,
-          fontFamily: inter.style.fontFamily,
+          fontFamily: notoSans.style.fontFamily,
         },
         components: {
           Typography: {
@@ -33,7 +33,7 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             darkItemHoverBg: variables.darkBgSelected,
           },
           Layout: {
-            headerBg: variables.whiteColor,
+            headerBg: 'transparent',
             siderBg: variables.darkBg,
             triggerBg: variables.darkBg,
             headerPadding: `0 ${variables.sizeMd}`
@@ -52,13 +52,19 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             controlInteractiveSize: 18
           },
           Button: {
-            onlyIconSizeSM: 20
+            onlyIconSizeSM: 20,
+            defaultBg: 'transparent',
+            defaultColor: variables.secondaryColor,
+            defaultBorderColor: variables.secondaryColor,
           },
           Drawer: {
             colorBgElevated: variables.darkBg,
             colorIcon: variables.textDarkColor,
             colorText: variables.textDarkColor,
             colorSplit: 'transparent',
+          },
+          Modal: {
+            colorBgMask: 'rgba(80, 95, 152, 0.5)',
           }
         },
       }}

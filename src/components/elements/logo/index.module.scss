@@ -1,5 +1,15 @@
 @import '@/styles/variables.module.scss';
 
 .logoLink {
-  font-size: $logo-size;;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    color: $secondary-color;
+      // color: #37447E;
+    height: 64px;
+    font-weight: bold;
+    font-size: 34px;
+    // width: 40px;
+
 }

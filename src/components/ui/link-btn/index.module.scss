@@ -11,11 +11,10 @@
   border: 1px solid transparent;
   border-radius: $round-sm;
   box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
-  transition: color 300ms, background-color 300ms;
+  transition: color 300ms, opacity 300ms;
 
   &:hover {
     color: $white-color;
-    background-color: #4096ff;
   }
 
   &.outlined {

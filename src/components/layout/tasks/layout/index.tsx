@@ -4,16 +4,16 @@ import { FC, Fragment, PropsWithChildren, useEffect, useState } from 'react';
 import { Drawer, Layout, Row } from 'antd';
 import { usePathname } from 'next/navigation';
 
-import { Logo } from '@/components/elements';
+import { Logo, LogoProps } from '@/components/elements';
 import { SideMenu } from '../side-menu';
 import { TasksHeader } from '../header';
 import styles from './index.module.scss';
 
 const { Content, Sider } = Layout;
 
-const LogoComponent:FC = () => (
+const LogoComponent: FC<LogoProps> = ({ ...props }) => (
   <Row align={'middle'} justify={"center"} className={styles.logoWrap}>
-    <Logo />
+    <Logo {...props} />
   </Row>
 )
 export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
@@ -37,7 +37,7 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
           onCollapse={setCollapsed}
           collapsible
         >
-          <LogoComponent />
+          <LogoComponent hasLogoText={false} />
           <SideMenu />
         </Sider>
         <Layout>

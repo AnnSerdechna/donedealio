@@ -1,7 +1,7 @@
-export default function Team() {
+export default function Teams() {
   return (
     <section>
-      Team 1
+      Teams
     </section>
   );
 };

@@ -1,14 +1,12 @@
 'use client';
 
-import React, { FC, Fragment, PropsWithChildren, useEffect, useState } from 'react';
+import { FC, Fragment, PropsWithChildren, useEffect, useState } from 'react';
 import { Drawer, Layout, Row } from 'antd';
 import { usePathname } from 'next/navigation';
 
 import { Logo } from '@/components/elements';
-import { TasksMenu } from '../menu';
+import { SideMenu } from '../side-menu';
 import { TasksHeader } from '../header';
-import { CloseOutlined } from '@ant-design/icons';
-import { Button } from '@/components/ui';
 import styles from './index.module.scss';
 
 const { Content, Sider } = Layout;
@@ -40,7 +38,7 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
           collapsible
         >
           <LogoComponent />
-          <TasksMenu />
+          <SideMenu />
         </Sider>
         <Layout>
           <TasksHeader onShowDrawer={onOpenMenu} />
@@ -56,19 +54,9 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
         open={openMenu}
         width={'100%'}
         placement={'left'}
-        rootClassName={styles.menuDrawer}
-        closeIcon={false}
-        extra={(
-          <Button 
-            type={'link'}
-            size={'small'} 
-            theme={'dark'}
-            icon={<CloseOutlined />} 
-            onClick={onCloseMenu}
-          />
-        )}
+        onClose={onCloseMenu}
       >
-        <TasksMenu />
+        <SideMenu />
       </Drawer>
     </Fragment>
   );

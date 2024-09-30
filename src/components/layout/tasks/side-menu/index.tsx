@@ -12,7 +12,6 @@ import { useRouter } from 'next/navigation';
 import { MenuItemProps } from '@/types';
 import { Menu } from './menu';
 import styles from './index.module.scss';
-import { Button } from '@/components/ui';
 
 function getItem(
   label: ReactNode,

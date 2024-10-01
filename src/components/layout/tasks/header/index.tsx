@@ -3,9 +3,10 @@ import {
   UserOutlined,
   BellOutlined,
   SearchOutlined,
-  MenuOutlined
+  MenuOutlined,
+  LogoutOutlined
 } from '@ant-design/icons';
-import { Avatar, Badge, Col, Flex, Input, Layout } from 'antd';
+import { Avatar, Badge, Col, Dropdown, Flex, Input, Layout, MenuProps } from 'antd';
 
 import variables from '@/styles/variables.module.scss';
 import styles from './index.module.scss';
@@ -14,7 +15,21 @@ import { Button, Icon } from '@/components/ui';
 
 const { Header } = Layout;
 
-export const TasksHeader: FC<{ onShowDrawer: VoidFunction }> = ({ onShowDrawer  }) => {
+type TasksHeaderProps = {
+  onShowMobileDrawer: VoidFunction
+  onConfirmLogout: VoidFunction
+}
+
+export const TasksHeader: FC<TasksHeaderProps> = ({ onShowMobileDrawer, onConfirmLogout  }) => {
+  const items: MenuProps['items'] = [
+    {
+      key: '2',
+      label: 'Log out',
+      icon: <LogoutOutlined />,
+      onClick: onConfirmLogout
+    },
+  ];
+
   return (
     <Header style={{padding: `0 ${variables.sizeSm}`}}>
       <Flex justify={'space-between'} align={'center'} gap={16}>
@@ -23,7 +38,7 @@ export const TasksHeader: FC<{ onShowDrawer: VoidFunction }> = ({ onShowDrawer  
             type={'link'}
             size={'small'}
             icon={<MenuOutlined />} 
-            onClick={onShowDrawer}
+            onClick={onShowMobileDrawer}
           />
         </div>
 
@@ -38,12 +53,14 @@ export const TasksHeader: FC<{ onShowDrawer: VoidFunction }> = ({ onShowDrawer  
             <Icon icon={<BellOutlined />} size='1.4em'  />
           </Badge>
 
-          <div className={styles.avatarWrap}>
-            <Avatar
-              size={'large'}
-              icon={<UserOutlined />}
-            />
-          </div>
+          <Dropdown menu={{ items }}>
+            <div className={styles.avatarWrap}>
+              <Avatar
+                size={'large'}
+                icon={<UserOutlined />}
+              />
+            </div>
+          </Dropdown>
         </Flex>
       </Flex>
     </Header>

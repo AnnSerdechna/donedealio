@@ -61,17 +61,21 @@ const bottomItems: MenuItemProps[] = [
   ),
 ]?.filter(Boolean) as MenuItemProps[]
 
+export const HomeMenu: FC = () => (
+  <Menu items={items} mode={'horizontal'} />
+);
+
 export const SideMenu: FC = () => {
   const router = useRouter()
 
   const onMemuItemClick: MenuProps['onClick'] = (event) => {
-    router.push(`/${userId}/${event.key}`)
+    router.push(`/${userId}/${event.key}`);
   };
 
   return (
     <Flex vertical justify={'space-between'} className={styles.menuContainer}>
-      <Menu items={items} onClick={onMemuItemClick} />
-      <Menu items={bottomItems} onClick={onMemuItemClick} />
+      <Menu items={items} onClick={onMemuItemClick} mode={'inline'} />
+      <Menu items={bottomItems} onClick={onMemuItemClick} mode={'inline'} />
     </Flex>
   )
 }

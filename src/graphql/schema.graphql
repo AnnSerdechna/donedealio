@@ -4,82 +4,72 @@ schema {
 }
 
 type Account {
-  accessToken: String
-  accessTokenExpires: DateTimeISO
-  createdAt: DateTimeISO!
+  access_token: String
+  expires_at: Int
   id: String!
+  provider: String!
   providerAccountId: String!
-  providerId: String!
-  providerType: String!
-  refreshToken: String
-  updatedAt: DateTimeISO!
+  type: String!
   user: User!
   userId: String!
 }
 
+type AccountAvgAggregate {
+  expires_at: Float
+}
+
+input AccountAvgOrderByAggregateInput {
+  expires_at: SortOrder
+}
+
 type AccountCountAggregate {
   _all: Int!
-  accessToken: Int!
-  accessTokenExpires: Int!
-  createdAt: Int!
+  access_token: Int!
+  expires_at: Int!
   id: Int!
+  provider: Int!
   providerAccountId: Int!
-  providerId: Int!
-  providerType: Int!
-  refreshToken: Int!
-  updatedAt: Int!
+  type: Int!
   userId: Int!
 }
 
 input AccountCountOrderByAggregateInput {
-  accessToken: SortOrder
-  accessTokenExpires: SortOrder
-  createdAt: SortOrder
+  access_token: SortOrder
+  expires_at: SortOrder
   id: SortOrder
+  provider: SortOrder
   providerAccountId: SortOrder
-  providerId: SortOrder
-  providerType: SortOrder
-  refreshToken: SortOrder
-  updatedAt: SortOrder
+  type: SortOrder
   userId: SortOrder
 }
 
 input AccountCreateInput {
-  accessToken: String
-  accessTokenExpires: DateTimeISO
-  createdAt: DateTimeISO
+  access_token: String
+  expires_at: Int
   id: String
+  provider: String!
   providerAccountId: String!
-  providerId: String!
-  providerType: String!
-  refreshToken: String
-  updatedAt: DateTimeISO
+  type: String!
   user: UserCreateNestedOneWithoutAccountsInput!
 }
 
 input AccountCreateManyInput {
-  accessToken: String
-  accessTokenExpires: DateTimeISO
-  createdAt: DateTimeISO
+  access_token: String
+  expires_at: Int
   id: String
+  provider: String!
   providerAccountId: String!
-  providerId: String!
-  providerType: String!
-  refreshToken: String
-  updatedAt: DateTimeISO
+  type: String!
   userId: String!
 }
 
 input AccountCreateManyUserInput {
-  accessToken: String
-  accessTokenExpires: DateTimeISO
-  createdAt: DateTimeISO
+  access_token: String
+  expires_at: Int
   id: String
+  provider: String!
   providerAccountId: String!
-  providerId: String!
-  providerType: String!
-  refreshToken: String
-  updatedAt: DateTimeISO
+  type: String!
 }
 
 input AccountCreateManyUserInputEnvelope {
@@ -100,30 +90,26 @@ input AccountCreateOrConnectWithoutUserInput {
 }
 
 input AccountCreateWithoutUserInput {
-  accessToken: String
-  accessTokenExpires: DateTimeISO
-  createdAt: DateTimeISO
+  access_token: String
+  expires_at: Int
   id: String
+  provider: String!
   providerAccountId: String!
-  providerId: String!
-  providerType: String!
-  refreshToken: String
-  updatedAt: DateTimeISO
+  type: String!
 }
 
 type AccountGroupBy {
+  _avg: AccountAvgAggregate
   _count: AccountCountAggregate
   _max: AccountMaxAggregate
   _min: AccountMinAggregate
-  accessToken: String
-  accessTokenExpires: DateTimeISO
-  createdAt: DateTimeISO!
+  _sum: AccountSumAggregate
+  access_token: String
+  expires_at: Int
   id: String!
+  provider: String!
   providerAccountId: String!
-  providerId: String!
-  providerType: String!
-  refreshToken: String
-  updatedAt: DateTimeISO!
+  type: String!
   userId: String!
 }
 
@@ -134,54 +120,42 @@ input AccountListRelationFilter {
 }
 
 type AccountMaxAggregate {
-  accessToken: String
-  accessTokenExpires: DateTimeISO
-  createdAt: DateTimeISO
+  access_token: String
+  expires_at: Int
   id: String
+  provider: String
   providerAccountId: String
-  providerId: String
-  providerType: String
-  refreshToken: String
-  updatedAt: DateTimeISO
+  type: String
   userId: String
 }
 
 input AccountMaxOrderByAggregateInput {
-  accessToken: SortOrder
-  accessTokenExpires: SortOrder
-  createdAt: SortOrder
+  access_token: SortOrder
+  expires_at: SortOrder
   id: SortOrder
+  provider: SortOrder
   providerAccountId: SortOrder
-  providerId: SortOrder
-  providerType: SortOrder
-  refreshToken: SortOrder
-  updatedAt: SortOrder
+  type: SortOrder
   userId: SortOrder
 }
 
 type AccountMinAggregate {
-  accessToken: String
-  accessTokenExpires: DateTimeISO
-  createdAt: DateTimeISO
+  access_token: String
+  expires_at: Int
   id: String
+  provider: String
   providerAccountId: String
-  providerId: String
-  providerType: String
-  refreshToken: String
-  updatedAt: DateTimeISO
+  type: String
   userId: String
 }
 
 input AccountMinOrderByAggregateInput {
-  accessToken: SortOrder
-  accessTokenExpires: SortOrder
-  createdAt: SortOrder
+  access_token: SortOrder
+  expires_at: SortOrder
   id: SortOrder
+  provider: SortOrder
   providerAccountId: SortOrder
-  providerId: SortOrder
-  providerType: SortOrder
-  refreshToken: SortOrder
-  updatedAt: SortOrder
+  type: SortOrder
   userId: SortOrder
 }
 
@@ -190,50 +164,38 @@ input AccountOrderByRelationAggregateInput {
 }
 
 input AccountOrderByWithAggregationInput {
+  _avg: AccountAvgOrderByAggregateInput
   _count: AccountCountOrderByAggregateInput
   _max: AccountMaxOrderByAggregateInput
   _min: AccountMinOrderByAggregateInput
-  accessToken: SortOrderInput
-  accessTokenExpires: SortOrderInput
-  createdAt: SortOrder
+  _sum: AccountSumOrderByAggregateInput
+  access_token: SortOrderInput
+  expires_at: SortOrderInput
   id: SortOrder
+  provider: SortOrder
   providerAccountId: SortOrder
-  providerId: SortOrder
-  providerType: SortOrder
-  refreshToken: SortOrderInput
-  updatedAt: SortOrder
+  type: SortOrder
   userId: SortOrder
 }
 
 input AccountOrderByWithRelationInput {
-  accessToken: SortOrderInput
-  accessTokenExpires: SortOrderInput
-  createdAt: SortOrder
+  access_token: SortOrderInput
+  expires_at: SortOrderInput
   id: SortOrder
+  provider: SortOrder
   providerAccountId: SortOrder
-  providerId: SortOrder
-  providerType: SortOrder
-  refreshToken: SortOrderInput
-  updatedAt: SortOrder
+  type: SortOrder
   user: UserOrderByWithRelationInput
   userId: SortOrder
 }
 
-input AccountProviderIdProviderAccountIdCompoundUniqueInput {
-  providerAccountId: String!
-  providerId: String!
-}
-
 enum AccountScalarFieldEnum {
-  accessToken
-  accessTokenExpires
-  createdAt
+  access_token
+  expires_at
   id
+  provider
   providerAccountId
-  providerId
-  providerType
-  refreshToken
-  updatedAt
+  type
   userId
 }
 
@@ -241,15 +203,12 @@ input AccountScalarWhereInput {
   AND: [AccountScalarWhereInput!]
   NOT: [AccountScalarWhereInput!]
   OR: [AccountScalarWhereInput!]
-  accessToken: StringNullableFilter
-  accessTokenExpires: DateTimeNullableFilter
-  createdAt: DateTimeFilter
+  access_token: StringNullableFilter
+  expires_at: IntNullableFilter
   id: StringFilter
+  provider: StringFilter
   providerAccountId: StringFilter
-  providerId: StringFilter
-  providerType: StringFilter
-  refreshToken: StringNullableFilter
-  updatedAt: DateTimeFilter
+  type: StringFilter
   userId: StringFilter
 }
 
@@ -257,41 +216,40 @@ input AccountScalarWhereWithAggregatesInput {
   AND: [AccountScalarWhereWithAggregatesInput!]
   NOT: [AccountScalarWhereWithAggregatesInput!]
   OR: [AccountScalarWhereWithAggregatesInput!]
-  accessToken: StringNullableWithAggregatesFilter
-  accessTokenExpires: DateTimeNullableWithAggregatesFilter
-  createdAt: DateTimeWithAggregatesFilter
+  access_token: StringNullableWithAggregatesFilter
+  expires_at: IntNullableWithAggregatesFilter
   id: StringWithAggregatesFilter
+  provider: StringWithAggregatesFilter
   providerAccountId: StringWithAggregatesFilter
-  providerId: StringWithAggregatesFilter
-  providerType: StringWithAggregatesFilter
-  refreshToken: StringNullableWithAggregatesFilter
-  updatedAt: DateTimeWithAggregatesFilter
+  type: StringWithAggregatesFilter
   userId: StringWithAggregatesFilter
 }
 
+type AccountSumAggregate {
+  expires_at: Int
+}
+
+input AccountSumOrderByAggregateInput {
+  expires_at: SortOrder
+}
+
 input AccountUpdateInput {
-  accessToken: NullableStringFieldUpdateOperationsInput
-  accessTokenExpires: NullableDateTimeFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
+  access_token: NullableStringFieldUpdateOperationsInput
+  expires_at: NullableIntFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  provider: StringFieldUpdateOperationsInput
   providerAccountId: StringFieldUpdateOperationsInput
-  providerId: StringFieldUpdateOperationsInput
-  providerType: StringFieldUpdateOperationsInput
-  refreshToken: NullableStringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
+  type: StringFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutAccountsNestedInput
 }
 
 input AccountUpdateManyMutationInput {
-  accessToken: NullableStringFieldUpdateOperationsInput
-  accessTokenExpires: NullableDateTimeFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
+  access_token: NullableStringFieldUpdateOperationsInput
+  expires_at: NullableIntFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  provider: StringFieldUpdateOperationsInput
   providerAccountId: StringFieldUpdateOperationsInput
-  providerId: StringFieldUpdateOperationsInput
-  providerType: StringFieldUpdateOperationsInput
-  refreshToken: NullableStringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
+  type: StringFieldUpdateOperationsInput
 }
 
 input AccountUpdateManyWithWhereWithoutUserInput {
@@ -319,15 +277,12 @@ input AccountUpdateWithWhereUniqueWithoutUserInput {
 }
 
 input AccountUpdateWithoutUserInput {
-  accessToken: NullableStringFieldUpdateOperationsInput
-  accessTokenExpires: NullableDateTimeFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
+  access_token: NullableStringFieldUpdateOperationsInput
+  expires_at: NullableIntFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  provider: StringFieldUpdateOperationsInput
   providerAccountId: StringFieldUpdateOperationsInput
-  providerId: StringFieldUpdateOperationsInput
-  providerType: StringFieldUpdateOperationsInput
-  refreshToken: NullableStringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
+  type: StringFieldUpdateOperationsInput
 }
 
 input AccountUpsertWithWhereUniqueWithoutUserInput {
@@ -340,15 +295,12 @@ input AccountWhereInput {
   AND: [AccountWhereInput!]
   NOT: [AccountWhereInput!]
   OR: [AccountWhereInput!]
-  accessToken: StringNullableFilter
-  accessTokenExpires: DateTimeNullableFilter
-  createdAt: DateTimeFilter
+  access_token: StringNullableFilter
+  expires_at: IntNullableFilter
   id: StringFilter
+  provider: StringFilter
   providerAccountId: StringFilter
-  providerId: StringFilter
-  providerType: StringFilter
-  refreshToken: StringNullableFilter
-  updatedAt: DateTimeFilter
+  type: StringFilter
   user: UserRelationFilter
   userId: StringFilter
 }
@@ -357,16 +309,12 @@ input AccountWhereUniqueInput {
   AND: [AccountWhereInput!]
   NOT: [AccountWhereInput!]
   OR: [AccountWhereInput!]
-  accessToken: StringNullableFilter
-  accessTokenExpires: DateTimeNullableFilter
-  createdAt: DateTimeFilter
+  access_token: StringNullableFilter
+  expires_at: IntNullableFilter
   id: String
+  provider: StringFilter
   providerAccountId: StringFilter
-  providerId: StringFilter
-  providerId_providerAccountId: AccountProviderIdProviderAccountIdCompoundUniqueInput
-  providerType: StringFilter
-  refreshToken: StringNullableFilter
-  updatedAt: DateTimeFilter
+  type: StringFilter
   user: UserRelationFilter
   userId: StringFilter
 }
@@ -376,9 +324,11 @@ type AffectedRowsOutput {
 }
 
 type AggregateAccount {
+  _avg: AccountAvgAggregate
   _count: AccountCountAggregate
   _max: AccountMaxAggregate
   _min: AccountMinAggregate
+  _sum: AccountSumAggregate
 }
 
 type AggregateSession {
@@ -393,54 +343,52 @@ type AggregateUser {
   _min: UserMinAggregate
 }
 
-type AggregateVerificationRequest {
-  _count: VerificationRequestCountAggregate
-  _max: VerificationRequestMaxAggregate
-  _min: VerificationRequestMinAggregate
+type AggregateWorkspace {
+  _count: WorkspaceCountAggregate
+  _max: WorkspaceMaxAggregate
+  _min: WorkspaceMinAggregate
 }
 
 type CreateManyAndReturnAccount {
-  accessToken: String
-  accessTokenExpires: DateTimeISO
-  createdAt: DateTimeISO!
+  access_token: String
+  expires_at: Int
   id: String!
+  provider: String!
   providerAccountId: String!
-  providerId: String!
-  providerType: String!
-  refreshToken: String
-  updatedAt: DateTimeISO!
+  type: String!
   user: User!
   userId: String!
 }
 
 type CreateManyAndReturnSession {
-  accessToken: String!
-  createdAt: DateTimeISO!
   expires: DateTimeISO!
   id: String!
   sessionToken: String!
-  updatedAt: DateTimeISO!
   user: User!
   userId: String!
 }
 
 type CreateManyAndReturnUser {
   createdAt: DateTimeISO!
-  email: String
+  email: String!
   emailVerified: DateTimeISO
+  firstName: String!
   id: String!
   image: String
-  name: String
+  lastName: String!
+  password: String!
+  role: Role!
   updatedAt: DateTimeISO!
 }
 
-type CreateManyAndReturnVerificationRequest {
+type CreateManyAndReturnWorkspace {
   createdAt: DateTimeISO!
-  expires: DateTimeISO!
+  description: String!
   id: String!
-  identifier: String!
-  token: String!
+  name: String!
   updatedAt: DateTimeISO!
+  user(where: UserWhereInput): User
+  userId: String
 }
 
 input DateTimeFieldUpdateOperationsInput {
@@ -502,39 +450,87 @@ input DateTimeWithAggregatesFilter {
   notIn: [DateTimeISO!]
 }
 
+input EnumRoleFieldUpdateOperationsInput {
+  set: Role
+}
+
+input EnumRoleFilter {
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleFilter
+  notIn: [Role!]
+}
+
+input EnumRoleWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumRoleFilter
+  _min: NestedEnumRoleFilter
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleWithAggregatesFilter
+  notIn: [Role!]
+}
+
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
+input IntNullableWithAggregatesFilter {
+  _avg: NestedFloatNullableFilter
+  _count: NestedIntNullableFilter
+  _max: NestedIntNullableFilter
+  _min: NestedIntNullableFilter
+  _sum: NestedIntNullableFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableWithAggregatesFilter
+  notIn: [Int!]
+}
+
 type Mutation {
   createManyAccount(data: [AccountCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyAndReturnAccount(data: [AccountCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnAccount!]!
   createManyAndReturnSession(data: [SessionCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnSession!]!
   createManyAndReturnUser(data: [UserCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnUser!]!
-  createManyAndReturnVerificationRequest(data: [VerificationRequestCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnVerificationRequest!]!
+  createManyAndReturnWorkspace(data: [WorkspaceCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnWorkspace!]!
   createManySession(data: [SessionCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyUser(data: [UserCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
-  createManyVerificationRequest(data: [VerificationRequestCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyWorkspace(data: [WorkspaceCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createOneAccount(data: AccountCreateInput!): Account!
   createOneSession(data: SessionCreateInput!): Session!
   createOneUser(data: UserCreateInput!): User!
-  createOneVerificationRequest(data: VerificationRequestCreateInput!): VerificationRequest!
+  createOneWorkspace(data: WorkspaceCreateInput!): Workspace!
   deleteManyAccount(where: AccountWhereInput): AffectedRowsOutput!
   deleteManySession(where: SessionWhereInput): AffectedRowsOutput!
   deleteManyUser(where: UserWhereInput): AffectedRowsOutput!
-  deleteManyVerificationRequest(where: VerificationRequestWhereInput): AffectedRowsOutput!
+  deleteManyWorkspace(where: WorkspaceWhereInput): AffectedRowsOutput!
   deleteOneAccount(where: AccountWhereUniqueInput!): Account
   deleteOneSession(where: SessionWhereUniqueInput!): Session
   deleteOneUser(where: UserWhereUniqueInput!): User
-  deleteOneVerificationRequest(where: VerificationRequestWhereUniqueInput!): VerificationRequest
+  deleteOneWorkspace(where: WorkspaceWhereUniqueInput!): Workspace
   updateManyAccount(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): AffectedRowsOutput!
   updateManySession(data: SessionUpdateManyMutationInput!, where: SessionWhereInput): AffectedRowsOutput!
   updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): AffectedRowsOutput!
-  updateManyVerificationRequest(data: VerificationRequestUpdateManyMutationInput!, where: VerificationRequestWhereInput): AffectedRowsOutput!
+  updateManyWorkspace(data: WorkspaceUpdateManyMutationInput!, where: WorkspaceWhereInput): AffectedRowsOutput!
   updateOneAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
   updateOneSession(data: SessionUpdateInput!, where: SessionWhereUniqueInput!): Session
   updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateOneVerificationRequest(data: VerificationRequestUpdateInput!, where: VerificationRequestWhereUniqueInput!): VerificationRequest
+  updateOneWorkspace(data: WorkspaceUpdateInput!, where: WorkspaceWhereUniqueInput!): Workspace
   upsertOneAccount(create: AccountCreateInput!, update: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account!
   upsertOneSession(create: SessionCreateInput!, update: SessionUpdateInput!, where: SessionWhereUniqueInput!): Session!
   upsertOneUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
-  upsertOneVerificationRequest(create: VerificationRequestCreateInput!, update: VerificationRequestUpdateInput!, where: VerificationRequestWhereUniqueInput!): VerificationRequest!
+  upsertOneWorkspace(create: WorkspaceCreateInput!, update: WorkspaceUpdateInput!, where: WorkspaceWhereUniqueInput!): Workspace!
 }
 
 input NestedDateTimeFilter {
@@ -587,6 +583,34 @@ input NestedDateTimeWithAggregatesFilter {
   notIn: [DateTimeISO!]
 }
 
+input NestedEnumRoleFilter {
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleFilter
+  notIn: [Role!]
+}
+
+input NestedEnumRoleWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumRoleFilter
+  _min: NestedEnumRoleFilter
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleWithAggregatesFilter
+  notIn: [Role!]
+}
+
+input NestedFloatNullableFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatNullableFilter
+  notIn: [Float!]
+}
+
 input NestedIntFilter {
   equals: Int
   gt: Int
@@ -606,6 +630,22 @@ input NestedIntNullableFilter {
   lt: Int
   lte: Int
   not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
+input NestedIntNullableWithAggregatesFilter {
+  _avg: NestedFloatNullableFilter
+  _count: NestedIntNullableFilter
+  _max: NestedIntNullableFilter
+  _min: NestedIntNullableFilter
+  _sum: NestedIntNullableFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableWithAggregatesFilter
   notIn: [Int!]
 }
 
@@ -675,6 +715,14 @@ input NullableDateTimeFieldUpdateOperationsInput {
   set: DateTimeISO
 }
 
+input NullableIntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
+}
+
 input NullableStringFieldUpdateOperationsInput {
   set: String
 }
@@ -690,29 +738,29 @@ type Query {
   aggregateAccount(cursor: AccountWhereUniqueInput, orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): AggregateAccount!
   aggregateSession(cursor: SessionWhereUniqueInput, orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): AggregateSession!
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
-  aggregateVerificationRequest(cursor: VerificationRequestWhereUniqueInput, orderBy: [VerificationRequestOrderByWithRelationInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): AggregateVerificationRequest!
+  aggregateWorkspace(cursor: WorkspaceWhereUniqueInput, orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): AggregateWorkspace!
   findFirstAccount(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): Account
   findFirstAccountOrThrow(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): Account
   findFirstSession(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): Session
   findFirstSessionOrThrow(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): Session
   findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
   findFirstUserOrThrow(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
-  findFirstVerificationRequest(cursor: VerificationRequestWhereUniqueInput, distinct: [VerificationRequestScalarFieldEnum!], orderBy: [VerificationRequestOrderByWithRelationInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): VerificationRequest
-  findFirstVerificationRequestOrThrow(cursor: VerificationRequestWhereUniqueInput, distinct: [VerificationRequestScalarFieldEnum!], orderBy: [VerificationRequestOrderByWithRelationInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): VerificationRequest
+  findFirstWorkspace(cursor: WorkspaceWhereUniqueInput, distinct: [WorkspaceScalarFieldEnum!], orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): Workspace
+  findFirstWorkspaceOrThrow(cursor: WorkspaceWhereUniqueInput, distinct: [WorkspaceScalarFieldEnum!], orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): Workspace
   getAccount(where: AccountWhereUniqueInput!): Account
   getSession(where: SessionWhereUniqueInput!): Session
   getUser(where: UserWhereUniqueInput!): User
-  getVerificationRequest(where: VerificationRequestWhereUniqueInput!): VerificationRequest
+  getWorkspace(where: WorkspaceWhereUniqueInput!): Workspace
   groupByAccount(by: [AccountScalarFieldEnum!]!, having: AccountScalarWhereWithAggregatesInput, orderBy: [AccountOrderByWithAggregationInput!], skip: Int, take: Int, where: AccountWhereInput): [AccountGroupBy!]!
   groupBySession(by: [SessionScalarFieldEnum!]!, having: SessionScalarWhereWithAggregatesInput, orderBy: [SessionOrderByWithAggregationInput!], skip: Int, take: Int, where: SessionWhereInput): [SessionGroupBy!]!
   groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
-  groupByVerificationRequest(by: [VerificationRequestScalarFieldEnum!]!, having: VerificationRequestScalarWhereWithAggregatesInput, orderBy: [VerificationRequestOrderByWithAggregationInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): [VerificationRequestGroupBy!]!
+  groupByWorkspace(by: [WorkspaceScalarFieldEnum!]!, having: WorkspaceScalarWhereWithAggregatesInput, orderBy: [WorkspaceOrderByWithAggregationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): [WorkspaceGroupBy!]!
   session(where: SessionWhereUniqueInput!): Session
   sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
   user(where: UserWhereUniqueInput!): User
   users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
-  verificationRequest(where: VerificationRequestWhereUniqueInput!): VerificationRequest
-  verificationRequests(cursor: VerificationRequestWhereUniqueInput, distinct: [VerificationRequestScalarFieldEnum!], orderBy: [VerificationRequestOrderByWithRelationInput!], skip: Int, take: Int, where: VerificationRequestWhereInput): [VerificationRequest!]!
+  workspace(where: WorkspaceWhereUniqueInput!): Workspace
+  workspaces(cursor: WorkspaceWhereUniqueInput, distinct: [WorkspaceScalarFieldEnum!], orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): [Workspace!]!
 }
 
 enum QueryMode {
@@ -720,65 +768,53 @@ enum QueryMode {
   insensitive
 }
 
+enum Role {
+  ADMIN
+  MEMBER
+  USER
+}
+
 type Session {
-  accessToken: String!
-  createdAt: DateTimeISO!
   expires: DateTimeISO!
   id: String!
   sessionToken: String!
-  updatedAt: DateTimeISO!
   user: User!
   userId: String!
 }
 
 type SessionCountAggregate {
   _all: Int!
-  accessToken: Int!
-  createdAt: Int!
   expires: Int!
   id: Int!
   sessionToken: Int!
-  updatedAt: Int!
   userId: Int!
 }
 
 input SessionCountOrderByAggregateInput {
-  accessToken: SortOrder
-  createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
   sessionToken: SortOrder
-  updatedAt: SortOrder
   userId: SortOrder
 }
 
 input SessionCreateInput {
-  accessToken: String!
-  createdAt: DateTimeISO
   expires: DateTimeISO!
   id: String
   sessionToken: String!
-  updatedAt: DateTimeISO
   user: UserCreateNestedOneWithoutSessionsInput!
 }
 
 input SessionCreateManyInput {
-  accessToken: String!
-  createdAt: DateTimeISO
   expires: DateTimeISO!
   id: String
   sessionToken: String!
-  updatedAt: DateTimeISO
   userId: String!
 }
 
 input SessionCreateManyUserInput {
-  accessToken: String!
-  createdAt: DateTimeISO
   expires: DateTimeISO!
   id: String
   sessionToken: String!
-  updatedAt: DateTimeISO
 }
 
 input SessionCreateManyUserInputEnvelope {
@@ -799,24 +835,18 @@ input SessionCreateOrConnectWithoutUserInput {
 }
 
 input SessionCreateWithoutUserInput {
-  accessToken: String!
-  createdAt: DateTimeISO
   expires: DateTimeISO!
   id: String
   sessionToken: String!
-  updatedAt: DateTimeISO
 }
 
 type SessionGroupBy {
   _count: SessionCountAggregate
   _max: SessionMaxAggregate
   _min: SessionMinAggregate
-  accessToken: String!
-  createdAt: DateTimeISO!
   expires: DateTimeISO!
   id: String!
   sessionToken: String!
-  updatedAt: DateTimeISO!
   userId: String!
 }
 
@@ -827,42 +857,30 @@ input SessionListRelationFilter {
 }
 
 type SessionMaxAggregate {
-  accessToken: String
-  createdAt: DateTimeISO
   expires: DateTimeISO
   id: String
   sessionToken: String
-  updatedAt: DateTimeISO
   userId: String
 }
 
 input SessionMaxOrderByAggregateInput {
-  accessToken: SortOrder
-  createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
   sessionToken: SortOrder
-  updatedAt: SortOrder
   userId: SortOrder
 }
 
 type SessionMinAggregate {
-  accessToken: String
-  createdAt: DateTimeISO
   expires: DateTimeISO
   id: String
   sessionToken: String
-  updatedAt: DateTimeISO
   userId: String
 }
 
 input SessionMinOrderByAggregateInput {
-  accessToken: SortOrder
-  createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
   sessionToken: SortOrder
-  updatedAt: SortOrder
   userId: SortOrder
 }
 
@@ -874,33 +892,24 @@ input SessionOrderByWithAggregationInput {
   _count: SessionCountOrderByAggregateInput
   _max: SessionMaxOrderByAggregateInput
   _min: SessionMinOrderByAggregateInput
-  accessToken: SortOrder
-  createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
   sessionToken: SortOrder
-  updatedAt: SortOrder
   userId: SortOrder
 }
 
 input SessionOrderByWithRelationInput {
-  accessToken: SortOrder
-  createdAt: SortOrder
   expires: SortOrder
   id: SortOrder
   sessionToken: SortOrder
-  updatedAt: SortOrder
   user: UserOrderByWithRelationInput
   userId: SortOrder
 }
 
 enum SessionScalarFieldEnum {
-  accessToken
-  createdAt
   expires
   id
   sessionToken
-  updatedAt
   userId
 }
 
@@ -908,12 +917,9 @@ input SessionScalarWhereInput {
   AND: [SessionScalarWhereInput!]
   NOT: [SessionScalarWhereInput!]
   OR: [SessionScalarWhereInput!]
-  accessToken: StringFilter
-  createdAt: DateTimeFilter
   expires: DateTimeFilter
   id: StringFilter
   sessionToken: StringFilter
-  updatedAt: DateTimeFilter
   userId: StringFilter
 }
 
@@ -921,32 +927,23 @@ input SessionScalarWhereWithAggregatesInput {
   AND: [SessionScalarWhereWithAggregatesInput!]
   NOT: [SessionScalarWhereWithAggregatesInput!]
   OR: [SessionScalarWhereWithAggregatesInput!]
-  accessToken: StringWithAggregatesFilter
-  createdAt: DateTimeWithAggregatesFilter
   expires: DateTimeWithAggregatesFilter
   id: StringWithAggregatesFilter
   sessionToken: StringWithAggregatesFilter
-  updatedAt: DateTimeWithAggregatesFilter
   userId: StringWithAggregatesFilter
 }
 
 input SessionUpdateInput {
-  accessToken: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
   expires: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   sessionToken: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutSessionsNestedInput
 }
 
 input SessionUpdateManyMutationInput {
-  accessToken: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
   expires: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   sessionToken: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input SessionUpdateManyWithWhereWithoutUserInput {
@@ -974,12 +971,9 @@ input SessionUpdateWithWhereUniqueWithoutUserInput {
 }
 
 input SessionUpdateWithoutUserInput {
-  accessToken: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
   expires: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   sessionToken: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input SessionUpsertWithWhereUniqueWithoutUserInput {
@@ -992,12 +986,9 @@ input SessionWhereInput {
   AND: [SessionWhereInput!]
   NOT: [SessionWhereInput!]
   OR: [SessionWhereInput!]
-  accessToken: StringFilter
-  createdAt: DateTimeFilter
   expires: DateTimeFilter
   id: StringFilter
   sessionToken: StringFilter
-  updatedAt: DateTimeFilter
   user: UserRelationFilter
   userId: StringFilter
 }
@@ -1006,12 +997,9 @@ input SessionWhereUniqueInput {
   AND: [SessionWhereInput!]
   NOT: [SessionWhereInput!]
   OR: [SessionWhereInput!]
-  accessToken: String
-  createdAt: DateTimeFilter
   expires: DateTimeFilter
   id: String
   sessionToken: String
-  updatedAt: DateTimeFilter
   user: UserRelationFilter
   userId: StringFilter
 }
@@ -1100,18 +1088,23 @@ type User {
   _count: UserCount
   accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
   createdAt: DateTimeISO!
-  email: String
+  email: String!
   emailVerified: DateTimeISO
+  firstName: String!
   id: String!
   image: String
-  name: String
+  lastName: String!
+  password: String!
+  role: Role!
   sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
   updatedAt: DateTimeISO!
+  workspaces(cursor: WorkspaceWhereUniqueInput, distinct: [WorkspaceScalarFieldEnum!], orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): [Workspace!]!
 }
 
 type UserCount {
   accounts(where: AccountWhereInput): Int!
   sessions(where: SessionWhereInput): Int!
+  workspaces(where: WorkspaceWhereInput): Int!
 }
 
 type UserCountAggregate {
@@ -1119,9 +1112,12 @@ type UserCountAggregate {
   createdAt: Int!
   email: Int!
   emailVerified: Int!
+  firstName: Int!
   id: Int!
   image: Int!
-  name: Int!
+  lastName: Int!
+  password: Int!
+  role: Int!
   updatedAt: Int!
 }
 
@@ -1129,31 +1125,41 @@ input UserCountOrderByAggregateInput {
   createdAt: SortOrder
   email: SortOrder
   emailVerified: SortOrder
+  firstName: SortOrder
   id: SortOrder
   image: SortOrder
-  name: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  role: SortOrder
   updatedAt: SortOrder
 }
 
 input UserCreateInput {
   accounts: AccountCreateNestedManyWithoutUserInput
   createdAt: DateTimeISO
-  email: String
+  email: String!
   emailVerified: DateTimeISO
+  firstName: String!
   id: String
   image: String
-  name: String
+  lastName: String!
+  password: String!
+  role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   updatedAt: DateTimeISO
+  workspaces: WorkspaceCreateNestedManyWithoutUserInput
 }
 
 input UserCreateManyInput {
   createdAt: DateTimeISO
-  email: String
+  email: String!
   emailVerified: DateTimeISO
+  firstName: String!
   id: String
   image: String
-  name: String
+  lastName: String!
+  password: String!
+  role: Role
   updatedAt: DateTimeISO
 }
 
@@ -1169,6 +1175,12 @@ input UserCreateNestedOneWithoutSessionsInput {
   create: UserCreateWithoutSessionsInput
 }
 
+input UserCreateNestedOneWithoutWorkspacesInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutWorkspacesInput
+  create: UserCreateWithoutWorkspacesInput
+}
+
 input UserCreateOrConnectWithoutAccountsInput {
   create: UserCreateWithoutAccountsInput!
   where: UserWhereUniqueInput!
@@ -1179,25 +1191,53 @@ input UserCreateOrConnectWithoutSessionsInput {
   where: UserWhereUniqueInput!
 }
 
+input UserCreateOrConnectWithoutWorkspacesInput {
+  create: UserCreateWithoutWorkspacesInput!
+  where: UserWhereUniqueInput!
+}
+
 input UserCreateWithoutAccountsInput {
   createdAt: DateTimeISO
-  email: String
+  email: String!
   emailVerified: DateTimeISO
+  firstName: String!
   id: String
   image: String
-  name: String
+  lastName: String!
+  password: String!
+  role: Role
   sessions: SessionCreateNestedManyWithoutUserInput
   updatedAt: DateTimeISO
+  workspaces: WorkspaceCreateNestedManyWithoutUserInput
 }
 
 input UserCreateWithoutSessionsInput {
   accounts: AccountCreateNestedManyWithoutUserInput
   createdAt: DateTimeISO
-  email: String
+  email: String!
   emailVerified: DateTimeISO
+  firstName: String!
   id: String
   image: String
-  name: String
+  lastName: String!
+  password: String!
+  role: Role
+  updatedAt: DateTimeISO
+  workspaces: WorkspaceCreateNestedManyWithoutUserInput
+}
+
+input UserCreateWithoutWorkspacesInput {
+  accounts: AccountCreateNestedManyWithoutUserInput
+  createdAt: DateTimeISO
+  email: String!
+  emailVerified: DateTimeISO
+  firstName: String!
+  id: String
+  image: String
+  lastName: String!
+  password: String!
+  role: Role
+  sessions: SessionCreateNestedManyWithoutUserInput
   updatedAt: DateTimeISO
 }
 
@@ -1206,11 +1246,14 @@ type UserGroupBy {
   _max: UserMaxAggregate
   _min: UserMinAggregate
   createdAt: DateTimeISO!
-  email: String
+  email: String!
   emailVerified: DateTimeISO
+  firstName: String!
   id: String!
   image: String
-  name: String
+  lastName: String!
+  password: String!
+  role: Role!
   updatedAt: DateTimeISO!
 }
 
@@ -1218,9 +1261,12 @@ type UserMaxAggregate {
   createdAt: DateTimeISO
   email: String
   emailVerified: DateTimeISO
+  firstName: String
   id: String
   image: String
-  name: String
+  lastName: String
+  password: String
+  role: Role
   updatedAt: DateTimeISO
 }
 
@@ -1228,9 +1274,12 @@ input UserMaxOrderByAggregateInput {
   createdAt: SortOrder
   email: SortOrder
   emailVerified: SortOrder
+  firstName: SortOrder
   id: SortOrder
   image: SortOrder
-  name: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  role: SortOrder
   updatedAt: SortOrder
 }
 
@@ -1238,9 +1287,12 @@ type UserMinAggregate {
   createdAt: DateTimeISO
   email: String
   emailVerified: DateTimeISO
+  firstName: String
   id: String
   image: String
-  name: String
+  lastName: String
+  password: String
+  role: Role
   updatedAt: DateTimeISO
 }
 
@@ -1248,10 +1300,18 @@ input UserMinOrderByAggregateInput {
   createdAt: SortOrder
   email: SortOrder
   emailVerified: SortOrder
+  firstName: SortOrder
   id: SortOrder
   image: SortOrder
-  name: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  role: SortOrder
   updatedAt: SortOrder
+}
+
+input UserNullableRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
 }
 
 input UserOrderByWithAggregationInput {
@@ -1259,24 +1319,31 @@ input UserOrderByWithAggregationInput {
   _max: UserMaxOrderByAggregateInput
   _min: UserMinOrderByAggregateInput
   createdAt: SortOrder
-  email: SortOrderInput
+  email: SortOrder
   emailVerified: SortOrderInput
+  firstName: SortOrder
   id: SortOrder
   image: SortOrderInput
-  name: SortOrderInput
+  lastName: SortOrder
+  password: SortOrder
+  role: SortOrder
   updatedAt: SortOrder
 }
 
 input UserOrderByWithRelationInput {
   accounts: AccountOrderByRelationAggregateInput
   createdAt: SortOrder
-  email: SortOrderInput
+  email: SortOrder
   emailVerified: SortOrderInput
+  firstName: SortOrder
   id: SortOrder
   image: SortOrderInput
-  name: SortOrderInput
+  lastName: SortOrder
+  password: SortOrder
+  role: SortOrder
   sessions: SessionOrderByRelationAggregateInput
   updatedAt: SortOrder
+  workspaces: WorkspaceOrderByRelationAggregateInput
 }
 
 input UserRelationFilter {
@@ -1288,9 +1355,12 @@ enum UserScalarFieldEnum {
   createdAt
   email
   emailVerified
+  firstName
   id
   image
-  name
+  lastName
+  password
+  role
   updatedAt
 }
 
@@ -1299,33 +1369,43 @@ input UserScalarWhereWithAggregatesInput {
   NOT: [UserScalarWhereWithAggregatesInput!]
   OR: [UserScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
-  email: StringNullableWithAggregatesFilter
+  email: StringWithAggregatesFilter
   emailVerified: DateTimeNullableWithAggregatesFilter
+  firstName: StringWithAggregatesFilter
   id: StringWithAggregatesFilter
   image: StringNullableWithAggregatesFilter
-  name: StringNullableWithAggregatesFilter
+  lastName: StringWithAggregatesFilter
+  password: StringWithAggregatesFilter
+  role: EnumRoleWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
 
 input UserUpdateInput {
   accounts: AccountUpdateManyWithoutUserNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
-  email: NullableStringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  firstName: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
-  name: NullableStringFieldUpdateOperationsInput
+  lastName: StringFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  workspaces: WorkspaceUpdateManyWithoutUserNestedInput
 }
 
 input UserUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  email: NullableStringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  firstName: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
-  name: NullableStringFieldUpdateOperationsInput
+  lastName: StringFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -1345,6 +1425,16 @@ input UserUpdateOneRequiredWithoutSessionsNestedInput {
   upsert: UserUpsertWithoutSessionsInput
 }
 
+input UserUpdateOneWithoutWorkspacesNestedInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutWorkspacesInput
+  create: UserCreateWithoutWorkspacesInput
+  delete: UserWhereInput
+  disconnect: UserWhereInput
+  update: UserUpdateToOneWithWhereWithoutWorkspacesInput
+  upsert: UserUpsertWithoutWorkspacesInput
+}
+
 input UserUpdateToOneWithWhereWithoutAccountsInput {
   data: UserUpdateWithoutAccountsInput!
   where: UserWhereInput
@@ -1355,25 +1445,53 @@ input UserUpdateToOneWithWhereWithoutSessionsInput {
   where: UserWhereInput
 }
 
+input UserUpdateToOneWithWhereWithoutWorkspacesInput {
+  data: UserUpdateWithoutWorkspacesInput!
+  where: UserWhereInput
+}
+
 input UserUpdateWithoutAccountsInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  email: NullableStringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  firstName: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
-  name: NullableStringFieldUpdateOperationsInput
+  lastName: StringFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
   sessions: SessionUpdateManyWithoutUserNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+  workspaces: WorkspaceUpdateManyWithoutUserNestedInput
 }
 
 input UserUpdateWithoutSessionsInput {
   accounts: AccountUpdateManyWithoutUserNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
-  email: NullableStringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  firstName: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
-  name: NullableStringFieldUpdateOperationsInput
+  lastName: StringFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  workspaces: WorkspaceUpdateManyWithoutUserNestedInput
+}
+
+input UserUpdateWithoutWorkspacesInput {
+  accounts: AccountUpdateManyWithoutUserNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  firstName: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
+  lastName: StringFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
+  sessions: SessionUpdateManyWithoutUserNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -1389,19 +1507,29 @@ input UserUpsertWithoutSessionsInput {
   where: UserWhereInput
 }
 
+input UserUpsertWithoutWorkspacesInput {
+  create: UserCreateWithoutWorkspacesInput!
+  update: UserUpdateWithoutWorkspacesInput!
+  where: UserWhereInput
+}
+
 input UserWhereInput {
   AND: [UserWhereInput!]
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
   accounts: AccountListRelationFilter
   createdAt: DateTimeFilter
-  email: StringNullableFilter
+  email: StringFilter
   emailVerified: DateTimeNullableFilter
+  firstName: StringFilter
   id: StringFilter
   image: StringNullableFilter
-  name: StringNullableFilter
+  lastName: StringFilter
+  password: StringFilter
+  role: EnumRoleFilter
   sessions: SessionListRelationFilter
   updatedAt: DateTimeFilter
+  workspaces: WorkspaceListRelationFilter
 }
 
 input UserWhereUniqueInput {
@@ -1412,193 +1540,287 @@ input UserWhereUniqueInput {
   createdAt: DateTimeFilter
   email: String
   emailVerified: DateTimeNullableFilter
+  firstName: StringFilter
   id: String
   image: StringNullableFilter
-  name: StringNullableFilter
+  lastName: StringFilter
+  password: StringFilter
+  role: EnumRoleFilter
   sessions: SessionListRelationFilter
   updatedAt: DateTimeFilter
+  workspaces: WorkspaceListRelationFilter
 }
 
-type VerificationRequest {
+type Workspace {
   createdAt: DateTimeISO!
-  expires: DateTimeISO!
+  description: String!
   id: String!
-  identifier: String!
-  token: String!
+  name: String!
   updatedAt: DateTimeISO!
+  user(where: UserWhereInput): User
+  userId: String
 }
 
-type VerificationRequestCountAggregate {
+type WorkspaceCountAggregate {
   _all: Int!
   createdAt: Int!
-  expires: Int!
+  description: Int!
   id: Int!
-  identifier: Int!
-  token: Int!
+  name: Int!
   updatedAt: Int!
+  userId: Int!
 }
 
-input VerificationRequestCountOrderByAggregateInput {
+input WorkspaceCountOrderByAggregateInput {
   createdAt: SortOrder
-  expires: SortOrder
+  description: SortOrder
   id: SortOrder
-  identifier: SortOrder
-  token: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
+  userId: SortOrder
 }
 
-input VerificationRequestCreateInput {
+input WorkspaceCreateInput {
   createdAt: DateTimeISO
-  expires: DateTimeISO!
+  description: String!
   id: String
-  identifier: String!
-  token: String!
+  name: String!
+  updatedAt: DateTimeISO
+  user: UserCreateNestedOneWithoutWorkspacesInput
+}
+
+input WorkspaceCreateManyInput {
+  createdAt: DateTimeISO
+  description: String!
+  id: String
+  name: String!
+  updatedAt: DateTimeISO
+  userId: String
+}
+
+input WorkspaceCreateManyUserInput {
+  createdAt: DateTimeISO
+  description: String!
+  id: String
+  name: String!
   updatedAt: DateTimeISO
 }
 
-input VerificationRequestCreateManyInput {
+input WorkspaceCreateManyUserInputEnvelope {
+  data: [WorkspaceCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input WorkspaceCreateNestedManyWithoutUserInput {
+  connect: [WorkspaceWhereUniqueInput!]
+  connectOrCreate: [WorkspaceCreateOrConnectWithoutUserInput!]
+  create: [WorkspaceCreateWithoutUserInput!]
+  createMany: WorkspaceCreateManyUserInputEnvelope
+}
+
+input WorkspaceCreateOrConnectWithoutUserInput {
+  create: WorkspaceCreateWithoutUserInput!
+  where: WorkspaceWhereUniqueInput!
+}
+
+input WorkspaceCreateWithoutUserInput {
   createdAt: DateTimeISO
-  expires: DateTimeISO!
+  description: String!
   id: String
-  identifier: String!
-  token: String!
+  name: String!
   updatedAt: DateTimeISO
 }
 
-type VerificationRequestGroupBy {
-  _count: VerificationRequestCountAggregate
-  _max: VerificationRequestMaxAggregate
-  _min: VerificationRequestMinAggregate
+type WorkspaceGroupBy {
+  _count: WorkspaceCountAggregate
+  _max: WorkspaceMaxAggregate
+  _min: WorkspaceMinAggregate
   createdAt: DateTimeISO!
-  expires: DateTimeISO!
+  description: String!
   id: String!
-  identifier: String!
-  token: String!
+  name: String!
   updatedAt: DateTimeISO!
+  userId: String
 }
 
-input VerificationRequestIdentifierTokenCompoundUniqueInput {
-  identifier: String!
-  token: String!
+input WorkspaceListRelationFilter {
+  every: WorkspaceWhereInput
+  none: WorkspaceWhereInput
+  some: WorkspaceWhereInput
 }
 
-type VerificationRequestMaxAggregate {
+type WorkspaceMaxAggregate {
   createdAt: DateTimeISO
-  expires: DateTimeISO
+  description: String
   id: String
-  identifier: String
-  token: String
+  name: String
   updatedAt: DateTimeISO
+  userId: String
 }
 
-input VerificationRequestMaxOrderByAggregateInput {
+input WorkspaceMaxOrderByAggregateInput {
   createdAt: SortOrder
-  expires: SortOrder
+  description: SortOrder
   id: SortOrder
-  identifier: SortOrder
-  token: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
+  userId: SortOrder
 }
 
-type VerificationRequestMinAggregate {
+type WorkspaceMinAggregate {
   createdAt: DateTimeISO
-  expires: DateTimeISO
+  description: String
   id: String
-  identifier: String
-  token: String
+  name: String
   updatedAt: DateTimeISO
+  userId: String
 }
 
-input VerificationRequestMinOrderByAggregateInput {
+input WorkspaceMinOrderByAggregateInput {
   createdAt: SortOrder
-  expires: SortOrder
+  description: SortOrder
   id: SortOrder
-  identifier: SortOrder
-  token: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
+  userId: SortOrder
 }
 
-input VerificationRequestOrderByWithAggregationInput {
-  _count: VerificationRequestCountOrderByAggregateInput
-  _max: VerificationRequestMaxOrderByAggregateInput
-  _min: VerificationRequestMinOrderByAggregateInput
+input WorkspaceOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input WorkspaceOrderByWithAggregationInput {
+  _count: WorkspaceCountOrderByAggregateInput
+  _max: WorkspaceMaxOrderByAggregateInput
+  _min: WorkspaceMinOrderByAggregateInput
   createdAt: SortOrder
-  expires: SortOrder
+  description: SortOrder
   id: SortOrder
-  identifier: SortOrder
-  token: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
+  userId: SortOrderInput
 }
 
-input VerificationRequestOrderByWithRelationInput {
+input WorkspaceOrderByWithRelationInput {
   createdAt: SortOrder
-  expires: SortOrder
+  description: SortOrder
   id: SortOrder
-  identifier: SortOrder
-  token: SortOrder
+  name: SortOrder
   updatedAt: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrderInput
 }
 
-enum VerificationRequestScalarFieldEnum {
+enum WorkspaceScalarFieldEnum {
   createdAt
-  expires
+  description
   id
-  identifier
-  token
+  name
   updatedAt
+  userId
 }
 
-input VerificationRequestScalarWhereWithAggregatesInput {
-  AND: [VerificationRequestScalarWhereWithAggregatesInput!]
-  NOT: [VerificationRequestScalarWhereWithAggregatesInput!]
-  OR: [VerificationRequestScalarWhereWithAggregatesInput!]
-  createdAt: DateTimeWithAggregatesFilter
-  expires: DateTimeWithAggregatesFilter
-  id: StringWithAggregatesFilter
-  identifier: StringWithAggregatesFilter
-  token: StringWithAggregatesFilter
-  updatedAt: DateTimeWithAggregatesFilter
-}
-
-input VerificationRequestUpdateInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  expires: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  identifier: StringFieldUpdateOperationsInput
-  token: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input VerificationRequestUpdateManyMutationInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  expires: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  identifier: StringFieldUpdateOperationsInput
-  token: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input VerificationRequestWhereInput {
-  AND: [VerificationRequestWhereInput!]
-  NOT: [VerificationRequestWhereInput!]
-  OR: [VerificationRequestWhereInput!]
+input WorkspaceScalarWhereInput {
+  AND: [WorkspaceScalarWhereInput!]
+  NOT: [WorkspaceScalarWhereInput!]
+  OR: [WorkspaceScalarWhereInput!]
   createdAt: DateTimeFilter
-  expires: DateTimeFilter
+  description: StringFilter
   id: StringFilter
-  identifier: StringFilter
-  token: StringFilter
+  name: StringFilter
   updatedAt: DateTimeFilter
+  userId: StringNullableFilter
 }
 
-input VerificationRequestWhereUniqueInput {
-  AND: [VerificationRequestWhereInput!]
-  NOT: [VerificationRequestWhereInput!]
-  OR: [VerificationRequestWhereInput!]
+input WorkspaceScalarWhereWithAggregatesInput {
+  AND: [WorkspaceScalarWhereWithAggregatesInput!]
+  NOT: [WorkspaceScalarWhereWithAggregatesInput!]
+  OR: [WorkspaceScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  description: StringWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+  userId: StringNullableWithAggregatesFilter
+}
+
+input WorkspaceUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneWithoutWorkspacesNestedInput
+}
+
+input WorkspaceUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input WorkspaceUpdateManyWithWhereWithoutUserInput {
+  data: WorkspaceUpdateManyMutationInput!
+  where: WorkspaceScalarWhereInput!
+}
+
+input WorkspaceUpdateManyWithoutUserNestedInput {
+  connect: [WorkspaceWhereUniqueInput!]
+  connectOrCreate: [WorkspaceCreateOrConnectWithoutUserInput!]
+  create: [WorkspaceCreateWithoutUserInput!]
+  createMany: WorkspaceCreateManyUserInputEnvelope
+  delete: [WorkspaceWhereUniqueInput!]
+  deleteMany: [WorkspaceScalarWhereInput!]
+  disconnect: [WorkspaceWhereUniqueInput!]
+  set: [WorkspaceWhereUniqueInput!]
+  update: [WorkspaceUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [WorkspaceUpdateManyWithWhereWithoutUserInput!]
+  upsert: [WorkspaceUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input WorkspaceUpdateWithWhereUniqueWithoutUserInput {
+  data: WorkspaceUpdateWithoutUserInput!
+  where: WorkspaceWhereUniqueInput!
+}
+
+input WorkspaceUpdateWithoutUserInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input WorkspaceUpsertWithWhereUniqueWithoutUserInput {
+  create: WorkspaceCreateWithoutUserInput!
+  update: WorkspaceUpdateWithoutUserInput!
+  where: WorkspaceWhereUniqueInput!
+}
+
+input WorkspaceWhereInput {
+  AND: [WorkspaceWhereInput!]
+  NOT: [WorkspaceWhereInput!]
+  OR: [WorkspaceWhereInput!]
   createdAt: DateTimeFilter
-  expires: DateTimeFilter
-  id: String
-  identifier: StringFilter
-  identifier_token: VerificationRequestIdentifierTokenCompoundUniqueInput
-  token: String
+  description: StringFilter
+  id: StringFilter
+  name: StringFilter
   updatedAt: DateTimeFilter
+  user: UserNullableRelationFilter
+  userId: StringNullableFilter
+}
+
+input WorkspaceWhereUniqueInput {
+  AND: [WorkspaceWhereInput!]
+  NOT: [WorkspaceWhereInput!]
+  OR: [WorkspaceWhereInput!]
+  createdAt: DateTimeFilter
+  description: StringFilter
+  id: String
+  name: StringFilter
+  updatedAt: DateTimeFilter
+  user: UserNullableRelationFilter
+  userId: StringNullableFilter
 }

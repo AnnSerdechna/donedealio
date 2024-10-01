@@ -11,8 +11,7 @@ generator typegraphql {
 
 datasource postgres {
   provider = "postgresql"
-  // url      = env("DATABASE_URL")
-  url      ="postgresql://annaserdechna:moduta@localhost:5432/taskmate?schema=public"
+  url      = env("DATABASE_URL")
 }
 
 model User {

@@ -10,7 +10,6 @@ import { LogoutForm } from '@/components/elements/auth/auth-forms';
 export default function Home() {
   return (
     <HomeLayout>
-      <LogoutForm />
       <Flex className={styles.contentWrap} justify={'space-between'}>
         <Col span={11} className={styles.contentCol}>
           <Flex align={'center'} justify={'center'} className={styles.content}>

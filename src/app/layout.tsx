@@ -4,7 +4,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Noto_Sans } from 'next/font/google';
 
 import { ThemeProvider, ApolloProvider, SessionProvider } from '@/provider';
-
+import '@/styles/global.scss'
 const notoSans = Noto_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '700', '900'] });
 
 export const metadata: Metadata = {

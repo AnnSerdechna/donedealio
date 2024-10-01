@@ -3,9 +3,9 @@
 import { SessionProvider as AuthSessionProvider } from "next-auth/react";
 import { FC, PropsWithChildren } from 'react';
 
-export const SessionProvider: FC<PropsWithChildren<{session: any}>> = ({ session, children }) => {
+export const SessionProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <AuthSessionProvider session={session}>
+    <AuthSessionProvider>
       {children}
     </AuthSessionProvider>
   );

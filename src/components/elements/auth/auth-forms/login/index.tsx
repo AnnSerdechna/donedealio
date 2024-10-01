@@ -21,7 +21,7 @@ export const LoginForm: FC = () => {
       const userId = session.user.id; 
       router.push(`/${userId}/dashboard`);
     }
-  }, [status, session]); 
+  }, [status, session, router]); 
 
 
   const handleSubmit = async (values: any) => {

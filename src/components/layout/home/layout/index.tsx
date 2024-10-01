@@ -7,13 +7,11 @@ import { HomeHeader } from '../header';
 import { ModalType, AuthModal } from '@/components/elements';
 import HomeBg from '@/assets/images/home-bg.png';
 import styles from './index.module.scss';
-import { useSession } from 'next-auth/react';
 
 const { Content } = Layout;
 
 export const HomeLayout: FC<PropsWithChildren> = ({ children  }) => {
   const [modalType, setModalType] = useState<ModalType>('');
-  const { data: session, status } = useSession();
 
   const handleOpenLogin = () => setModalType('login');
   const handleOpenRegister = () => setModalType('register');
@@ -21,13 +19,6 @@ export const HomeLayout: FC<PropsWithChildren> = ({ children  }) => {
 
   return (
     <Fragment>
-      <div>
-        {!session 
-          ? <p>User not logged in</p>
-          : <p>Welcome, {session.user?.email}</p>
-        }
-
-      </div>
       <Layout
         style={{
           backgroundImage: `url(${HomeBg.src})`,

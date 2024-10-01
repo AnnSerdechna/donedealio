@@ -1,33 +1,24 @@
 'use client';
 
-import { FC, Fragment, useEffect } from 'react';
+import { FC, Fragment } from 'react';
 import { Checkbox, Flex, Input, message } from 'antd';
 import Link from 'next/link';
 import { signIn, useSession } from "next-auth/react";
 
 import { Form, Text, FormItem, Button } from '@/components/ui';
 import { AuthFormContent } from '@/components/elements';
-import { useRouter } from 'next/navigation';
 
 const { Password } = Input;
 
 export const LoginForm: FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
-  const { data: session, status } = useSession()
-  const router = useRouter()
-
-  useEffect(() => {
-    if (status === "authenticated" && session?.user) {
-      const userId = session.user.id; 
-      router.push(`/${userId}/dashboard`);
-    }
-  }, [status, session, router]); 
-
+  const { data: session } = useSession()
 
   const handleSubmit = async (values: any) => {
     try {
       const result = await signIn('credentials', {
         redirect: false,
+        callbackUrl: `${window.location.origin}/${session?.user?.id}/dashboard`,
         email: values.email,
         password: values.password,
       });

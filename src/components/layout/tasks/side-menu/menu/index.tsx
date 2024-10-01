@@ -7,7 +7,6 @@ export const Menu: FC<MenuProps & { items: MenuItemProps[] }> = ({ items, ...pro
   return (
     <AntMenu
       theme={'dark'}
-      mode={'inline'}
       items={items}
       {...props}
     />

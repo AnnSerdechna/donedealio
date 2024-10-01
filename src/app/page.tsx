@@ -5,7 +5,6 @@ import Image from 'next/image';
 import AuthImage from '@/assets/images/email.png';
 import styles from './page.module.scss';
 import { Button, Paragraph, Title } from '@/components/ui';
-import { LogoutForm } from '@/components/elements/auth/auth-forms';
 
 export default function Home() {
   return (

@@ -31,12 +31,13 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             darkPopupBg: variables.darkBg,
             darkSubMenuItemBg: variables.darkBg,
             darkItemHoverBg: variables.darkBgSelected,
+            itemBg: 'transparent',
+        
           },
           Layout: {
             headerBg: 'transparent',
             siderBg: variables.darkBg,
             triggerBg: variables.darkBg,
-            // headerPadding: `0 ${variables.sizeLg}`
           },
         
           Badge: {

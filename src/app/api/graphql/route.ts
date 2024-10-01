@@ -4,8 +4,8 @@ import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { PrismaClient } from '@prisma/client';
 import { GraphQLSchema, lexicographicSortSchema } from 'graphql';
 import { printSchemaWithDirectives } from '@graphql-tools/utils';
-import fs from 'node:fs/promises';
 import { buildSchema } from 'type-graphql';
+import fs from 'node:fs/promises';
 
 import { resolvers } from '../../../../prisma/generated/type-graphql';
 import prisma from '../../../../lib/prisma';
@@ -14,13 +14,16 @@ export type Context = {
   prisma: PrismaClient;
 };
 
+const prismaClient = prisma; 
+
 async function createContext(): Promise<Context> {
   return {
-    prisma
+    prisma: prismaClient,
   };
 };
 
 let apolloServer: ApolloServer<any> | null = null;
+let nextHandler: any = null;
 
 async function emitSchemaDefinitionWithDirectivesFile(
   schemaFilePath: string,
@@ -40,17 +43,18 @@ async function createApolloServer() {
     schema,
   });
 
-  await emitSchemaDefinitionWithDirectivesFile("src/graphql/schema.graphql", schema);
+  await emitSchemaDefinitionWithDirectivesFile('src/graphql/schema.graphql', schema);
 
   await apolloServer.start();
+
+  nextHandler = startServerAndCreateNextHandler(apolloServer!, { context: createContext });
 };
 
 const handler = async (req: Request) => {
-  if (!apolloServer) {
+  if (!apolloServer || !nextHandler) {
     await createApolloServer();
   }
 
-  const nextHandler = startServerAndCreateNextHandler(apolloServer!, {context: createContext});
   return nextHandler(req);
 };
 

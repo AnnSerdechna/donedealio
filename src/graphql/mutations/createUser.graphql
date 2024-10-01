@@ -3,6 +3,7 @@ mutation CreateOneUser($data: UserCreateInput!) {
     email
     firstName
     lastName
-    id
+    password
+    role
   }
 }

@@ -2350,12 +2350,13 @@ export type CreateOneUserMutationVariables = Exact<{
 }>;
 
 
-export type CreateOneUserMutation = { __typename?: 'Mutation', createOneUser: { __typename?: 'User', email: string, firstName: string, lastName: string, password: string, role: Role } };
+export type CreateOneUserMutation = { __typename?: 'Mutation', createOneUser: { __typename?: 'User', id: string, email: string, firstName: string, lastName: string, password: string, role: Role } };
 
 
 export const CreateOneUserDocument = gql`
     mutation CreateOneUser($data: UserCreateInput!) {
   createOneUser(data: $data) {
+    id
     email
     firstName
     lastName

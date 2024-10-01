@@ -9,13 +9,13 @@ type AuthModalProps = ModalProps & {
   modalType: ModalType
 };
 
-export const AuthModal: FC<AuthModalProps> = ({ modalType, ...props }) => {
+export const AuthModal: FC<AuthModalProps> = ({ modalType, onCancel, ...props }) => {
   const modalContent = () => {
     switch (modalType) {
       case 'login':
         return <LoginForm />;
       case 'register':
-        return <RegisterForm />;
+        return <RegisterForm onCloseModal={onCancel as VoidFunction} />;
       default:
         return null;
     };

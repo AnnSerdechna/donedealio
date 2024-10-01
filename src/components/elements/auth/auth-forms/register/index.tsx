@@ -2,8 +2,8 @@
 
 import { Flex, Input, message } from 'antd';
 import Link from 'next/link';
-import { signIn, useSession } from "next-auth/react";
-import { Fragment } from 'react';
+import { signIn } from "next-auth/react";
+import { FC, Fragment } from 'react';
 import bcrypt from 'bcryptjs';
 
 import { AuthFormContent } from '@/components/elements';
@@ -12,8 +12,7 @@ import { Role, useCreateOneUserMutation, UserCreateInput } from '@/graphql/types
 
 const { Password } = Input;
 
-export const RegisterForm = () => {
-  const { data: session } = useSession();
+export const RegisterForm: FC<{ onCloseModal: VoidFunction }> = ({ onCloseModal  }) => {
   const [messageApi, contextHolder] = message.useMessage();
   const [register, { loading }] = useCreateOneUserMutation();
 
@@ -21,7 +20,8 @@ export const RegisterForm = () => {
     try {
       const hashedPassword = await bcrypt.hash(values.password, 10);
 
-      await register({
+      //TODO callbackUrl does'n work
+      register({
         variables: {
           data: {
             email: values.email,
@@ -31,19 +31,29 @@ export const RegisterForm = () => {
             role: Role.Admin
           }
         }
+      }).then(async ({ data }) => {
+        try {
+          const result = await signIn('credentials', {
+            redirect: false,
+            callbackUrl: `${window.location.origin}/${data?.createOneUser?.id}/dashboard`,
+            email: values.email,
+            password: values.password,
+          });
+
+          if (result?.error) {
+            messageApi.error(result?.error);
+          }
+        } catch (error) {
+          console.log(error, 'Login error');
+        }
       })
 
-      await signIn('credentials', { 
-        redirect: false, 
-        callbackUrl: `${window.location.origin}/${session?.user?.id}/dashboard`,
-        email: values.email, 
-        password: values.password 
-      });
-
-      messageApi.success('Register success')
+      messageApi.success('Register success');
     } catch (error) {
       console.log(error, 'Register error');
-      messageApi.error('Register failed')
+      messageApi.error('Register failed');
+    } finally {
+      onCloseModal()
     }
   }
 

@@ -20,7 +20,6 @@ export const RegisterForm: FC<{ onCloseModal: VoidFunction }> = ({ onCloseModal 
     try {
       const hashedPassword = await bcrypt.hash(values.password, 10);
 
-      //TODO callbackUrl does'n work
       register({
         variables: {
           data: {

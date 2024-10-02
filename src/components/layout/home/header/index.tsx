@@ -43,6 +43,9 @@ export const HomeHeader: FC<HomeHeaderProps> = ({ onLogin, onRegister }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
+  console.log(session, 'SESS');
+  
+
   const onMemuItemClick: MenuProps['onClick'] = (event) => {
     router.push(`/${session?.user?.id}/${event.key}`);
   };

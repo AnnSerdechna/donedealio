@@ -15,7 +15,7 @@ export const AuthModal: FC<AuthModalProps> = ({ modalType, onCancel, ...props })
       case 'login':
         return <LoginForm />;
       case 'register':
-        return <RegisterForm onCloseModal={onCancel as VoidFunction} />;
+        return <RegisterForm />;
       default:
         return null;
     };

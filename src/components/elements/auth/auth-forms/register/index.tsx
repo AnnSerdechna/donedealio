@@ -13,7 +13,7 @@ import prisma from '../../../../../../lib/prisma';
 
 const { Password } = Input;
 
-export const RegisterForm: FC<{ onCloseModal?: VoidFunction }> = ({ onCloseModal  }) => {
+export const RegisterForm: FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
   // const [register, { loading }] = useCreateOneUserMutation();
 
@@ -73,8 +73,6 @@ export const RegisterForm: FC<{ onCloseModal?: VoidFunction }> = ({ onCloseModal
     } catch (error) {
       console.log(error, 'Register error');
       messageApi.error('Register failed');
-    } finally {
-      !!onCloseModal && onCloseModal()
     }
   }
 

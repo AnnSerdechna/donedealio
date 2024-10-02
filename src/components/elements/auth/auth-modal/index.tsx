@@ -9,7 +9,7 @@ type AuthModalProps = ModalProps & {
   modalType: ModalType
 };
 
-export const AuthModal: FC<AuthModalProps> = ({ modalType, onCancel, ...props }) => {
+export const AuthModal: FC<AuthModalProps> = ({ modalType, ...props }) => {
   const modalContent = () => {
     switch (modalType) {
       case 'login':

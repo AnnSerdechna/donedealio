@@ -7,7 +7,7 @@ import {
   BulbOutlined,
 } from '@ant-design/icons';
 import { Flex, MenuProps } from 'antd';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { MenuItemProps } from '@/types';
 import { Menu } from './menu';
@@ -66,7 +66,10 @@ export const HomeMenu: FC = () => (
 );
 
 export const SideMenu: FC = () => {
-  const router = useRouter()
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const activeKeys = [...items, ...bottomItems].filter((item) => pathname?.includes(`${item?.key}`)).map(item => item?.key) as string[];
 
   const onMemuItemClick: MenuProps['onClick'] = (event) => {
     router.push(`/${userId}/${event.key}`);
@@ -74,8 +77,8 @@ export const SideMenu: FC = () => {
 
   return (
     <Flex vertical justify={'space-between'} className={styles.menuContainer}>
-      <Menu items={items} onClick={onMemuItemClick} mode={'inline'} />
-      <Menu items={bottomItems} onClick={onMemuItemClick} mode={'inline'} />
+      <Menu selectedKeys={activeKeys} items={items} onClick={onMemuItemClick} mode={'inline'} />
+      <Menu selectedKeys={activeKeys} items={bottomItems} onClick={onMemuItemClick} mode={'inline'} />
     </Flex>
   )
 }

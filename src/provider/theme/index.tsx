@@ -32,7 +32,7 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             darkSubMenuItemBg: variables.darkBg,
             darkItemHoverBg: variables.darkBgSelected,
             itemBg: 'transparent',
-        
+            itemActiveBg: 'red',        
           },
           Layout: {
             headerBg: 'transparent',

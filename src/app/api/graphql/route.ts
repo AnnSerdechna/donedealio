@@ -21,9 +21,6 @@ async function createContext(): Promise<Context> {
   };
 };
 
-// Initialize Prisma Client
-const prismaClient = prisma;
-
 let apolloServer: ApolloServer<any> | null = null;
 let nextHandler: any = null;
 

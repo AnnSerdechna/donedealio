@@ -4,23 +4,33 @@ import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 
 import { Button, Text } from '@/components/ui';
 
-const items: MenuProps['items'] = [
-  {
-    key: '1',
-    icon: <EditOutlined />,
-    label: 'Edit workspace'
-  },
-  {
-    key: '2',
-    label: 'Delete workspace',
-    icon: <DeleteOutlined />,
-  },
-];
+type WorkspaceCardProps = {
+  id: string
+  name: string
+  description: string
+  onEdit: VoidFunction
+  onRemove: VoidFunction
+}
 
-export const WorkspaceCard: FC = () => {
+export const WorkspaceCard: FC<WorkspaceCardProps> = ({ id, name, description, onEdit, onRemove }) => {
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      icon: <EditOutlined />,
+      label: 'Edit workspace',
+      onClick: onEdit,
+    },
+    {
+      key: '2',
+      label: 'Delete workspace',
+      icon: <DeleteOutlined />,
+      onClick: onRemove,
+    },
+  ];
+
   return (
     <Card 
-      title={'Workspace name'} 
+      title={name} 
       extra={(
         <Dropdown 
           menu={{ items }}
@@ -31,7 +41,7 @@ export const WorkspaceCard: FC = () => {
       )} 
       style={{ width: 300 }}
     >
-      <Text>Workspace description</Text>
+      <Text>{description}</Text>
     </Card>
   )
 }

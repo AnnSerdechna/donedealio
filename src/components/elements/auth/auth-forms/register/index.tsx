@@ -20,7 +20,7 @@ export const RegisterForm: FC = () => {
     try {
       const hashedPassword = await bcrypt.hash(values.password, 10);
 
-      await register({
+      const registerResult = await register({
         variables: {
           data: {
             email: values.email,
@@ -30,17 +30,19 @@ export const RegisterForm: FC = () => {
             role: Role.Admin
           }
         }
-      })
+      });
       
-      const result = await signIn('credentials', {
-        redirect: false,
-        callbackUrl: `${window.location.origin}/dashboard`,
+      const userId = registerResult?.data?.createOneUser?.id;
+
+      const loginResult = await signIn('credentials', {
+        redirect: true,
+        callbackUrl: `${window.location.origin}/${userId}/dashboard`,
         email: values.email,
         password: values.password,
       });
 
-      if (result?.error) {
-        messageApi.error(result?.error);
+      if (loginResult?.error) {
+        messageApi.error(loginResult?.error);
       }
 
       messageApi.success('Register success');
@@ -58,6 +60,12 @@ export const RegisterForm: FC = () => {
           <FormItem
             name={'firstName'}
             label={'First name'}
+            rules={[
+              {
+                required: true,
+                message: 'Please input your E-mail!',
+              },
+            ]}
           >
             <Input size={'large'} />
           </FormItem>

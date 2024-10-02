@@ -1,0 +1,7 @@
+mutation UpdateOneWorkspace($data: WorkspaceUpdateInput!, $where: WorkspaceWhereUniqueInput!) {
+  updateOneWorkspace(data: $data, where: $where) {
+    id
+    name
+    description
+  }
+}

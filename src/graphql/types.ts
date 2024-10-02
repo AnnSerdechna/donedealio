@@ -2352,6 +2352,42 @@ export type CreateOneUserMutationVariables = Exact<{
 
 export type CreateOneUserMutation = { __typename?: 'Mutation', createOneUser: { __typename?: 'User', id: string, email: string, firstName: string, lastName: string, password: string, role: Role } };
 
+export type CreateOneWorkspaceMutationVariables = Exact<{
+  data: WorkspaceCreateInput;
+}>;
+
+
+export type CreateOneWorkspaceMutation = { __typename?: 'Mutation', createOneWorkspace: { __typename?: 'Workspace', id: string, name: string, description: string, user?: { __typename?: 'User', id: string } | null } };
+
+export type DeleteOneWorkspaceMutationVariables = Exact<{
+  where: WorkspaceWhereUniqueInput;
+}>;
+
+
+export type DeleteOneWorkspaceMutation = { __typename?: 'Mutation', deleteOneWorkspace?: { __typename?: 'Workspace', id: string } | null };
+
+export type UpdateOneWorkspaceMutationVariables = Exact<{
+  data: WorkspaceUpdateInput;
+  where: WorkspaceWhereUniqueInput;
+}>;
+
+
+export type UpdateOneWorkspaceMutation = { __typename?: 'Mutation', updateOneWorkspace?: { __typename?: 'Workspace', id: string, name: string, description: string } | null };
+
+export type UserQueryVariables = Exact<{
+  where: UserWhereUniqueInput;
+}>;
+
+
+export type UserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, firstName: string, lastName: string, role: Role, image?: string | null, workspaces: Array<{ __typename?: 'Workspace', description: string, name: string, id: string }> } | null };
+
+export type WorkspacesQueryVariables = Exact<{
+  where?: InputMaybe<WorkspaceWhereInput>;
+}>;
+
+
+export type WorkspacesQuery = { __typename?: 'Query', workspaces: Array<{ __typename?: 'Workspace', id: string, name: string, description: string }> };
+
 
 export const CreateOneUserDocument = gql`
     mutation CreateOneUser($data: UserCreateInput!) {
@@ -2391,3 +2427,202 @@ export function useCreateOneUserMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateOneUserMutationHookResult = ReturnType<typeof useCreateOneUserMutation>;
 export type CreateOneUserMutationResult = Apollo.MutationResult<CreateOneUserMutation>;
 export type CreateOneUserMutationOptions = Apollo.BaseMutationOptions<CreateOneUserMutation, CreateOneUserMutationVariables>;
+export const CreateOneWorkspaceDocument = gql`
+    mutation createOneWorkspace($data: WorkspaceCreateInput!) {
+  createOneWorkspace(data: $data) {
+    id
+    name
+    description
+    user {
+      id
+    }
+  }
+}
+    `;
+export type CreateOneWorkspaceMutationFn = Apollo.MutationFunction<CreateOneWorkspaceMutation, CreateOneWorkspaceMutationVariables>;
+
+/**
+ * __useCreateOneWorkspaceMutation__
+ *
+ * To run a mutation, you first call `useCreateOneWorkspaceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOneWorkspaceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOneWorkspaceMutation, { data, loading, error }] = useCreateOneWorkspaceMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateOneWorkspaceMutation(baseOptions?: Apollo.MutationHookOptions<CreateOneWorkspaceMutation, CreateOneWorkspaceMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOneWorkspaceMutation, CreateOneWorkspaceMutationVariables>(CreateOneWorkspaceDocument, options);
+      }
+export type CreateOneWorkspaceMutationHookResult = ReturnType<typeof useCreateOneWorkspaceMutation>;
+export type CreateOneWorkspaceMutationResult = Apollo.MutationResult<CreateOneWorkspaceMutation>;
+export type CreateOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<CreateOneWorkspaceMutation, CreateOneWorkspaceMutationVariables>;
+export const DeleteOneWorkspaceDocument = gql`
+    mutation DeleteOneWorkspace($where: WorkspaceWhereUniqueInput!) {
+  deleteOneWorkspace(where: $where) {
+    id
+  }
+}
+    `;
+export type DeleteOneWorkspaceMutationFn = Apollo.MutationFunction<DeleteOneWorkspaceMutation, DeleteOneWorkspaceMutationVariables>;
+
+/**
+ * __useDeleteOneWorkspaceMutation__
+ *
+ * To run a mutation, you first call `useDeleteOneWorkspaceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteOneWorkspaceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteOneWorkspaceMutation, { data, loading, error }] = useDeleteOneWorkspaceMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteOneWorkspaceMutation(baseOptions?: Apollo.MutationHookOptions<DeleteOneWorkspaceMutation, DeleteOneWorkspaceMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteOneWorkspaceMutation, DeleteOneWorkspaceMutationVariables>(DeleteOneWorkspaceDocument, options);
+      }
+export type DeleteOneWorkspaceMutationHookResult = ReturnType<typeof useDeleteOneWorkspaceMutation>;
+export type DeleteOneWorkspaceMutationResult = Apollo.MutationResult<DeleteOneWorkspaceMutation>;
+export type DeleteOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<DeleteOneWorkspaceMutation, DeleteOneWorkspaceMutationVariables>;
+export const UpdateOneWorkspaceDocument = gql`
+    mutation UpdateOneWorkspace($data: WorkspaceUpdateInput!, $where: WorkspaceWhereUniqueInput!) {
+  updateOneWorkspace(data: $data, where: $where) {
+    id
+    name
+    description
+  }
+}
+    `;
+export type UpdateOneWorkspaceMutationFn = Apollo.MutationFunction<UpdateOneWorkspaceMutation, UpdateOneWorkspaceMutationVariables>;
+
+/**
+ * __useUpdateOneWorkspaceMutation__
+ *
+ * To run a mutation, you first call `useUpdateOneWorkspaceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateOneWorkspaceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateOneWorkspaceMutation, { data, loading, error }] = useUpdateOneWorkspaceMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateOneWorkspaceMutation(baseOptions?: Apollo.MutationHookOptions<UpdateOneWorkspaceMutation, UpdateOneWorkspaceMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateOneWorkspaceMutation, UpdateOneWorkspaceMutationVariables>(UpdateOneWorkspaceDocument, options);
+      }
+export type UpdateOneWorkspaceMutationHookResult = ReturnType<typeof useUpdateOneWorkspaceMutation>;
+export type UpdateOneWorkspaceMutationResult = Apollo.MutationResult<UpdateOneWorkspaceMutation>;
+export type UpdateOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<UpdateOneWorkspaceMutation, UpdateOneWorkspaceMutationVariables>;
+export const UserDocument = gql`
+    query user($where: UserWhereUniqueInput!) {
+  user(where: $where) {
+    id
+    email
+    firstName
+    lastName
+    role
+    image
+    workspaces {
+      description
+      name
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useUserQuery__
+ *
+ * To run a query within a React component, call `useUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUserQuery(baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables> & ({ variables: UserQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+      }
+export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+        }
+export function useUserSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<UserQuery, UserQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+        }
+export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
+export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
+export type UserSuspenseQueryHookResult = ReturnType<typeof useUserSuspenseQuery>;
+export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
+export const WorkspacesDocument = gql`
+    query Workspaces($where: WorkspaceWhereInput) {
+  workspaces(where: $where) {
+    id
+    name
+    description
+  }
+}
+    `;
+
+/**
+ * __useWorkspacesQuery__
+ *
+ * To run a query within a React component, call `useWorkspacesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWorkspacesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWorkspacesQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useWorkspacesQuery(baseOptions?: Apollo.QueryHookOptions<WorkspacesQuery, WorkspacesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<WorkspacesQuery, WorkspacesQueryVariables>(WorkspacesDocument, options);
+      }
+export function useWorkspacesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WorkspacesQuery, WorkspacesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<WorkspacesQuery, WorkspacesQueryVariables>(WorkspacesDocument, options);
+        }
+export function useWorkspacesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<WorkspacesQuery, WorkspacesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<WorkspacesQuery, WorkspacesQueryVariables>(WorkspacesDocument, options);
+        }
+export type WorkspacesQueryHookResult = ReturnType<typeof useWorkspacesQuery>;
+export type WorkspacesLazyQueryHookResult = ReturnType<typeof useWorkspacesLazyQuery>;
+export type WorkspacesSuspenseQueryHookResult = ReturnType<typeof useWorkspacesSuspenseQuery>;
+export type WorkspacesQueryResult = Apollo.QueryResult<WorkspacesQuery, WorkspacesQueryVariables>;

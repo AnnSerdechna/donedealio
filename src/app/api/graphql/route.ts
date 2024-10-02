@@ -14,11 +14,10 @@ export type Context = {
   prisma: PrismaClient;
 };
 
-const prismaClient = prisma; 
 
 async function createContext(): Promise<Context> {
   return {
-    prisma: prismaClient,
+    prisma,
   };
 };
 

@@ -54,6 +54,7 @@ const handler = async (req: Request) => {
     await createApolloServer();
   }
 
+  console.log(req, 'req')
   return nextHandler(req);
 };
 

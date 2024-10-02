@@ -9,6 +9,7 @@ import bcrypt from 'bcryptjs';
 import { AuthFormContent } from '@/components/elements';
 import { Form, FormItem, Text, Button } from '@/components/ui';
 import { Role, useCreateOneUserMutation, UserCreateInput } from '@/graphql/types';
+import prisma from '../../../../../../lib/prisma';
 
 const { Password } = Input;
 
@@ -20,32 +21,53 @@ export const RegisterForm: FC<{ onCloseModal: VoidFunction }> = ({ onCloseModal 
     try {
       const hashedPassword = await bcrypt.hash(values.password, 10);
 
-      register({
-        variables: {
-          data: {
-            email: values.email,
-            firstName: values.firstName,
-            lastName: values.lastName,
-            password: hashedPassword,
-            role: Role.Admin
-          }
-        }
-      }).then(async ({ data }) => {
-        try {
-          const result = await signIn('credentials', {
-            redirect: false,
-            callbackUrl: `${window.location.origin}/${data?.createOneUser?.id}/dashboard`,
-            email: values.email,
-            password: values.password,
-          });
-
-          if (result?.error) {
-            messageApi.error(result?.error);
-          }
-        } catch (error) {
-          console.log(error, 'Login error');
-        }
+      await prisma.user.create({
+        data: {
+          email: values.email,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          password: hashedPassword,
+          role: Role.Admin
+        },
       })
+
+        const result = await signIn('credentials', {
+          redirect: false,
+          callbackUrl: `${window.location.origin}/dashboard`,
+          email: values.email,
+          password: values.password,
+        });
+
+        if (result?.error) {
+          messageApi.error(result?.error);
+        }
+
+      // register({
+      //   variables: {
+      //     data: {
+      //       email: values.email,
+      //       firstName: values.firstName,
+      //       lastName: values.lastName,
+      //       password: hashedPassword,
+      //       role: Role.Admin
+      //     }
+      //   }
+      // }).then(async ({ data }) => {
+      //   try {
+      //     const result = await signIn('credentials', {
+      //       redirect: false,
+      //       callbackUrl: `${window.location.origin}/${data?.createOneUser?.id}/dashboard`,
+      //       email: values.email,
+      //       password: values.password,
+      //     });
+
+      //     if (result?.error) {
+      //       messageApi.error(result?.error);
+      //     }
+      //   } catch (error) {
+      //     console.log(error, 'Login error');
+      //   }
+      // })
 
       messageApi.success('Register success');
     } catch (error) {

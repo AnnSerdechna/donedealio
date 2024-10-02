@@ -29,6 +29,11 @@ async function emitSchemaDefinitionWithDirectivesFile(
   schemaFilePath: string,
   schema: GraphQLSchema,
 ): Promise<void> {
+  if (process.env.NODE_ENV === 'production') {
+    // Skip writing schema file in production
+    return;
+  }
+  
   const schemaFileContent = printSchemaWithDirectives(lexicographicSortSchema(schema));
   await fs.writeFile(schemaFilePath, schemaFileContent);
 };

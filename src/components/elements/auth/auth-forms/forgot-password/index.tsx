@@ -1,12 +1,13 @@
 'use client';
 
+import { FC } from 'react';
 import { Flex, Input } from 'antd';
 import Link from 'next/link';
 
 import { Form, FormItem, Button } from '@/components/ui';
 import { AuthFormContent } from '@/components/elements';
 
-export const ForgotPasswordForm = () => {
+export const ForgotPasswordForm :FC= () => {
   return (
     <Form>
       <AuthFormContent title={'Forgot password'}>

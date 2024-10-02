@@ -1,13 +1,14 @@
 'use client';
 
 import { Input } from 'antd';
+import { FC } from 'react';
 
 import { AuthFormContent } from '@/components/elements';
 import { Form, FormItem, Button } from '@/components/ui';
 
 const { Password } = Input;
 
-export const ConfirmPasswordForm = () => {
+export const ConfirmPasswordForm: FC = () => {
   return (
     <Form>
       <AuthFormContent title={'Confirm password'}>

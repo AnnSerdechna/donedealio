@@ -1,2 +1,3 @@
 export { DashboardPage } from './user/dashboard';
-export { WorkspacePage } from './user/workspace';
+export { WorkspacesPage } from './user/workspaces';
+export { WorkspacePage } from './user/workspace-single';

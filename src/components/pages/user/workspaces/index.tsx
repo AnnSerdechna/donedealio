@@ -2,62 +2,30 @@
 
 import { useSession } from 'next-auth/react';
 import { FC, Fragment, useState } from 'react';
-
-import { Button, FormItem, Form } from '@/components/ui';
-import { useCreateOneWorkspaceMutation, useDeleteOneWorkspaceMutation, useUpdateOneWorkspaceMutation, useWorkspacesQuery, WorkspaceCreateInput} from '@/graphql/types';
-import { Flex, Input, message, Modal } from 'antd';
-import { WorkspaceCard } from '@/components/elements/workspace-card';
-import { WorkspaceUpdateInput } from '../../../../../prisma/generated/type-graphql';
+import { Flex, message, Modal } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 
-type WorkspaceProps = {
-  id: string
-  name: string
-  description: string
-}
+import { Button, Form } from '@/components/ui';
+import { useCreateOneWorkspaceMutation, useDeleteOneWorkspaceMutation, useUpdateOneWorkspaceMutation, useWorkspacesQuery, WorkspaceCreateInput} from '@/graphql/types';
+import { WorkspaceUpdateInput } from '../../../../../prisma/generated/type-graphql';
+import { WorkspaceFormContent ,WorkspaceCard } from '@/components/elements';
+import { useParams } from 'next/navigation';
 
-const WorkspaceFormContent: FC<{ loading: boolean, btntext: 'Add' | 'Edit' }> = ({ loading, btntext  }) => {
-  return (
-    <Fragment>
-      <FormItem
-        name={'name'}
-        label={"Name"}
-        rules={[
-          {
-            required: true,
-            message: 'Please input workspace name!',
-          },
-        ]}
-      >
-        <Input />
-      </FormItem>
-      <FormItem
-        name={'description'}
-        label={"Description"}
-      >
-        <Input />
-      </FormItem>
-
-      <FormItem>
-        <Button text={btntext} htmlType={'submit'} loading={loading} />
-      </FormItem>
-    </Fragment>
-  )
-}
-export const WorkspacePage: FC = () => {
+export const WorkspacesPage: FC = () => {
   const createForm = useForm();
   const updateForm = useForm();
+  const { userId } = useParams();
   const [modalApi, contextModal] = Modal.useModal();
   const [messageApi, contextMessage] = message.useMessage();
   const [openModalCreate, setOpenModalCreate] = useState(false);
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
+  const [isValueChange, setIsValueChange] = useState(false);
   const [selectedWorkspaceId, setSelectedWorkspaceId] = useState('');
 
-  const { data: session } = useSession();
-  const { data: workspacesData, refetch } = useWorkspacesQuery({ variables: { where: { userId: { equals: session?.user?.id } } } })
+  const { data: workspacesData, refetch } = useWorkspacesQuery({ variables: { where: { userId: { equals: userId as string } } } })
   const [createWorkspace, { loading: createLoading }] = useCreateOneWorkspaceMutation();
   const [updateWorkspace, {loading: updateLoading}] = useUpdateOneWorkspaceMutation();
-  const [deleteWorkspase, { loading: deleteLoading }] = useDeleteOneWorkspaceMutation()
+  const [deleteWorkspase] = useDeleteOneWorkspaceMutation();
 
   const handleCreateWorkspace = async (values: WorkspaceCreateInput) => {
     try {
@@ -66,7 +34,7 @@ export const WorkspacePage: FC = () => {
           data: {
             name: values.name,
             description: values.description,
-            user: { connect: { id: session?.user?.id } }
+            user: { connect: { id: userId as string } }
           }
         }
       });
@@ -101,10 +69,11 @@ export const WorkspacePage: FC = () => {
       messageApi.error('Something went wrong!');
     } finally {
       updateForm[0].resetFields();
-      setOpenModalUpdate(false)
-      setSelectedWorkspaceId('')
+      setOpenModalUpdate(false);
+      setIsValueChange(false);
+      setSelectedWorkspaceId('');
     }
-  }
+  };
 
   const handleDeleteWorkspace = async (id: string) => {
     try {
@@ -120,7 +89,7 @@ export const WorkspacePage: FC = () => {
       console.log(error, 'Delete Workspace error');
       messageApi.error('Something went wrong!')
     }
-  }
+  };
 
   const onEditWorkspace = (id: string, name: string, description: string) => {
     updateForm[0].setFieldsValue({
@@ -129,14 +98,21 @@ export const WorkspacePage: FC = () => {
     })
     setSelectedWorkspaceId(id);
     setOpenModalUpdate(true)
-  }
+  };
 
   const onRemoveWorkspace = (id: string) => {
     modalApi.confirm({
       title: 'Are you sure you want to delete warkspace?',
       onOk: () => handleDeleteWorkspace(id)
     })
-  }
+  };
+
+  const onCloseCreateModal = () => setOpenModalCreate(false);
+
+  const onCloseEditModal = () => {
+    setOpenModalUpdate(false);
+    setIsValueChange(false);
+  };
 
   return (
     <Fragment>
@@ -151,6 +127,7 @@ export const WorkspacePage: FC = () => {
           {workspacesData?.workspaces?.map(item => (
             <WorkspaceCard
               key={item?.id}
+              userId={userId as string}
               id={item?.id}
               name={item?.name}
               description={item?.description}
@@ -163,7 +140,7 @@ export const WorkspacePage: FC = () => {
 
       <Modal
         open={openModalCreate}
-        onCancel={() => setOpenModalCreate(false)}
+        onCancel={onCloseCreateModal}
         footer={false}
       >
         <Form 
@@ -176,14 +153,19 @@ export const WorkspacePage: FC = () => {
 
       <Modal
         open={openModalUpdate}
-        onCancel={() => setOpenModalUpdate(false)}
+        onCancel={onCloseEditModal}
         footer={false}
       >
         <Form 
           form={updateForm[0]} 
           onFinish={handleUpdateWorkspace}
+          onValuesChange={() => setIsValueChange(true)}
         >
-          <WorkspaceFormContent loading={updateLoading} btntext={'Edit'} />
+          <WorkspaceFormContent 
+            loading={updateLoading} 
+            btntext={'Edit'}
+            disabled={!isValueChange} 
+          />
         </Form>
       </Modal>
     </Fragment>

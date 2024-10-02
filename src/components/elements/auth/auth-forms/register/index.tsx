@@ -8,14 +8,14 @@ import bcrypt from 'bcryptjs';
 
 import { AuthFormContent } from '@/components/elements';
 import { Form, FormItem, Text, Button } from '@/components/ui';
-import { Role, useCreateOneUserMutation, UserCreateInput } from '@/graphql/types';
+import { Role, UserCreateInput } from '@/graphql/types';
 import prisma from '../../../../../../lib/prisma';
 
 const { Password } = Input;
 
 export const RegisterForm: FC<{ onCloseModal: VoidFunction }> = ({ onCloseModal  }) => {
   const [messageApi, contextHolder] = message.useMessage();
-  const [register, { loading }] = useCreateOneUserMutation();
+  // const [register, { loading }] = useCreateOneUserMutation();
 
   const onFinish = async (values: UserCreateInput) => {
     try {
@@ -152,7 +152,7 @@ export const RegisterForm: FC<{ onCloseModal: VoidFunction }> = ({ onCloseModal 
             <Button
               text={'Sign in'}
               htmlType={'submit'}
-              loading={loading}
+              // loading={loading}
             />
           </FormItem>
 

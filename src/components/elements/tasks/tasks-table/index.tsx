@@ -58,14 +58,14 @@ export const TasksTable: FC = () => {
     }
   }
 
-  const handleUpdateTaskPriority = async (statusId: number, taskId: string) => {
+  const handleUpdateTaskPriority = async (priorityId: number, taskId: string) => {
     try {
       await updateTask({
         variables: {
           data: {
-            status: {
+            priority: {
               connect: {
-                id: statusId
+                id: priorityId
               }
             }
           },
@@ -76,8 +76,8 @@ export const TasksTable: FC = () => {
       });
       refetch();
     } catch (error) {
-      console.log(error, 'Update task status error!');
-      messageApi.error('Update status failed!');
+      console.log(error, 'Update task priority error!');
+      messageApi.error('Update priority failed!');
     }
   }
 
@@ -89,10 +89,7 @@ export const TasksTable: FC = () => {
           <StatusButton
             text={item?.name}
             backgroundColor={item?.color}
-            onClick={() =>{ 
-              handleUpdateTaskStatus(item?.id, taskId)
-              console.log(taskId, item?.id, item?.name, 'STATSUS')
-            }}
+            onClick={() => handleUpdateTaskStatus(item?.id, taskId)}
           />
         ))}
         <Divider style={{ margin: '12px 0' }} />
@@ -106,8 +103,8 @@ export const TasksTable: FC = () => {
           Edit label
         </Button>
       </Fragment>
-    )
-  }
+    );
+  };
 
   const editStatusContent = (
     <Form
@@ -154,26 +151,29 @@ export const TasksTable: FC = () => {
     </Form>
   )
 
-  const changePriorityContent = (
-    <Fragment>
-      {prioritiesData?.priorities?.map(item => (
-        <StatusButton
-          text={item.name}
-          backgroundColor={item.color}
-        />
-      ))}
-      <Divider style={{ margin: '12px 0' }} />
-      <Button
-        icon={<EditOutlined />}
-        type={'text'}
-        size={'large'}
-        style={{ width: '100%' }}
-        onClick={() => setPriorityContent('edit')}
-      >
-        Edit label
-      </Button>
-    </Fragment>
-  )
+  const changePriorityContent = (taskId: string) => {
+    return (
+      <Fragment>
+        {prioritiesData?.priorities?.map(item => (
+          <StatusButton
+            text={item.name}
+            backgroundColor={item.color}
+            onClick={() => handleUpdateTaskPriority(item?.id, taskId)}
+          />
+        ))}
+        <Divider style={{ margin: '12px 0' }} />
+        <Button
+          icon={<EditOutlined />}
+          type={'text'}
+          size={'large'}
+          style={{ width: '100%' }}
+          onClick={() => setPriorityContent('edit')}
+        >
+          Edit label
+        </Button>
+      </Fragment>
+    );
+  };
 
   const editPriorityContent = (
     <Form
@@ -337,14 +337,17 @@ export const TasksTable: FC = () => {
       key: 'priority',
       width: 150,
       align: 'center',
-      render: (priority) => (
+      render: (priority, data) => (
         <Popover
           placement={'bottom'}
           trigger={'click'}
           overlayStyle={{ width: 250 }}
           content={(
             <Space size={8} direction={'vertical'} style={{ width: '100%' }}>
-              {priorityContent === 'change' ? changePriorityContent : editPriorityContent}
+              {priorityContent === 'change' 
+                ? changePriorityContent(data?.id) 
+                : editPriorityContent
+              }
             </Space>
           )}
         >

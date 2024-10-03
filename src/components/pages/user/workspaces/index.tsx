@@ -3,18 +3,24 @@
 import { useSession } from 'next-auth/react';
 import { FC, Fragment, useState } from 'react';
 import { Flex, message, Modal } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
 
+import { 
+  useCreateOneWorkspaceMutation, 
+  useDeleteOneWorkspaceMutation, 
+  useUpdateOneWorkspaceMutation, 
+  useWorkspacesQuery, 
+  WorkspaceCreateInput,
+  WorkspaceUpdateInput,
+} from '@/graphql/types';
 import { Button, Form } from '@/components/ui';
-import { useCreateOneWorkspaceMutation, useDeleteOneWorkspaceMutation, useUpdateOneWorkspaceMutation, useWorkspacesQuery, WorkspaceCreateInput} from '@/graphql/types';
-import { WorkspaceUpdateInput } from '../../../../../prisma/generated/type-graphql';
 import { WorkspaceFormContent ,WorkspaceCard } from '@/components/elements';
-import { useParams } from 'next/navigation';
 
 export const WorkspacesPage: FC = () => {
   const createForm = useForm();
   const updateForm = useForm();
-  const { userId } = useParams();
+  const {data: session} = useSession();
   const [modalApi, contextModal] = Modal.useModal();
   const [messageApi, contextMessage] = message.useMessage();
   const [openModalCreate, setOpenModalCreate] = useState(false);
@@ -22,7 +28,9 @@ export const WorkspacesPage: FC = () => {
   const [isValueChange, setIsValueChange] = useState(false);
   const [selectedWorkspaceId, setSelectedWorkspaceId] = useState('');
 
-  const { data: workspacesData, refetch } = useWorkspacesQuery({ variables: { where: { userId: { equals: userId as string } } } })
+  const userId = session?.user?.id as string;
+
+  const { data: workspacesData, refetch } = useWorkspacesQuery({ variables: { where: { userId: { equals: userId } } } })
   const [createWorkspace, { loading: createLoading }] = useCreateOneWorkspaceMutation();
   const [updateWorkspace, {loading: updateLoading}] = useUpdateOneWorkspaceMutation();
   const [deleteWorkspase] = useDeleteOneWorkspaceMutation();
@@ -107,6 +115,8 @@ export const WorkspacesPage: FC = () => {
     })
   };
 
+  const onOpenCreateModal = () => setOpenModalCreate(true);
+  
   const onCloseCreateModal = () => setOpenModalCreate(false);
 
   const onCloseEditModal = () => {
@@ -120,14 +130,20 @@ export const WorkspacesPage: FC = () => {
       {contextModal}
       <Flex vertical gap={40}>
         <Flex justify={'end'}>
-          <Button wide={false} text={'Add workspace'} onClick={() => setOpenModalCreate(true)} />
+          <Button 
+            wide={false} 
+            icon={<PlusOutlined />} 
+            text={'Add workspace'} 
+            onClick={onOpenCreateModal} 
+            ghost
+          />
         </Flex>
 
         <Flex gap={24} wrap>
           {workspacesData?.workspaces?.map(item => (
             <WorkspaceCard
               key={item?.id}
-              userId={userId as string}
+              userId={userId}
               id={item?.id}
               name={item?.name}
               description={item?.description}

@@ -356,11 +356,47 @@ export type AggregateAccount = {
   _sum?: Maybe<AccountSumAggregate>;
 };
 
+export type AggregateFile = {
+  __typename?: 'AggregateFile';
+  _avg?: Maybe<FileAvgAggregate>;
+  _count?: Maybe<FileCountAggregate>;
+  _max?: Maybe<FileMaxAggregate>;
+  _min?: Maybe<FileMinAggregate>;
+  _sum?: Maybe<FileSumAggregate>;
+};
+
+export type AggregatePriority = {
+  __typename?: 'AggregatePriority';
+  _avg?: Maybe<PriorityAvgAggregate>;
+  _count?: Maybe<PriorityCountAggregate>;
+  _max?: Maybe<PriorityMaxAggregate>;
+  _min?: Maybe<PriorityMinAggregate>;
+  _sum?: Maybe<PrioritySumAggregate>;
+};
+
 export type AggregateSession = {
   __typename?: 'AggregateSession';
   _count?: Maybe<SessionCountAggregate>;
   _max?: Maybe<SessionMaxAggregate>;
   _min?: Maybe<SessionMinAggregate>;
+};
+
+export type AggregateStatus = {
+  __typename?: 'AggregateStatus';
+  _avg?: Maybe<StatusAvgAggregate>;
+  _count?: Maybe<StatusCountAggregate>;
+  _max?: Maybe<StatusMaxAggregate>;
+  _min?: Maybe<StatusMinAggregate>;
+  _sum?: Maybe<StatusSumAggregate>;
+};
+
+export type AggregateTask = {
+  __typename?: 'AggregateTask';
+  _avg?: Maybe<TaskAvgAggregate>;
+  _count?: Maybe<TaskCountAggregate>;
+  _max?: Maybe<TaskMaxAggregate>;
+  _min?: Maybe<TaskMinAggregate>;
+  _sum?: Maybe<TaskSumAggregate>;
 };
 
 export type AggregateUser = {
@@ -389,6 +425,26 @@ export type CreateManyAndReturnAccount = {
   userId: Scalars['String']['output'];
 };
 
+export type CreateManyAndReturnFile = {
+  __typename?: 'CreateManyAndReturnFile';
+  file: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  task?: Maybe<Task>;
+  taskId?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type CreateManyAndReturnFileTaskArgs = {
+  where?: InputMaybe<TaskWhereInput>;
+};
+
+export type CreateManyAndReturnPriority = {
+  __typename?: 'CreateManyAndReturnPriority';
+  color: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+};
+
 export type CreateManyAndReturnSession = {
   __typename?: 'CreateManyAndReturnSession';
   expires: Scalars['DateTimeISO']['output'];
@@ -396,6 +452,40 @@ export type CreateManyAndReturnSession = {
   sessionToken: Scalars['String']['output'];
   user: User;
   userId: Scalars['String']['output'];
+};
+
+export type CreateManyAndReturnStatus = {
+  __typename?: 'CreateManyAndReturnStatus';
+  color: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type CreateManyAndReturnTask = {
+  __typename?: 'CreateManyAndReturnTask';
+  createdAt: Scalars['DateTimeISO']['output'];
+  dueDate?: Maybe<Scalars['DateTimeISO']['output']>;
+  id: Scalars['String']['output'];
+  message?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  note?: Maybe<Scalars['String']['output']>;
+  priority?: Maybe<Priority>;
+  priorityId?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Status>;
+  statusid?: Maybe<Scalars['Int']['output']>;
+  updatedAt: Scalars['DateTimeISO']['output'];
+  workspace: Workspace;
+  workspaceId: Scalars['String']['output'];
+};
+
+
+export type CreateManyAndReturnTaskPriorityArgs = {
+  where?: InputMaybe<PriorityWhereInput>;
+};
+
+
+export type CreateManyAndReturnTaskStatusArgs = {
+  where?: InputMaybe<StatusWhereInput>;
 };
 
 export type CreateManyAndReturnUser = {
@@ -503,6 +593,252 @@ export type EnumRoleWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Role>>;
 };
 
+export type File = {
+  __typename?: 'File';
+  file: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  task?: Maybe<Task>;
+  taskId?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type FileTaskArgs = {
+  where?: InputMaybe<TaskWhereInput>;
+};
+
+export type FileAvgAggregate = {
+  __typename?: 'FileAvgAggregate';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type FileAvgOrderByAggregateInput = {
+  id?: InputMaybe<SortOrder>;
+};
+
+export type FileCountAggregate = {
+  __typename?: 'FileCountAggregate';
+  _all: Scalars['Int']['output'];
+  file: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  taskId: Scalars['Int']['output'];
+};
+
+export type FileCountOrderByAggregateInput = {
+  file?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  taskId?: InputMaybe<SortOrder>;
+};
+
+export type FileCreateInput = {
+  file: Scalars['String']['input'];
+  task?: InputMaybe<TaskCreateNestedOneWithoutFilesInput>;
+};
+
+export type FileCreateManyInput = {
+  file: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
+  taskId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FileCreateManyTaskInput = {
+  file: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type FileCreateManyTaskInputEnvelope = {
+  data: Array<FileCreateManyTaskInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type FileCreateNestedManyWithoutTaskInput = {
+  connect?: InputMaybe<Array<FileWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<FileCreateOrConnectWithoutTaskInput>>;
+  create?: InputMaybe<Array<FileCreateWithoutTaskInput>>;
+  createMany?: InputMaybe<FileCreateManyTaskInputEnvelope>;
+};
+
+export type FileCreateOrConnectWithoutTaskInput = {
+  create: FileCreateWithoutTaskInput;
+  where: FileWhereUniqueInput;
+};
+
+export type FileCreateWithoutTaskInput = {
+  file: Scalars['String']['input'];
+};
+
+export type FileGroupBy = {
+  __typename?: 'FileGroupBy';
+  _avg?: Maybe<FileAvgAggregate>;
+  _count?: Maybe<FileCountAggregate>;
+  _max?: Maybe<FileMaxAggregate>;
+  _min?: Maybe<FileMinAggregate>;
+  _sum?: Maybe<FileSumAggregate>;
+  file: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  taskId?: Maybe<Scalars['String']['output']>;
+};
+
+export type FileListRelationFilter = {
+  every?: InputMaybe<FileWhereInput>;
+  none?: InputMaybe<FileWhereInput>;
+  some?: InputMaybe<FileWhereInput>;
+};
+
+export type FileMaxAggregate = {
+  __typename?: 'FileMaxAggregate';
+  file?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  taskId?: Maybe<Scalars['String']['output']>;
+};
+
+export type FileMaxOrderByAggregateInput = {
+  file?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  taskId?: InputMaybe<SortOrder>;
+};
+
+export type FileMinAggregate = {
+  __typename?: 'FileMinAggregate';
+  file?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  taskId?: Maybe<Scalars['String']['output']>;
+};
+
+export type FileMinOrderByAggregateInput = {
+  file?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  taskId?: InputMaybe<SortOrder>;
+};
+
+export type FileOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type FileOrderByWithAggregationInput = {
+  _avg?: InputMaybe<FileAvgOrderByAggregateInput>;
+  _count?: InputMaybe<FileCountOrderByAggregateInput>;
+  _max?: InputMaybe<FileMaxOrderByAggregateInput>;
+  _min?: InputMaybe<FileMinOrderByAggregateInput>;
+  _sum?: InputMaybe<FileSumOrderByAggregateInput>;
+  file?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  taskId?: InputMaybe<SortOrderInput>;
+};
+
+export type FileOrderByWithRelationInput = {
+  file?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  task?: InputMaybe<TaskOrderByWithRelationInput>;
+  taskId?: InputMaybe<SortOrderInput>;
+};
+
+export enum FileScalarFieldEnum {
+  File = 'file',
+  Id = 'id',
+  TaskId = 'taskId'
+}
+
+export type FileScalarWhereInput = {
+  AND?: InputMaybe<Array<FileScalarWhereInput>>;
+  NOT?: InputMaybe<Array<FileScalarWhereInput>>;
+  OR?: InputMaybe<Array<FileScalarWhereInput>>;
+  file?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IntFilter>;
+  taskId?: InputMaybe<StringNullableFilter>;
+};
+
+export type FileScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<FileScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<FileScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<FileScalarWhereWithAggregatesInput>>;
+  file?: InputMaybe<StringWithAggregatesFilter>;
+  id?: InputMaybe<IntWithAggregatesFilter>;
+  taskId?: InputMaybe<StringNullableWithAggregatesFilter>;
+};
+
+export type FileSumAggregate = {
+  __typename?: 'FileSumAggregate';
+  id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type FileSumOrderByAggregateInput = {
+  id?: InputMaybe<SortOrder>;
+};
+
+export type FileUpdateInput = {
+  file?: InputMaybe<StringFieldUpdateOperationsInput>;
+  task?: InputMaybe<TaskUpdateOneWithoutFilesNestedInput>;
+};
+
+export type FileUpdateManyMutationInput = {
+  file?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type FileUpdateManyWithWhereWithoutTaskInput = {
+  data: FileUpdateManyMutationInput;
+  where: FileScalarWhereInput;
+};
+
+export type FileUpdateManyWithoutTaskNestedInput = {
+  connect?: InputMaybe<Array<FileWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<FileCreateOrConnectWithoutTaskInput>>;
+  create?: InputMaybe<Array<FileCreateWithoutTaskInput>>;
+  createMany?: InputMaybe<FileCreateManyTaskInputEnvelope>;
+  delete?: InputMaybe<Array<FileWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<FileScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<FileWhereUniqueInput>>;
+  set?: InputMaybe<Array<FileWhereUniqueInput>>;
+  update?: InputMaybe<Array<FileUpdateWithWhereUniqueWithoutTaskInput>>;
+  updateMany?: InputMaybe<Array<FileUpdateManyWithWhereWithoutTaskInput>>;
+  upsert?: InputMaybe<Array<FileUpsertWithWhereUniqueWithoutTaskInput>>;
+};
+
+export type FileUpdateWithWhereUniqueWithoutTaskInput = {
+  data: FileUpdateWithoutTaskInput;
+  where: FileWhereUniqueInput;
+};
+
+export type FileUpdateWithoutTaskInput = {
+  file?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type FileUpsertWithWhereUniqueWithoutTaskInput = {
+  create: FileCreateWithoutTaskInput;
+  update: FileUpdateWithoutTaskInput;
+  where: FileWhereUniqueInput;
+};
+
+export type FileWhereInput = {
+  AND?: InputMaybe<Array<FileWhereInput>>;
+  NOT?: InputMaybe<Array<FileWhereInput>>;
+  OR?: InputMaybe<Array<FileWhereInput>>;
+  file?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IntFilter>;
+  task?: InputMaybe<TaskNullableRelationFilter>;
+  taskId?: InputMaybe<StringNullableFilter>;
+};
+
+export type FileWhereUniqueInput = {
+  AND?: InputMaybe<Array<FileWhereInput>>;
+  NOT?: InputMaybe<Array<FileWhereInput>>;
+  OR?: InputMaybe<Array<FileWhereInput>>;
+  file?: InputMaybe<StringFilter>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  task?: InputMaybe<TaskNullableRelationFilter>;
+  taskId?: InputMaybe<StringNullableFilter>;
+};
+
+export type IntFilter = {
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  not?: InputMaybe<NestedIntFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
+};
+
 export type IntNullableFilter = {
   equals?: InputMaybe<Scalars['Int']['input']>;
   gt?: InputMaybe<Scalars['Int']['input']>;
@@ -530,38 +866,86 @@ export type IntNullableWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
+export type IntWithAggregatesFilter = {
+  _avg?: InputMaybe<NestedFloatFilter>;
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedIntFilter>;
+  _min?: InputMaybe<NestedIntFilter>;
+  _sum?: InputMaybe<NestedIntFilter>;
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  not?: InputMaybe<NestedIntWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createManyAccount: AffectedRowsOutput;
   createManyAndReturnAccount: Array<CreateManyAndReturnAccount>;
+  createManyAndReturnFile: Array<CreateManyAndReturnFile>;
+  createManyAndReturnPriority: Array<CreateManyAndReturnPriority>;
   createManyAndReturnSession: Array<CreateManyAndReturnSession>;
+  createManyAndReturnStatus: Array<CreateManyAndReturnStatus>;
+  createManyAndReturnTask: Array<CreateManyAndReturnTask>;
   createManyAndReturnUser: Array<CreateManyAndReturnUser>;
   createManyAndReturnWorkspace: Array<CreateManyAndReturnWorkspace>;
+  createManyFile: AffectedRowsOutput;
+  createManyPriority: AffectedRowsOutput;
   createManySession: AffectedRowsOutput;
+  createManyStatus: AffectedRowsOutput;
+  createManyTask: AffectedRowsOutput;
   createManyUser: AffectedRowsOutput;
   createManyWorkspace: AffectedRowsOutput;
   createOneAccount: Account;
+  createOneFile: File;
+  createOnePriority: Priority;
   createOneSession: Session;
+  createOneStatus: Status;
+  createOneTask: Task;
   createOneUser: User;
   createOneWorkspace: Workspace;
   deleteManyAccount: AffectedRowsOutput;
+  deleteManyFile: AffectedRowsOutput;
+  deleteManyPriority: AffectedRowsOutput;
   deleteManySession: AffectedRowsOutput;
+  deleteManyStatus: AffectedRowsOutput;
+  deleteManyTask: AffectedRowsOutput;
   deleteManyUser: AffectedRowsOutput;
   deleteManyWorkspace: AffectedRowsOutput;
   deleteOneAccount?: Maybe<Account>;
+  deleteOneFile?: Maybe<File>;
+  deleteOnePriority?: Maybe<Priority>;
   deleteOneSession?: Maybe<Session>;
+  deleteOneStatus?: Maybe<Status>;
+  deleteOneTask?: Maybe<Task>;
   deleteOneUser?: Maybe<User>;
   deleteOneWorkspace?: Maybe<Workspace>;
   updateManyAccount: AffectedRowsOutput;
+  updateManyFile: AffectedRowsOutput;
+  updateManyPriority: AffectedRowsOutput;
   updateManySession: AffectedRowsOutput;
+  updateManyStatus: AffectedRowsOutput;
+  updateManyTask: AffectedRowsOutput;
   updateManyUser: AffectedRowsOutput;
   updateManyWorkspace: AffectedRowsOutput;
   updateOneAccount?: Maybe<Account>;
+  updateOneFile?: Maybe<File>;
+  updateOnePriority?: Maybe<Priority>;
   updateOneSession?: Maybe<Session>;
+  updateOneStatus?: Maybe<Status>;
+  updateOneTask?: Maybe<Task>;
   updateOneUser?: Maybe<User>;
   updateOneWorkspace?: Maybe<Workspace>;
   upsertOneAccount: Account;
+  upsertOneFile: File;
+  upsertOnePriority: Priority;
   upsertOneSession: Session;
+  upsertOneStatus: Status;
+  upsertOneTask: Task;
   upsertOneUser: User;
   upsertOneWorkspace: Workspace;
 };
@@ -579,8 +963,32 @@ export type MutationCreateManyAndReturnAccountArgs = {
 };
 
 
+export type MutationCreateManyAndReturnFileArgs = {
+  data: Array<FileCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationCreateManyAndReturnPriorityArgs = {
+  data: Array<PriorityCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
 export type MutationCreateManyAndReturnSessionArgs = {
   data: Array<SessionCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationCreateManyAndReturnStatusArgs = {
+  data: Array<StatusCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationCreateManyAndReturnTaskArgs = {
+  data: Array<TaskCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -597,8 +1005,32 @@ export type MutationCreateManyAndReturnWorkspaceArgs = {
 };
 
 
+export type MutationCreateManyFileArgs = {
+  data: Array<FileCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationCreateManyPriorityArgs = {
+  data: Array<PriorityCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
 export type MutationCreateManySessionArgs = {
   data: Array<SessionCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationCreateManyStatusArgs = {
+  data: Array<StatusCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationCreateManyTaskArgs = {
+  data: Array<TaskCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -620,8 +1052,28 @@ export type MutationCreateOneAccountArgs = {
 };
 
 
+export type MutationCreateOneFileArgs = {
+  data: FileCreateInput;
+};
+
+
+export type MutationCreateOnePriorityArgs = {
+  data: PriorityCreateInput;
+};
+
+
 export type MutationCreateOneSessionArgs = {
   data: SessionCreateInput;
+};
+
+
+export type MutationCreateOneStatusArgs = {
+  data: StatusCreateInput;
+};
+
+
+export type MutationCreateOneTaskArgs = {
+  data: TaskCreateInput;
 };
 
 
@@ -640,8 +1092,28 @@ export type MutationDeleteManyAccountArgs = {
 };
 
 
+export type MutationDeleteManyFileArgs = {
+  where?: InputMaybe<FileWhereInput>;
+};
+
+
+export type MutationDeleteManyPriorityArgs = {
+  where?: InputMaybe<PriorityWhereInput>;
+};
+
+
 export type MutationDeleteManySessionArgs = {
   where?: InputMaybe<SessionWhereInput>;
+};
+
+
+export type MutationDeleteManyStatusArgs = {
+  where?: InputMaybe<StatusWhereInput>;
+};
+
+
+export type MutationDeleteManyTaskArgs = {
+  where?: InputMaybe<TaskWhereInput>;
 };
 
 
@@ -660,8 +1132,28 @@ export type MutationDeleteOneAccountArgs = {
 };
 
 
+export type MutationDeleteOneFileArgs = {
+  where: FileWhereUniqueInput;
+};
+
+
+export type MutationDeleteOnePriorityArgs = {
+  where: PriorityWhereUniqueInput;
+};
+
+
 export type MutationDeleteOneSessionArgs = {
   where: SessionWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneStatusArgs = {
+  where: StatusWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneTaskArgs = {
+  where: TaskWhereUniqueInput;
 };
 
 
@@ -681,9 +1173,33 @@ export type MutationUpdateManyAccountArgs = {
 };
 
 
+export type MutationUpdateManyFileArgs = {
+  data: FileUpdateManyMutationInput;
+  where?: InputMaybe<FileWhereInput>;
+};
+
+
+export type MutationUpdateManyPriorityArgs = {
+  data: PriorityUpdateManyMutationInput;
+  where?: InputMaybe<PriorityWhereInput>;
+};
+
+
 export type MutationUpdateManySessionArgs = {
   data: SessionUpdateManyMutationInput;
   where?: InputMaybe<SessionWhereInput>;
+};
+
+
+export type MutationUpdateManyStatusArgs = {
+  data: StatusUpdateManyMutationInput;
+  where?: InputMaybe<StatusWhereInput>;
+};
+
+
+export type MutationUpdateManyTaskArgs = {
+  data: TaskUpdateManyMutationInput;
+  where?: InputMaybe<TaskWhereInput>;
 };
 
 
@@ -705,9 +1221,33 @@ export type MutationUpdateOneAccountArgs = {
 };
 
 
+export type MutationUpdateOneFileArgs = {
+  data: FileUpdateInput;
+  where: FileWhereUniqueInput;
+};
+
+
+export type MutationUpdateOnePriorityArgs = {
+  data: PriorityUpdateInput;
+  where: PriorityWhereUniqueInput;
+};
+
+
 export type MutationUpdateOneSessionArgs = {
   data: SessionUpdateInput;
   where: SessionWhereUniqueInput;
+};
+
+
+export type MutationUpdateOneStatusArgs = {
+  data: StatusUpdateInput;
+  where: StatusWhereUniqueInput;
+};
+
+
+export type MutationUpdateOneTaskArgs = {
+  data: TaskUpdateInput;
+  where: TaskWhereUniqueInput;
 };
 
 
@@ -730,10 +1270,38 @@ export type MutationUpsertOneAccountArgs = {
 };
 
 
+export type MutationUpsertOneFileArgs = {
+  create: FileCreateInput;
+  update: FileUpdateInput;
+  where: FileWhereUniqueInput;
+};
+
+
+export type MutationUpsertOnePriorityArgs = {
+  create: PriorityCreateInput;
+  update: PriorityUpdateInput;
+  where: PriorityWhereUniqueInput;
+};
+
+
 export type MutationUpsertOneSessionArgs = {
   create: SessionCreateInput;
   update: SessionUpdateInput;
   where: SessionWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneStatusArgs = {
+  create: StatusCreateInput;
+  update: StatusUpdateInput;
+  where: StatusWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneTaskArgs = {
+  create: TaskCreateInput;
+  update: TaskUpdateInput;
+  where: TaskWhereUniqueInput;
 };
 
 
@@ -817,6 +1385,17 @@ export type NestedEnumRoleWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Role>>;
 };
 
+export type NestedFloatFilter = {
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  not?: InputMaybe<NestedFloatFilter>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
+};
+
 export type NestedFloatNullableFilter = {
   equals?: InputMaybe<Scalars['Float']['input']>;
   gt?: InputMaybe<Scalars['Float']['input']>;
@@ -863,6 +1442,22 @@ export type NestedIntNullableWithAggregatesFilter = {
   lt?: InputMaybe<Scalars['Int']['input']>;
   lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
+};
+
+export type NestedIntWithAggregatesFilter = {
+  _avg?: InputMaybe<NestedFloatFilter>;
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedIntFilter>;
+  _min?: InputMaybe<NestedIntFilter>;
+  _sum?: InputMaybe<NestedIntFilter>;
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  not?: InputMaybe<NestedIntWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
@@ -949,32 +1544,282 @@ export enum NullsOrder {
   Last = 'last'
 }
 
+export type Priority = {
+  __typename?: 'Priority';
+  _count?: Maybe<PriorityCount>;
+  color: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+  task: Array<Task>;
+};
+
+
+export type PriorityTaskArgs = {
+  cursor?: InputMaybe<TaskWhereUniqueInput>;
+  distinct?: InputMaybe<Array<TaskScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<TaskOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TaskWhereInput>;
+};
+
+export type PriorityAvgAggregate = {
+  __typename?: 'PriorityAvgAggregate';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type PriorityAvgOrderByAggregateInput = {
+  id?: InputMaybe<SortOrder>;
+};
+
+export type PriorityCount = {
+  __typename?: 'PriorityCount';
+  task: Scalars['Int']['output'];
+};
+
+
+export type PriorityCountTaskArgs = {
+  where?: InputMaybe<TaskWhereInput>;
+};
+
+export type PriorityCountAggregate = {
+  __typename?: 'PriorityCountAggregate';
+  _all: Scalars['Int']['output'];
+  color: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
+};
+
+export type PriorityCountOrderByAggregateInput = {
+  color?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type PriorityCreateInput = {
+  color: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  task?: InputMaybe<TaskCreateNestedManyWithoutPriorityInput>;
+};
+
+export type PriorityCreateManyInput = {
+  color: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
+  name: Scalars['String']['input'];
+};
+
+export type PriorityCreateNestedOneWithoutTaskInput = {
+  connect?: InputMaybe<PriorityWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PriorityCreateOrConnectWithoutTaskInput>;
+  create?: InputMaybe<PriorityCreateWithoutTaskInput>;
+};
+
+export type PriorityCreateOrConnectWithoutTaskInput = {
+  create: PriorityCreateWithoutTaskInput;
+  where: PriorityWhereUniqueInput;
+};
+
+export type PriorityCreateWithoutTaskInput = {
+  color: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+};
+
+export type PriorityGroupBy = {
+  __typename?: 'PriorityGroupBy';
+  _avg?: Maybe<PriorityAvgAggregate>;
+  _count?: Maybe<PriorityCountAggregate>;
+  _max?: Maybe<PriorityMaxAggregate>;
+  _min?: Maybe<PriorityMinAggregate>;
+  _sum?: Maybe<PrioritySumAggregate>;
+  color: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type PriorityMaxAggregate = {
+  __typename?: 'PriorityMaxAggregate';
+  color?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type PriorityMaxOrderByAggregateInput = {
+  color?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type PriorityMinAggregate = {
+  __typename?: 'PriorityMinAggregate';
+  color?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type PriorityMinOrderByAggregateInput = {
+  color?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type PriorityNullableRelationFilter = {
+  is?: InputMaybe<PriorityWhereInput>;
+  isNot?: InputMaybe<PriorityWhereInput>;
+};
+
+export type PriorityOrderByWithAggregationInput = {
+  _avg?: InputMaybe<PriorityAvgOrderByAggregateInput>;
+  _count?: InputMaybe<PriorityCountOrderByAggregateInput>;
+  _max?: InputMaybe<PriorityMaxOrderByAggregateInput>;
+  _min?: InputMaybe<PriorityMinOrderByAggregateInput>;
+  _sum?: InputMaybe<PrioritySumOrderByAggregateInput>;
+  color?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type PriorityOrderByWithRelationInput = {
+  color?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  task?: InputMaybe<TaskOrderByRelationAggregateInput>;
+};
+
+export enum PriorityScalarFieldEnum {
+  Color = 'color',
+  Id = 'id',
+  Name = 'name'
+}
+
+export type PriorityScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<PriorityScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<PriorityScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<PriorityScalarWhereWithAggregatesInput>>;
+  color?: InputMaybe<StringWithAggregatesFilter>;
+  id?: InputMaybe<IntWithAggregatesFilter>;
+  name?: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type PrioritySumAggregate = {
+  __typename?: 'PrioritySumAggregate';
+  id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type PrioritySumOrderByAggregateInput = {
+  id?: InputMaybe<SortOrder>;
+};
+
+export type PriorityUpdateInput = {
+  color?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  task?: InputMaybe<TaskUpdateManyWithoutPriorityNestedInput>;
+};
+
+export type PriorityUpdateManyMutationInput = {
+  color?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type PriorityUpdateOneWithoutTaskNestedInput = {
+  connect?: InputMaybe<PriorityWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PriorityCreateOrConnectWithoutTaskInput>;
+  create?: InputMaybe<PriorityCreateWithoutTaskInput>;
+  delete?: InputMaybe<PriorityWhereInput>;
+  disconnect?: InputMaybe<PriorityWhereInput>;
+  update?: InputMaybe<PriorityUpdateToOneWithWhereWithoutTaskInput>;
+  upsert?: InputMaybe<PriorityUpsertWithoutTaskInput>;
+};
+
+export type PriorityUpdateToOneWithWhereWithoutTaskInput = {
+  data: PriorityUpdateWithoutTaskInput;
+  where?: InputMaybe<PriorityWhereInput>;
+};
+
+export type PriorityUpdateWithoutTaskInput = {
+  color?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type PriorityUpsertWithoutTaskInput = {
+  create: PriorityCreateWithoutTaskInput;
+  update: PriorityUpdateWithoutTaskInput;
+  where?: InputMaybe<PriorityWhereInput>;
+};
+
+export type PriorityWhereInput = {
+  AND?: InputMaybe<Array<PriorityWhereInput>>;
+  NOT?: InputMaybe<Array<PriorityWhereInput>>;
+  OR?: InputMaybe<Array<PriorityWhereInput>>;
+  color?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IntFilter>;
+  name?: InputMaybe<StringFilter>;
+  task?: InputMaybe<TaskListRelationFilter>;
+};
+
+export type PriorityWhereUniqueInput = {
+  AND?: InputMaybe<Array<PriorityWhereInput>>;
+  NOT?: InputMaybe<Array<PriorityWhereInput>>;
+  OR?: InputMaybe<Array<PriorityWhereInput>>;
+  color?: InputMaybe<StringFilter>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  task?: InputMaybe<TaskListRelationFilter>;
+};
+
 export type Query = {
   __typename?: 'Query';
   account?: Maybe<Account>;
   accounts: Array<Account>;
   aggregateAccount: AggregateAccount;
+  aggregateFile: AggregateFile;
+  aggregatePriority: AggregatePriority;
   aggregateSession: AggregateSession;
+  aggregateStatus: AggregateStatus;
+  aggregateTask: AggregateTask;
   aggregateUser: AggregateUser;
   aggregateWorkspace: AggregateWorkspace;
+  file?: Maybe<File>;
+  files: Array<File>;
   findFirstAccount?: Maybe<Account>;
   findFirstAccountOrThrow?: Maybe<Account>;
+  findFirstFile?: Maybe<File>;
+  findFirstFileOrThrow?: Maybe<File>;
+  findFirstPriority?: Maybe<Priority>;
+  findFirstPriorityOrThrow?: Maybe<Priority>;
   findFirstSession?: Maybe<Session>;
   findFirstSessionOrThrow?: Maybe<Session>;
+  findFirstStatus?: Maybe<Status>;
+  findFirstStatusOrThrow?: Maybe<Status>;
+  findFirstTask?: Maybe<Task>;
+  findFirstTaskOrThrow?: Maybe<Task>;
   findFirstUser?: Maybe<User>;
   findFirstUserOrThrow?: Maybe<User>;
   findFirstWorkspace?: Maybe<Workspace>;
   findFirstWorkspaceOrThrow?: Maybe<Workspace>;
   getAccount?: Maybe<Account>;
+  getFile?: Maybe<File>;
+  getPriority?: Maybe<Priority>;
   getSession?: Maybe<Session>;
+  getStatus?: Maybe<Status>;
+  getTask?: Maybe<Task>;
   getUser?: Maybe<User>;
   getWorkspace?: Maybe<Workspace>;
   groupByAccount: Array<AccountGroupBy>;
+  groupByFile: Array<FileGroupBy>;
+  groupByPriority: Array<PriorityGroupBy>;
   groupBySession: Array<SessionGroupBy>;
+  groupByStatus: Array<StatusGroupBy>;
+  groupByTask: Array<TaskGroupBy>;
   groupByUser: Array<UserGroupBy>;
   groupByWorkspace: Array<WorkspaceGroupBy>;
+  priorities: Array<Priority>;
+  priority?: Maybe<Priority>;
   session?: Maybe<Session>;
   sessions: Array<Session>;
+  status?: Maybe<Status>;
+  statuses: Array<Status>;
+  task?: Maybe<Task>;
+  tasks: Array<Task>;
   user?: Maybe<User>;
   users: Array<User>;
   workspace?: Maybe<Workspace>;
@@ -1006,12 +1851,48 @@ export type QueryAggregateAccountArgs = {
 };
 
 
+export type QueryAggregateFileArgs = {
+  cursor?: InputMaybe<FileWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<FileOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FileWhereInput>;
+};
+
+
+export type QueryAggregatePriorityArgs = {
+  cursor?: InputMaybe<PriorityWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<PriorityOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PriorityWhereInput>;
+};
+
+
 export type QueryAggregateSessionArgs = {
   cursor?: InputMaybe<SessionWhereUniqueInput>;
   orderBy?: InputMaybe<Array<SessionOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SessionWhereInput>;
+};
+
+
+export type QueryAggregateStatusArgs = {
+  cursor?: InputMaybe<StatusWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<StatusOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<StatusWhereInput>;
+};
+
+
+export type QueryAggregateTaskArgs = {
+  cursor?: InputMaybe<TaskWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<TaskOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TaskWhereInput>;
 };
 
 
@@ -1030,6 +1911,21 @@ export type QueryAggregateWorkspaceArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<WorkspaceWhereInput>;
+};
+
+
+export type QueryFileArgs = {
+  where: FileWhereUniqueInput;
+};
+
+
+export type QueryFilesArgs = {
+  cursor?: InputMaybe<FileWhereUniqueInput>;
+  distinct?: InputMaybe<Array<FileScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<FileOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FileWhereInput>;
 };
 
 
@@ -1053,6 +1949,46 @@ export type QueryFindFirstAccountOrThrowArgs = {
 };
 
 
+export type QueryFindFirstFileArgs = {
+  cursor?: InputMaybe<FileWhereUniqueInput>;
+  distinct?: InputMaybe<Array<FileScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<FileOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FileWhereInput>;
+};
+
+
+export type QueryFindFirstFileOrThrowArgs = {
+  cursor?: InputMaybe<FileWhereUniqueInput>;
+  distinct?: InputMaybe<Array<FileScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<FileOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FileWhereInput>;
+};
+
+
+export type QueryFindFirstPriorityArgs = {
+  cursor?: InputMaybe<PriorityWhereUniqueInput>;
+  distinct?: InputMaybe<Array<PriorityScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<PriorityOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PriorityWhereInput>;
+};
+
+
+export type QueryFindFirstPriorityOrThrowArgs = {
+  cursor?: InputMaybe<PriorityWhereUniqueInput>;
+  distinct?: InputMaybe<Array<PriorityScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<PriorityOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PriorityWhereInput>;
+};
+
+
 export type QueryFindFirstSessionArgs = {
   cursor?: InputMaybe<SessionWhereUniqueInput>;
   distinct?: InputMaybe<Array<SessionScalarFieldEnum>>;
@@ -1070,6 +2006,46 @@ export type QueryFindFirstSessionOrThrowArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SessionWhereInput>;
+};
+
+
+export type QueryFindFirstStatusArgs = {
+  cursor?: InputMaybe<StatusWhereUniqueInput>;
+  distinct?: InputMaybe<Array<StatusScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<StatusOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<StatusWhereInput>;
+};
+
+
+export type QueryFindFirstStatusOrThrowArgs = {
+  cursor?: InputMaybe<StatusWhereUniqueInput>;
+  distinct?: InputMaybe<Array<StatusScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<StatusOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<StatusWhereInput>;
+};
+
+
+export type QueryFindFirstTaskArgs = {
+  cursor?: InputMaybe<TaskWhereUniqueInput>;
+  distinct?: InputMaybe<Array<TaskScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<TaskOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TaskWhereInput>;
+};
+
+
+export type QueryFindFirstTaskOrThrowArgs = {
+  cursor?: InputMaybe<TaskWhereUniqueInput>;
+  distinct?: InputMaybe<Array<TaskScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<TaskOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TaskWhereInput>;
 };
 
 
@@ -1118,8 +2094,28 @@ export type QueryGetAccountArgs = {
 };
 
 
+export type QueryGetFileArgs = {
+  where: FileWhereUniqueInput;
+};
+
+
+export type QueryGetPriorityArgs = {
+  where: PriorityWhereUniqueInput;
+};
+
+
 export type QueryGetSessionArgs = {
   where: SessionWhereUniqueInput;
+};
+
+
+export type QueryGetStatusArgs = {
+  where: StatusWhereUniqueInput;
+};
+
+
+export type QueryGetTaskArgs = {
+  where: TaskWhereUniqueInput;
 };
 
 
@@ -1143,6 +2139,26 @@ export type QueryGroupByAccountArgs = {
 };
 
 
+export type QueryGroupByFileArgs = {
+  by: Array<FileScalarFieldEnum>;
+  having?: InputMaybe<FileScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<FileOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FileWhereInput>;
+};
+
+
+export type QueryGroupByPriorityArgs = {
+  by: Array<PriorityScalarFieldEnum>;
+  having?: InputMaybe<PriorityScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<PriorityOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PriorityWhereInput>;
+};
+
+
 export type QueryGroupBySessionArgs = {
   by: Array<SessionScalarFieldEnum>;
   having?: InputMaybe<SessionScalarWhereWithAggregatesInput>;
@@ -1150,6 +2166,26 @@ export type QueryGroupBySessionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SessionWhereInput>;
+};
+
+
+export type QueryGroupByStatusArgs = {
+  by: Array<StatusScalarFieldEnum>;
+  having?: InputMaybe<StatusScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<StatusOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<StatusWhereInput>;
+};
+
+
+export type QueryGroupByTaskArgs = {
+  by: Array<TaskScalarFieldEnum>;
+  having?: InputMaybe<TaskScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<TaskOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TaskWhereInput>;
 };
 
 
@@ -1173,6 +2209,21 @@ export type QueryGroupByWorkspaceArgs = {
 };
 
 
+export type QueryPrioritiesArgs = {
+  cursor?: InputMaybe<PriorityWhereUniqueInput>;
+  distinct?: InputMaybe<Array<PriorityScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<PriorityOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<PriorityWhereInput>;
+};
+
+
+export type QueryPriorityArgs = {
+  where: PriorityWhereUniqueInput;
+};
+
+
 export type QuerySessionArgs = {
   where: SessionWhereUniqueInput;
 };
@@ -1185,6 +2236,36 @@ export type QuerySessionsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SessionWhereInput>;
+};
+
+
+export type QueryStatusArgs = {
+  where: StatusWhereUniqueInput;
+};
+
+
+export type QueryStatusesArgs = {
+  cursor?: InputMaybe<StatusWhereUniqueInput>;
+  distinct?: InputMaybe<Array<StatusScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<StatusOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<StatusWhereInput>;
+};
+
+
+export type QueryTaskArgs = {
+  where: TaskWhereUniqueInput;
+};
+
+
+export type QueryTasksArgs = {
+  cursor?: InputMaybe<TaskWhereUniqueInput>;
+  distinct?: InputMaybe<Array<TaskScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<TaskOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TaskWhereInput>;
 };
 
 
@@ -1473,6 +2554,228 @@ export type SortOrderInput = {
   sort: SortOrder;
 };
 
+export type Status = {
+  __typename?: 'Status';
+  _count?: Maybe<StatusCount>;
+  color: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+  task: Array<Task>;
+};
+
+
+export type StatusTaskArgs = {
+  cursor?: InputMaybe<TaskWhereUniqueInput>;
+  distinct?: InputMaybe<Array<TaskScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<TaskOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TaskWhereInput>;
+};
+
+export type StatusAvgAggregate = {
+  __typename?: 'StatusAvgAggregate';
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type StatusAvgOrderByAggregateInput = {
+  id?: InputMaybe<SortOrder>;
+};
+
+export type StatusCount = {
+  __typename?: 'StatusCount';
+  task: Scalars['Int']['output'];
+};
+
+
+export type StatusCountTaskArgs = {
+  where?: InputMaybe<TaskWhereInput>;
+};
+
+export type StatusCountAggregate = {
+  __typename?: 'StatusCountAggregate';
+  _all: Scalars['Int']['output'];
+  color: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
+};
+
+export type StatusCountOrderByAggregateInput = {
+  color?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type StatusCreateInput = {
+  color: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  task?: InputMaybe<TaskCreateNestedManyWithoutStatusInput>;
+};
+
+export type StatusCreateManyInput = {
+  color: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
+  name: Scalars['String']['input'];
+};
+
+export type StatusCreateNestedOneWithoutTaskInput = {
+  connect?: InputMaybe<StatusWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<StatusCreateOrConnectWithoutTaskInput>;
+  create?: InputMaybe<StatusCreateWithoutTaskInput>;
+};
+
+export type StatusCreateOrConnectWithoutTaskInput = {
+  create: StatusCreateWithoutTaskInput;
+  where: StatusWhereUniqueInput;
+};
+
+export type StatusCreateWithoutTaskInput = {
+  color: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+};
+
+export type StatusGroupBy = {
+  __typename?: 'StatusGroupBy';
+  _avg?: Maybe<StatusAvgAggregate>;
+  _count?: Maybe<StatusCountAggregate>;
+  _max?: Maybe<StatusMaxAggregate>;
+  _min?: Maybe<StatusMinAggregate>;
+  _sum?: Maybe<StatusSumAggregate>;
+  color: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type StatusMaxAggregate = {
+  __typename?: 'StatusMaxAggregate';
+  color?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type StatusMaxOrderByAggregateInput = {
+  color?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type StatusMinAggregate = {
+  __typename?: 'StatusMinAggregate';
+  color?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type StatusMinOrderByAggregateInput = {
+  color?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type StatusNullableRelationFilter = {
+  is?: InputMaybe<StatusWhereInput>;
+  isNot?: InputMaybe<StatusWhereInput>;
+};
+
+export type StatusOrderByWithAggregationInput = {
+  _avg?: InputMaybe<StatusAvgOrderByAggregateInput>;
+  _count?: InputMaybe<StatusCountOrderByAggregateInput>;
+  _max?: InputMaybe<StatusMaxOrderByAggregateInput>;
+  _min?: InputMaybe<StatusMinOrderByAggregateInput>;
+  _sum?: InputMaybe<StatusSumOrderByAggregateInput>;
+  color?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+};
+
+export type StatusOrderByWithRelationInput = {
+  color?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  task?: InputMaybe<TaskOrderByRelationAggregateInput>;
+};
+
+export enum StatusScalarFieldEnum {
+  Color = 'color',
+  Id = 'id',
+  Name = 'name'
+}
+
+export type StatusScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<StatusScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<StatusScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<StatusScalarWhereWithAggregatesInput>>;
+  color?: InputMaybe<StringWithAggregatesFilter>;
+  id?: InputMaybe<IntWithAggregatesFilter>;
+  name?: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type StatusSumAggregate = {
+  __typename?: 'StatusSumAggregate';
+  id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type StatusSumOrderByAggregateInput = {
+  id?: InputMaybe<SortOrder>;
+};
+
+export type StatusUpdateInput = {
+  color?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  task?: InputMaybe<TaskUpdateManyWithoutStatusNestedInput>;
+};
+
+export type StatusUpdateManyMutationInput = {
+  color?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type StatusUpdateOneWithoutTaskNestedInput = {
+  connect?: InputMaybe<StatusWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<StatusCreateOrConnectWithoutTaskInput>;
+  create?: InputMaybe<StatusCreateWithoutTaskInput>;
+  delete?: InputMaybe<StatusWhereInput>;
+  disconnect?: InputMaybe<StatusWhereInput>;
+  update?: InputMaybe<StatusUpdateToOneWithWhereWithoutTaskInput>;
+  upsert?: InputMaybe<StatusUpsertWithoutTaskInput>;
+};
+
+export type StatusUpdateToOneWithWhereWithoutTaskInput = {
+  data: StatusUpdateWithoutTaskInput;
+  where?: InputMaybe<StatusWhereInput>;
+};
+
+export type StatusUpdateWithoutTaskInput = {
+  color?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type StatusUpsertWithoutTaskInput = {
+  create: StatusCreateWithoutTaskInput;
+  update: StatusUpdateWithoutTaskInput;
+  where?: InputMaybe<StatusWhereInput>;
+};
+
+export type StatusWhereInput = {
+  AND?: InputMaybe<Array<StatusWhereInput>>;
+  NOT?: InputMaybe<Array<StatusWhereInput>>;
+  OR?: InputMaybe<Array<StatusWhereInput>>;
+  color?: InputMaybe<StringFilter>;
+  id?: InputMaybe<IntFilter>;
+  name?: InputMaybe<StringFilter>;
+  task?: InputMaybe<TaskListRelationFilter>;
+};
+
+export type StatusWhereUniqueInput = {
+  AND?: InputMaybe<Array<StatusWhereInput>>;
+  NOT?: InputMaybe<Array<StatusWhereInput>>;
+  OR?: InputMaybe<Array<StatusWhereInput>>;
+  color?: InputMaybe<StringFilter>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  task?: InputMaybe<TaskListRelationFilter>;
+};
+
 export type StringFieldUpdateOperationsInput = {
   set?: InputMaybe<Scalars['String']['input']>;
 };
@@ -1541,6 +2844,677 @@ export type StringWithAggregatesFilter = {
   not?: InputMaybe<NestedStringWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Task = {
+  __typename?: 'Task';
+  _count?: Maybe<TaskCount>;
+  createdAt: Scalars['DateTimeISO']['output'];
+  dueDate?: Maybe<Scalars['DateTimeISO']['output']>;
+  files: Array<File>;
+  id: Scalars['String']['output'];
+  message?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  note?: Maybe<Scalars['String']['output']>;
+  priority?: Maybe<Priority>;
+  priorityId?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Status>;
+  statusid?: Maybe<Scalars['Int']['output']>;
+  updatedAt: Scalars['DateTimeISO']['output'];
+  workspace: Workspace;
+  workspaceId: Scalars['String']['output'];
+};
+
+
+export type TaskFilesArgs = {
+  cursor?: InputMaybe<FileWhereUniqueInput>;
+  distinct?: InputMaybe<Array<FileScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<FileOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FileWhereInput>;
+};
+
+
+export type TaskPriorityArgs = {
+  where?: InputMaybe<PriorityWhereInput>;
+};
+
+
+export type TaskStatusArgs = {
+  where?: InputMaybe<StatusWhereInput>;
+};
+
+export type TaskAvgAggregate = {
+  __typename?: 'TaskAvgAggregate';
+  priorityId?: Maybe<Scalars['Float']['output']>;
+  statusid?: Maybe<Scalars['Float']['output']>;
+};
+
+export type TaskAvgOrderByAggregateInput = {
+  priorityId?: InputMaybe<SortOrder>;
+  statusid?: InputMaybe<SortOrder>;
+};
+
+export type TaskCount = {
+  __typename?: 'TaskCount';
+  files: Scalars['Int']['output'];
+};
+
+
+export type TaskCountFilesArgs = {
+  where?: InputMaybe<FileWhereInput>;
+};
+
+export type TaskCountAggregate = {
+  __typename?: 'TaskCountAggregate';
+  _all: Scalars['Int']['output'];
+  createdAt: Scalars['Int']['output'];
+  dueDate: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  message: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
+  note: Scalars['Int']['output'];
+  priorityId: Scalars['Int']['output'];
+  statusid: Scalars['Int']['output'];
+  updatedAt: Scalars['Int']['output'];
+  workspaceId: Scalars['Int']['output'];
+};
+
+export type TaskCountOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  dueDate?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  message?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  note?: InputMaybe<SortOrder>;
+  priorityId?: InputMaybe<SortOrder>;
+  statusid?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  workspaceId?: InputMaybe<SortOrder>;
+};
+
+export type TaskCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  dueDate?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  files?: InputMaybe<FileCreateNestedManyWithoutTaskInput>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  note?: InputMaybe<Scalars['String']['input']>;
+  priority?: InputMaybe<PriorityCreateNestedOneWithoutTaskInput>;
+  status?: InputMaybe<StatusCreateNestedOneWithoutTaskInput>;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput;
+};
+
+export type TaskCreateManyInput = {
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  dueDate?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  note?: InputMaybe<Scalars['String']['input']>;
+  priorityId?: InputMaybe<Scalars['Int']['input']>;
+  statusid?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  workspaceId: Scalars['String']['input'];
+};
+
+export type TaskCreateManyPriorityInput = {
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  dueDate?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  note?: InputMaybe<Scalars['String']['input']>;
+  statusid?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  workspaceId: Scalars['String']['input'];
+};
+
+export type TaskCreateManyPriorityInputEnvelope = {
+  data: Array<TaskCreateManyPriorityInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type TaskCreateManyStatusInput = {
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  dueDate?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  note?: InputMaybe<Scalars['String']['input']>;
+  priorityId?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  workspaceId: Scalars['String']['input'];
+};
+
+export type TaskCreateManyStatusInputEnvelope = {
+  data: Array<TaskCreateManyStatusInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type TaskCreateManyWorkspaceInput = {
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  dueDate?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  note?: InputMaybe<Scalars['String']['input']>;
+  priorityId?: InputMaybe<Scalars['Int']['input']>;
+  statusid?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+};
+
+export type TaskCreateManyWorkspaceInputEnvelope = {
+  data: Array<TaskCreateManyWorkspaceInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type TaskCreateNestedManyWithoutPriorityInput = {
+  connect?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TaskCreateOrConnectWithoutPriorityInput>>;
+  create?: InputMaybe<Array<TaskCreateWithoutPriorityInput>>;
+  createMany?: InputMaybe<TaskCreateManyPriorityInputEnvelope>;
+};
+
+export type TaskCreateNestedManyWithoutStatusInput = {
+  connect?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TaskCreateOrConnectWithoutStatusInput>>;
+  create?: InputMaybe<Array<TaskCreateWithoutStatusInput>>;
+  createMany?: InputMaybe<TaskCreateManyStatusInputEnvelope>;
+};
+
+export type TaskCreateNestedManyWithoutWorkspaceInput = {
+  connect?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TaskCreateOrConnectWithoutWorkspaceInput>>;
+  create?: InputMaybe<Array<TaskCreateWithoutWorkspaceInput>>;
+  createMany?: InputMaybe<TaskCreateManyWorkspaceInputEnvelope>;
+};
+
+export type TaskCreateNestedOneWithoutFilesInput = {
+  connect?: InputMaybe<TaskWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<TaskCreateOrConnectWithoutFilesInput>;
+  create?: InputMaybe<TaskCreateWithoutFilesInput>;
+};
+
+export type TaskCreateOrConnectWithoutFilesInput = {
+  create: TaskCreateWithoutFilesInput;
+  where: TaskWhereUniqueInput;
+};
+
+export type TaskCreateOrConnectWithoutPriorityInput = {
+  create: TaskCreateWithoutPriorityInput;
+  where: TaskWhereUniqueInput;
+};
+
+export type TaskCreateOrConnectWithoutStatusInput = {
+  create: TaskCreateWithoutStatusInput;
+  where: TaskWhereUniqueInput;
+};
+
+export type TaskCreateOrConnectWithoutWorkspaceInput = {
+  create: TaskCreateWithoutWorkspaceInput;
+  where: TaskWhereUniqueInput;
+};
+
+export type TaskCreateWithoutFilesInput = {
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  dueDate?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  note?: InputMaybe<Scalars['String']['input']>;
+  priority?: InputMaybe<PriorityCreateNestedOneWithoutTaskInput>;
+  status?: InputMaybe<StatusCreateNestedOneWithoutTaskInput>;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput;
+};
+
+export type TaskCreateWithoutPriorityInput = {
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  dueDate?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  files?: InputMaybe<FileCreateNestedManyWithoutTaskInput>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  note?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<StatusCreateNestedOneWithoutTaskInput>;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput;
+};
+
+export type TaskCreateWithoutStatusInput = {
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  dueDate?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  files?: InputMaybe<FileCreateNestedManyWithoutTaskInput>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  note?: InputMaybe<Scalars['String']['input']>;
+  priority?: InputMaybe<PriorityCreateNestedOneWithoutTaskInput>;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput;
+};
+
+export type TaskCreateWithoutWorkspaceInput = {
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  dueDate?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  files?: InputMaybe<FileCreateNestedManyWithoutTaskInput>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  note?: InputMaybe<Scalars['String']['input']>;
+  priority?: InputMaybe<PriorityCreateNestedOneWithoutTaskInput>;
+  status?: InputMaybe<StatusCreateNestedOneWithoutTaskInput>;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+};
+
+export type TaskGroupBy = {
+  __typename?: 'TaskGroupBy';
+  _avg?: Maybe<TaskAvgAggregate>;
+  _count?: Maybe<TaskCountAggregate>;
+  _max?: Maybe<TaskMaxAggregate>;
+  _min?: Maybe<TaskMinAggregate>;
+  _sum?: Maybe<TaskSumAggregate>;
+  createdAt: Scalars['DateTimeISO']['output'];
+  dueDate?: Maybe<Scalars['DateTimeISO']['output']>;
+  id: Scalars['String']['output'];
+  message?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  note?: Maybe<Scalars['String']['output']>;
+  priorityId?: Maybe<Scalars['Int']['output']>;
+  statusid?: Maybe<Scalars['Int']['output']>;
+  updatedAt: Scalars['DateTimeISO']['output'];
+  workspaceId: Scalars['String']['output'];
+};
+
+export type TaskListRelationFilter = {
+  every?: InputMaybe<TaskWhereInput>;
+  none?: InputMaybe<TaskWhereInput>;
+  some?: InputMaybe<TaskWhereInput>;
+};
+
+export type TaskMaxAggregate = {
+  __typename?: 'TaskMaxAggregate';
+  createdAt?: Maybe<Scalars['DateTimeISO']['output']>;
+  dueDate?: Maybe<Scalars['DateTimeISO']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  note?: Maybe<Scalars['String']['output']>;
+  priorityId?: Maybe<Scalars['Int']['output']>;
+  statusid?: Maybe<Scalars['Int']['output']>;
+  updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
+  workspaceId?: Maybe<Scalars['String']['output']>;
+};
+
+export type TaskMaxOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  dueDate?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  message?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  note?: InputMaybe<SortOrder>;
+  priorityId?: InputMaybe<SortOrder>;
+  statusid?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  workspaceId?: InputMaybe<SortOrder>;
+};
+
+export type TaskMinAggregate = {
+  __typename?: 'TaskMinAggregate';
+  createdAt?: Maybe<Scalars['DateTimeISO']['output']>;
+  dueDate?: Maybe<Scalars['DateTimeISO']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  note?: Maybe<Scalars['String']['output']>;
+  priorityId?: Maybe<Scalars['Int']['output']>;
+  statusid?: Maybe<Scalars['Int']['output']>;
+  updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
+  workspaceId?: Maybe<Scalars['String']['output']>;
+};
+
+export type TaskMinOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  dueDate?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  message?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  note?: InputMaybe<SortOrder>;
+  priorityId?: InputMaybe<SortOrder>;
+  statusid?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  workspaceId?: InputMaybe<SortOrder>;
+};
+
+export type TaskNullableRelationFilter = {
+  is?: InputMaybe<TaskWhereInput>;
+  isNot?: InputMaybe<TaskWhereInput>;
+};
+
+export type TaskOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type TaskOrderByWithAggregationInput = {
+  _avg?: InputMaybe<TaskAvgOrderByAggregateInput>;
+  _count?: InputMaybe<TaskCountOrderByAggregateInput>;
+  _max?: InputMaybe<TaskMaxOrderByAggregateInput>;
+  _min?: InputMaybe<TaskMinOrderByAggregateInput>;
+  _sum?: InputMaybe<TaskSumOrderByAggregateInput>;
+  createdAt?: InputMaybe<SortOrder>;
+  dueDate?: InputMaybe<SortOrderInput>;
+  id?: InputMaybe<SortOrder>;
+  message?: InputMaybe<SortOrderInput>;
+  name?: InputMaybe<SortOrder>;
+  note?: InputMaybe<SortOrderInput>;
+  priorityId?: InputMaybe<SortOrderInput>;
+  statusid?: InputMaybe<SortOrderInput>;
+  updatedAt?: InputMaybe<SortOrder>;
+  workspaceId?: InputMaybe<SortOrder>;
+};
+
+export type TaskOrderByWithRelationInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  dueDate?: InputMaybe<SortOrderInput>;
+  files?: InputMaybe<FileOrderByRelationAggregateInput>;
+  id?: InputMaybe<SortOrder>;
+  message?: InputMaybe<SortOrderInput>;
+  name?: InputMaybe<SortOrder>;
+  note?: InputMaybe<SortOrderInput>;
+  priority?: InputMaybe<PriorityOrderByWithRelationInput>;
+  priorityId?: InputMaybe<SortOrderInput>;
+  status?: InputMaybe<StatusOrderByWithRelationInput>;
+  statusid?: InputMaybe<SortOrderInput>;
+  updatedAt?: InputMaybe<SortOrder>;
+  workspace?: InputMaybe<WorkspaceOrderByWithRelationInput>;
+  workspaceId?: InputMaybe<SortOrder>;
+};
+
+export enum TaskScalarFieldEnum {
+  CreatedAt = 'createdAt',
+  DueDate = 'dueDate',
+  Id = 'id',
+  Message = 'message',
+  Name = 'name',
+  Note = 'note',
+  PriorityId = 'priorityId',
+  Statusid = 'statusid',
+  UpdatedAt = 'updatedAt',
+  WorkspaceId = 'workspaceId'
+}
+
+export type TaskScalarWhereInput = {
+  AND?: InputMaybe<Array<TaskScalarWhereInput>>;
+  NOT?: InputMaybe<Array<TaskScalarWhereInput>>;
+  OR?: InputMaybe<Array<TaskScalarWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  dueDate?: InputMaybe<DateTimeNullableFilter>;
+  id?: InputMaybe<StringFilter>;
+  message?: InputMaybe<StringNullableFilter>;
+  name?: InputMaybe<StringFilter>;
+  note?: InputMaybe<StringNullableFilter>;
+  priorityId?: InputMaybe<IntNullableFilter>;
+  statusid?: InputMaybe<IntNullableFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+  workspaceId?: InputMaybe<StringFilter>;
+};
+
+export type TaskScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<TaskScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<TaskScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<TaskScalarWhereWithAggregatesInput>>;
+  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  dueDate?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
+  id?: InputMaybe<StringWithAggregatesFilter>;
+  message?: InputMaybe<StringNullableWithAggregatesFilter>;
+  name?: InputMaybe<StringWithAggregatesFilter>;
+  note?: InputMaybe<StringNullableWithAggregatesFilter>;
+  priorityId?: InputMaybe<IntNullableWithAggregatesFilter>;
+  statusid?: InputMaybe<IntNullableWithAggregatesFilter>;
+  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  workspaceId?: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type TaskSumAggregate = {
+  __typename?: 'TaskSumAggregate';
+  priorityId?: Maybe<Scalars['Int']['output']>;
+  statusid?: Maybe<Scalars['Int']['output']>;
+};
+
+export type TaskSumOrderByAggregateInput = {
+  priorityId?: InputMaybe<SortOrder>;
+  statusid?: InputMaybe<SortOrder>;
+};
+
+export type TaskUpdateInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  dueDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  files?: InputMaybe<FileUpdateManyWithoutTaskNestedInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  message?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  note?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  priority?: InputMaybe<PriorityUpdateOneWithoutTaskNestedInput>;
+  status?: InputMaybe<StatusUpdateOneWithoutTaskNestedInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  workspace?: InputMaybe<WorkspaceUpdateOneRequiredWithoutTaskNestedInput>;
+};
+
+export type TaskUpdateManyMutationInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  dueDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  message?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  note?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type TaskUpdateManyWithWhereWithoutPriorityInput = {
+  data: TaskUpdateManyMutationInput;
+  where: TaskScalarWhereInput;
+};
+
+export type TaskUpdateManyWithWhereWithoutStatusInput = {
+  data: TaskUpdateManyMutationInput;
+  where: TaskScalarWhereInput;
+};
+
+export type TaskUpdateManyWithWhereWithoutWorkspaceInput = {
+  data: TaskUpdateManyMutationInput;
+  where: TaskScalarWhereInput;
+};
+
+export type TaskUpdateManyWithoutPriorityNestedInput = {
+  connect?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TaskCreateOrConnectWithoutPriorityInput>>;
+  create?: InputMaybe<Array<TaskCreateWithoutPriorityInput>>;
+  createMany?: InputMaybe<TaskCreateManyPriorityInputEnvelope>;
+  delete?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<TaskScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  set?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  update?: InputMaybe<Array<TaskUpdateWithWhereUniqueWithoutPriorityInput>>;
+  updateMany?: InputMaybe<Array<TaskUpdateManyWithWhereWithoutPriorityInput>>;
+  upsert?: InputMaybe<Array<TaskUpsertWithWhereUniqueWithoutPriorityInput>>;
+};
+
+export type TaskUpdateManyWithoutStatusNestedInput = {
+  connect?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TaskCreateOrConnectWithoutStatusInput>>;
+  create?: InputMaybe<Array<TaskCreateWithoutStatusInput>>;
+  createMany?: InputMaybe<TaskCreateManyStatusInputEnvelope>;
+  delete?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<TaskScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  set?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  update?: InputMaybe<Array<TaskUpdateWithWhereUniqueWithoutStatusInput>>;
+  updateMany?: InputMaybe<Array<TaskUpdateManyWithWhereWithoutStatusInput>>;
+  upsert?: InputMaybe<Array<TaskUpsertWithWhereUniqueWithoutStatusInput>>;
+};
+
+export type TaskUpdateManyWithoutWorkspaceNestedInput = {
+  connect?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TaskCreateOrConnectWithoutWorkspaceInput>>;
+  create?: InputMaybe<Array<TaskCreateWithoutWorkspaceInput>>;
+  createMany?: InputMaybe<TaskCreateManyWorkspaceInputEnvelope>;
+  delete?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<TaskScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  set?: InputMaybe<Array<TaskWhereUniqueInput>>;
+  update?: InputMaybe<Array<TaskUpdateWithWhereUniqueWithoutWorkspaceInput>>;
+  updateMany?: InputMaybe<Array<TaskUpdateManyWithWhereWithoutWorkspaceInput>>;
+  upsert?: InputMaybe<Array<TaskUpsertWithWhereUniqueWithoutWorkspaceInput>>;
+};
+
+export type TaskUpdateOneWithoutFilesNestedInput = {
+  connect?: InputMaybe<TaskWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<TaskCreateOrConnectWithoutFilesInput>;
+  create?: InputMaybe<TaskCreateWithoutFilesInput>;
+  delete?: InputMaybe<TaskWhereInput>;
+  disconnect?: InputMaybe<TaskWhereInput>;
+  update?: InputMaybe<TaskUpdateToOneWithWhereWithoutFilesInput>;
+  upsert?: InputMaybe<TaskUpsertWithoutFilesInput>;
+};
+
+export type TaskUpdateToOneWithWhereWithoutFilesInput = {
+  data: TaskUpdateWithoutFilesInput;
+  where?: InputMaybe<TaskWhereInput>;
+};
+
+export type TaskUpdateWithWhereUniqueWithoutPriorityInput = {
+  data: TaskUpdateWithoutPriorityInput;
+  where: TaskWhereUniqueInput;
+};
+
+export type TaskUpdateWithWhereUniqueWithoutStatusInput = {
+  data: TaskUpdateWithoutStatusInput;
+  where: TaskWhereUniqueInput;
+};
+
+export type TaskUpdateWithWhereUniqueWithoutWorkspaceInput = {
+  data: TaskUpdateWithoutWorkspaceInput;
+  where: TaskWhereUniqueInput;
+};
+
+export type TaskUpdateWithoutFilesInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  dueDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  message?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  note?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  priority?: InputMaybe<PriorityUpdateOneWithoutTaskNestedInput>;
+  status?: InputMaybe<StatusUpdateOneWithoutTaskNestedInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  workspace?: InputMaybe<WorkspaceUpdateOneRequiredWithoutTaskNestedInput>;
+};
+
+export type TaskUpdateWithoutPriorityInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  dueDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  files?: InputMaybe<FileUpdateManyWithoutTaskNestedInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  message?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  note?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  status?: InputMaybe<StatusUpdateOneWithoutTaskNestedInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  workspace?: InputMaybe<WorkspaceUpdateOneRequiredWithoutTaskNestedInput>;
+};
+
+export type TaskUpdateWithoutStatusInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  dueDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  files?: InputMaybe<FileUpdateManyWithoutTaskNestedInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  message?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  note?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  priority?: InputMaybe<PriorityUpdateOneWithoutTaskNestedInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  workspace?: InputMaybe<WorkspaceUpdateOneRequiredWithoutTaskNestedInput>;
+};
+
+export type TaskUpdateWithoutWorkspaceInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  dueDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  files?: InputMaybe<FileUpdateManyWithoutTaskNestedInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  message?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  note?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  priority?: InputMaybe<PriorityUpdateOneWithoutTaskNestedInput>;
+  status?: InputMaybe<StatusUpdateOneWithoutTaskNestedInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type TaskUpsertWithWhereUniqueWithoutPriorityInput = {
+  create: TaskCreateWithoutPriorityInput;
+  update: TaskUpdateWithoutPriorityInput;
+  where: TaskWhereUniqueInput;
+};
+
+export type TaskUpsertWithWhereUniqueWithoutStatusInput = {
+  create: TaskCreateWithoutStatusInput;
+  update: TaskUpdateWithoutStatusInput;
+  where: TaskWhereUniqueInput;
+};
+
+export type TaskUpsertWithWhereUniqueWithoutWorkspaceInput = {
+  create: TaskCreateWithoutWorkspaceInput;
+  update: TaskUpdateWithoutWorkspaceInput;
+  where: TaskWhereUniqueInput;
+};
+
+export type TaskUpsertWithoutFilesInput = {
+  create: TaskCreateWithoutFilesInput;
+  update: TaskUpdateWithoutFilesInput;
+  where?: InputMaybe<TaskWhereInput>;
+};
+
+export type TaskWhereInput = {
+  AND?: InputMaybe<Array<TaskWhereInput>>;
+  NOT?: InputMaybe<Array<TaskWhereInput>>;
+  OR?: InputMaybe<Array<TaskWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  dueDate?: InputMaybe<DateTimeNullableFilter>;
+  files?: InputMaybe<FileListRelationFilter>;
+  id?: InputMaybe<StringFilter>;
+  message?: InputMaybe<StringNullableFilter>;
+  name?: InputMaybe<StringFilter>;
+  note?: InputMaybe<StringNullableFilter>;
+  priority?: InputMaybe<PriorityNullableRelationFilter>;
+  priorityId?: InputMaybe<IntNullableFilter>;
+  status?: InputMaybe<StatusNullableRelationFilter>;
+  statusid?: InputMaybe<IntNullableFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+  workspace?: InputMaybe<WorkspaceRelationFilter>;
+  workspaceId?: InputMaybe<StringFilter>;
+};
+
+export type TaskWhereUniqueInput = {
+  AND?: InputMaybe<Array<TaskWhereInput>>;
+  NOT?: InputMaybe<Array<TaskWhereInput>>;
+  OR?: InputMaybe<Array<TaskWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  dueDate?: InputMaybe<DateTimeNullableFilter>;
+  files?: InputMaybe<FileListRelationFilter>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<StringNullableFilter>;
+  name?: InputMaybe<StringFilter>;
+  note?: InputMaybe<StringNullableFilter>;
+  priority?: InputMaybe<PriorityNullableRelationFilter>;
+  priorityId?: InputMaybe<IntNullableFilter>;
+  status?: InputMaybe<StatusNullableRelationFilter>;
+  statusid?: InputMaybe<IntNullableFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+  workspace?: InputMaybe<WorkspaceRelationFilter>;
+  workspaceId?: InputMaybe<StringFilter>;
 };
 
 export type User = {
@@ -2063,18 +4037,40 @@ export type UserWhereUniqueInput = {
 
 export type Workspace = {
   __typename?: 'Workspace';
+  _count?: Maybe<WorkspaceCount>;
   createdAt: Scalars['DateTimeISO']['output'];
   description: Scalars['String']['output'];
   id: Scalars['String']['output'];
   name: Scalars['String']['output'];
+  task: Array<Task>;
   updatedAt: Scalars['DateTimeISO']['output'];
   user?: Maybe<User>;
   userId?: Maybe<Scalars['String']['output']>;
 };
 
 
+export type WorkspaceTaskArgs = {
+  cursor?: InputMaybe<TaskWhereUniqueInput>;
+  distinct?: InputMaybe<Array<TaskScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<TaskOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TaskWhereInput>;
+};
+
+
 export type WorkspaceUserArgs = {
   where?: InputMaybe<UserWhereInput>;
+};
+
+export type WorkspaceCount = {
+  __typename?: 'WorkspaceCount';
+  task: Scalars['Int']['output'];
+};
+
+
+export type WorkspaceCountTaskArgs = {
+  where?: InputMaybe<TaskWhereInput>;
 };
 
 export type WorkspaceCountAggregate = {
@@ -2102,6 +4098,7 @@ export type WorkspaceCreateInput = {
   description: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
+  task?: InputMaybe<TaskCreateNestedManyWithoutWorkspaceInput>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   user?: InputMaybe<UserCreateNestedOneWithoutWorkspacesInput>;
 };
@@ -2135,9 +4132,29 @@ export type WorkspaceCreateNestedManyWithoutUserInput = {
   createMany?: InputMaybe<WorkspaceCreateManyUserInputEnvelope>;
 };
 
+export type WorkspaceCreateNestedOneWithoutTaskInput = {
+  connect?: InputMaybe<WorkspaceWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<WorkspaceCreateOrConnectWithoutTaskInput>;
+  create?: InputMaybe<WorkspaceCreateWithoutTaskInput>;
+};
+
+export type WorkspaceCreateOrConnectWithoutTaskInput = {
+  create: WorkspaceCreateWithoutTaskInput;
+  where: WorkspaceWhereUniqueInput;
+};
+
 export type WorkspaceCreateOrConnectWithoutUserInput = {
   create: WorkspaceCreateWithoutUserInput;
   where: WorkspaceWhereUniqueInput;
+};
+
+export type WorkspaceCreateWithoutTaskInput = {
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  description: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  user?: InputMaybe<UserCreateNestedOneWithoutWorkspacesInput>;
 };
 
 export type WorkspaceCreateWithoutUserInput = {
@@ -2145,6 +4162,7 @@ export type WorkspaceCreateWithoutUserInput = {
   description: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
+  task?: InputMaybe<TaskCreateNestedManyWithoutWorkspaceInput>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -2226,9 +4244,15 @@ export type WorkspaceOrderByWithRelationInput = {
   description?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
+  task?: InputMaybe<TaskOrderByRelationAggregateInput>;
   updatedAt?: InputMaybe<SortOrder>;
   user?: InputMaybe<UserOrderByWithRelationInput>;
   userId?: InputMaybe<SortOrderInput>;
+};
+
+export type WorkspaceRelationFilter = {
+  is?: InputMaybe<WorkspaceWhereInput>;
+  isNot?: InputMaybe<WorkspaceWhereInput>;
 };
 
 export enum WorkspaceScalarFieldEnum {
@@ -2269,6 +4293,7 @@ export type WorkspaceUpdateInput = {
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  task?: InputMaybe<TaskUpdateManyWithoutWorkspaceNestedInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneWithoutWorkspacesNestedInput>;
 };
@@ -2300,9 +4325,31 @@ export type WorkspaceUpdateManyWithoutUserNestedInput = {
   upsert?: InputMaybe<Array<WorkspaceUpsertWithWhereUniqueWithoutUserInput>>;
 };
 
+export type WorkspaceUpdateOneRequiredWithoutTaskNestedInput = {
+  connect?: InputMaybe<WorkspaceWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<WorkspaceCreateOrConnectWithoutTaskInput>;
+  create?: InputMaybe<WorkspaceCreateWithoutTaskInput>;
+  update?: InputMaybe<WorkspaceUpdateToOneWithWhereWithoutTaskInput>;
+  upsert?: InputMaybe<WorkspaceUpsertWithoutTaskInput>;
+};
+
+export type WorkspaceUpdateToOneWithWhereWithoutTaskInput = {
+  data: WorkspaceUpdateWithoutTaskInput;
+  where?: InputMaybe<WorkspaceWhereInput>;
+};
+
 export type WorkspaceUpdateWithWhereUniqueWithoutUserInput = {
   data: WorkspaceUpdateWithoutUserInput;
   where: WorkspaceWhereUniqueInput;
+};
+
+export type WorkspaceUpdateWithoutTaskInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user?: InputMaybe<UserUpdateOneWithoutWorkspacesNestedInput>;
 };
 
 export type WorkspaceUpdateWithoutUserInput = {
@@ -2310,6 +4357,7 @@ export type WorkspaceUpdateWithoutUserInput = {
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  task?: InputMaybe<TaskUpdateManyWithoutWorkspaceNestedInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -2317,6 +4365,12 @@ export type WorkspaceUpsertWithWhereUniqueWithoutUserInput = {
   create: WorkspaceCreateWithoutUserInput;
   update: WorkspaceUpdateWithoutUserInput;
   where: WorkspaceWhereUniqueInput;
+};
+
+export type WorkspaceUpsertWithoutTaskInput = {
+  create: WorkspaceCreateWithoutTaskInput;
+  update: WorkspaceUpdateWithoutTaskInput;
+  where?: InputMaybe<WorkspaceWhereInput>;
 };
 
 export type WorkspaceWhereInput = {
@@ -2327,6 +4381,7 @@ export type WorkspaceWhereInput = {
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
+  task?: InputMaybe<TaskListRelationFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   user?: InputMaybe<UserNullableRelationFilter>;
   userId?: InputMaybe<StringNullableFilter>;
@@ -2340,10 +4395,18 @@ export type WorkspaceWhereUniqueInput = {
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<StringFilter>;
+  task?: InputMaybe<TaskListRelationFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   user?: InputMaybe<UserNullableRelationFilter>;
   userId?: InputMaybe<StringNullableFilter>;
 };
+
+export type CreateOneTaskMutationVariables = Exact<{
+  data: TaskCreateInput;
+}>;
+
+
+export type CreateOneTaskMutation = { __typename?: 'Mutation', createOneTask: { __typename?: 'Task', name: string, message?: string | null, note?: string | null, dueDate?: any | null, workspaceId: string, status?: { __typename?: 'Status', id: number } | null, priority?: { __typename?: 'Priority', id: number } | null, files: Array<{ __typename?: 'File', id: number }>, workspace: { __typename?: 'Workspace', id: string } } };
 
 export type CreateOneUserMutationVariables = Exact<{
   data: UserCreateInput;
@@ -2374,12 +4437,26 @@ export type UpdateOneWorkspaceMutationVariables = Exact<{
 
 export type UpdateOneWorkspaceMutation = { __typename?: 'Mutation', updateOneWorkspace?: { __typename?: 'Workspace', id: string, name: string, description: string } | null };
 
+export type TasksQueryVariables = Exact<{
+  workspaceId: Scalars['String']['input'];
+}>;
+
+
+export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number }>, status?: { __typename?: 'Status', name: string, color: string } | null, priority?: { __typename?: 'Priority', name: string, color: string } | null, workspace: { __typename?: 'Workspace', id: string } }> };
+
 export type UserQueryVariables = Exact<{
   where: UserWhereUniqueInput;
 }>;
 
 
 export type UserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, firstName: string, lastName: string, role: Role, image?: string | null, workspaces: Array<{ __typename?: 'Workspace', description: string, name: string, id: string }> } | null };
+
+export type WorkspaceQueryVariables = Exact<{
+  where: WorkspaceWhereUniqueInput;
+}>;
+
+
+export type WorkspaceQuery = { __typename?: 'Query', workspace?: { __typename?: 'Workspace', id: string, name: string, user?: { __typename?: 'User', id: string, firstName: string, lastName: string, role: Role } | null, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number }>, status?: { __typename?: 'Status', name: string, color: string } | null, priority?: { __typename?: 'Priority', name: string, color: string } | null }> } | null };
 
 export type WorkspacesQueryVariables = Exact<{
   where?: InputMaybe<WorkspaceWhereInput>;
@@ -2389,6 +4466,55 @@ export type WorkspacesQueryVariables = Exact<{
 export type WorkspacesQuery = { __typename?: 'Query', workspaces: Array<{ __typename?: 'Workspace', id: string, name: string, description: string }> };
 
 
+export const CreateOneTaskDocument = gql`
+    mutation CreateOneTask($data: TaskCreateInput!) {
+  createOneTask(data: $data) {
+    name
+    message
+    note
+    dueDate
+    status {
+      id
+    }
+    priority {
+      id
+    }
+    files {
+      id
+    }
+    workspace {
+      id
+    }
+    workspaceId
+  }
+}
+    `;
+export type CreateOneTaskMutationFn = Apollo.MutationFunction<CreateOneTaskMutation, CreateOneTaskMutationVariables>;
+
+/**
+ * __useCreateOneTaskMutation__
+ *
+ * To run a mutation, you first call `useCreateOneTaskMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOneTaskMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOneTaskMutation, { data, loading, error }] = useCreateOneTaskMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateOneTaskMutation(baseOptions?: Apollo.MutationHookOptions<CreateOneTaskMutation, CreateOneTaskMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOneTaskMutation, CreateOneTaskMutationVariables>(CreateOneTaskDocument, options);
+      }
+export type CreateOneTaskMutationHookResult = ReturnType<typeof useCreateOneTaskMutation>;
+export type CreateOneTaskMutationResult = Apollo.MutationResult<CreateOneTaskMutation>;
+export type CreateOneTaskMutationOptions = Apollo.BaseMutationOptions<CreateOneTaskMutation, CreateOneTaskMutationVariables>;
 export const CreateOneUserDocument = gql`
     mutation CreateOneUser($data: UserCreateInput!) {
   createOneUser(data: $data) {
@@ -2534,6 +4660,64 @@ export function useUpdateOneWorkspaceMutation(baseOptions?: Apollo.MutationHookO
 export type UpdateOneWorkspaceMutationHookResult = ReturnType<typeof useUpdateOneWorkspaceMutation>;
 export type UpdateOneWorkspaceMutationResult = Apollo.MutationResult<UpdateOneWorkspaceMutation>;
 export type UpdateOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<UpdateOneWorkspaceMutation, UpdateOneWorkspaceMutationVariables>;
+export const TasksDocument = gql`
+    query Tasks($workspaceId: String!) {
+  tasks(where: {workspaceId: {equals: $workspaceId}}) {
+    id
+    name
+    message
+    note
+    dueDate
+    files {
+      id
+    }
+    status {
+      name
+      color
+    }
+    priority {
+      name
+      color
+    }
+    workspace {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useTasksQuery__
+ *
+ * To run a query within a React component, call `useTasksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTasksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTasksQuery({
+ *   variables: {
+ *      workspaceId: // value for 'workspaceId'
+ *   },
+ * });
+ */
+export function useTasksQuery(baseOptions: Apollo.QueryHookOptions<TasksQuery, TasksQueryVariables> & ({ variables: TasksQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TasksQuery, TasksQueryVariables>(TasksDocument, options);
+      }
+export function useTasksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TasksQuery, TasksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TasksQuery, TasksQueryVariables>(TasksDocument, options);
+        }
+export function useTasksSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<TasksQuery, TasksQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<TasksQuery, TasksQueryVariables>(TasksDocument, options);
+        }
+export type TasksQueryHookResult = ReturnType<typeof useTasksQuery>;
+export type TasksLazyQueryHookResult = ReturnType<typeof useTasksLazyQuery>;
+export type TasksSuspenseQueryHookResult = ReturnType<typeof useTasksSuspenseQuery>;
+export type TasksQueryResult = Apollo.QueryResult<TasksQuery, TasksQueryVariables>;
 export const UserDocument = gql`
     query user($where: UserWhereUniqueInput!) {
   user(where: $where) {
@@ -2584,6 +4768,71 @@ export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
 export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
 export type UserSuspenseQueryHookResult = ReturnType<typeof useUserSuspenseQuery>;
 export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
+export const WorkspaceDocument = gql`
+    query Workspace($where: WorkspaceWhereUniqueInput!) {
+  workspace(where: $where) {
+    id
+    name
+    user {
+      id
+      firstName
+      lastName
+      role
+    }
+    task {
+      id
+      name
+      message
+      note
+      dueDate
+      files {
+        id
+      }
+      status {
+        name
+        color
+      }
+      priority {
+        name
+        color
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useWorkspaceQuery__
+ *
+ * To run a query within a React component, call `useWorkspaceQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWorkspaceQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWorkspaceQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useWorkspaceQuery(baseOptions: Apollo.QueryHookOptions<WorkspaceQuery, WorkspaceQueryVariables> & ({ variables: WorkspaceQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<WorkspaceQuery, WorkspaceQueryVariables>(WorkspaceDocument, options);
+      }
+export function useWorkspaceLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WorkspaceQuery, WorkspaceQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<WorkspaceQuery, WorkspaceQueryVariables>(WorkspaceDocument, options);
+        }
+export function useWorkspaceSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<WorkspaceQuery, WorkspaceQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<WorkspaceQuery, WorkspaceQueryVariables>(WorkspaceDocument, options);
+        }
+export type WorkspaceQueryHookResult = ReturnType<typeof useWorkspaceQuery>;
+export type WorkspaceLazyQueryHookResult = ReturnType<typeof useWorkspaceLazyQuery>;
+export type WorkspaceSuspenseQueryHookResult = ReturnType<typeof useWorkspaceSuspenseQuery>;
+export type WorkspaceQueryResult = Apollo.QueryResult<WorkspaceQuery, WorkspaceQueryVariables>;
 export const WorkspacesDocument = gql`
     query Workspaces($where: WorkspaceWhereInput) {
   workspaces(where: $where) {

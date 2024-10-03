@@ -1,0 +1,30 @@
+query Workspace($where: WorkspaceWhereUniqueInput!) {
+  workspace(where: $where) {
+    id
+    name
+    user {
+      id
+      firstName
+      lastName
+      role
+    }
+    task {
+      id
+      name
+      message
+      note
+      dueDate
+      files {
+        id
+      }
+      status {
+        name
+        color
+      }
+      priority {
+        name
+        color
+      }
+    }
+  }
+}

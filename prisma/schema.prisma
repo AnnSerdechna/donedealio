@@ -56,11 +56,54 @@ model Workspace {
   description   String   
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-
+  task Task[] 
 
   user    User?    @relation(fields: [userId], references: [id])
   userId  String?
 } 
+
+model File {
+  id  Int @id @default(autoincrement())
+  file String
+
+  task Task? @relation(fields: [taskId], references: [id])
+  taskId  String?
+}
+
+model Task  {
+  id            String    @id @default(cuid())
+  name String
+  message String? 
+  note String?
+  dueDate DateTime?  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  status Status?  @relation(fields: [statusid], references: [id])
+  statusid Int?
+
+  priority Priority?  @relation(fields: [priorityId], references: [id])
+  priorityId Int?
+
+  files File[]
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+  workspaceId String
+}
+
+model Status {
+  id  Int @id @default(autoincrement())
+  name String @unique
+  color String
+  task Task[]
+}
+
+model Priority {
+  id  Int @id @default(autoincrement())
+  name String @unique
+  color String
+  task Task[]
+}
 
 enum Role {
   ADMIN

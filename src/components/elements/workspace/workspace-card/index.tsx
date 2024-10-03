@@ -1,10 +1,11 @@
+'use client';
+
 import { Card, Dropdown, MenuProps } from 'antd';
 import { FC } from 'react';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
 
 import { Button, Text } from '@/components/ui';
-
 
 type WorkspaceCardProps = {
   userId: string

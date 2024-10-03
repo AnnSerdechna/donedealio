@@ -10,6 +10,10 @@ declare const crudResolversMap: {
     Account: typeof crudResolvers.AccountCrudResolver;
     Session: typeof crudResolvers.SessionCrudResolver;
     Workspace: typeof crudResolvers.WorkspaceCrudResolver;
+    File: typeof crudResolvers.FileCrudResolver;
+    Task: typeof crudResolvers.TaskCrudResolver;
+    Status: typeof crudResolvers.StatusCrudResolver;
+    Priority: typeof crudResolvers.PriorityCrudResolver;
 };
 type ResolverModelNames = keyof typeof crudResolversMap;
 type ModelResolverActionNames<TModel extends ResolverModelNames> = keyof typeof crudResolversMap[TModel]["prototype"];
@@ -38,6 +42,10 @@ declare const relationResolversMap: {
     Account: typeof relationResolvers.AccountRelationsResolver;
     Session: typeof relationResolvers.SessionRelationsResolver;
     Workspace: typeof relationResolvers.WorkspaceRelationsResolver;
+    File: typeof relationResolvers.FileRelationsResolver;
+    Task: typeof relationResolvers.TaskRelationsResolver;
+    Status: typeof relationResolvers.StatusRelationsResolver;
+    Priority: typeof relationResolvers.PriorityRelationsResolver;
 };
 type RelationResolverModelNames = keyof typeof relationResolversMap;
 type RelationResolverActionNames<TModel extends RelationResolverModelNames> = keyof typeof relationResolversMap[TModel]["prototype"];

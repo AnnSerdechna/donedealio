@@ -27,7 +27,7 @@ export const WorkspaceFormContent: FC<WorkspaceFormContentProps> = ({ loading, d
         name={'description'}
         label={"Description"}
       >
-        <Input />
+        <Input.TextArea />
       </FormItem>
 
       <FormItem>

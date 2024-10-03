@@ -13,7 +13,7 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
       theme={{
         token: {
           colorPrimary: variables.primaryColor,
-          fontSize: 16,
+          fontSize: 14,
           fontFamily: notoSans.style.fontFamily,
         },
         components: {
@@ -46,14 +46,17 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
           Form: {
             itemMarginBottom: 16,
           },
+          Input: {
+            fontFamily: 'inherit'
+          },
           Avatar: {
             colorTextPlaceholder: variables.primaryColor,
           },
           Checkbox: {
-            controlInteractiveSize: 18
+            // controlInteractiveSize: 18
           },
           Button: {
-            onlyIconSizeSM: 20,
+            // onlyIconSizeSM: 20,
             defaultBg: 'transparent',
             defaultColor: variables.secondaryColor,
             defaultBorderColor: variables.secondaryColor,

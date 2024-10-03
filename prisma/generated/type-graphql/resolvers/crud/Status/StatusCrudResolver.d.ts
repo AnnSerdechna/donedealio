@@ -1,0 +1,38 @@
+import type { GraphQLResolveInfo } from "graphql";
+import { AggregateStatusArgs } from "./args/AggregateStatusArgs";
+import { CreateManyAndReturnStatusArgs } from "./args/CreateManyAndReturnStatusArgs";
+import { CreateManyStatusArgs } from "./args/CreateManyStatusArgs";
+import { CreateOneStatusArgs } from "./args/CreateOneStatusArgs";
+import { DeleteManyStatusArgs } from "./args/DeleteManyStatusArgs";
+import { DeleteOneStatusArgs } from "./args/DeleteOneStatusArgs";
+import { FindFirstStatusArgs } from "./args/FindFirstStatusArgs";
+import { FindFirstStatusOrThrowArgs } from "./args/FindFirstStatusOrThrowArgs";
+import { FindManyStatusArgs } from "./args/FindManyStatusArgs";
+import { FindUniqueStatusArgs } from "./args/FindUniqueStatusArgs";
+import { FindUniqueStatusOrThrowArgs } from "./args/FindUniqueStatusOrThrowArgs";
+import { GroupByStatusArgs } from "./args/GroupByStatusArgs";
+import { UpdateManyStatusArgs } from "./args/UpdateManyStatusArgs";
+import { UpdateOneStatusArgs } from "./args/UpdateOneStatusArgs";
+import { UpsertOneStatusArgs } from "./args/UpsertOneStatusArgs";
+import { Status } from "../../../models/Status";
+import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
+import { AggregateStatus } from "../../outputs/AggregateStatus";
+import { CreateManyAndReturnStatus } from "../../outputs/CreateManyAndReturnStatus";
+import { StatusGroupBy } from "../../outputs/StatusGroupBy";
+export declare class StatusCrudResolver {
+    aggregateStatus(ctx: any, info: GraphQLResolveInfo, args: AggregateStatusArgs): Promise<AggregateStatus>;
+    createManyStatus(ctx: any, info: GraphQLResolveInfo, args: CreateManyStatusArgs): Promise<AffectedRowsOutput>;
+    createManyAndReturnStatus(ctx: any, info: GraphQLResolveInfo, args: CreateManyAndReturnStatusArgs): Promise<CreateManyAndReturnStatus[]>;
+    createOneStatus(ctx: any, info: GraphQLResolveInfo, args: CreateOneStatusArgs): Promise<Status>;
+    deleteManyStatus(ctx: any, info: GraphQLResolveInfo, args: DeleteManyStatusArgs): Promise<AffectedRowsOutput>;
+    deleteOneStatus(ctx: any, info: GraphQLResolveInfo, args: DeleteOneStatusArgs): Promise<Status | null>;
+    findFirstStatus(ctx: any, info: GraphQLResolveInfo, args: FindFirstStatusArgs): Promise<Status | null>;
+    findFirstStatusOrThrow(ctx: any, info: GraphQLResolveInfo, args: FindFirstStatusOrThrowArgs): Promise<Status | null>;
+    statuses(ctx: any, info: GraphQLResolveInfo, args: FindManyStatusArgs): Promise<Status[]>;
+    status(ctx: any, info: GraphQLResolveInfo, args: FindUniqueStatusArgs): Promise<Status | null>;
+    getStatus(ctx: any, info: GraphQLResolveInfo, args: FindUniqueStatusOrThrowArgs): Promise<Status | null>;
+    groupByStatus(ctx: any, info: GraphQLResolveInfo, args: GroupByStatusArgs): Promise<StatusGroupBy[]>;
+    updateManyStatus(ctx: any, info: GraphQLResolveInfo, args: UpdateManyStatusArgs): Promise<AffectedRowsOutput>;
+    updateOneStatus(ctx: any, info: GraphQLResolveInfo, args: UpdateOneStatusArgs): Promise<Status | null>;
+    upsertOneStatus(ctx: any, info: GraphQLResolveInfo, args: UpsertOneStatusArgs): Promise<Status>;
+}

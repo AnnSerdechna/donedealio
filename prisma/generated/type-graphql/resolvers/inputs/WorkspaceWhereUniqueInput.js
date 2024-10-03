@@ -6,6 +6,7 @@ const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
 const DateTimeFilter_1 = require("../inputs/DateTimeFilter");
 const StringFilter_1 = require("../inputs/StringFilter");
 const StringNullableFilter_1 = require("../inputs/StringNullableFilter");
+const TaskListRelationFilter_1 = require("../inputs/TaskListRelationFilter");
 const UserNullableRelationFilter_1 = require("../inputs/UserNullableRelationFilter");
 const WorkspaceWhereInput_1 = require("../inputs/WorkspaceWhereInput");
 let WorkspaceWhereUniqueInput = class WorkspaceWhereUniqueInput {
@@ -65,6 +66,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", StringNullableFilter_1.StringNullableFilter)
 ], WorkspaceWhereUniqueInput.prototype, "userId", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => TaskListRelationFilter_1.TaskListRelationFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", TaskListRelationFilter_1.TaskListRelationFilter)
+], WorkspaceWhereUniqueInput.prototype, "task", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => UserNullableRelationFilter_1.UserNullableRelationFilter, {
         nullable: true

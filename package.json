@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "next lint",
     "codegen": "graphql-codegen --config codegen.yaml",
-    "generate:graphql": "yarn graphql-codegen --watch",
+    "graphql": "yarn graphql-codegen --watch",
     "postinstall": "npx prisma generate"
   },
   "dependencies": {

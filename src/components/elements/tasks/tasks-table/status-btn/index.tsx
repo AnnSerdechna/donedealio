@@ -1,8 +1,8 @@
 import { Button, ButtonProps } from 'antd';
 import { FC } from 'react';
+import classNames from 'classnames';
 
 import styles from './index.module.scss';
-import classNames from 'classnames';
 
 type StatusButtonProps = ButtonProps & { text: string, backgroundColor: string };
 

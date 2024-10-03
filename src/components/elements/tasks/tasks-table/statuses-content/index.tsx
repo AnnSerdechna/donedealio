@@ -1,8 +1,9 @@
 import { FC, Fragment } from 'react';
-import { StatusButton } from '../status-btn';
 import { Button, Divider, Flex } from 'antd';
-import { Priority, Status } from '@/graphql/types';
 import { EditOutlined } from '@ant-design/icons';
+
+import { StatusButton } from '../status-btn';
+import { Priority, Status } from '@/graphql/types';
 
 type StatusesContentProps = {
   taskId: string
@@ -17,6 +18,7 @@ export const StatusesContent: FC<StatusesContentProps> = ({ statusesData, taskId
       <Flex vertical gap={4}>
         {statusesData.map(item => (
           <StatusButton
+            key={item?.id}
             text={item.name}
             backgroundColor={item.color}
             onClick={() => onStatus(item?.id, taskId)}

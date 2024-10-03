@@ -1,13 +1,32 @@
 'use client'
+import { FC, Fragment, useState } from "react";
+import { useParams } from 'next/navigation';
 
 import { Avatar, Badge, DatePicker, Button, Flex, Form, Input, message, Popover, Space, Table, Tag, Typography, Upload } from "antd"
 import type { TableProps } from 'antd';
-import dayjs from 'dayjs';
-import { MessageOutlined, UserAddOutlined, SearchOutlined, DeleteTwoTone, FileAddOutlined, RightOutlined, DownOutlined } from '@ant-design/icons'
-import { FC, Fragment, useState } from "react";
 import { TableRowSelection } from "antd/es/table/interface";
-import { useParams } from 'next/navigation';
-import { NullableDateTimeFieldUpdateOperationsInput, Priority, Status, Task, useDeleteManyTaskMutation, usePrioritiesQuery, useStatusesQuery, useTasksQuery, useUpdateOneTaskMutation, useWorkspaceQuery } from '@/graphql/types';
+import dayjs from 'dayjs';
+import { 
+  MessageOutlined, 
+  UserAddOutlined, 
+  SearchOutlined, 
+  DeleteTwoTone, 
+  FileAddOutlined, 
+  RightOutlined, 
+  DownOutlined 
+  } from '@ant-design/icons'
+import { 
+  Priority, 
+  Status, 
+  Task, 
+  useDeleteManyTaskMutation, 
+  usePrioritiesQuery, 
+  useStatusesQuery, 
+  useTasksQuery, 
+  useUpdateOneTaskMutation, 
+  useWorkspaceQuery 
+} from '@/graphql/types';
+
 import { AddTaskForm } from '@/components/elements/tasks/add-task-form';
 import { Button as ButtonUi } from '@/components/ui';
 import { StatusFormList } from './status-form-list';
@@ -152,7 +171,7 @@ export const TasksTable: FC = () => {
       dataIndex: 'message',
       key: 'message',
       align: 'center',
-      render: (record) => (
+      render: () => (
         <Button
           icon={(
             <Badge count={0} size="small">
@@ -353,7 +372,7 @@ export const TasksTable: FC = () => {
         rowSelection={rowSelection}
         rowKey={(record) => record.id}
         expandable={{
-          expandedRowRender: (record) => (
+          expandedRowRender: () => (
             <Table
               dataSource={[]}
               columns={[]}

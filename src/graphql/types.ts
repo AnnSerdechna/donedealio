@@ -4422,6 +4422,13 @@ export type CreateOneWorkspaceMutationVariables = Exact<{
 
 export type CreateOneWorkspaceMutation = { __typename?: 'Mutation', createOneWorkspace: { __typename?: 'Workspace', id: string, name: string, description: string, user?: { __typename?: 'User', id: string } | null } };
 
+export type DeleteManyTaskMutationVariables = Exact<{
+  where?: InputMaybe<TaskWhereInput>;
+}>;
+
+
+export type DeleteManyTaskMutation = { __typename?: 'Mutation', deleteManyTask: { __typename?: 'AffectedRowsOutput', count: number } };
+
 export type DeleteOneWorkspaceMutationVariables = Exact<{
   where: WorkspaceWhereUniqueInput;
 }>;
@@ -4591,6 +4598,39 @@ export function useCreateOneWorkspaceMutation(baseOptions?: Apollo.MutationHookO
 export type CreateOneWorkspaceMutationHookResult = ReturnType<typeof useCreateOneWorkspaceMutation>;
 export type CreateOneWorkspaceMutationResult = Apollo.MutationResult<CreateOneWorkspaceMutation>;
 export type CreateOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<CreateOneWorkspaceMutation, CreateOneWorkspaceMutationVariables>;
+export const DeleteManyTaskDocument = gql`
+    mutation DeleteManyTask($where: TaskWhereInput) {
+  deleteManyTask(where: $where) {
+    count
+  }
+}
+    `;
+export type DeleteManyTaskMutationFn = Apollo.MutationFunction<DeleteManyTaskMutation, DeleteManyTaskMutationVariables>;
+
+/**
+ * __useDeleteManyTaskMutation__
+ *
+ * To run a mutation, you first call `useDeleteManyTaskMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteManyTaskMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteManyTaskMutation, { data, loading, error }] = useDeleteManyTaskMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteManyTaskMutation(baseOptions?: Apollo.MutationHookOptions<DeleteManyTaskMutation, DeleteManyTaskMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteManyTaskMutation, DeleteManyTaskMutationVariables>(DeleteManyTaskDocument, options);
+      }
+export type DeleteManyTaskMutationHookResult = ReturnType<typeof useDeleteManyTaskMutation>;
+export type DeleteManyTaskMutationResult = Apollo.MutationResult<DeleteManyTaskMutation>;
+export type DeleteManyTaskMutationOptions = Apollo.BaseMutationOptions<DeleteManyTaskMutation, DeleteManyTaskMutationVariables>;
 export const DeleteOneWorkspaceDocument = gql`
     mutation DeleteOneWorkspace($where: WorkspaceWhereUniqueInput!) {
   deleteOneWorkspace(where: $where) {

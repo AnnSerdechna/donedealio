@@ -1,14 +1,15 @@
 'use client'
 
-import { Avatar, Badge, Button, ColorPicker, DatePicker, Divider, Flex, Form, Input, Popover, Space, Table, Tag, Typography, Upload } from "antd"
+import { Avatar, Badge, ColorPicker, DatePicker, Button, Divider, Flex, Form, Input, message, notification, Popover, Space, Table, Tag, Typography, Upload } from "antd"
 import type { TableProps } from 'antd';
 import { MessageOutlined, UserAddOutlined, SearchOutlined, EditOutlined, DeleteTwoTone, PlusOutlined, FileAddOutlined, RightOutlined, DownOutlined } from '@ant-design/icons'
-import { FC, Fragment, Key, useState } from "react";
+import { FC, Fragment, Key, useEffect, useState } from "react";
 import { TableRowSelection } from "antd/es/table/interface";
 import { useParams } from 'next/navigation';
-import { Task, useTasksQuery, useWorkspaceQuery } from '@/graphql/types';
+import { Task, useDeleteManyTaskMutation, useTasksQuery, useWorkspaceQuery } from '@/graphql/types';
 import { AddTaskForm } from '@/components/elements/tasks/add-task-form';
 import { StatusButton } from './status-btn';
+import { Button as ButtonUi } from '@/components/ui';
 
 const { Text } = Typography;
 
@@ -61,7 +62,9 @@ const priorities = [
 export const TasksTable: FC = () => {
   const { workspaceId } = useParams();
   const { data } = useWorkspaceQuery({ variables: { where: { id: workspaceId as string } } })
-  const { data: tasksData, refetch, loading: dataLoading } = useTasksQuery({ variables: { workspaceId: workspaceId as string } })
+  const { data: tasksData, refetch, loading: dataLoading } = useTasksQuery({ variables: { workspaceId: workspaceId as string } });
+  const [deleteTasks, { loading: deleteTasksLoading}] = useDeleteManyTaskMutation()
+  const [messageApi, contextHolder] = message.useMessage();
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [statusContent, setStatusContent] = useState<'change' | 'edit'>('change')
   const [priorityContent, setPriorityContent] = useState<'change' | 'edit'>('change')
@@ -343,68 +346,110 @@ export const TasksTable: FC = () => {
     setSelectedRowKeys(newSelectedRowKeys);
   };
 
+  const handleRemoveSelectedTasks = async () => {
+    try {
+      await deleteTasks({
+        variables: {
+          where: {
+            id: {
+              in: selectedRowKeys as string[]
+            }
+          }
+        }
+      });
+
+      refetch();
+      setSelectedRowKeys([]);
+    } catch(error) {
+      console.log(error, 'Delete tasks error!');
+      messageApi.error('Delete selected tasks failed!')
+    }
+  }
+
   const rowSelection: TableRowSelection<Task> = {
     selectedRowKeys,
     onChange: onSelectChange,
   }
 
-  console.log(selectedRowKeys, 'selectedRowKeys');
-  
-
   return (
-    <Table
-      dataSource={tasksData?.tasks as Task[]}
-      columns={columns}
-      loading={dataLoading}
-      size={'small'}
-      pagination={false}
-      rowSelection={rowSelection}
-      rowKey={(record) => record.id}
-      expandable={{
-        expandedRowRender: (record) => (
-          <Table
-            dataSource={[]}
-            columns={columns}
-            size={'small'}
-            pagination={false}
-          />
-        ),
-        expandIcon: ({ expanded, onExpand, record }) =>
-          expanded ? (
-            <DownOutlined onClick={e => onExpand(record, e)} />
-          ) : (
-            <RightOutlined onClick={e => onExpand(record, e)} />
-          )
-      }}
-      // summary={(pageData) => {
-      //   let totalBorrow = 0;
-      //   let totalRepayment = 0;
-      //   pageData.forEach(({ borrow, repayment }) => {
-      //     totalBorrow += borrow;
-      //     totalRepayment += repayment;
-      //   });
-      //   return (
-      //     <>
-      //       <Table.Summary.Row>
-      //         <Table.Summary.Cell index={0}>Total</Table.Summary.Cell>
-      //         <Table.Summary.Cell index={1}>
-      //           <Text type="danger">{totalBorrow}</Text>
-      //         </Table.Summary.Cell>
-      //         <Table.Summary.Cell index={2}>
-      //           <Text>{totalRepayment}</Text>
-      //         </Table.Summary.Cell>
-      //       </Table.Summary.Row>
-      //       <Table.Summary.Row>
-      //         <Table.Summary.Cell index={0}>Balance</Table.Summary.Cell>
-      //         <Table.Summary.Cell index={1} colSpan={2}>
-      //           <Text type="danger">{totalBorrow - totalRepayment}</Text>
-      //         </Table.Summary.Cell>
-      //       </Table.Summary.Row>
-      //     </>
-      //   );
-      // }}
-      footer={() => <AddTaskForm workspaceId={data?.workspace?.id as string} refetchTasks={refetch} />}
-    />
+    <Flex vertical gap={24}>
+      {contextHolder}
+      <Table
+        dataSource={tasksData?.tasks as Task[]}
+        columns={columns}
+        loading={dataLoading}
+        size={'small'}
+        pagination={false}
+        rowSelection={rowSelection}
+        rowKey={(record) => record.id}
+        expandable={{
+          expandedRowRender: (record) => (
+            <Table
+              dataSource={[]}
+              columns={columns}
+              size={'small'}
+              pagination={false}
+            />
+          ),
+          expandIcon: ({ expanded, onExpand, record }) =>
+            expanded ? (
+              <DownOutlined onClick={e => onExpand(record, e)} />
+            ) : (
+              <RightOutlined onClick={e => onExpand(record, e)} />
+            )
+        }}
+        // summary={(pageData) => {
+        //   let totalBorrow = 0;
+        //   let totalRepayment = 0;
+        //   pageData.forEach(({ borrow, repayment }) => {
+        //     totalBorrow += borrow;
+        //     totalRepayment += repayment;
+        //   });
+        //   return (
+        //     <>
+        //       <Table.Summary.Row>
+        //         <Table.Summary.Cell index={0}>Total</Table.Summary.Cell>
+        //         <Table.Summary.Cell index={1}>
+        //           <Text type="danger">{totalBorrow}</Text>
+        //         </Table.Summary.Cell>
+        //         <Table.Summary.Cell index={2}>
+        //           <Text>{totalRepayment}</Text>
+        //         </Table.Summary.Cell>
+        //       </Table.Summary.Row>
+        //       <Table.Summary.Row>
+        //         <Table.Summary.Cell index={0}>Balance</Table.Summary.Cell>
+        //         <Table.Summary.Cell index={1} colSpan={2}>
+        //           <Text type="danger">{totalBorrow - totalRepayment}</Text>
+        //         </Table.Summary.Cell>
+        //       </Table.Summary.Row>
+        //     </>
+        //   );
+        // }}
+        footer={() => <AddTaskForm workspaceId={data?.workspace?.id as string} refetchTasks={refetch} />}
+      />
+      {!!selectedRowKeys.length && (
+        <div style={{ boxShadow: 'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px'}}>
+          <Flex justify={'space-between'}>
+            <Flex gap={8}>
+              {selectedRowKeys.map(item => (
+                <span
+                  key={item}
+                  style={{ display: 'block', width: 8, height: 8, background: 'blue', borderRadius: '50%' }}
+                />
+              ))}
+            </Flex>
+            <ButtonUi
+              text={'Delete'}
+              type={'text'}
+              icon={<DeleteTwoTone />}
+              wide={false}
+              loading={deleteTasksLoading}
+              onClick={handleRemoveSelectedTasks}
+            />
+          </Flex>
+        </div>
+      )}
+    </Flex>
   );
 }
 

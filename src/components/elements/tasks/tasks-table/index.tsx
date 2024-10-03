@@ -1,15 +1,18 @@
 'use client'
 
-import { Avatar, Badge, ColorPicker, DatePicker, Button, Divider, Flex, Form, Input, message, Popover, Space, Table, Tag, Typography, Upload } from "antd"
+import { Avatar, Badge, DatePicker, Button, Flex, Form, Input, message, Popover, Space, Table, Tag, Typography, Upload } from "antd"
 import type { TableProps } from 'antd';
-import { MessageOutlined, UserAddOutlined, SearchOutlined, EditOutlined, DeleteTwoTone, PlusOutlined, FileAddOutlined, RightOutlined, DownOutlined } from '@ant-design/icons'
+import dayjs from 'dayjs';
+import { MessageOutlined, UserAddOutlined, SearchOutlined, DeleteTwoTone, FileAddOutlined, RightOutlined, DownOutlined } from '@ant-design/icons'
 import { FC, Fragment, useState } from "react";
 import { TableRowSelection } from "antd/es/table/interface";
 import { useParams } from 'next/navigation';
-import { Task, useDeleteManyTaskMutation, usePrioritiesQuery, useStatusesQuery, useTasksQuery, useUpdateOneTaskMutation, useWorkspaceQuery } from '@/graphql/types';
+import { NullableDateTimeFieldUpdateOperationsInput, Priority, Status, Task, useDeleteManyTaskMutation, usePrioritiesQuery, useStatusesQuery, useTasksQuery, useUpdateOneTaskMutation, useWorkspaceQuery } from '@/graphql/types';
 import { AddTaskForm } from '@/components/elements/tasks/add-task-form';
-import { StatusButton } from './status-btn';
 import { Button as ButtonUi } from '@/components/ui';
+import { StatusFormList } from './status-form-list';
+import { StatusPopover } from './status-popover';
+import { StatusesContent } from './statuses-content';
 
 const { Text } = Typography;
 
@@ -56,7 +59,7 @@ export const TasksTable: FC = () => {
         console.log(error, 'Update task status error!');
         messageApi.error('Update status failed!');
     }
-  }
+  };
 
   const handleUpdateTaskPriority = async (priorityId: number, taskId: string) => {
     try {
@@ -79,152 +82,69 @@ export const TasksTable: FC = () => {
       console.log(error, 'Update task priority error!');
       messageApi.error('Update priority failed!');
     }
-  }
-
-
-  const changeStatusContent = (taskId: string) => {
-    return (
-      <Fragment>
-        {statusesData?.statuses?.map(item => (
-          <StatusButton
-            text={item?.name}
-            backgroundColor={item?.color}
-            onClick={() => handleUpdateTaskStatus(item?.id, taskId)}
-          />
-        ))}
-        <Divider style={{ margin: '12px 0' }} />
-        <Button
-          icon={<EditOutlined />}
-          type={'text'}
-          size={'large'}
-          style={{ width: '100%' }}
-          onClick={() => setStatusContent('edit')}
-        >
-          Edit label
-        </Button>
-      </Fragment>
-    );
   };
 
-  const editStatusContent = (
-    <Form
-      onFinish={() => {
-        setStatusContent('change')
-      }}
-    >
-      <Space direction={'vertical'}>
-        <Form.List name="statuses" initialValue={statusesData?.statuses}>
-          {(fields, { add, remove }) => (
-            <Space direction={'vertical'}>
-              {fields.map(({ key, name, ...restField }) => {
-                return (
-                  <Space key={key} size={4}>
-                    <Form.Item
-                      {...restField}
-                      name={[name, 'color']}
-                      noStyle
-                    >
-                      <ColorPicker />
-                    </Form.Item>
-                    <Form.Item
-                      {...restField}
-                      name={[name, 'name']}
-                      noStyle
-                    >
-                      <Input />
-                    </Form.Item>
-                    <Button type={'text'} icon={<DeleteTwoTone twoToneColor="#f5222d" style={{ color: 'red' }} />} onClick={() => remove(name)} />
-                  </Space>
-                )
-              })}
-              <Form.Item noStyle>
-                <Button icon={<PlusOutlined />} size={'large'} style={{ width: '100%' }} onClick={add} >New Label</Button>
-              </Form.Item>
-            </Space>
-          )}
-        </Form.List>
-        <Divider style={{ margin: 0 }} />
-        <Form.Item noStyle>
-          <Button htmlType="submit" type={'text'} size={'large'} style={{ width: '100%' }}>Apply</Button>
-        </Form.Item>
-      </Space>
-    </Form>
-  )
-
-  const changePriorityContent = (taskId: string) => {
-    return (
-      <Fragment>
-        {prioritiesData?.priorities?.map(item => (
-          <StatusButton
-            text={item.name}
-            backgroundColor={item.color}
-            onClick={() => handleUpdateTaskPriority(item?.id, taskId)}
-          />
-        ))}
-        <Divider style={{ margin: '12px 0' }} />
-        <Button
-          icon={<EditOutlined />}
-          type={'text'}
-          size={'large'}
-          style={{ width: '100%' }}
-          onClick={() => setPriorityContent('edit')}
-        >
-          Edit label
-        </Button>
-      </Fragment>
-    );
+  const handleUpdateTaskDuedate = async (date: any, taskId: string) => {
+    try {
+      await updateTask({
+        variables: {
+          data: {
+            dueDate: {
+              set: date
+            }
+          },
+          where: {
+            id: taskId
+          },
+        }
+      });
+      refetch();
+      messageApi.success('Updates due date success!');
+    } catch (error) {
+      console.log(error, 'Update task due date error!');
+      messageApi.error('Update due date failed!');
+    }
   };
 
-  const editPriorityContent = (
-    <Form
-      onFinish={() => {
-        setPriorityContent('change')
-      }}
-    >
-      <Space direction={'vertical'}>
-        <Form.List name="priorities" initialValue={prioritiesData?.priorities}>
-          {(fields, { add, remove }) => (
-            <Space direction={'vertical'}>
-              {fields.map(({ key, name, ...restField }) => {
-                return (
-                  <Space key={key} size={4}>
-                    <Form.Item
-                      {...restField}
-                      name={[name, 'color']}
-                      noStyle
-                    >
-                      <ColorPicker />
-                    </Form.Item>
-                    <Form.Item
-                      {...restField}
-                      name={[name, 'name']}
-                      noStyle
-                    >
-                      <Input />
-                    </Form.Item>
-                    <Button type={'text'} icon={<DeleteTwoTone twoToneColor="#f5222d" style={{ color: 'red' }} />} onClick={() => remove(name)} />
-                  </Space>
-                )
-              })}
-              <Form.Item noStyle>
-                <Button icon={<PlusOutlined />} size={'large'} style={{ width: '100%' }} onClick={add} >New Label</Button>
-              </Form.Item>
-            </Space>
-          )}
-        </Form.List>
-        <Divider style={{ margin: 0 }} />
-        <Form.Item noStyle>
-          <Button htmlType="submit" type={'text'} size={'large'} style={{ width: '100%' }}>Apply</Button>
-        </Form.Item>
-      </Space>
-    </Form>
-  )
+  const handleUpdateTaskName = async (name: string, taskId: string) => {
+    try {
+      await updateTask({
+        variables: {
+          data: {
+            name: {
+              set: name
+            }
+          },
+          where: {
+            id: taskId
+          },
+        }
+      });
+      refetch();
+      messageApi.success('Updates due date success!');
+    } catch (error) {
+      console.log(error, 'Update task due date error!');
+      messageApi.error('Update due date failed!');
+    }
+  };
 
   const columns: TableProps<Task>['columns'] = [
     {
       title: 'Task',
       dataIndex: 'name',
       key: 'name',
+      render: (_, data) => {
+        return (
+          <Typography.Paragraph
+            editable={{
+              onChange: (newName) => handleUpdateTaskName(newName, data?.id),
+              maxLength: 50,
+            }}
+          >
+            {data?.name}
+          </Typography.Paragraph>
+        )
+      }
     },
     Table.EXPAND_COLUMN,
     {
@@ -298,30 +218,33 @@ export const TasksTable: FC = () => {
       key: 'status',
       width: 150,
       align: 'center',
-      render: (status, data) => {
-        return (
-          <Popover
-            placement={'bottom'}
-            trigger={'click'}
-            overlayStyle={{ width: 250 }}
-            
-            content={(
-              <Space size={8} direction={'vertical'} style={{ width: '100%' }}>
-                {
-                  statusContent === 'change'
-                    ? changeStatusContent(data?.id)
-                    : editStatusContent
-                }
-              </Space>
-            )}
-          >
-            <StatusButton
-              text={status?.name}
-              backgroundColor={status?.color ?? ''}
-            />
-          </Popover>
-        )
-      }
+      render: (status, data) => (
+        <StatusPopover
+          statusName={status?.name}
+          statusColor={status?.color}
+          content={(
+            <Fragment>
+              {statusContent === 'change'
+                ? (
+                  <StatusesContent
+                    statusesData={statusesData?.statuses as Status[]}
+                    taskId={data?.id}
+                    onStatus={(statusId) => handleUpdateTaskStatus(statusId, data?.id)}
+                    onEdit={() => setStatusContent('edit')}
+                  />
+                )
+                : (
+                  <Form onFinish={console.log}>
+                    <StatusFormList
+                      initialData={statusesData?.statuses as Status[]}
+                    />
+                  </Form>
+                )
+              }
+            </Fragment>
+          )}
+        />
+      )
     },
     {
       title: 'Due date',
@@ -329,7 +252,13 @@ export const TasksTable: FC = () => {
       key: 'dueDate',
       align: 'center',
       width: 150,
-      render: () => <DatePicker format={'DD MMM'} />
+      render: (_, data) => {
+        return <DatePicker 
+          format={'DD MMM'} 
+          variant={'outlined'} 
+          onChange={date => handleUpdateTaskDuedate(dayjs(date).toDate(), data?.id)}
+        />
+      }
     },
     {
       title: 'Priority',
@@ -338,31 +267,37 @@ export const TasksTable: FC = () => {
       width: 150,
       align: 'center',
       render: (priority, data) => (
-        <Popover
-          placement={'bottom'}
-          trigger={'click'}
-          overlayStyle={{ width: 250 }}
+        <StatusPopover
+          statusName={priority?.name}
+          statusColor={priority?.color}
           content={(
-            <Space size={8} direction={'vertical'} style={{ width: '100%' }}>
-              {priorityContent === 'change' 
-                ? changePriorityContent(data?.id) 
-                : editPriorityContent
+            <Fragment>
+              {priorityContent === 'change'
+                ? (
+                  <StatusesContent
+                    statusesData={prioritiesData?.priorities as Priority[]}
+                    taskId={data?.id}
+                    onStatus={(statusId) => handleUpdateTaskPriority(statusId, data?.id)}
+                    onEdit={() => setPriorityContent('edit')}
+                  />
+                )
+                : (
+                  <Form onFinish={console.log}>
+                    <StatusFormList
+                      initialData={prioritiesData?.priorities as Priority[]}
+                    />
+                  </Form>
+                )
               }
-            </Space>
+            </Fragment>
           )}
-        >
-          <StatusButton 
-            text={priority?.name} 
-            backgroundColor={priority?.color ?? ''} 
-          />
-        </Popover>
+        />
       )
     },
     {
       title: 'Notes',
       dataIndex: 'notes',
       key: 'notes',
-
     },
     {
       title: 'Files',
@@ -433,33 +368,6 @@ export const TasksTable: FC = () => {
               <RightOutlined onClick={e => onExpand(record, e)} />
             )
         }}
-        // summary={(pageData) => {
-        //   let totalBorrow = 0;
-        //   let totalRepayment = 0;
-        //   pageData.forEach(({ borrow, repayment }) => {
-        //     totalBorrow += borrow;
-        //     totalRepayment += repayment;
-        //   });
-        //   return (
-        //     <>
-        //       <Table.Summary.Row>
-        //         <Table.Summary.Cell index={0}>Total</Table.Summary.Cell>
-        //         <Table.Summary.Cell index={1}>
-        //           <Text type="danger">{totalBorrow}</Text>
-        //         </Table.Summary.Cell>
-        //         <Table.Summary.Cell index={2}>
-        //           <Text>{totalRepayment}</Text>
-        //         </Table.Summary.Cell>
-        //       </Table.Summary.Row>
-        //       <Table.Summary.Row>
-        //         <Table.Summary.Cell index={0}>Balance</Table.Summary.Cell>
-        //         <Table.Summary.Cell index={1} colSpan={2}>
-        //           <Text type="danger">{totalBorrow - totalRepayment}</Text>
-        //         </Table.Summary.Cell>
-        //       </Table.Summary.Row>
-        //     </>
-        //   );
-        // }}
         footer={() => <AddTaskForm workspaceId={data?.workspace?.id as string} refetchTasks={refetch} />}
       />
       {!!selectedRowKeys.length && (

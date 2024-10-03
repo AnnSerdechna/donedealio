@@ -31,6 +31,7 @@
     "bcryptjs": "^2.4.3",
     "class-validator": "^0.14.1",
     "classnames": "^2.5.1",
+    "dayjs": "^1.11.13",
     "graphql": "^16.9.0",
     "graphql-fields": "^2.0.3",
     "graphql-scalars": "^1.23.0",

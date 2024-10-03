@@ -1,94 +1,113 @@
 'use client'
 
-import { Avatar, Badge, ColorPicker, DatePicker, Button, Divider, Flex, Form, Input, message, notification, Popover, Space, Table, Tag, Typography, Upload } from "antd"
+import { Avatar, Badge, ColorPicker, DatePicker, Button, Divider, Flex, Form, Input, message, Popover, Space, Table, Tag, Typography, Upload } from "antd"
 import type { TableProps } from 'antd';
 import { MessageOutlined, UserAddOutlined, SearchOutlined, EditOutlined, DeleteTwoTone, PlusOutlined, FileAddOutlined, RightOutlined, DownOutlined } from '@ant-design/icons'
-import { FC, Fragment, Key, useEffect, useState } from "react";
+import { FC, Fragment, useState } from "react";
 import { TableRowSelection } from "antd/es/table/interface";
 import { useParams } from 'next/navigation';
-import { Task, useDeleteManyTaskMutation, useTasksQuery, useWorkspaceQuery } from '@/graphql/types';
+import { Task, useDeleteManyTaskMutation, usePrioritiesQuery, useStatusesQuery, useTasksQuery, useUpdateOneTaskMutation, useWorkspaceQuery } from '@/graphql/types';
 import { AddTaskForm } from '@/components/elements/tasks/add-task-form';
 import { StatusButton } from './status-btn';
 import { Button as ButtonUi } from '@/components/ui';
 
 const { Text } = Typography;
 
-const statuses = [
-  {
-    id: '1',
-    status: 'Done',
-    color: '#52c41a',
-  },
-  {
-    id: '2',
-    status: 'Working on it',
-    color: '#fa8c16',
-  },
-  {
-    id: '3',
-    status: 'Not started',
-    color: '#bfbfbf',
-  },
-  {
-    id: '4',
-    status: 'Stuck',
-    color: '#fa541c',
-  },
-]
-
-const priorities = [
-  {
-    id: '1',
-    priority: 'Critical',
-    color: '#22075e',
-  },
-  {
-    id: '2',
-    priority: 'High',
-    color: '#531dab',
-  },
-  {
-    id: '3',
-    priority: 'Medium',
-    color: '#9254de',
-  },
-  {
-    id: '4',
-    priority: 'Low',
-    color: '#d3adf7',
-  },
-]
-
 export const TasksTable: FC = () => {
-  const { workspaceId } = useParams();
-  const { data } = useWorkspaceQuery({ variables: { where: { id: workspaceId as string } } })
-  const { data: tasksData, refetch, loading: dataLoading } = useTasksQuery({ variables: { workspaceId: workspaceId as string } });
-  const [deleteTasks, { loading: deleteTasksLoading}] = useDeleteManyTaskMutation()
   const [messageApi, contextHolder] = message.useMessage();
+  const { workspaceId } = useParams();
+
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [statusContent, setStatusContent] = useState<'change' | 'edit'>('change')
   const [priorityContent, setPriorityContent] = useState<'change' | 'edit'>('change')
 
-  const changeStatusContent = (
-    <Fragment>
-      {statuses.map(item => (
-        <StatusButton
-          text={item.status}
-          backgroundColor={item.color}
-        />
-      ))}
-      <Divider style={{ margin: '12px 0' }} />
-      <Button
-        icon={<EditOutlined />}
-        type={'text'}
-        size={'large'}
-        style={{ width: '100%' }}
-        onClick={() => setStatusContent('edit')}
-      >
-        Edit label
-      </Button>
-    </Fragment>
-  )
+  const { data: statusesData } = useStatusesQuery();
+  const { data: prioritiesData } = usePrioritiesQuery();
+  const { data } = useWorkspaceQuery({ 
+    variables: { 
+      where: { 
+        id: workspaceId as string 
+  }}});
+  const { data: tasksData, refetch, loading: dataLoading } = useTasksQuery({ 
+    variables: { 
+      workspaceId: workspaceId as string 
+  }});
+  const [deleteTasks, { loading: deleteTasksLoading}] = useDeleteManyTaskMutation();
+  const [updateTask] = useUpdateOneTaskMutation();
+
+  const handleUpdateTaskStatus = async (statusId: number, taskId: string) => {
+    try {
+      await updateTask({
+        variables: {
+          data: {
+            status: {
+              connect: {
+                id: statusId 
+              }
+            }
+          },
+          where: {
+            id: taskId
+          },
+        }
+      });
+      refetch();
+    } catch (error) {
+        console.log(error, 'Update task status error!');
+        messageApi.error('Update status failed!');
+    }
+  }
+
+  const handleUpdateTaskPriority = async (statusId: number, taskId: string) => {
+    try {
+      await updateTask({
+        variables: {
+          data: {
+            status: {
+              connect: {
+                id: statusId
+              }
+            }
+          },
+          where: {
+            id: taskId
+          },
+        }
+      });
+      refetch();
+    } catch (error) {
+      console.log(error, 'Update task status error!');
+      messageApi.error('Update status failed!');
+    }
+  }
+
+
+  const changeStatusContent = (taskId: string) => {
+    return (
+      <Fragment>
+        {statusesData?.statuses?.map(item => (
+          <StatusButton
+            text={item?.name}
+            backgroundColor={item?.color}
+            onClick={() =>{ 
+              handleUpdateTaskStatus(item?.id, taskId)
+              console.log(taskId, item?.id, item?.name, 'STATSUS')
+            }}
+          />
+        ))}
+        <Divider style={{ margin: '12px 0' }} />
+        <Button
+          icon={<EditOutlined />}
+          type={'text'}
+          size={'large'}
+          style={{ width: '100%' }}
+          onClick={() => setStatusContent('edit')}
+        >
+          Edit label
+        </Button>
+      </Fragment>
+    )
+  }
 
   const editStatusContent = (
     <Form
@@ -97,7 +116,7 @@ export const TasksTable: FC = () => {
       }}
     >
       <Space direction={'vertical'}>
-        <Form.List name="statuses" initialValue={statuses}>
+        <Form.List name="statuses" initialValue={statusesData?.statuses}>
           {(fields, { add, remove }) => (
             <Space direction={'vertical'}>
               {fields.map(({ key, name, ...restField }) => {
@@ -112,7 +131,7 @@ export const TasksTable: FC = () => {
                     </Form.Item>
                     <Form.Item
                       {...restField}
-                      name={[name, 'status']}
+                      name={[name, 'name']}
                       noStyle
                     >
                       <Input />
@@ -137,9 +156,9 @@ export const TasksTable: FC = () => {
 
   const changePriorityContent = (
     <Fragment>
-      {priorities.map(item => (
+      {prioritiesData?.priorities?.map(item => (
         <StatusButton
-          text={item.priority}
+          text={item.name}
           backgroundColor={item.color}
         />
       ))}
@@ -163,7 +182,7 @@ export const TasksTable: FC = () => {
       }}
     >
       <Space direction={'vertical'}>
-        <Form.List name="priorities" initialValue={priorities}>
+        <Form.List name="priorities" initialValue={prioritiesData?.priorities}>
           {(fields, { add, remove }) => (
             <Space direction={'vertical'}>
               {fields.map(({ key, name, ...restField }) => {
@@ -178,7 +197,7 @@ export const TasksTable: FC = () => {
                     </Form.Item>
                     <Form.Item
                       {...restField}
-                      name={[name, 'priority']}
+                      name={[name, 'name']}
                       noStyle
                     >
                       <Input />
@@ -279,20 +298,30 @@ export const TasksTable: FC = () => {
       key: 'status',
       width: 150,
       align: 'center',
-      render: (status) => (
-        <Popover
-          placement={'bottom'}
-          trigger={'click'}
-          overlayStyle={{ width: 250 }}
-          content={(
-            <Space size={8} direction={'vertical'} style={{ width: '100%' }}>
-              {statusContent === 'change' ? changeStatusContent : editStatusContent}
-            </Space>
-          )}
-        >
-          <StatusButton text={status?.name} backgroundColor={status?.color ?? ''} />
-        </Popover>
-      )
+      render: (status, data) => {
+        return (
+          <Popover
+            placement={'bottom'}
+            trigger={'click'}
+            overlayStyle={{ width: 250 }}
+            
+            content={(
+              <Space size={8} direction={'vertical'} style={{ width: '100%' }}>
+                {
+                  statusContent === 'change'
+                    ? changeStatusContent(data?.id)
+                    : editStatusContent
+                }
+              </Space>
+            )}
+          >
+            <StatusButton
+              text={status?.name}
+              backgroundColor={status?.color ?? ''}
+            />
+          </Popover>
+        )
+      }
     },
     {
       title: 'Due date',
@@ -319,7 +348,10 @@ export const TasksTable: FC = () => {
             </Space>
           )}
         >
-          <StatusButton text={priority?.name} backgroundColor={priority?.color ?? ''} />
+          <StatusButton 
+            text={priority?.name} 
+            backgroundColor={priority?.color ?? ''} 
+          />
         </Popover>
       )
     },
@@ -386,7 +418,7 @@ export const TasksTable: FC = () => {
           expandedRowRender: (record) => (
             <Table
               dataSource={[]}
-              columns={columns}
+              columns={[]}
               size={'small'}
               pagination={false}
             />

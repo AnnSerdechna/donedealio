@@ -1,5 +1,5 @@
 query Tasks($workspaceId: String!) {
-  tasks(where: { workspaceId: { equals: $workspaceId } }) {
+  tasks(where: { workspaceId: { equals: $workspaceId } }, orderBy: {createdAt: asc}) {
     id
     name
     message
@@ -9,10 +9,12 @@ query Tasks($workspaceId: String!) {
       id
     }
     status {
+      id
       name
       color
     }
     priority {
+      id
       name
       color
     }

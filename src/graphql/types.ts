@@ -4444,12 +4444,30 @@ export type UpdateOneWorkspaceMutationVariables = Exact<{
 
 export type UpdateOneWorkspaceMutation = { __typename?: 'Mutation', updateOneWorkspace?: { __typename?: 'Workspace', id: string, name: string, description: string } | null };
 
+export type UpdateOneTaskMutationVariables = Exact<{
+  data: TaskUpdateInput;
+  where: TaskWhereUniqueInput;
+}>;
+
+
+export type UpdateOneTaskMutation = { __typename?: 'Mutation', updateOneTask?: { __typename?: 'Task', id: string } | null };
+
+export type PrioritiesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PrioritiesQuery = { __typename?: 'Query', priorities: Array<{ __typename?: 'Priority', color: string, id: number, name: string }> };
+
+export type StatusesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type StatusesQuery = { __typename?: 'Query', statuses: Array<{ __typename?: 'Status', id: number, name: string, color: string }> };
+
 export type TasksQueryVariables = Exact<{
   workspaceId: Scalars['String']['input'];
 }>;
 
 
-export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number }>, status?: { __typename?: 'Status', name: string, color: string } | null, priority?: { __typename?: 'Priority', name: string, color: string } | null, workspace: { __typename?: 'Workspace', id: string } }> };
+export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number }>, status?: { __typename?: 'Status', id: number, name: string, color: string } | null, priority?: { __typename?: 'Priority', id: number, name: string, color: string } | null, workspace: { __typename?: 'Workspace', id: string } }> };
 
 export type UserQueryVariables = Exact<{
   where: UserWhereUniqueInput;
@@ -4700,9 +4718,125 @@ export function useUpdateOneWorkspaceMutation(baseOptions?: Apollo.MutationHookO
 export type UpdateOneWorkspaceMutationHookResult = ReturnType<typeof useUpdateOneWorkspaceMutation>;
 export type UpdateOneWorkspaceMutationResult = Apollo.MutationResult<UpdateOneWorkspaceMutation>;
 export type UpdateOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<UpdateOneWorkspaceMutation, UpdateOneWorkspaceMutationVariables>;
+export const UpdateOneTaskDocument = gql`
+    mutation UpdateOneTask($data: TaskUpdateInput!, $where: TaskWhereUniqueInput!) {
+  updateOneTask(data: $data, where: $where) {
+    id
+  }
+}
+    `;
+export type UpdateOneTaskMutationFn = Apollo.MutationFunction<UpdateOneTaskMutation, UpdateOneTaskMutationVariables>;
+
+/**
+ * __useUpdateOneTaskMutation__
+ *
+ * To run a mutation, you first call `useUpdateOneTaskMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateOneTaskMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateOneTaskMutation, { data, loading, error }] = useUpdateOneTaskMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateOneTaskMutation(baseOptions?: Apollo.MutationHookOptions<UpdateOneTaskMutation, UpdateOneTaskMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateOneTaskMutation, UpdateOneTaskMutationVariables>(UpdateOneTaskDocument, options);
+      }
+export type UpdateOneTaskMutationHookResult = ReturnType<typeof useUpdateOneTaskMutation>;
+export type UpdateOneTaskMutationResult = Apollo.MutationResult<UpdateOneTaskMutation>;
+export type UpdateOneTaskMutationOptions = Apollo.BaseMutationOptions<UpdateOneTaskMutation, UpdateOneTaskMutationVariables>;
+export const PrioritiesDocument = gql`
+    query Priorities {
+  priorities {
+    color
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __usePrioritiesQuery__
+ *
+ * To run a query within a React component, call `usePrioritiesQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePrioritiesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePrioritiesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePrioritiesQuery(baseOptions?: Apollo.QueryHookOptions<PrioritiesQuery, PrioritiesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PrioritiesQuery, PrioritiesQueryVariables>(PrioritiesDocument, options);
+      }
+export function usePrioritiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PrioritiesQuery, PrioritiesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PrioritiesQuery, PrioritiesQueryVariables>(PrioritiesDocument, options);
+        }
+export function usePrioritiesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<PrioritiesQuery, PrioritiesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PrioritiesQuery, PrioritiesQueryVariables>(PrioritiesDocument, options);
+        }
+export type PrioritiesQueryHookResult = ReturnType<typeof usePrioritiesQuery>;
+export type PrioritiesLazyQueryHookResult = ReturnType<typeof usePrioritiesLazyQuery>;
+export type PrioritiesSuspenseQueryHookResult = ReturnType<typeof usePrioritiesSuspenseQuery>;
+export type PrioritiesQueryResult = Apollo.QueryResult<PrioritiesQuery, PrioritiesQueryVariables>;
+export const StatusesDocument = gql`
+    query Statuses {
+  statuses {
+    id
+    name
+    color
+  }
+}
+    `;
+
+/**
+ * __useStatusesQuery__
+ *
+ * To run a query within a React component, call `useStatusesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useStatusesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useStatusesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useStatusesQuery(baseOptions?: Apollo.QueryHookOptions<StatusesQuery, StatusesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<StatusesQuery, StatusesQueryVariables>(StatusesDocument, options);
+      }
+export function useStatusesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StatusesQuery, StatusesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<StatusesQuery, StatusesQueryVariables>(StatusesDocument, options);
+        }
+export function useStatusesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<StatusesQuery, StatusesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<StatusesQuery, StatusesQueryVariables>(StatusesDocument, options);
+        }
+export type StatusesQueryHookResult = ReturnType<typeof useStatusesQuery>;
+export type StatusesLazyQueryHookResult = ReturnType<typeof useStatusesLazyQuery>;
+export type StatusesSuspenseQueryHookResult = ReturnType<typeof useStatusesSuspenseQuery>;
+export type StatusesQueryResult = Apollo.QueryResult<StatusesQuery, StatusesQueryVariables>;
 export const TasksDocument = gql`
     query Tasks($workspaceId: String!) {
-  tasks(where: {workspaceId: {equals: $workspaceId}}) {
+  tasks(where: {workspaceId: {equals: $workspaceId}}, orderBy: {createdAt: asc}) {
     id
     name
     message
@@ -4712,10 +4846,12 @@ export const TasksDocument = gql`
       id
     }
     status {
+      id
       name
       color
     }
     priority {
+      id
       name
       color
     }

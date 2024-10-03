@@ -1,0 +1,7 @@
+query Workspaces($where: WorkspaceWhereInput) {
+  workspaces(where: $where) {
+    id
+    name
+    description
+  }
+}

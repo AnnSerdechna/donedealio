@@ -1,5 +1,6 @@
 import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdateOperationsInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
+import { TaskUpdateManyWithoutWorkspaceNestedInput } from "../inputs/TaskUpdateManyWithoutWorkspaceNestedInput";
 import { UserUpdateOneWithoutWorkspacesNestedInput } from "../inputs/UserUpdateOneWithoutWorkspacesNestedInput";
 export declare class WorkspaceUpdateInput {
     id?: StringFieldUpdateOperationsInput | undefined;
@@ -7,5 +8,6 @@ export declare class WorkspaceUpdateInput {
     description?: StringFieldUpdateOperationsInput | undefined;
     createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
     updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
+    task?: TaskUpdateManyWithoutWorkspaceNestedInput | undefined;
     user?: UserUpdateOneWithoutWorkspacesNestedInput | undefined;
 }

@@ -1,0 +1,15 @@
+export { AggregateStatusArgs } from "./AggregateStatusArgs";
+export { CreateManyAndReturnStatusArgs } from "./CreateManyAndReturnStatusArgs";
+export { CreateManyStatusArgs } from "./CreateManyStatusArgs";
+export { CreateOneStatusArgs } from "./CreateOneStatusArgs";
+export { DeleteManyStatusArgs } from "./DeleteManyStatusArgs";
+export { DeleteOneStatusArgs } from "./DeleteOneStatusArgs";
+export { FindFirstStatusArgs } from "./FindFirstStatusArgs";
+export { FindFirstStatusOrThrowArgs } from "./FindFirstStatusOrThrowArgs";
+export { FindManyStatusArgs } from "./FindManyStatusArgs";
+export { FindUniqueStatusArgs } from "./FindUniqueStatusArgs";
+export { FindUniqueStatusOrThrowArgs } from "./FindUniqueStatusOrThrowArgs";
+export { GroupByStatusArgs } from "./GroupByStatusArgs";
+export { UpdateManyStatusArgs } from "./UpdateManyStatusArgs";
+export { UpdateOneStatusArgs } from "./UpdateOneStatusArgs";
+export { UpsertOneStatusArgs } from "./UpsertOneStatusArgs";

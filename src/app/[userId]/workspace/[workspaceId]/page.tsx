@@ -1,7 +1,9 @@
+import { WorkspacePage } from '@/components/pages';
+
 export default function Workspace() {
   return (
     <section>
-      Workspace 1
+      <WorkspacePage />
     </section>
   );
 };

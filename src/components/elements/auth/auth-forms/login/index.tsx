@@ -17,10 +17,10 @@ export const LoginForm: FC = () => {
   const handleSubmit = async (values: any) => {
     try {
       const result = await signIn('credentials', {
-        redirect: false,
-        callbackUrl: `${window.location.origin}/${session?.user?.id}/dashboard`,
+        redirect: true,
         email: values.email,
         password: values.password,
+        callbackUrl: `${window.location.href}/${session?.user?.id}/dashboard`,
       });
 
       if (result?.error) {

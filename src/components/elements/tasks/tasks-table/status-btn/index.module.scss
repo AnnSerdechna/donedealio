@@ -1,0 +1,11 @@
+@import '@/styles/variables.module.scss';
+
+.statusButton {
+  width: 100%;
+  color: #fff !important;
+  text-transform: capitalize;
+
+  &.default {
+    background-color: #dfdfe0 !important;
+  }
+}

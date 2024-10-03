@@ -1,0 +1,15 @@
+query user($where: UserWhereUniqueInput!) {
+  user(where: $where) {
+    id
+    email
+    firstName
+    lastName
+    role
+    image
+    workspaces {
+      description
+      name
+      id
+    }
+  }
+}

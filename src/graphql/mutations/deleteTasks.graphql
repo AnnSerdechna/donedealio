@@ -1,0 +1,5 @@
+mutation DeleteManyTask($where: TaskWhereInput) {
+  deleteManyTask(where: $where) {
+    count
+  }
+}

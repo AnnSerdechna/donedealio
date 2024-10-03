@@ -1,0 +1,15 @@
+export { AggregatePriorityArgs } from "./AggregatePriorityArgs";
+export { CreateManyAndReturnPriorityArgs } from "./CreateManyAndReturnPriorityArgs";
+export { CreateManyPriorityArgs } from "./CreateManyPriorityArgs";
+export { CreateOnePriorityArgs } from "./CreateOnePriorityArgs";
+export { DeleteManyPriorityArgs } from "./DeleteManyPriorityArgs";
+export { DeleteOnePriorityArgs } from "./DeleteOnePriorityArgs";
+export { FindFirstPriorityArgs } from "./FindFirstPriorityArgs";
+export { FindFirstPriorityOrThrowArgs } from "./FindFirstPriorityOrThrowArgs";
+export { FindManyPriorityArgs } from "./FindManyPriorityArgs";
+export { FindUniquePriorityArgs } from "./FindUniquePriorityArgs";
+export { FindUniquePriorityOrThrowArgs } from "./FindUniquePriorityOrThrowArgs";
+export { GroupByPriorityArgs } from "./GroupByPriorityArgs";
+export { UpdateManyPriorityArgs } from "./UpdateManyPriorityArgs";
+export { UpdateOnePriorityArgs } from "./UpdateOnePriorityArgs";
+export { UpsertOnePriorityArgs } from "./UpsertOnePriorityArgs";

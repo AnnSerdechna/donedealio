@@ -331,10 +331,42 @@ type AggregateAccount {
   _sum: AccountSumAggregate
 }
 
+type AggregateFile {
+  _avg: FileAvgAggregate
+  _count: FileCountAggregate
+  _max: FileMaxAggregate
+  _min: FileMinAggregate
+  _sum: FileSumAggregate
+}
+
+type AggregatePriority {
+  _avg: PriorityAvgAggregate
+  _count: PriorityCountAggregate
+  _max: PriorityMaxAggregate
+  _min: PriorityMinAggregate
+  _sum: PrioritySumAggregate
+}
+
 type AggregateSession {
   _count: SessionCountAggregate
   _max: SessionMaxAggregate
   _min: SessionMinAggregate
+}
+
+type AggregateStatus {
+  _avg: StatusAvgAggregate
+  _count: StatusCountAggregate
+  _max: StatusMaxAggregate
+  _min: StatusMinAggregate
+  _sum: StatusSumAggregate
+}
+
+type AggregateTask {
+  _avg: TaskAvgAggregate
+  _count: TaskCountAggregate
+  _max: TaskMaxAggregate
+  _min: TaskMinAggregate
+  _sum: TaskSumAggregate
 }
 
 type AggregateUser {
@@ -360,12 +392,47 @@ type CreateManyAndReturnAccount {
   userId: String!
 }
 
+type CreateManyAndReturnFile {
+  file: String!
+  id: Int!
+  task(where: TaskWhereInput): Task
+  taskId: String
+}
+
+type CreateManyAndReturnPriority {
+  color: String!
+  id: Int!
+  name: String!
+}
+
 type CreateManyAndReturnSession {
   expires: DateTimeISO!
   id: String!
   sessionToken: String!
   user: User!
   userId: String!
+}
+
+type CreateManyAndReturnStatus {
+  color: String!
+  id: Int!
+  name: String!
+}
+
+type CreateManyAndReturnTask {
+  createdAt: DateTimeISO!
+  dueDate: DateTimeISO
+  id: String!
+  message: String
+  name: String!
+  note: String
+  priority(where: PriorityWhereInput): Priority
+  priorityId: Int
+  status(where: StatusWhereInput): Status
+  statusid: Int
+  updatedAt: DateTimeISO!
+  workspace: Workspace!
+  workspaceId: String!
 }
 
 type CreateManyAndReturnUser {
@@ -471,6 +538,240 @@ input EnumRoleWithAggregatesFilter {
   notIn: [Role!]
 }
 
+type File {
+  file: String!
+  id: Int!
+  task(where: TaskWhereInput): Task
+  taskId: String
+}
+
+type FileAvgAggregate {
+  id: Float
+}
+
+input FileAvgOrderByAggregateInput {
+  id: SortOrder
+}
+
+type FileCountAggregate {
+  _all: Int!
+  file: Int!
+  id: Int!
+  taskId: Int!
+}
+
+input FileCountOrderByAggregateInput {
+  file: SortOrder
+  id: SortOrder
+  taskId: SortOrder
+}
+
+input FileCreateInput {
+  file: String!
+  task: TaskCreateNestedOneWithoutFilesInput
+}
+
+input FileCreateManyInput {
+  file: String!
+  id: Int
+  taskId: String
+}
+
+input FileCreateManyTaskInput {
+  file: String!
+  id: Int
+}
+
+input FileCreateManyTaskInputEnvelope {
+  data: [FileCreateManyTaskInput!]!
+  skipDuplicates: Boolean
+}
+
+input FileCreateNestedManyWithoutTaskInput {
+  connect: [FileWhereUniqueInput!]
+  connectOrCreate: [FileCreateOrConnectWithoutTaskInput!]
+  create: [FileCreateWithoutTaskInput!]
+  createMany: FileCreateManyTaskInputEnvelope
+}
+
+input FileCreateOrConnectWithoutTaskInput {
+  create: FileCreateWithoutTaskInput!
+  where: FileWhereUniqueInput!
+}
+
+input FileCreateWithoutTaskInput {
+  file: String!
+}
+
+type FileGroupBy {
+  _avg: FileAvgAggregate
+  _count: FileCountAggregate
+  _max: FileMaxAggregate
+  _min: FileMinAggregate
+  _sum: FileSumAggregate
+  file: String!
+  id: Int!
+  taskId: String
+}
+
+input FileListRelationFilter {
+  every: FileWhereInput
+  none: FileWhereInput
+  some: FileWhereInput
+}
+
+type FileMaxAggregate {
+  file: String
+  id: Int
+  taskId: String
+}
+
+input FileMaxOrderByAggregateInput {
+  file: SortOrder
+  id: SortOrder
+  taskId: SortOrder
+}
+
+type FileMinAggregate {
+  file: String
+  id: Int
+  taskId: String
+}
+
+input FileMinOrderByAggregateInput {
+  file: SortOrder
+  id: SortOrder
+  taskId: SortOrder
+}
+
+input FileOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input FileOrderByWithAggregationInput {
+  _avg: FileAvgOrderByAggregateInput
+  _count: FileCountOrderByAggregateInput
+  _max: FileMaxOrderByAggregateInput
+  _min: FileMinOrderByAggregateInput
+  _sum: FileSumOrderByAggregateInput
+  file: SortOrder
+  id: SortOrder
+  taskId: SortOrderInput
+}
+
+input FileOrderByWithRelationInput {
+  file: SortOrder
+  id: SortOrder
+  task: TaskOrderByWithRelationInput
+  taskId: SortOrderInput
+}
+
+enum FileScalarFieldEnum {
+  file
+  id
+  taskId
+}
+
+input FileScalarWhereInput {
+  AND: [FileScalarWhereInput!]
+  NOT: [FileScalarWhereInput!]
+  OR: [FileScalarWhereInput!]
+  file: StringFilter
+  id: IntFilter
+  taskId: StringNullableFilter
+}
+
+input FileScalarWhereWithAggregatesInput {
+  AND: [FileScalarWhereWithAggregatesInput!]
+  NOT: [FileScalarWhereWithAggregatesInput!]
+  OR: [FileScalarWhereWithAggregatesInput!]
+  file: StringWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  taskId: StringNullableWithAggregatesFilter
+}
+
+type FileSumAggregate {
+  id: Int
+}
+
+input FileSumOrderByAggregateInput {
+  id: SortOrder
+}
+
+input FileUpdateInput {
+  file: StringFieldUpdateOperationsInput
+  task: TaskUpdateOneWithoutFilesNestedInput
+}
+
+input FileUpdateManyMutationInput {
+  file: StringFieldUpdateOperationsInput
+}
+
+input FileUpdateManyWithWhereWithoutTaskInput {
+  data: FileUpdateManyMutationInput!
+  where: FileScalarWhereInput!
+}
+
+input FileUpdateManyWithoutTaskNestedInput {
+  connect: [FileWhereUniqueInput!]
+  connectOrCreate: [FileCreateOrConnectWithoutTaskInput!]
+  create: [FileCreateWithoutTaskInput!]
+  createMany: FileCreateManyTaskInputEnvelope
+  delete: [FileWhereUniqueInput!]
+  deleteMany: [FileScalarWhereInput!]
+  disconnect: [FileWhereUniqueInput!]
+  set: [FileWhereUniqueInput!]
+  update: [FileUpdateWithWhereUniqueWithoutTaskInput!]
+  updateMany: [FileUpdateManyWithWhereWithoutTaskInput!]
+  upsert: [FileUpsertWithWhereUniqueWithoutTaskInput!]
+}
+
+input FileUpdateWithWhereUniqueWithoutTaskInput {
+  data: FileUpdateWithoutTaskInput!
+  where: FileWhereUniqueInput!
+}
+
+input FileUpdateWithoutTaskInput {
+  file: StringFieldUpdateOperationsInput
+}
+
+input FileUpsertWithWhereUniqueWithoutTaskInput {
+  create: FileCreateWithoutTaskInput!
+  update: FileUpdateWithoutTaskInput!
+  where: FileWhereUniqueInput!
+}
+
+input FileWhereInput {
+  AND: [FileWhereInput!]
+  NOT: [FileWhereInput!]
+  OR: [FileWhereInput!]
+  file: StringFilter
+  id: IntFilter
+  task: TaskNullableRelationFilter
+  taskId: StringNullableFilter
+}
+
+input FileWhereUniqueInput {
+  AND: [FileWhereInput!]
+  NOT: [FileWhereInput!]
+  OR: [FileWhereInput!]
+  file: StringFilter
+  id: Int
+  task: TaskNullableRelationFilter
+  taskId: StringNullableFilter
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
 input IntNullableFilter {
   equals: Int
   gt: Int
@@ -498,37 +799,85 @@ input IntNullableWithAggregatesFilter {
   notIn: [Int!]
 }
 
+input IntWithAggregatesFilter {
+  _avg: NestedFloatFilter
+  _count: NestedIntFilter
+  _max: NestedIntFilter
+  _min: NestedIntFilter
+  _sum: NestedIntFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntWithAggregatesFilter
+  notIn: [Int!]
+}
+
 type Mutation {
   createManyAccount(data: [AccountCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyAndReturnAccount(data: [AccountCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnAccount!]!
+  createManyAndReturnFile(data: [FileCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnFile!]!
+  createManyAndReturnPriority(data: [PriorityCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnPriority!]!
   createManyAndReturnSession(data: [SessionCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnSession!]!
+  createManyAndReturnStatus(data: [StatusCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnStatus!]!
+  createManyAndReturnTask(data: [TaskCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnTask!]!
   createManyAndReturnUser(data: [UserCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnUser!]!
   createManyAndReturnWorkspace(data: [WorkspaceCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnWorkspace!]!
+  createManyFile(data: [FileCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyPriority(data: [PriorityCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManySession(data: [SessionCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyStatus(data: [StatusCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyTask(data: [TaskCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyUser(data: [UserCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyWorkspace(data: [WorkspaceCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createOneAccount(data: AccountCreateInput!): Account!
+  createOneFile(data: FileCreateInput!): File!
+  createOnePriority(data: PriorityCreateInput!): Priority!
   createOneSession(data: SessionCreateInput!): Session!
+  createOneStatus(data: StatusCreateInput!): Status!
+  createOneTask(data: TaskCreateInput!): Task!
   createOneUser(data: UserCreateInput!): User!
   createOneWorkspace(data: WorkspaceCreateInput!): Workspace!
   deleteManyAccount(where: AccountWhereInput): AffectedRowsOutput!
+  deleteManyFile(where: FileWhereInput): AffectedRowsOutput!
+  deleteManyPriority(where: PriorityWhereInput): AffectedRowsOutput!
   deleteManySession(where: SessionWhereInput): AffectedRowsOutput!
+  deleteManyStatus(where: StatusWhereInput): AffectedRowsOutput!
+  deleteManyTask(where: TaskWhereInput): AffectedRowsOutput!
   deleteManyUser(where: UserWhereInput): AffectedRowsOutput!
   deleteManyWorkspace(where: WorkspaceWhereInput): AffectedRowsOutput!
   deleteOneAccount(where: AccountWhereUniqueInput!): Account
+  deleteOneFile(where: FileWhereUniqueInput!): File
+  deleteOnePriority(where: PriorityWhereUniqueInput!): Priority
   deleteOneSession(where: SessionWhereUniqueInput!): Session
+  deleteOneStatus(where: StatusWhereUniqueInput!): Status
+  deleteOneTask(where: TaskWhereUniqueInput!): Task
   deleteOneUser(where: UserWhereUniqueInput!): User
   deleteOneWorkspace(where: WorkspaceWhereUniqueInput!): Workspace
   updateManyAccount(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): AffectedRowsOutput!
+  updateManyFile(data: FileUpdateManyMutationInput!, where: FileWhereInput): AffectedRowsOutput!
+  updateManyPriority(data: PriorityUpdateManyMutationInput!, where: PriorityWhereInput): AffectedRowsOutput!
   updateManySession(data: SessionUpdateManyMutationInput!, where: SessionWhereInput): AffectedRowsOutput!
+  updateManyStatus(data: StatusUpdateManyMutationInput!, where: StatusWhereInput): AffectedRowsOutput!
+  updateManyTask(data: TaskUpdateManyMutationInput!, where: TaskWhereInput): AffectedRowsOutput!
   updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): AffectedRowsOutput!
   updateManyWorkspace(data: WorkspaceUpdateManyMutationInput!, where: WorkspaceWhereInput): AffectedRowsOutput!
   updateOneAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
+  updateOneFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
+  updateOnePriority(data: PriorityUpdateInput!, where: PriorityWhereUniqueInput!): Priority
   updateOneSession(data: SessionUpdateInput!, where: SessionWhereUniqueInput!): Session
+  updateOneStatus(data: StatusUpdateInput!, where: StatusWhereUniqueInput!): Status
+  updateOneTask(data: TaskUpdateInput!, where: TaskWhereUniqueInput!): Task
   updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateOneWorkspace(data: WorkspaceUpdateInput!, where: WorkspaceWhereUniqueInput!): Workspace
   upsertOneAccount(create: AccountCreateInput!, update: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account!
+  upsertOneFile(create: FileCreateInput!, update: FileUpdateInput!, where: FileWhereUniqueInput!): File!
+  upsertOnePriority(create: PriorityCreateInput!, update: PriorityUpdateInput!, where: PriorityWhereUniqueInput!): Priority!
   upsertOneSession(create: SessionCreateInput!, update: SessionUpdateInput!, where: SessionWhereUniqueInput!): Session!
+  upsertOneStatus(create: StatusCreateInput!, update: StatusUpdateInput!, where: StatusWhereUniqueInput!): Status!
+  upsertOneTask(create: TaskCreateInput!, update: TaskUpdateInput!, where: TaskWhereUniqueInput!): Task!
   upsertOneUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
   upsertOneWorkspace(create: WorkspaceCreateInput!, update: WorkspaceUpdateInput!, where: WorkspaceWhereUniqueInput!): Workspace!
 }
@@ -600,6 +949,17 @@ input NestedEnumRoleWithAggregatesFilter {
   notIn: [Role!]
 }
 
+input NestedFloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatFilter
+  notIn: [Float!]
+}
+
 input NestedFloatNullableFilter {
   equals: Float
   gt: Float
@@ -646,6 +1006,22 @@ input NestedIntNullableWithAggregatesFilter {
   lt: Int
   lte: Int
   not: NestedIntNullableWithAggregatesFilter
+  notIn: [Int!]
+}
+
+input NestedIntWithAggregatesFilter {
+  _avg: NestedFloatFilter
+  _count: NestedIntFilter
+  _max: NestedIntFilter
+  _min: NestedIntFilter
+  _sum: NestedIntFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntWithAggregatesFilter
   notIn: [Int!]
 }
 
@@ -732,31 +1108,258 @@ enum NullsOrder {
   last
 }
 
+type Priority {
+  _count: PriorityCount
+  color: String!
+  id: Int!
+  name: String!
+  task(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
+}
+
+type PriorityAvgAggregate {
+  id: Float
+}
+
+input PriorityAvgOrderByAggregateInput {
+  id: SortOrder
+}
+
+type PriorityCount {
+  task(where: TaskWhereInput): Int!
+}
+
+type PriorityCountAggregate {
+  _all: Int!
+  color: Int!
+  id: Int!
+  name: Int!
+}
+
+input PriorityCountOrderByAggregateInput {
+  color: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input PriorityCreateInput {
+  color: String!
+  name: String!
+  task: TaskCreateNestedManyWithoutPriorityInput
+}
+
+input PriorityCreateManyInput {
+  color: String!
+  id: Int
+  name: String!
+}
+
+input PriorityCreateNestedOneWithoutTaskInput {
+  connect: PriorityWhereUniqueInput
+  connectOrCreate: PriorityCreateOrConnectWithoutTaskInput
+  create: PriorityCreateWithoutTaskInput
+}
+
+input PriorityCreateOrConnectWithoutTaskInput {
+  create: PriorityCreateWithoutTaskInput!
+  where: PriorityWhereUniqueInput!
+}
+
+input PriorityCreateWithoutTaskInput {
+  color: String!
+  name: String!
+}
+
+type PriorityGroupBy {
+  _avg: PriorityAvgAggregate
+  _count: PriorityCountAggregate
+  _max: PriorityMaxAggregate
+  _min: PriorityMinAggregate
+  _sum: PrioritySumAggregate
+  color: String!
+  id: Int!
+  name: String!
+}
+
+type PriorityMaxAggregate {
+  color: String
+  id: Int
+  name: String
+}
+
+input PriorityMaxOrderByAggregateInput {
+  color: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+type PriorityMinAggregate {
+  color: String
+  id: Int
+  name: String
+}
+
+input PriorityMinOrderByAggregateInput {
+  color: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input PriorityNullableRelationFilter {
+  is: PriorityWhereInput
+  isNot: PriorityWhereInput
+}
+
+input PriorityOrderByWithAggregationInput {
+  _avg: PriorityAvgOrderByAggregateInput
+  _count: PriorityCountOrderByAggregateInput
+  _max: PriorityMaxOrderByAggregateInput
+  _min: PriorityMinOrderByAggregateInput
+  _sum: PrioritySumOrderByAggregateInput
+  color: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input PriorityOrderByWithRelationInput {
+  color: SortOrder
+  id: SortOrder
+  name: SortOrder
+  task: TaskOrderByRelationAggregateInput
+}
+
+enum PriorityScalarFieldEnum {
+  color
+  id
+  name
+}
+
+input PriorityScalarWhereWithAggregatesInput {
+  AND: [PriorityScalarWhereWithAggregatesInput!]
+  NOT: [PriorityScalarWhereWithAggregatesInput!]
+  OR: [PriorityScalarWhereWithAggregatesInput!]
+  color: StringWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  name: StringWithAggregatesFilter
+}
+
+type PrioritySumAggregate {
+  id: Int
+}
+
+input PrioritySumOrderByAggregateInput {
+  id: SortOrder
+}
+
+input PriorityUpdateInput {
+  color: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  task: TaskUpdateManyWithoutPriorityNestedInput
+}
+
+input PriorityUpdateManyMutationInput {
+  color: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input PriorityUpdateOneWithoutTaskNestedInput {
+  connect: PriorityWhereUniqueInput
+  connectOrCreate: PriorityCreateOrConnectWithoutTaskInput
+  create: PriorityCreateWithoutTaskInput
+  delete: PriorityWhereInput
+  disconnect: PriorityWhereInput
+  update: PriorityUpdateToOneWithWhereWithoutTaskInput
+  upsert: PriorityUpsertWithoutTaskInput
+}
+
+input PriorityUpdateToOneWithWhereWithoutTaskInput {
+  data: PriorityUpdateWithoutTaskInput!
+  where: PriorityWhereInput
+}
+
+input PriorityUpdateWithoutTaskInput {
+  color: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input PriorityUpsertWithoutTaskInput {
+  create: PriorityCreateWithoutTaskInput!
+  update: PriorityUpdateWithoutTaskInput!
+  where: PriorityWhereInput
+}
+
+input PriorityWhereInput {
+  AND: [PriorityWhereInput!]
+  NOT: [PriorityWhereInput!]
+  OR: [PriorityWhereInput!]
+  color: StringFilter
+  id: IntFilter
+  name: StringFilter
+  task: TaskListRelationFilter
+}
+
+input PriorityWhereUniqueInput {
+  AND: [PriorityWhereInput!]
+  NOT: [PriorityWhereInput!]
+  OR: [PriorityWhereInput!]
+  color: StringFilter
+  id: Int
+  name: String
+  task: TaskListRelationFilter
+}
+
 type Query {
   account(where: AccountWhereUniqueInput!): Account
   accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
   aggregateAccount(cursor: AccountWhereUniqueInput, orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): AggregateAccount!
+  aggregateFile(cursor: FileWhereUniqueInput, orderBy: [FileOrderByWithRelationInput!], skip: Int, take: Int, where: FileWhereInput): AggregateFile!
+  aggregatePriority(cursor: PriorityWhereUniqueInput, orderBy: [PriorityOrderByWithRelationInput!], skip: Int, take: Int, where: PriorityWhereInput): AggregatePriority!
   aggregateSession(cursor: SessionWhereUniqueInput, orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): AggregateSession!
+  aggregateStatus(cursor: StatusWhereUniqueInput, orderBy: [StatusOrderByWithRelationInput!], skip: Int, take: Int, where: StatusWhereInput): AggregateStatus!
+  aggregateTask(cursor: TaskWhereUniqueInput, orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): AggregateTask!
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
   aggregateWorkspace(cursor: WorkspaceWhereUniqueInput, orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): AggregateWorkspace!
+  file(where: FileWhereUniqueInput!): File
+  files(cursor: FileWhereUniqueInput, distinct: [FileScalarFieldEnum!], orderBy: [FileOrderByWithRelationInput!], skip: Int, take: Int, where: FileWhereInput): [File!]!
   findFirstAccount(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): Account
   findFirstAccountOrThrow(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): Account
+  findFirstFile(cursor: FileWhereUniqueInput, distinct: [FileScalarFieldEnum!], orderBy: [FileOrderByWithRelationInput!], skip: Int, take: Int, where: FileWhereInput): File
+  findFirstFileOrThrow(cursor: FileWhereUniqueInput, distinct: [FileScalarFieldEnum!], orderBy: [FileOrderByWithRelationInput!], skip: Int, take: Int, where: FileWhereInput): File
+  findFirstPriority(cursor: PriorityWhereUniqueInput, distinct: [PriorityScalarFieldEnum!], orderBy: [PriorityOrderByWithRelationInput!], skip: Int, take: Int, where: PriorityWhereInput): Priority
+  findFirstPriorityOrThrow(cursor: PriorityWhereUniqueInput, distinct: [PriorityScalarFieldEnum!], orderBy: [PriorityOrderByWithRelationInput!], skip: Int, take: Int, where: PriorityWhereInput): Priority
   findFirstSession(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): Session
   findFirstSessionOrThrow(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): Session
+  findFirstStatus(cursor: StatusWhereUniqueInput, distinct: [StatusScalarFieldEnum!], orderBy: [StatusOrderByWithRelationInput!], skip: Int, take: Int, where: StatusWhereInput): Status
+  findFirstStatusOrThrow(cursor: StatusWhereUniqueInput, distinct: [StatusScalarFieldEnum!], orderBy: [StatusOrderByWithRelationInput!], skip: Int, take: Int, where: StatusWhereInput): Status
+  findFirstTask(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): Task
+  findFirstTaskOrThrow(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): Task
   findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
   findFirstUserOrThrow(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
   findFirstWorkspace(cursor: WorkspaceWhereUniqueInput, distinct: [WorkspaceScalarFieldEnum!], orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): Workspace
   findFirstWorkspaceOrThrow(cursor: WorkspaceWhereUniqueInput, distinct: [WorkspaceScalarFieldEnum!], orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): Workspace
   getAccount(where: AccountWhereUniqueInput!): Account
+  getFile(where: FileWhereUniqueInput!): File
+  getPriority(where: PriorityWhereUniqueInput!): Priority
   getSession(where: SessionWhereUniqueInput!): Session
+  getStatus(where: StatusWhereUniqueInput!): Status
+  getTask(where: TaskWhereUniqueInput!): Task
   getUser(where: UserWhereUniqueInput!): User
   getWorkspace(where: WorkspaceWhereUniqueInput!): Workspace
   groupByAccount(by: [AccountScalarFieldEnum!]!, having: AccountScalarWhereWithAggregatesInput, orderBy: [AccountOrderByWithAggregationInput!], skip: Int, take: Int, where: AccountWhereInput): [AccountGroupBy!]!
+  groupByFile(by: [FileScalarFieldEnum!]!, having: FileScalarWhereWithAggregatesInput, orderBy: [FileOrderByWithAggregationInput!], skip: Int, take: Int, where: FileWhereInput): [FileGroupBy!]!
+  groupByPriority(by: [PriorityScalarFieldEnum!]!, having: PriorityScalarWhereWithAggregatesInput, orderBy: [PriorityOrderByWithAggregationInput!], skip: Int, take: Int, where: PriorityWhereInput): [PriorityGroupBy!]!
   groupBySession(by: [SessionScalarFieldEnum!]!, having: SessionScalarWhereWithAggregatesInput, orderBy: [SessionOrderByWithAggregationInput!], skip: Int, take: Int, where: SessionWhereInput): [SessionGroupBy!]!
+  groupByStatus(by: [StatusScalarFieldEnum!]!, having: StatusScalarWhereWithAggregatesInput, orderBy: [StatusOrderByWithAggregationInput!], skip: Int, take: Int, where: StatusWhereInput): [StatusGroupBy!]!
+  groupByTask(by: [TaskScalarFieldEnum!]!, having: TaskScalarWhereWithAggregatesInput, orderBy: [TaskOrderByWithAggregationInput!], skip: Int, take: Int, where: TaskWhereInput): [TaskGroupBy!]!
   groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
   groupByWorkspace(by: [WorkspaceScalarFieldEnum!]!, having: WorkspaceScalarWhereWithAggregatesInput, orderBy: [WorkspaceOrderByWithAggregationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): [WorkspaceGroupBy!]!
+  priorities(cursor: PriorityWhereUniqueInput, distinct: [PriorityScalarFieldEnum!], orderBy: [PriorityOrderByWithRelationInput!], skip: Int, take: Int, where: PriorityWhereInput): [Priority!]!
+  priority(where: PriorityWhereUniqueInput!): Priority
   session(where: SessionWhereUniqueInput!): Session
   sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
+  status(where: StatusWhereUniqueInput!): Status
+  statuses(cursor: StatusWhereUniqueInput, distinct: [StatusScalarFieldEnum!], orderBy: [StatusOrderByWithRelationInput!], skip: Int, take: Int, where: StatusWhereInput): [Status!]!
+  task(where: TaskWhereUniqueInput!): Task
+  tasks(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
   user(where: UserWhereUniqueInput!): User
   users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
   workspace(where: WorkspaceWhereUniqueInput!): Workspace
@@ -1014,6 +1617,205 @@ input SortOrderInput {
   sort: SortOrder!
 }
 
+type Status {
+  _count: StatusCount
+  color: String!
+  id: Int!
+  name: String!
+  task(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
+}
+
+type StatusAvgAggregate {
+  id: Float
+}
+
+input StatusAvgOrderByAggregateInput {
+  id: SortOrder
+}
+
+type StatusCount {
+  task(where: TaskWhereInput): Int!
+}
+
+type StatusCountAggregate {
+  _all: Int!
+  color: Int!
+  id: Int!
+  name: Int!
+}
+
+input StatusCountOrderByAggregateInput {
+  color: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input StatusCreateInput {
+  color: String!
+  name: String!
+  task: TaskCreateNestedManyWithoutStatusInput
+}
+
+input StatusCreateManyInput {
+  color: String!
+  id: Int
+  name: String!
+}
+
+input StatusCreateNestedOneWithoutTaskInput {
+  connect: StatusWhereUniqueInput
+  connectOrCreate: StatusCreateOrConnectWithoutTaskInput
+  create: StatusCreateWithoutTaskInput
+}
+
+input StatusCreateOrConnectWithoutTaskInput {
+  create: StatusCreateWithoutTaskInput!
+  where: StatusWhereUniqueInput!
+}
+
+input StatusCreateWithoutTaskInput {
+  color: String!
+  name: String!
+}
+
+type StatusGroupBy {
+  _avg: StatusAvgAggregate
+  _count: StatusCountAggregate
+  _max: StatusMaxAggregate
+  _min: StatusMinAggregate
+  _sum: StatusSumAggregate
+  color: String!
+  id: Int!
+  name: String!
+}
+
+type StatusMaxAggregate {
+  color: String
+  id: Int
+  name: String
+}
+
+input StatusMaxOrderByAggregateInput {
+  color: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+type StatusMinAggregate {
+  color: String
+  id: Int
+  name: String
+}
+
+input StatusMinOrderByAggregateInput {
+  color: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input StatusNullableRelationFilter {
+  is: StatusWhereInput
+  isNot: StatusWhereInput
+}
+
+input StatusOrderByWithAggregationInput {
+  _avg: StatusAvgOrderByAggregateInput
+  _count: StatusCountOrderByAggregateInput
+  _max: StatusMaxOrderByAggregateInput
+  _min: StatusMinOrderByAggregateInput
+  _sum: StatusSumOrderByAggregateInput
+  color: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input StatusOrderByWithRelationInput {
+  color: SortOrder
+  id: SortOrder
+  name: SortOrder
+  task: TaskOrderByRelationAggregateInput
+}
+
+enum StatusScalarFieldEnum {
+  color
+  id
+  name
+}
+
+input StatusScalarWhereWithAggregatesInput {
+  AND: [StatusScalarWhereWithAggregatesInput!]
+  NOT: [StatusScalarWhereWithAggregatesInput!]
+  OR: [StatusScalarWhereWithAggregatesInput!]
+  color: StringWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  name: StringWithAggregatesFilter
+}
+
+type StatusSumAggregate {
+  id: Int
+}
+
+input StatusSumOrderByAggregateInput {
+  id: SortOrder
+}
+
+input StatusUpdateInput {
+  color: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  task: TaskUpdateManyWithoutStatusNestedInput
+}
+
+input StatusUpdateManyMutationInput {
+  color: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input StatusUpdateOneWithoutTaskNestedInput {
+  connect: StatusWhereUniqueInput
+  connectOrCreate: StatusCreateOrConnectWithoutTaskInput
+  create: StatusCreateWithoutTaskInput
+  delete: StatusWhereInput
+  disconnect: StatusWhereInput
+  update: StatusUpdateToOneWithWhereWithoutTaskInput
+  upsert: StatusUpsertWithoutTaskInput
+}
+
+input StatusUpdateToOneWithWhereWithoutTaskInput {
+  data: StatusUpdateWithoutTaskInput!
+  where: StatusWhereInput
+}
+
+input StatusUpdateWithoutTaskInput {
+  color: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input StatusUpsertWithoutTaskInput {
+  create: StatusCreateWithoutTaskInput!
+  update: StatusUpdateWithoutTaskInput!
+  where: StatusWhereInput
+}
+
+input StatusWhereInput {
+  AND: [StatusWhereInput!]
+  NOT: [StatusWhereInput!]
+  OR: [StatusWhereInput!]
+  color: StringFilter
+  id: IntFilter
+  name: StringFilter
+  task: TaskListRelationFilter
+}
+
+input StatusWhereUniqueInput {
+  AND: [StatusWhereInput!]
+  NOT: [StatusWhereInput!]
+  OR: [StatusWhereInput!]
+  color: StringFilter
+  id: Int
+  name: String
+  task: TaskListRelationFilter
+}
+
 input StringFieldUpdateOperationsInput {
   set: String
 }
@@ -1082,6 +1884,644 @@ input StringWithAggregatesFilter {
   not: NestedStringWithAggregatesFilter
   notIn: [String!]
   startsWith: String
+}
+
+type Task {
+  _count: TaskCount
+  createdAt: DateTimeISO!
+  dueDate: DateTimeISO
+  files(cursor: FileWhereUniqueInput, distinct: [FileScalarFieldEnum!], orderBy: [FileOrderByWithRelationInput!], skip: Int, take: Int, where: FileWhereInput): [File!]!
+  id: String!
+  message: String
+  name: String!
+  note: String
+  priority(where: PriorityWhereInput): Priority
+  priorityId: Int
+  status(where: StatusWhereInput): Status
+  statusid: Int
+  updatedAt: DateTimeISO!
+  workspace: Workspace!
+  workspaceId: String!
+}
+
+type TaskAvgAggregate {
+  priorityId: Float
+  statusid: Float
+}
+
+input TaskAvgOrderByAggregateInput {
+  priorityId: SortOrder
+  statusid: SortOrder
+}
+
+type TaskCount {
+  files(where: FileWhereInput): Int!
+}
+
+type TaskCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  dueDate: Int!
+  id: Int!
+  message: Int!
+  name: Int!
+  note: Int!
+  priorityId: Int!
+  statusid: Int!
+  updatedAt: Int!
+  workspaceId: Int!
+}
+
+input TaskCountOrderByAggregateInput {
+  createdAt: SortOrder
+  dueDate: SortOrder
+  id: SortOrder
+  message: SortOrder
+  name: SortOrder
+  note: SortOrder
+  priorityId: SortOrder
+  statusid: SortOrder
+  updatedAt: SortOrder
+  workspaceId: SortOrder
+}
+
+input TaskCreateInput {
+  createdAt: DateTimeISO
+  dueDate: DateTimeISO
+  files: FileCreateNestedManyWithoutTaskInput
+  id: String
+  message: String
+  name: String!
+  note: String
+  priority: PriorityCreateNestedOneWithoutTaskInput
+  status: StatusCreateNestedOneWithoutTaskInput
+  updatedAt: DateTimeISO
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput!
+}
+
+input TaskCreateManyInput {
+  createdAt: DateTimeISO
+  dueDate: DateTimeISO
+  id: String
+  message: String
+  name: String!
+  note: String
+  priorityId: Int
+  statusid: Int
+  updatedAt: DateTimeISO
+  workspaceId: String!
+}
+
+input TaskCreateManyPriorityInput {
+  createdAt: DateTimeISO
+  dueDate: DateTimeISO
+  id: String
+  message: String
+  name: String!
+  note: String
+  statusid: Int
+  updatedAt: DateTimeISO
+  workspaceId: String!
+}
+
+input TaskCreateManyPriorityInputEnvelope {
+  data: [TaskCreateManyPriorityInput!]!
+  skipDuplicates: Boolean
+}
+
+input TaskCreateManyStatusInput {
+  createdAt: DateTimeISO
+  dueDate: DateTimeISO
+  id: String
+  message: String
+  name: String!
+  note: String
+  priorityId: Int
+  updatedAt: DateTimeISO
+  workspaceId: String!
+}
+
+input TaskCreateManyStatusInputEnvelope {
+  data: [TaskCreateManyStatusInput!]!
+  skipDuplicates: Boolean
+}
+
+input TaskCreateManyWorkspaceInput {
+  createdAt: DateTimeISO
+  dueDate: DateTimeISO
+  id: String
+  message: String
+  name: String!
+  note: String
+  priorityId: Int
+  statusid: Int
+  updatedAt: DateTimeISO
+}
+
+input TaskCreateManyWorkspaceInputEnvelope {
+  data: [TaskCreateManyWorkspaceInput!]!
+  skipDuplicates: Boolean
+}
+
+input TaskCreateNestedManyWithoutPriorityInput {
+  connect: [TaskWhereUniqueInput!]
+  connectOrCreate: [TaskCreateOrConnectWithoutPriorityInput!]
+  create: [TaskCreateWithoutPriorityInput!]
+  createMany: TaskCreateManyPriorityInputEnvelope
+}
+
+input TaskCreateNestedManyWithoutStatusInput {
+  connect: [TaskWhereUniqueInput!]
+  connectOrCreate: [TaskCreateOrConnectWithoutStatusInput!]
+  create: [TaskCreateWithoutStatusInput!]
+  createMany: TaskCreateManyStatusInputEnvelope
+}
+
+input TaskCreateNestedManyWithoutWorkspaceInput {
+  connect: [TaskWhereUniqueInput!]
+  connectOrCreate: [TaskCreateOrConnectWithoutWorkspaceInput!]
+  create: [TaskCreateWithoutWorkspaceInput!]
+  createMany: TaskCreateManyWorkspaceInputEnvelope
+}
+
+input TaskCreateNestedOneWithoutFilesInput {
+  connect: TaskWhereUniqueInput
+  connectOrCreate: TaskCreateOrConnectWithoutFilesInput
+  create: TaskCreateWithoutFilesInput
+}
+
+input TaskCreateOrConnectWithoutFilesInput {
+  create: TaskCreateWithoutFilesInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskCreateOrConnectWithoutPriorityInput {
+  create: TaskCreateWithoutPriorityInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskCreateOrConnectWithoutStatusInput {
+  create: TaskCreateWithoutStatusInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskCreateOrConnectWithoutWorkspaceInput {
+  create: TaskCreateWithoutWorkspaceInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskCreateWithoutFilesInput {
+  createdAt: DateTimeISO
+  dueDate: DateTimeISO
+  id: String
+  message: String
+  name: String!
+  note: String
+  priority: PriorityCreateNestedOneWithoutTaskInput
+  status: StatusCreateNestedOneWithoutTaskInput
+  updatedAt: DateTimeISO
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput!
+}
+
+input TaskCreateWithoutPriorityInput {
+  createdAt: DateTimeISO
+  dueDate: DateTimeISO
+  files: FileCreateNestedManyWithoutTaskInput
+  id: String
+  message: String
+  name: String!
+  note: String
+  status: StatusCreateNestedOneWithoutTaskInput
+  updatedAt: DateTimeISO
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput!
+}
+
+input TaskCreateWithoutStatusInput {
+  createdAt: DateTimeISO
+  dueDate: DateTimeISO
+  files: FileCreateNestedManyWithoutTaskInput
+  id: String
+  message: String
+  name: String!
+  note: String
+  priority: PriorityCreateNestedOneWithoutTaskInput
+  updatedAt: DateTimeISO
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput!
+}
+
+input TaskCreateWithoutWorkspaceInput {
+  createdAt: DateTimeISO
+  dueDate: DateTimeISO
+  files: FileCreateNestedManyWithoutTaskInput
+  id: String
+  message: String
+  name: String!
+  note: String
+  priority: PriorityCreateNestedOneWithoutTaskInput
+  status: StatusCreateNestedOneWithoutTaskInput
+  updatedAt: DateTimeISO
+}
+
+type TaskGroupBy {
+  _avg: TaskAvgAggregate
+  _count: TaskCountAggregate
+  _max: TaskMaxAggregate
+  _min: TaskMinAggregate
+  _sum: TaskSumAggregate
+  createdAt: DateTimeISO!
+  dueDate: DateTimeISO
+  id: String!
+  message: String
+  name: String!
+  note: String
+  priorityId: Int
+  statusid: Int
+  updatedAt: DateTimeISO!
+  workspaceId: String!
+}
+
+input TaskListRelationFilter {
+  every: TaskWhereInput
+  none: TaskWhereInput
+  some: TaskWhereInput
+}
+
+type TaskMaxAggregate {
+  createdAt: DateTimeISO
+  dueDate: DateTimeISO
+  id: String
+  message: String
+  name: String
+  note: String
+  priorityId: Int
+  statusid: Int
+  updatedAt: DateTimeISO
+  workspaceId: String
+}
+
+input TaskMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  dueDate: SortOrder
+  id: SortOrder
+  message: SortOrder
+  name: SortOrder
+  note: SortOrder
+  priorityId: SortOrder
+  statusid: SortOrder
+  updatedAt: SortOrder
+  workspaceId: SortOrder
+}
+
+type TaskMinAggregate {
+  createdAt: DateTimeISO
+  dueDate: DateTimeISO
+  id: String
+  message: String
+  name: String
+  note: String
+  priorityId: Int
+  statusid: Int
+  updatedAt: DateTimeISO
+  workspaceId: String
+}
+
+input TaskMinOrderByAggregateInput {
+  createdAt: SortOrder
+  dueDate: SortOrder
+  id: SortOrder
+  message: SortOrder
+  name: SortOrder
+  note: SortOrder
+  priorityId: SortOrder
+  statusid: SortOrder
+  updatedAt: SortOrder
+  workspaceId: SortOrder
+}
+
+input TaskNullableRelationFilter {
+  is: TaskWhereInput
+  isNot: TaskWhereInput
+}
+
+input TaskOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input TaskOrderByWithAggregationInput {
+  _avg: TaskAvgOrderByAggregateInput
+  _count: TaskCountOrderByAggregateInput
+  _max: TaskMaxOrderByAggregateInput
+  _min: TaskMinOrderByAggregateInput
+  _sum: TaskSumOrderByAggregateInput
+  createdAt: SortOrder
+  dueDate: SortOrderInput
+  id: SortOrder
+  message: SortOrderInput
+  name: SortOrder
+  note: SortOrderInput
+  priorityId: SortOrderInput
+  statusid: SortOrderInput
+  updatedAt: SortOrder
+  workspaceId: SortOrder
+}
+
+input TaskOrderByWithRelationInput {
+  createdAt: SortOrder
+  dueDate: SortOrderInput
+  files: FileOrderByRelationAggregateInput
+  id: SortOrder
+  message: SortOrderInput
+  name: SortOrder
+  note: SortOrderInput
+  priority: PriorityOrderByWithRelationInput
+  priorityId: SortOrderInput
+  status: StatusOrderByWithRelationInput
+  statusid: SortOrderInput
+  updatedAt: SortOrder
+  workspace: WorkspaceOrderByWithRelationInput
+  workspaceId: SortOrder
+}
+
+enum TaskScalarFieldEnum {
+  createdAt
+  dueDate
+  id
+  message
+  name
+  note
+  priorityId
+  statusid
+  updatedAt
+  workspaceId
+}
+
+input TaskScalarWhereInput {
+  AND: [TaskScalarWhereInput!]
+  NOT: [TaskScalarWhereInput!]
+  OR: [TaskScalarWhereInput!]
+  createdAt: DateTimeFilter
+  dueDate: DateTimeNullableFilter
+  id: StringFilter
+  message: StringNullableFilter
+  name: StringFilter
+  note: StringNullableFilter
+  priorityId: IntNullableFilter
+  statusid: IntNullableFilter
+  updatedAt: DateTimeFilter
+  workspaceId: StringFilter
+}
+
+input TaskScalarWhereWithAggregatesInput {
+  AND: [TaskScalarWhereWithAggregatesInput!]
+  NOT: [TaskScalarWhereWithAggregatesInput!]
+  OR: [TaskScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
+  dueDate: DateTimeNullableWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  message: StringNullableWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  note: StringNullableWithAggregatesFilter
+  priorityId: IntNullableWithAggregatesFilter
+  statusid: IntNullableWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+  workspaceId: StringWithAggregatesFilter
+}
+
+type TaskSumAggregate {
+  priorityId: Int
+  statusid: Int
+}
+
+input TaskSumOrderByAggregateInput {
+  priorityId: SortOrder
+  statusid: SortOrder
+}
+
+input TaskUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  dueDate: NullableDateTimeFieldUpdateOperationsInput
+  files: FileUpdateManyWithoutTaskNestedInput
+  id: StringFieldUpdateOperationsInput
+  message: NullableStringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  note: NullableStringFieldUpdateOperationsInput
+  priority: PriorityUpdateOneWithoutTaskNestedInput
+  status: StatusUpdateOneWithoutTaskNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  workspace: WorkspaceUpdateOneRequiredWithoutTaskNestedInput
+}
+
+input TaskUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  dueDate: NullableDateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  message: NullableStringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  note: NullableStringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input TaskUpdateManyWithWhereWithoutPriorityInput {
+  data: TaskUpdateManyMutationInput!
+  where: TaskScalarWhereInput!
+}
+
+input TaskUpdateManyWithWhereWithoutStatusInput {
+  data: TaskUpdateManyMutationInput!
+  where: TaskScalarWhereInput!
+}
+
+input TaskUpdateManyWithWhereWithoutWorkspaceInput {
+  data: TaskUpdateManyMutationInput!
+  where: TaskScalarWhereInput!
+}
+
+input TaskUpdateManyWithoutPriorityNestedInput {
+  connect: [TaskWhereUniqueInput!]
+  connectOrCreate: [TaskCreateOrConnectWithoutPriorityInput!]
+  create: [TaskCreateWithoutPriorityInput!]
+  createMany: TaskCreateManyPriorityInputEnvelope
+  delete: [TaskWhereUniqueInput!]
+  deleteMany: [TaskScalarWhereInput!]
+  disconnect: [TaskWhereUniqueInput!]
+  set: [TaskWhereUniqueInput!]
+  update: [TaskUpdateWithWhereUniqueWithoutPriorityInput!]
+  updateMany: [TaskUpdateManyWithWhereWithoutPriorityInput!]
+  upsert: [TaskUpsertWithWhereUniqueWithoutPriorityInput!]
+}
+
+input TaskUpdateManyWithoutStatusNestedInput {
+  connect: [TaskWhereUniqueInput!]
+  connectOrCreate: [TaskCreateOrConnectWithoutStatusInput!]
+  create: [TaskCreateWithoutStatusInput!]
+  createMany: TaskCreateManyStatusInputEnvelope
+  delete: [TaskWhereUniqueInput!]
+  deleteMany: [TaskScalarWhereInput!]
+  disconnect: [TaskWhereUniqueInput!]
+  set: [TaskWhereUniqueInput!]
+  update: [TaskUpdateWithWhereUniqueWithoutStatusInput!]
+  updateMany: [TaskUpdateManyWithWhereWithoutStatusInput!]
+  upsert: [TaskUpsertWithWhereUniqueWithoutStatusInput!]
+}
+
+input TaskUpdateManyWithoutWorkspaceNestedInput {
+  connect: [TaskWhereUniqueInput!]
+  connectOrCreate: [TaskCreateOrConnectWithoutWorkspaceInput!]
+  create: [TaskCreateWithoutWorkspaceInput!]
+  createMany: TaskCreateManyWorkspaceInputEnvelope
+  delete: [TaskWhereUniqueInput!]
+  deleteMany: [TaskScalarWhereInput!]
+  disconnect: [TaskWhereUniqueInput!]
+  set: [TaskWhereUniqueInput!]
+  update: [TaskUpdateWithWhereUniqueWithoutWorkspaceInput!]
+  updateMany: [TaskUpdateManyWithWhereWithoutWorkspaceInput!]
+  upsert: [TaskUpsertWithWhereUniqueWithoutWorkspaceInput!]
+}
+
+input TaskUpdateOneWithoutFilesNestedInput {
+  connect: TaskWhereUniqueInput
+  connectOrCreate: TaskCreateOrConnectWithoutFilesInput
+  create: TaskCreateWithoutFilesInput
+  delete: TaskWhereInput
+  disconnect: TaskWhereInput
+  update: TaskUpdateToOneWithWhereWithoutFilesInput
+  upsert: TaskUpsertWithoutFilesInput
+}
+
+input TaskUpdateToOneWithWhereWithoutFilesInput {
+  data: TaskUpdateWithoutFilesInput!
+  where: TaskWhereInput
+}
+
+input TaskUpdateWithWhereUniqueWithoutPriorityInput {
+  data: TaskUpdateWithoutPriorityInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskUpdateWithWhereUniqueWithoutStatusInput {
+  data: TaskUpdateWithoutStatusInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskUpdateWithWhereUniqueWithoutWorkspaceInput {
+  data: TaskUpdateWithoutWorkspaceInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskUpdateWithoutFilesInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  dueDate: NullableDateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  message: NullableStringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  note: NullableStringFieldUpdateOperationsInput
+  priority: PriorityUpdateOneWithoutTaskNestedInput
+  status: StatusUpdateOneWithoutTaskNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  workspace: WorkspaceUpdateOneRequiredWithoutTaskNestedInput
+}
+
+input TaskUpdateWithoutPriorityInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  dueDate: NullableDateTimeFieldUpdateOperationsInput
+  files: FileUpdateManyWithoutTaskNestedInput
+  id: StringFieldUpdateOperationsInput
+  message: NullableStringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  note: NullableStringFieldUpdateOperationsInput
+  status: StatusUpdateOneWithoutTaskNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  workspace: WorkspaceUpdateOneRequiredWithoutTaskNestedInput
+}
+
+input TaskUpdateWithoutStatusInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  dueDate: NullableDateTimeFieldUpdateOperationsInput
+  files: FileUpdateManyWithoutTaskNestedInput
+  id: StringFieldUpdateOperationsInput
+  message: NullableStringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  note: NullableStringFieldUpdateOperationsInput
+  priority: PriorityUpdateOneWithoutTaskNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  workspace: WorkspaceUpdateOneRequiredWithoutTaskNestedInput
+}
+
+input TaskUpdateWithoutWorkspaceInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  dueDate: NullableDateTimeFieldUpdateOperationsInput
+  files: FileUpdateManyWithoutTaskNestedInput
+  id: StringFieldUpdateOperationsInput
+  message: NullableStringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  note: NullableStringFieldUpdateOperationsInput
+  priority: PriorityUpdateOneWithoutTaskNestedInput
+  status: StatusUpdateOneWithoutTaskNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input TaskUpsertWithWhereUniqueWithoutPriorityInput {
+  create: TaskCreateWithoutPriorityInput!
+  update: TaskUpdateWithoutPriorityInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskUpsertWithWhereUniqueWithoutStatusInput {
+  create: TaskCreateWithoutStatusInput!
+  update: TaskUpdateWithoutStatusInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskUpsertWithWhereUniqueWithoutWorkspaceInput {
+  create: TaskCreateWithoutWorkspaceInput!
+  update: TaskUpdateWithoutWorkspaceInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskUpsertWithoutFilesInput {
+  create: TaskCreateWithoutFilesInput!
+  update: TaskUpdateWithoutFilesInput!
+  where: TaskWhereInput
+}
+
+input TaskWhereInput {
+  AND: [TaskWhereInput!]
+  NOT: [TaskWhereInput!]
+  OR: [TaskWhereInput!]
+  createdAt: DateTimeFilter
+  dueDate: DateTimeNullableFilter
+  files: FileListRelationFilter
+  id: StringFilter
+  message: StringNullableFilter
+  name: StringFilter
+  note: StringNullableFilter
+  priority: PriorityNullableRelationFilter
+  priorityId: IntNullableFilter
+  status: StatusNullableRelationFilter
+  statusid: IntNullableFilter
+  updatedAt: DateTimeFilter
+  workspace: WorkspaceRelationFilter
+  workspaceId: StringFilter
+}
+
+input TaskWhereUniqueInput {
+  AND: [TaskWhereInput!]
+  NOT: [TaskWhereInput!]
+  OR: [TaskWhereInput!]
+  createdAt: DateTimeFilter
+  dueDate: DateTimeNullableFilter
+  files: FileListRelationFilter
+  id: String
+  message: StringNullableFilter
+  name: StringFilter
+  note: StringNullableFilter
+  priority: PriorityNullableRelationFilter
+  priorityId: IntNullableFilter
+  status: StatusNullableRelationFilter
+  statusid: IntNullableFilter
+  updatedAt: DateTimeFilter
+  workspace: WorkspaceRelationFilter
+  workspaceId: StringFilter
 }
 
 type User {
@@ -1552,13 +2992,19 @@ input UserWhereUniqueInput {
 }
 
 type Workspace {
+  _count: WorkspaceCount
   createdAt: DateTimeISO!
   description: String!
   id: String!
   name: String!
+  task(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
   updatedAt: DateTimeISO!
   user(where: UserWhereInput): User
   userId: String
+}
+
+type WorkspaceCount {
+  task(where: TaskWhereInput): Int!
 }
 
 type WorkspaceCountAggregate {
@@ -1585,6 +3031,7 @@ input WorkspaceCreateInput {
   description: String!
   id: String
   name: String!
+  task: TaskCreateNestedManyWithoutWorkspaceInput
   updatedAt: DateTimeISO
   user: UserCreateNestedOneWithoutWorkspacesInput
 }
@@ -1618,9 +3065,29 @@ input WorkspaceCreateNestedManyWithoutUserInput {
   createMany: WorkspaceCreateManyUserInputEnvelope
 }
 
+input WorkspaceCreateNestedOneWithoutTaskInput {
+  connect: WorkspaceWhereUniqueInput
+  connectOrCreate: WorkspaceCreateOrConnectWithoutTaskInput
+  create: WorkspaceCreateWithoutTaskInput
+}
+
+input WorkspaceCreateOrConnectWithoutTaskInput {
+  create: WorkspaceCreateWithoutTaskInput!
+  where: WorkspaceWhereUniqueInput!
+}
+
 input WorkspaceCreateOrConnectWithoutUserInput {
   create: WorkspaceCreateWithoutUserInput!
   where: WorkspaceWhereUniqueInput!
+}
+
+input WorkspaceCreateWithoutTaskInput {
+  createdAt: DateTimeISO
+  description: String!
+  id: String
+  name: String!
+  updatedAt: DateTimeISO
+  user: UserCreateNestedOneWithoutWorkspacesInput
 }
 
 input WorkspaceCreateWithoutUserInput {
@@ -1628,6 +3095,7 @@ input WorkspaceCreateWithoutUserInput {
   description: String!
   id: String
   name: String!
+  task: TaskCreateNestedManyWithoutWorkspaceInput
   updatedAt: DateTimeISO
 }
 
@@ -1706,9 +3174,15 @@ input WorkspaceOrderByWithRelationInput {
   description: SortOrder
   id: SortOrder
   name: SortOrder
+  task: TaskOrderByRelationAggregateInput
   updatedAt: SortOrder
   user: UserOrderByWithRelationInput
   userId: SortOrderInput
+}
+
+input WorkspaceRelationFilter {
+  is: WorkspaceWhereInput
+  isNot: WorkspaceWhereInput
 }
 
 enum WorkspaceScalarFieldEnum {
@@ -1749,6 +3223,7 @@ input WorkspaceUpdateInput {
   description: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
+  task: TaskUpdateManyWithoutWorkspaceNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   user: UserUpdateOneWithoutWorkspacesNestedInput
 }
@@ -1780,9 +3255,31 @@ input WorkspaceUpdateManyWithoutUserNestedInput {
   upsert: [WorkspaceUpsertWithWhereUniqueWithoutUserInput!]
 }
 
+input WorkspaceUpdateOneRequiredWithoutTaskNestedInput {
+  connect: WorkspaceWhereUniqueInput
+  connectOrCreate: WorkspaceCreateOrConnectWithoutTaskInput
+  create: WorkspaceCreateWithoutTaskInput
+  update: WorkspaceUpdateToOneWithWhereWithoutTaskInput
+  upsert: WorkspaceUpsertWithoutTaskInput
+}
+
+input WorkspaceUpdateToOneWithWhereWithoutTaskInput {
+  data: WorkspaceUpdateWithoutTaskInput!
+  where: WorkspaceWhereInput
+}
+
 input WorkspaceUpdateWithWhereUniqueWithoutUserInput {
   data: WorkspaceUpdateWithoutUserInput!
   where: WorkspaceWhereUniqueInput!
+}
+
+input WorkspaceUpdateWithoutTaskInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  user: UserUpdateOneWithoutWorkspacesNestedInput
 }
 
 input WorkspaceUpdateWithoutUserInput {
@@ -1790,6 +3287,7 @@ input WorkspaceUpdateWithoutUserInput {
   description: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
+  task: TaskUpdateManyWithoutWorkspaceNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -1797,6 +3295,12 @@ input WorkspaceUpsertWithWhereUniqueWithoutUserInput {
   create: WorkspaceCreateWithoutUserInput!
   update: WorkspaceUpdateWithoutUserInput!
   where: WorkspaceWhereUniqueInput!
+}
+
+input WorkspaceUpsertWithoutTaskInput {
+  create: WorkspaceCreateWithoutTaskInput!
+  update: WorkspaceUpdateWithoutTaskInput!
+  where: WorkspaceWhereInput
 }
 
 input WorkspaceWhereInput {
@@ -1807,6 +3311,7 @@ input WorkspaceWhereInput {
   description: StringFilter
   id: StringFilter
   name: StringFilter
+  task: TaskListRelationFilter
   updatedAt: DateTimeFilter
   user: UserNullableRelationFilter
   userId: StringNullableFilter
@@ -1820,6 +3325,7 @@ input WorkspaceWhereUniqueInput {
   description: StringFilter
   id: String
   name: StringFilter
+  task: TaskListRelationFilter
   updatedAt: DateTimeFilter
   user: UserNullableRelationFilter
   userId: StringNullableFilter

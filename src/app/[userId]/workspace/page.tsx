@@ -1,9 +1,9 @@
-import { WorkspaceCard } from '../../../components/elements/workspace-card/index';
+import { WorkspacesPage } from '@/components/pages';
 
 export default function Workspaces() {
   return (
     <section>
-      <WorkspaceCard />
+      <WorkspacesPage />
     </section>
   );
 };

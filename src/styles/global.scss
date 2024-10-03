@@ -31,3 +31,10 @@ a {
 .ant-menu-item-divider {
   background-color: $dark-bg-selected;
 }
+
+.ant-btn.ant-popover-open {
+  width: 100%;
+  color: #fff !important;
+  font-family: inherit;
+  text-transform: capitalize;
+}

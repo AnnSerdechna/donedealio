@@ -1,3 +1,4 @@
+import { TaskCreateNestedManyWithoutWorkspaceInput } from "../inputs/TaskCreateNestedManyWithoutWorkspaceInput";
 import { UserCreateNestedOneWithoutWorkspacesInput } from "../inputs/UserCreateNestedOneWithoutWorkspacesInput";
 export declare class WorkspaceCreateInput {
     id?: string | undefined;
@@ -5,5 +6,6 @@ export declare class WorkspaceCreateInput {
     description: string;
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
+    task?: TaskCreateNestedManyWithoutWorkspaceInput | undefined;
     user?: UserCreateNestedOneWithoutWorkspacesInput | undefined;
 }

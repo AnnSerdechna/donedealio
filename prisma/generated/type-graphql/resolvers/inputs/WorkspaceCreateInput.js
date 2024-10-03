@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkspaceCreateInput = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
+const TaskCreateNestedManyWithoutWorkspaceInput_1 = require("../inputs/TaskCreateNestedManyWithoutWorkspaceInput");
 const UserCreateNestedOneWithoutWorkspacesInput_1 = require("../inputs/UserCreateNestedOneWithoutWorkspacesInput");
 let WorkspaceCreateInput = class WorkspaceCreateInput {
 };
@@ -37,6 +38,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", Date)
 ], WorkspaceCreateInput.prototype, "updatedAt", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => TaskCreateNestedManyWithoutWorkspaceInput_1.TaskCreateNestedManyWithoutWorkspaceInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", TaskCreateNestedManyWithoutWorkspaceInput_1.TaskCreateNestedManyWithoutWorkspaceInput)
+], WorkspaceCreateInput.prototype, "task", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => UserCreateNestedOneWithoutWorkspacesInput_1.UserCreateNestedOneWithoutWorkspacesInput, {
         nullable: true

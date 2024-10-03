@@ -1,0 +1,5 @@
+mutation DeleteOneWorkspace($where: WorkspaceWhereUniqueInput!) {
+  deleteOneWorkspace(where: $where) {
+    id
+  }
+}

@@ -15,6 +15,5 @@ export declare class TaskScalarWhereInput {
     createdAt?: DateTimeFilter | undefined;
     updatedAt?: DateTimeFilter | undefined;
     statusid?: IntNullableFilter | undefined;
-    priorityId?: IntNullableFilter | undefined;
     workspaceId?: StringFilter | undefined;
 }

@@ -1,0 +1,8 @@
+mutation CreateOneStatus($data: StatusCreateInput!) {
+  createOneStatus(data: $data) {
+    id
+    name
+    color
+    type
+  }
+}

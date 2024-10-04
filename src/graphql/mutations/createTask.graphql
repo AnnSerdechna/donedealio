@@ -7,9 +7,6 @@ mutation CreateOneTask($data: TaskCreateInput!) {
     status {
       id
     }
-    priority {
-      id
-    }
     files {
       id
     }

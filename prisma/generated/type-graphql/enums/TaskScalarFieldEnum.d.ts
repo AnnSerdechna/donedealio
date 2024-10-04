@@ -7,6 +7,5 @@ export declare enum TaskScalarFieldEnum {
     createdAt = "createdAt",
     updatedAt = "updatedAt",
     statusid = "statusid",
-    priorityId = "priorityId",
     workspaceId = "workspaceId"
 }

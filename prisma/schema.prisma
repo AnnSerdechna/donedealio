@@ -82,9 +82,6 @@ model Task  {
   status Status?  @relation(fields: [statusid], references: [id])
   statusid Int?
 
-  priority Priority?  @relation(fields: [priorityId], references: [id])
-  priorityId Int?
-
   files File[]
 
   workspace Workspace @relation(fields: [workspaceId], references: [id])
@@ -96,13 +93,12 @@ model Status {
   name String @unique
   color String
   task Task[]
+  type StatusType
 }
 
-model Priority {
-  id  Int @id @default(autoincrement())
-  name String @unique
-  color String
-  task Task[]
+enum StatusType {
+  STATUS 
+  PRIORITY
 }
 
 enum Role {

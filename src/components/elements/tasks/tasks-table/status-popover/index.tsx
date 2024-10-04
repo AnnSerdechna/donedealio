@@ -15,7 +15,6 @@ export const StatusPopover: FC<StatusPopoverProps> = ({ statusName, statusColor,
       placement={'bottom'}
       trigger={'click'}
       overlayStyle={{ width: 250 }}
-
       content={(
         <Space size={8} direction={'vertical'} style={{ width: '100%' }}>
           {content}

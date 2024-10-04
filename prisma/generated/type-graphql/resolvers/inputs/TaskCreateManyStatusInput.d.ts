@@ -6,6 +6,5 @@ export declare class TaskCreateManyStatusInput {
     dueDate?: Date | undefined;
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
-    priorityId?: number | undefined;
     workspaceId: string;
 }

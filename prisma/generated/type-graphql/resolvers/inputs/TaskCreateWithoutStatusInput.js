@@ -4,7 +4,6 @@ exports.TaskCreateWithoutStatusInput = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
 const FileCreateNestedManyWithoutTaskInput_1 = require("../inputs/FileCreateNestedManyWithoutTaskInput");
-const PriorityCreateNestedOneWithoutTaskInput_1 = require("../inputs/PriorityCreateNestedOneWithoutTaskInput");
 const WorkspaceCreateNestedOneWithoutTaskInput_1 = require("../inputs/WorkspaceCreateNestedOneWithoutTaskInput");
 let TaskCreateWithoutStatusInput = class TaskCreateWithoutStatusInput {
 };
@@ -51,12 +50,6 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", Date)
 ], TaskCreateWithoutStatusInput.prototype, "updatedAt", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => PriorityCreateNestedOneWithoutTaskInput_1.PriorityCreateNestedOneWithoutTaskInput, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", PriorityCreateNestedOneWithoutTaskInput_1.PriorityCreateNestedOneWithoutTaskInput)
-], TaskCreateWithoutStatusInput.prototype, "priority", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => FileCreateNestedManyWithoutTaskInput_1.FileCreateNestedManyWithoutTaskInput, {
         nullable: true

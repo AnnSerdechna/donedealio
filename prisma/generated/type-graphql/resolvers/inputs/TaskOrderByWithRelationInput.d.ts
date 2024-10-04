@@ -1,5 +1,4 @@
 import { FileOrderByRelationAggregateInput } from "../inputs/FileOrderByRelationAggregateInput";
-import { PriorityOrderByWithRelationInput } from "../inputs/PriorityOrderByWithRelationInput";
 import { SortOrderInput } from "../inputs/SortOrderInput";
 import { StatusOrderByWithRelationInput } from "../inputs/StatusOrderByWithRelationInput";
 import { WorkspaceOrderByWithRelationInput } from "../inputs/WorkspaceOrderByWithRelationInput";
@@ -12,10 +11,8 @@ export declare class TaskOrderByWithRelationInput {
     createdAt?: "asc" | "desc" | undefined;
     updatedAt?: "asc" | "desc" | undefined;
     statusid?: SortOrderInput | undefined;
-    priorityId?: SortOrderInput | undefined;
     workspaceId?: "asc" | "desc" | undefined;
     status?: StatusOrderByWithRelationInput | undefined;
-    priority?: PriorityOrderByWithRelationInput | undefined;
     files?: FileOrderByRelationAggregateInput | undefined;
     workspace?: WorkspaceOrderByWithRelationInput | undefined;
 }

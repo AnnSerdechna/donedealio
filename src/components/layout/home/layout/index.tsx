@@ -5,7 +5,6 @@ import { FC, Fragment, PropsWithChildren, useState } from 'react'
 
 import { HomeHeader } from '../header';
 import { ModalType, AuthModal } from '@/components/elements';
-import HomeBg from '@/assets/images/home-bg.png';
 import styles from './index.module.scss';
 
 const { Content } = Layout;
@@ -19,16 +18,7 @@ export const HomeLayout: FC<PropsWithChildren> = ({ children  }) => {
 
   return (
     <Fragment>
-      <Layout
-        style={{
-          backgroundImage: `url(${HomeBg.src})`,
-          backgroundPosition: 'right',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          width: '100%',
-          height: '100vh'
-        }}
-      >
+      <Layout>
         <HomeHeader 
           onLogin={handleOpenLogin}
           onRegister={handleOpenRegister}

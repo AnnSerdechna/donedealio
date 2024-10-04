@@ -3,17 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateManyAndReturnTask = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
-const CreateManyAndReturnTaskPriorityArgs_1 = require("./args/CreateManyAndReturnTaskPriorityArgs");
 const CreateManyAndReturnTaskStatusArgs_1 = require("./args/CreateManyAndReturnTaskStatusArgs");
-const Priority_1 = require("../../models/Priority");
 const Status_1 = require("../../models/Status");
 const Workspace_1 = require("../../models/Workspace");
 let CreateManyAndReturnTask = class CreateManyAndReturnTask {
     getStatus(root, args) {
         return root.status;
-    }
-    getPriority(root, args) {
-        return root.priority;
     }
 };
 exports.CreateManyAndReturnTask = CreateManyAndReturnTask;
@@ -66,12 +61,6 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", Number)
 ], CreateManyAndReturnTask.prototype, "statusid", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", Number)
-], CreateManyAndReturnTask.prototype, "priorityId", void 0);
-tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
         nullable: false
     }),
@@ -94,17 +83,6 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [CreateManyAndReturnTask, CreateManyAndReturnTaskStatusArgs_1.CreateManyAndReturnTaskStatusArgs]),
     tslib_1.__metadata("design:returntype", Status_1.Status)
 ], CreateManyAndReturnTask.prototype, "getStatus", null);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => Priority_1.Priority, {
-        name: "priority",
-        nullable: true
-    }),
-    tslib_1.__param(0, TypeGraphQL.Root()),
-    tslib_1.__param(1, TypeGraphQL.Args()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [CreateManyAndReturnTask, CreateManyAndReturnTaskPriorityArgs_1.CreateManyAndReturnTaskPriorityArgs]),
-    tslib_1.__metadata("design:returntype", Priority_1.Priority)
-], CreateManyAndReturnTask.prototype, "getPriority", null);
 exports.CreateManyAndReturnTask = CreateManyAndReturnTask = tslib_1.__decorate([
     TypeGraphQL.ObjectType("CreateManyAndReturnTask", {})
 ], CreateManyAndReturnTask);

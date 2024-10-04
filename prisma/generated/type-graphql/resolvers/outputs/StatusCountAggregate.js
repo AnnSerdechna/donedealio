@@ -29,6 +29,12 @@ tslib_1.__decorate([
         nullable: false
     }),
     tslib_1.__metadata("design:type", Number)
+], StatusCountAggregate.prototype, "type", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", Number)
 ], StatusCountAggregate.prototype, "_all", void 0);
 exports.StatusCountAggregate = StatusCountAggregate = tslib_1.__decorate([
     TypeGraphQL.ObjectType("StatusCountAggregate", {})

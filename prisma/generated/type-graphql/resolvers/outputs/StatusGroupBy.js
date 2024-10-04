@@ -8,6 +8,7 @@ const StatusCountAggregate_1 = require("../outputs/StatusCountAggregate");
 const StatusMaxAggregate_1 = require("../outputs/StatusMaxAggregate");
 const StatusMinAggregate_1 = require("../outputs/StatusMinAggregate");
 const StatusSumAggregate_1 = require("../outputs/StatusSumAggregate");
+const StatusType_1 = require("../../enums/StatusType");
 let StatusGroupBy = class StatusGroupBy {
 };
 exports.StatusGroupBy = StatusGroupBy;
@@ -29,6 +30,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", String)
 ], StatusGroupBy.prototype, "color", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StatusType_1.StatusType, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", String)
+], StatusGroupBy.prototype, "type", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => StatusCountAggregate_1.StatusCountAggregate, {
         nullable: true

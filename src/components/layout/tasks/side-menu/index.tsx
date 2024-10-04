@@ -12,6 +12,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { MenuItemProps } from '@/types';
 import { Menu } from './menu';
 import styles from './index.module.scss';
+import { useSession } from 'next-auth/react';
 
 function getItem(
   label: ReactNode,
@@ -26,8 +27,6 @@ function getItem(
     label,
   } as MenuItemProps;
 }
-
-const userId = '1';
 
 const items: MenuItemProps[] = [
   getItem(
@@ -68,11 +67,12 @@ export const HomeMenu: FC = () => (
 export const SideMenu: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const {data: session} = useSession();
 
   const activeKeys = [...items, ...bottomItems].filter((item) => pathname?.includes(`${item?.key}`)).map(item => item?.key) as string[];
 
   const onMemuItemClick: MenuProps['onClick'] = (event) => {
-    router.push(`/${userId}/${event.key}`);
+    router.push(`/${session?.user?.id}/${event.key}`);
   };
 
   return (

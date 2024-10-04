@@ -4,8 +4,7 @@ import { useParams } from 'next/navigation';
 
 import { Avatar, Badge, DatePicker, Button, Flex, Form, Input, message, Popover, Space, Table, Tag, Typography, Upload } from "antd"
 import type { TableProps } from 'antd';
-import { TableRowSelection } from "antd/es/table/interface";
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { 
   MessageOutlined, 
   UserAddOutlined, 
@@ -15,14 +14,12 @@ import {
   RightOutlined, 
   DownOutlined, 
   PlusCircleOutlined,
-  PicLeftOutlined
   } from '@ant-design/icons'
 import { 
-  Priority, 
   Status, 
+  StatusType, 
   Task, 
   useDeleteManyTaskMutation, 
-  usePrioritiesQuery, 
   useStatusesQuery, 
   useTasksQuery, 
   useUpdateOneTaskMutation, 
@@ -37,17 +34,17 @@ import { StatusesContent } from './statuses-content';
 
 const { Text } = Typography;
 
+type UpdatedDataType = { [key: string]: { set: string | Date } } | { [key: string]: { connect: { id: number } } };
+
 export const TasksTable: FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const { workspaceId } = useParams();
 
-  const [dueDateValue, setDueDateValue ] = useState<Dayjs | string>('');
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [statusContent, setStatusContent] = useState<'change' | 'edit'>('change')
-  const [priorityContent, setPriorityContent] = useState<'change' | 'edit'>('change')
 
-  const { data: statusesData } = useStatusesQuery();
-  const { data: prioritiesData } = usePrioritiesQuery();
+  const { data: statusesData, refetch: reftchStatuses } = useStatusesQuery({variables: {where: {type: {equals: StatusType.Status}}}});
+  const { data: prioritiesData } = useStatusesQuery({variables: {where: {type: {equals: StatusType.Priority}}}});
   const { data } = useWorkspaceQuery({ 
     variables: { 
       where: { 
@@ -60,7 +57,7 @@ export const TasksTable: FC = () => {
   const [deleteTasks, { loading: deleteTasksLoading}] = useDeleteManyTaskMutation();
   const [updateTask] = useUpdateOneTaskMutation();
 
-  const handleUpdateTask = async (data: any, taskId: string, updatedField: string) => {
+  const handleUpdateTask = async (data: UpdatedDataType, taskId: string, updatedField: string) => {
     try {
       await updateTask({
         variables: {
@@ -96,6 +93,43 @@ export const TasksTable: FC = () => {
       messageApi.error('Delete selected tasks failed!')
     }
   };
+
+  const renderStatus = (status: Status, data: Task, statuses: Status[], statusType: StatusType) => {
+    return (
+      <StatusPopover
+        statusName={status?.name}
+        statusColor={status?.color}
+        content={(
+          <Fragment>
+            {statusContent === 'change'
+              ? (
+                <StatusesContent
+                  statusesData={statuses}
+                  taskId={data?.id}
+                  onStatus={(statusId) => {
+                    const newData = {
+                      status: {
+                        connect: {
+                          id: statusId
+                        }
+                      }
+                    };
+                    handleUpdateTask(newData, data?.id, 'Status')
+                  }}
+                  onEdit={() => setStatusContent('edit')}
+                />
+              )
+              : (
+                <Form onFinish={console.log}>
+                  <StatusFormList initialData={statuses} />
+                </Form>
+              )
+            }
+          </Fragment>
+        )}
+      />
+    )
+  }
 
   const columns: TableProps<Task>['columns'] = [
     {
@@ -194,42 +228,7 @@ export const TasksTable: FC = () => {
       key: 'status',
       width: 150,
       align: 'center',
-      render: (status, data) => (
-        <StatusPopover
-          statusName={status?.name}
-          statusColor={status?.color}
-          content={(
-            <Fragment>
-              {statusContent === 'change'
-                ? (
-                  <StatusesContent
-                    statusesData={statusesData?.statuses as Status[]}
-                    taskId={data?.id}
-                    onStatus={(statusId) => {
-                      const newData = {
-                        status: {
-                          connect: {
-                            id: statusId
-                          }
-                        }
-                      };
-                      handleUpdateTask(newData, data?.id, 'Status')
-                    }}
-                    onEdit={() => setStatusContent('edit')}
-                  />
-                )
-                : (
-                  <Form onFinish={console.log}>
-                    <StatusFormList
-                      initialData={statusesData?.statuses as Status[]}
-                    />
-                  </Form>
-                )
-              }
-            </Fragment>
-          )}
-        />
-      )
+      render: (item, data) => renderStatus(item, data, prioritiesData?.statuses as Status[], StatusType.Status)
     },
     {
       title: 'Due date',
@@ -270,47 +269,12 @@ export const TasksTable: FC = () => {
       key: 'priority',
       width: 150,
       align: 'center',
-      render: (priority, data) => (
-        <StatusPopover
-          statusName={priority?.name}
-          statusColor={priority?.color}
-          content={(
-            <Fragment>
-              {priorityContent === 'change'
-                ? (
-                  <StatusesContent
-                    statusesData={prioritiesData?.priorities as Priority[]}
-                    taskId={data?.id}
-                    onStatus={(priorityId) => {
-                      const newData = {
-                        priority: {
-                          connect: {
-                            id: priorityId
-                          }
-                        }
-                      };
-                      handleUpdateTask(newData, data?.id, 'Priority')
-                    }}
-                    onEdit={() => setPriorityContent('edit')}
-                  />
-                )
-                : (
-                  <Form onFinish={console.log}>
-                    <StatusFormList
-                      initialData={prioritiesData?.priorities as Priority[]}
-                    />
-                  </Form>
-                )
-              }
-            </Fragment>
-          )}
-        />
-      )
+      render: (item, data) => renderStatus(item, data, prioritiesData?.statuses as Status[], StatusType.Priority)
     },
     {
       title: 'Notes',
-      dataIndex: 'notes',
-      key: 'notes',
+      dataIndex: 'note',
+      key: 'note',
       align: 'center',
       render: (note, data) => {
         return (

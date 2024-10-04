@@ -1,7 +1,0 @@
-query Priorities {
-  priorities {
-    color
-    id
-    name
-  }
-}

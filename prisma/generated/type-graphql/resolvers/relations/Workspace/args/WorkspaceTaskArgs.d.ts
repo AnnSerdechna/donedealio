@@ -7,5 +7,5 @@ export declare class WorkspaceTaskArgs {
     cursor?: TaskWhereUniqueInput | undefined;
     take?: number | undefined;
     skip?: number | undefined;
-    distinct?: Array<"id" | "name" | "message" | "note" | "dueDate" | "createdAt" | "updatedAt" | "statusid" | "priorityId" | "workspaceId"> | undefined;
+    distinct?: Array<"id" | "name" | "message" | "note" | "dueDate" | "createdAt" | "updatedAt" | "statusid" | "workspaceId"> | undefined;
 }

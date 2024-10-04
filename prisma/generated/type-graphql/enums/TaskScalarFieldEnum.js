@@ -13,7 +13,6 @@ var TaskScalarFieldEnum;
     TaskScalarFieldEnum["createdAt"] = "createdAt";
     TaskScalarFieldEnum["updatedAt"] = "updatedAt";
     TaskScalarFieldEnum["statusid"] = "statusid";
-    TaskScalarFieldEnum["priorityId"] = "priorityId";
     TaskScalarFieldEnum["workspaceId"] = "workspaceId";
 })(TaskScalarFieldEnum || (exports.TaskScalarFieldEnum = TaskScalarFieldEnum = {}));
 TypeGraphQL.registerEnumType(TaskScalarFieldEnum, {

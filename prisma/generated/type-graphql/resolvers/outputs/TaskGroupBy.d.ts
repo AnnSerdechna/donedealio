@@ -12,7 +12,6 @@ export declare class TaskGroupBy {
     createdAt: Date;
     updatedAt: Date;
     statusid: number | null;
-    priorityId: number | null;
     workspaceId: string;
     _count: TaskCountAggregate | null;
     _avg: TaskAvgAggregate | null;

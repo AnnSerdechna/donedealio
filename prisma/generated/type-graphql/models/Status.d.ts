@@ -5,5 +5,6 @@ export declare class Status {
     name: string;
     color: string;
     task?: Task[];
+    type: "STATUS" | "PRIORITY";
     _count?: StatusCount | null;
 }

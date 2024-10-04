@@ -7,6 +7,5 @@ export declare class TaskMaxOrderByAggregateInput {
     createdAt?: "asc" | "desc" | undefined;
     updatedAt?: "asc" | "desc" | undefined;
     statusid?: "asc" | "desc" | undefined;
-    priorityId?: "asc" | "desc" | undefined;
     workspaceId?: "asc" | "desc" | undefined;
 }

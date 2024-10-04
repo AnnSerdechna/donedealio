@@ -2,10 +2,14 @@ import { Button, ColorPicker, Divider, Form, Input, Space } from 'antd';
 import { FC } from 'react'
 import { DeleteTwoTone, PlusOutlined } from '@ant-design/icons';
 
-import { Priority, Status } from '@/graphql/types';
+import { Status } from '@/graphql/types';
 
 type StatusFormProps = {
-  initialData: Status[] | Priority[]
+  initialData: {
+    id?: number,
+    name?: string
+    color?: string
+  }[]
 }
 
 export const StatusFormList: FC<StatusFormProps> = ({ initialData  }) => {
@@ -19,6 +23,13 @@ export const StatusFormList: FC<StatusFormProps> = ({ initialData  }) => {
                 <Space key={key} size={4}>
                   <Form.Item
                     {...restField}
+                    name={[name, 'id']}
+                    style={{ display: 'none' }}
+                  >
+                    <Input hidden />
+                  </Form.Item>
+                  <Form.Item
+                    {...restField}
                     name={[name, 'color']}
                     noStyle
                   >
@@ -29,14 +40,18 @@ export const StatusFormList: FC<StatusFormProps> = ({ initialData  }) => {
                     name={[name, 'name']}
                     noStyle
                   >
-                    <Input />
+                    <Input style={{textTransform: 'capitalize'}} />
                   </Form.Item>
-                  <Button type={'text'} icon={<DeleteTwoTone twoToneColor="#f5222d" style={{ color: 'red' }} />} onClick={() => remove(name)} />
+                  <Button 
+                    type={'text'} 
+                    icon={<DeleteTwoTone twoToneColor="#f5222d" style={{ color: 'red' }} />} 
+                    onClick={() => remove(name)}
+                  />
                 </Space>
               )
             })}
             <Form.Item noStyle>
-              <Button icon={<PlusOutlined />} size={'large'} style={{ width: '100%' }} onClick={add} >New Label</Button>
+              <Button icon={<PlusOutlined />} size={'large'} style={{ width: '100%' }} onClick={add}>New Label</Button>
             </Form.Item>
           </Space>
         )}

@@ -7,6 +7,5 @@ export declare class TaskMaxAggregate {
     createdAt: Date | null;
     updatedAt: Date | null;
     statusid: number | null;
-    priorityId: number | null;
     workspaceId: string | null;
 }

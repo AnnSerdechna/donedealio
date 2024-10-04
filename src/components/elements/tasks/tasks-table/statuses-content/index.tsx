@@ -3,11 +3,11 @@ import { Button, Divider, Flex } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 
 import { StatusButton } from '../status-btn';
-import { Priority, Status } from '@/graphql/types';
+import { Status } from '@/graphql/types';
 
 type StatusesContentProps = {
   taskId: string
-  statusesData: Status[] | Priority[]
+  statusesData: Status[]
   onStatus: (statusId: number, taskId: string) => void
   onEdit: VoidFunction
 };

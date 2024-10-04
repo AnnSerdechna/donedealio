@@ -8,6 +8,7 @@ var StatusScalarFieldEnum;
     StatusScalarFieldEnum["id"] = "id";
     StatusScalarFieldEnum["name"] = "name";
     StatusScalarFieldEnum["color"] = "color";
+    StatusScalarFieldEnum["type"] = "type";
 })(StatusScalarFieldEnum || (exports.StatusScalarFieldEnum = StatusScalarFieldEnum = {}));
 TypeGraphQL.registerEnumType(StatusScalarFieldEnum, {
     name: "StatusScalarFieldEnum",

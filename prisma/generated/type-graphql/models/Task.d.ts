@@ -1,5 +1,4 @@
 import { File } from "../models/File";
-import { Priority } from "../models/Priority";
 import { Status } from "../models/Status";
 import { Workspace } from "../models/Workspace";
 import { TaskCount } from "../resolvers/outputs/TaskCount";
@@ -13,8 +12,6 @@ export declare class Task {
     updatedAt: Date;
     status?: Status | null;
     statusid?: number | null;
-    priority?: Priority | null;
-    priorityId?: number | null;
     files?: File[];
     workspace?: Workspace;
     workspaceId: string;

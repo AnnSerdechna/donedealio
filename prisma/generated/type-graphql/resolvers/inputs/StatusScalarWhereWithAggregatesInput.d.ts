@@ -1,3 +1,4 @@
+import { EnumStatusTypeWithAggregatesFilter } from "../inputs/EnumStatusTypeWithAggregatesFilter";
 import { IntWithAggregatesFilter } from "../inputs/IntWithAggregatesFilter";
 import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter";
 export declare class StatusScalarWhereWithAggregatesInput {
@@ -7,4 +8,5 @@ export declare class StatusScalarWhereWithAggregatesInput {
     id?: IntWithAggregatesFilter | undefined;
     name?: StringWithAggregatesFilter | undefined;
     color?: StringWithAggregatesFilter | undefined;
+    type?: EnumStatusTypeWithAggregatesFilter | undefined;
 }

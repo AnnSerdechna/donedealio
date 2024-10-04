@@ -1,5 +1,4 @@
 import { FileCreateNestedManyWithoutTaskInput } from "../inputs/FileCreateNestedManyWithoutTaskInput";
-import { PriorityCreateNestedOneWithoutTaskInput } from "../inputs/PriorityCreateNestedOneWithoutTaskInput";
 import { StatusCreateNestedOneWithoutTaskInput } from "../inputs/StatusCreateNestedOneWithoutTaskInput";
 import { WorkspaceCreateNestedOneWithoutTaskInput } from "../inputs/WorkspaceCreateNestedOneWithoutTaskInput";
 export declare class TaskCreateInput {
@@ -11,7 +10,6 @@ export declare class TaskCreateInput {
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
     status?: StatusCreateNestedOneWithoutTaskInput | undefined;
-    priority?: PriorityCreateNestedOneWithoutTaskInput | undefined;
     files?: FileCreateNestedManyWithoutTaskInput | undefined;
     workspace: WorkspaceCreateNestedOneWithoutTaskInput;
 }

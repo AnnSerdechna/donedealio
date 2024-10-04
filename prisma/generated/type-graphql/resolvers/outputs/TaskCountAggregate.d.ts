@@ -7,7 +7,6 @@ export declare class TaskCountAggregate {
     createdAt: number;
     updatedAt: number;
     statusid: number;
-    priorityId: number;
     workspaceId: number;
     _all: number;
 }

@@ -1,0 +1,5 @@
+mutation CreateManyStatus($data: [StatusCreateManyInput!]!) {
+  createManyStatus(data: $data) {
+    count
+  }
+}

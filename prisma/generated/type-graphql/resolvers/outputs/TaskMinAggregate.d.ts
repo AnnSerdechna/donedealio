@@ -7,6 +7,5 @@ export declare class TaskMinAggregate {
     createdAt: Date | null;
     updatedAt: Date | null;
     statusid: number | null;
-    priorityId: number | null;
     workspaceId: string | null;
 }

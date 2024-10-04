@@ -7,5 +7,4 @@ export declare class TaskCreateManyWorkspaceInput {
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
     statusid?: number | undefined;
-    priorityId?: number | undefined;
 }

@@ -1,3 +1,4 @@
+import { EnumStatusTypeFilter } from "../inputs/EnumStatusTypeFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { TaskListRelationFilter } from "../inputs/TaskListRelationFilter";
@@ -8,5 +9,6 @@ export declare class StatusWhereInput {
     id?: IntFilter | undefined;
     name?: StringFilter | undefined;
     color?: StringFilter | undefined;
+    type?: EnumStatusTypeFilter | undefined;
     task?: TaskListRelationFilter | undefined;
 }

@@ -7,6 +7,7 @@ export declare class StatusOrderByWithAggregationInput {
     id?: "asc" | "desc" | undefined;
     name?: "asc" | "desc" | undefined;
     color?: "asc" | "desc" | undefined;
+    type?: "asc" | "desc" | undefined;
     _count?: StatusCountOrderByAggregateInput | undefined;
     _avg?: StatusAvgOrderByAggregateInput | undefined;
     _max?: StatusMaxOrderByAggregateInput | undefined;

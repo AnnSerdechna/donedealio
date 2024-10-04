@@ -15,6 +15,5 @@ export declare class TaskScalarWhereWithAggregatesInput {
     createdAt?: DateTimeWithAggregatesFilter | undefined;
     updatedAt?: DateTimeWithAggregatesFilter | undefined;
     statusid?: IntNullableWithAggregatesFilter | undefined;
-    priorityId?: IntNullableWithAggregatesFilter | undefined;
     workspaceId?: StringWithAggregatesFilter | undefined;
 }

@@ -12,11 +12,7 @@ query Tasks($workspaceId: String!) {
       id
       name
       color
-    }
-    priority {
-      id
-      name
-      color
+      type
     }
     workspace {
       id

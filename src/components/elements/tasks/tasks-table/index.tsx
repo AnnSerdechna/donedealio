@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { Avatar, Badge, DatePicker, Button, Flex, Form, Input, message, Popover, Space, Table, Tag, Typography, Upload } from "antd"
 import type { TableProps } from 'antd';
 import { TableRowSelection } from "antd/es/table/interface";
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { 
   MessageOutlined, 
   UserAddOutlined, 
@@ -13,7 +13,9 @@ import {
   DeleteTwoTone, 
   FileAddOutlined, 
   RightOutlined, 
-  DownOutlined 
+  DownOutlined, 
+  PlusCircleOutlined,
+  PicLeftOutlined
   } from '@ant-design/icons'
 import { 
   Priority, 
@@ -39,6 +41,7 @@ export const TasksTable: FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const { workspaceId } = useParams();
 
+  const [dueDateValue, setDueDateValue ] = useState<Dayjs | string>('');
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [statusContent, setStatusContent] = useState<'change' | 'edit'>('change')
   const [priorityContent, setPriorityContent] = useState<'change' | 'edit'>('change')
@@ -57,93 +60,40 @@ export const TasksTable: FC = () => {
   const [deleteTasks, { loading: deleteTasksLoading}] = useDeleteManyTaskMutation();
   const [updateTask] = useUpdateOneTaskMutation();
 
-  const handleUpdateTaskStatus = async (statusId: number, taskId: string) => {
+  const handleUpdateTask = async (data: any, taskId: string, updatedField: string) => {
     try {
       await updateTask({
         variables: {
-          data: {
-            status: {
-              connect: {
-                id: statusId 
-              }
-            }
-          },
+          data,
           where: {
             id: taskId
           },
         }
       });
       refetch();
+      messageApi.success(`${updatedField} was updated successfully!`);
     } catch (error) {
-        console.log(error, 'Update task status error!');
-        messageApi.error('Update status failed!');
+      console.log(error, `Updated ${updatedField} error!`);
+      messageApi.error(`Updated ${updatedField} failed!`);
     }
   };
 
-  const handleUpdateTaskPriority = async (priorityId: number, taskId: string) => {
+  const handleRemoveSelectedTasks = async () => {
     try {
-      await updateTask({
+      await deleteTasks({
         variables: {
-          data: {
-            priority: {
-              connect: {
-                id: priorityId
-              }
-            }
-          },
           where: {
-            id: taskId
-          },
+            id: {
+              in: selectedRowKeys as string[]
+            }
+          }
         }
       });
       refetch();
+      setSelectedRowKeys([]);
     } catch (error) {
-      console.log(error, 'Update task priority error!');
-      messageApi.error('Update priority failed!');
-    }
-  };
-
-  const handleUpdateTaskDuedate = async (date: any, taskId: string) => {
-    try {
-      await updateTask({
-        variables: {
-          data: {
-            dueDate: {
-              set: date
-            }
-          },
-          where: {
-            id: taskId
-          },
-        }
-      });
-      refetch();
-      messageApi.success('Updates due date success!');
-    } catch (error) {
-      console.log(error, 'Update task due date error!');
-      messageApi.error('Update due date failed!');
-    }
-  };
-
-  const handleUpdateTaskName = async (name: string, taskId: string) => {
-    try {
-      await updateTask({
-        variables: {
-          data: {
-            name: {
-              set: name
-            }
-          },
-          where: {
-            id: taskId
-          },
-        }
-      });
-      refetch();
-      messageApi.success('Updates due date success!');
-    } catch (error) {
-      console.log(error, 'Update task due date error!');
-      messageApi.error('Update due date failed!');
+      console.log(error, 'Delete tasks error!');
+      messageApi.error('Delete selected tasks failed!')
     }
   };
 
@@ -152,15 +102,22 @@ export const TasksTable: FC = () => {
       title: 'Task',
       dataIndex: 'name',
       key: 'name',
-      render: (_, data) => {
+      render: (name, data) => {
         return (
           <Typography.Paragraph
             editable={{
-              onChange: (newName) => handleUpdateTaskName(newName, data?.id),
+              onChange: value => {
+                const newData = {
+                  name: {
+                    set: value
+                  }
+                };
+                handleUpdateTask(newData, data?.id, 'Name')
+              },
               maxLength: 50,
             }}
           >
-            {data?.name}
+            {name}
           </Typography.Paragraph>
         )
       }
@@ -248,7 +205,16 @@ export const TasksTable: FC = () => {
                   <StatusesContent
                     statusesData={statusesData?.statuses as Status[]}
                     taskId={data?.id}
-                    onStatus={(statusId) => handleUpdateTaskStatus(statusId, data?.id)}
+                    onStatus={(statusId) => {
+                      const newData = {
+                        status: {
+                          connect: {
+                            id: statusId
+                          }
+                        }
+                      };
+                      handleUpdateTask(newData, data?.id, 'Status')
+                    }}
                     onEdit={() => setStatusContent('edit')}
                   />
                 )
@@ -271,12 +237,31 @@ export const TasksTable: FC = () => {
       key: 'dueDate',
       align: 'center',
       width: 150,
-      render: (_, data) => {
-        return <DatePicker 
-          format={'DD MMM'} 
-          variant={'outlined'} 
-          onChange={date => handleUpdateTaskDuedate(dayjs(date).toDate(), data?.id)}
-        />
+      render: (dueDate, data) => {
+        return (
+          <Flex>
+            <DatePicker
+              value={!!dueDate ? dayjs(dueDate) : null}
+              format={'DD MMM'}
+              showNow={false}
+              variant={'borderless'}
+              onChange={date => {
+                const currentDate = new Date();
+                const newDate = dayjs(date)
+                  .set('hour', currentDate.getHours())
+                  .set('minute', currentDate.getMinutes())
+                  .set('second', currentDate.getSeconds());
+
+                const newData = {
+                  dueDate: {
+                    set: newDate.toDate()
+                  }
+                };
+                handleUpdateTask(newData, data?.id, 'Due date')
+              }}
+            />
+          </Flex>
+        )
       }
     },
     {
@@ -296,7 +281,16 @@ export const TasksTable: FC = () => {
                   <StatusesContent
                     statusesData={prioritiesData?.priorities as Priority[]}
                     taskId={data?.id}
-                    onStatus={(statusId) => handleUpdateTaskPriority(statusId, data?.id)}
+                    onStatus={(priorityId) => {
+                      const newData = {
+                        priority: {
+                          connect: {
+                            id: priorityId
+                          }
+                        }
+                      };
+                      handleUpdateTask(newData, data?.id, 'Priority')
+                    }}
                     onEdit={() => setPriorityContent('edit')}
                   />
                 )
@@ -317,6 +311,28 @@ export const TasksTable: FC = () => {
       title: 'Notes',
       dataIndex: 'notes',
       key: 'notes',
+      align: 'center',
+      render: (note, data) => {
+        return (
+          <Typography.Paragraph
+            editable={{
+              onChange: value => {
+                const newData = {
+                  note: {
+                    set: value
+                  }
+                };
+                handleUpdateTask(newData, data?.id, 'Note')
+              },
+              maxLength: 50,
+              icon: <PlusCircleOutlined />,
+              tooltip: `${!!note ? 'Add' : 'Edit'} note`
+            }}
+          >
+            {note}
+          </Typography.Paragraph>
+        )
+      }
     },
     {
       title: 'Files',
@@ -331,35 +347,6 @@ export const TasksTable: FC = () => {
     },
   ];
 
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    setSelectedRowKeys(newSelectedRowKeys);
-  };
-
-  const handleRemoveSelectedTasks = async () => {
-    try {
-      await deleteTasks({
-        variables: {
-          where: {
-            id: {
-              in: selectedRowKeys as string[]
-            }
-          }
-        }
-      });
-
-      refetch();
-      setSelectedRowKeys([]);
-    } catch(error) {
-      console.log(error, 'Delete tasks error!');
-      messageApi.error('Delete selected tasks failed!')
-    }
-  }
-
-  const rowSelection: TableRowSelection<Task> = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-  }
-
   return (
     <Flex vertical gap={24}>
       {contextHolder}
@@ -369,7 +356,10 @@ export const TasksTable: FC = () => {
         loading={dataLoading}
         size={'small'}
         pagination={false}
-        rowSelection={rowSelection}
+        rowSelection={{
+          selectedRowKeys,
+          onChange: setSelectedRowKeys,
+        }}
         rowKey={(record) => record.id}
         expandable={{
           expandedRowRender: () => (

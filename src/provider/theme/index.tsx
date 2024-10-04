@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import { ConfigProvider } from 'antd';
 import { FC, PropsWithChildren } from 'react';
 import { Noto_Sans } from 'next/font/google';

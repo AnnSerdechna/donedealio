@@ -2,56 +2,58 @@
 import { FC, Fragment, useState } from "react";
 import { useParams } from 'next/navigation';
 
-import { Avatar, Badge, DatePicker, Button, Flex, Form, Input, message, Popover, Space, Table, Tag, Typography, Upload } from "antd"
+import { Avatar, Badge, DatePicker, Button, Flex, Form, Input, message, Popover, Space, Table, Tag, Typography, Upload, App } from "antd"
 import type { TableProps } from 'antd';
 import dayjs from 'dayjs';
-import { 
-  MessageOutlined, 
-  UserAddOutlined, 
-  SearchOutlined, 
-  DeleteTwoTone, 
-  FileAddOutlined, 
+import {
+  MessageOutlined,
+  UserAddOutlined,
+  SearchOutlined,
+  DeleteTwoTone,
+  FileAddOutlined,
   PlusCircleOutlined,
-  } from '@ant-design/icons'
-import { 
-  Status, 
-  StatusType, 
-  Task, 
-  useDeleteManyTaskMutation, 
-  useStatusesQuery, 
-  useTasksQuery, 
-  useUpdateOneTaskMutation, 
-  useWorkspaceQuery 
+} from '@ant-design/icons'
+import {
+  Status,
+  StatusType,
+  Task,
+  useDeleteManyTaskMutation,
+  useStatusesQuery,
+  useTasksQuery,
+  useUpdateOneTaskMutation,
+  useWorkspaceQuery
 } from '@/graphql/types';
 
 import { AddTaskForm } from '@/components/elements/tasks/add-task-form';
-import { StatusFormList } from './status-form-list';
-import { StatusPopover } from './status-popover';
-import { StatusesContent } from './statuses-content';
+import { StatusesContent, StatusFormList, StatusPopover } from '@/components/elements';
+
 
 const { Text } = Typography;
 
 type UpdatedDataType = { [key: string]: { set: string | Date } } | { [key: string]: { connect: { id: number } } };
 
-export const TasksTable: FC = () => {
-  const [messageApi, contextHolder] = message.useMessage();
+export const TableView: FC = () => {
+  const { message } = App.useApp();
   const { workspaceId } = useParams();
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [statusContent, setStatusContent] = useState<'change' | 'edit'>('change')
 
-  const { data: statusesData, refetch: reftchStatuses } = useStatusesQuery({variables: {where: {type: {equals: StatusType.Status}}}});
-  const { data: prioritiesData } = useStatusesQuery({variables: {where: {type: {equals: StatusType.Priority}}}});
-  const { data } = useWorkspaceQuery({ 
-    variables: { 
-      where: { 
-        id: workspaceId as string 
-  }}});
-  const { data: tasksData, refetch, loading: dataLoading } = useTasksQuery({ 
-    variables: { 
-      workspaceId: workspaceId as string 
-  }});
-  const [deleteTasks, { loading: deleteTasksLoading}] = useDeleteManyTaskMutation();
+  const { data: statusesData, refetch: reftchStatuses } = useStatusesQuery({ variables: { where: { type: { equals: StatusType.Status } } } });
+  const { data: prioritiesData } = useStatusesQuery({ variables: { where: { type: { equals: StatusType.Priority } } } });
+  const { data } = useWorkspaceQuery({
+    variables: {
+      where: {
+        id: workspaceId as string
+      }
+    }
+  });
+  const { data: tasksData, refetch, loading: dataLoading } = useTasksQuery({
+    variables: {
+      workspaceId: workspaceId as string
+    }
+  });
+  const [deleteTasks, { loading: deleteTasksLoading }] = useDeleteManyTaskMutation();
   const [updateTask] = useUpdateOneTaskMutation();
 
   const handleUpdateTask = async (data: UpdatedDataType, taskId: string, updatedField: string) => {
@@ -65,10 +67,10 @@ export const TasksTable: FC = () => {
         }
       });
       refetch();
-      messageApi.success(`${updatedField} was updated successfully!`);
+      message.success(`${updatedField} was updated successfully!`);
     } catch (error) {
       console.log(error, `Updated ${updatedField} error!`);
-      messageApi.error(`Updated ${updatedField} failed!`);
+      message.error(`Updated ${updatedField} failed!`);
     }
   };
 
@@ -87,7 +89,7 @@ export const TasksTable: FC = () => {
       setSelectedRowKeys([]);
     } catch (error) {
       console.log(error, 'Delete tasks error!');
-      messageApi.error('Delete selected tasks failed!')
+      message.error('Delete selected tasks failed!')
     }
   };
 
@@ -134,7 +136,6 @@ export const TasksTable: FC = () => {
       dataIndex: 'name',
       key: 'name',
       fixed: 'left',
-   
       render: (name, data) => {
         return (
           <Typography.Paragraph
@@ -155,7 +156,7 @@ export const TasksTable: FC = () => {
         )
       }
     },
-    Table.EXPAND_COLUMN,
+    // Table.EXPAND_COLUMN,
     {
       title: '',
       dataIndex: 'message',
@@ -315,7 +316,6 @@ export const TasksTable: FC = () => {
 
   return (
     <Flex vertical gap={4}>
-      {contextHolder}
       <Flex>
         {!!selectedRowKeys.length && (
           <Button

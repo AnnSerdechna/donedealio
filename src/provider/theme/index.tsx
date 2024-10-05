@@ -41,9 +41,9 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             triggerBg: variables.darkBg,
           },
         
-          Badge: {
-            colorError: variables.primaryColor,
-          },
+          // Badge: {
+          //   colorError: variables.primaryColor,
+          // },
           Form: {
             itemMarginBottom: 16,
           },

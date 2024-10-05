@@ -5,7 +5,6 @@ import { useParams } from 'next/navigation';
 import { Flex } from "antd"
 
 import { Title } from '@/components/ui';
-import { TasksTable } from '@/components/elements';
 import { useWorkspaceQuery } from '@/graphql/types';
 
 export const WorkspacePage: FC = () => {
@@ -21,7 +20,6 @@ export const WorkspacePage: FC = () => {
   return (
     <Flex vertical gap={8}>
       <Title level={5}>{data?.workspace?.name}</Title>
-      <TasksTable />
     </Flex>
   );
 }

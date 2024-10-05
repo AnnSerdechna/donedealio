@@ -2,8 +2,6 @@ import { Button, ColorPicker, Divider, Form, Input, Space } from 'antd';
 import { FC } from 'react'
 import { DeleteTwoTone, PlusOutlined } from '@ant-design/icons';
 
-import { Status } from '@/graphql/types';
-
 type StatusFormProps = {
   initialData: {
     id?: number,

@@ -1,9 +1,7 @@
-import { WorkspacePage } from '@/components/pages';
+import { CalendarView } from '@/components/pages';
 
-export default function CalendarView() {
+export default function Calendar() {
   return (
-    <section>
-      Calendar
-    </section>
+    <CalendarView />
   );
 };

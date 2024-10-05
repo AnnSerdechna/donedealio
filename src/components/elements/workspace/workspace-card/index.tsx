@@ -17,7 +17,8 @@ type WorkspaceCardProps = {
 }
 
 export const WorkspaceCard: FC<WorkspaceCardProps> = ({ userId, id, name, description, onEdit, onRemove }) => {
-  const router = useRouter()
+  const router = useRouter();
+  
   const items: MenuProps['items'] = [
     {
       key: '1',

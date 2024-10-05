@@ -4056,6 +4056,13 @@ export type UpdateOneTaskMutationVariables = Exact<{
 
 export type UpdateOneTaskMutation = { __typename?: 'Mutation', updateOneTask?: { __typename?: 'Task', id: string } | null };
 
+export type GetStatusQueryVariables = Exact<{
+  where: StatusWhereUniqueInput;
+}>;
+
+
+export type GetStatusQuery = { __typename?: 'Query', getStatus?: { __typename?: 'Status', id: number, name: string, color: string } | null };
+
 export type StatusesQueryVariables = Exact<{
   where?: InputMaybe<StatusWhereInput>;
 }>;
@@ -4488,6 +4495,48 @@ export function useUpdateOneTaskMutation(baseOptions?: Apollo.MutationHookOption
 export type UpdateOneTaskMutationHookResult = ReturnType<typeof useUpdateOneTaskMutation>;
 export type UpdateOneTaskMutationResult = Apollo.MutationResult<UpdateOneTaskMutation>;
 export type UpdateOneTaskMutationOptions = Apollo.BaseMutationOptions<UpdateOneTaskMutation, UpdateOneTaskMutationVariables>;
+export const GetStatusDocument = gql`
+    query getStatus($where: StatusWhereUniqueInput!) {
+  getStatus(where: $where) {
+    id
+    name
+    color
+  }
+}
+    `;
+
+/**
+ * __useGetStatusQuery__
+ *
+ * To run a query within a React component, call `useGetStatusQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStatusQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStatusQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetStatusQuery(baseOptions: Apollo.QueryHookOptions<GetStatusQuery, GetStatusQueryVariables> & ({ variables: GetStatusQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetStatusQuery, GetStatusQueryVariables>(GetStatusDocument, options);
+      }
+export function useGetStatusLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetStatusQuery, GetStatusQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetStatusQuery, GetStatusQueryVariables>(GetStatusDocument, options);
+        }
+export function useGetStatusSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetStatusQuery, GetStatusQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetStatusQuery, GetStatusQueryVariables>(GetStatusDocument, options);
+        }
+export type GetStatusQueryHookResult = ReturnType<typeof useGetStatusQuery>;
+export type GetStatusLazyQueryHookResult = ReturnType<typeof useGetStatusLazyQuery>;
+export type GetStatusSuspenseQueryHookResult = ReturnType<typeof useGetStatusSuspenseQuery>;
+export type GetStatusQueryResult = Apollo.QueryResult<GetStatusQuery, GetStatusQueryVariables>;
 export const StatusesDocument = gql`
     query Statuses($where: StatusWhereInput) {
   statuses(where: $where) {

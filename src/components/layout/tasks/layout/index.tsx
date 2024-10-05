@@ -1,7 +1,7 @@
 'use client';
 
 import React, { FC, Fragment, PropsWithChildren, useEffect, useState } from 'react';
-import { Drawer, Layout, message, Modal, Row } from 'antd';
+import { App, Drawer, Layout, message, Modal, Row } from 'antd';
 import { usePathname } from 'next/navigation';
 import { signOut } from 'next-auth/react';
 
@@ -20,17 +20,9 @@ const LogoComponent: FC<LogoProps> = ({ ...props }) => (
 
 export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
   const pathname = usePathname();
-  const [messageApi, messageContextHolder] = message.useMessage();
-  const [modal, modalContextHolder] = Modal.useModal();
+  const { message, modal } = App.useApp();
   const [collapsed, setCollapsed] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-
-  const contextHolder = (
-    <>
-      {messageContextHolder}
-      {modalContextHolder}
-    </>
-  );
 
   useEffect(() => {
     setOpenMenu(false)
@@ -44,7 +36,7 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
       signOut({ callbackUrl: window.location.origin })
     } catch (error) {
       console.log(error, 'Log out error');
-      messageApi.error('Something went wrong!')
+      message.error('Something went wrong!')
     }
   };
 
@@ -57,12 +49,12 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
  
   return (
     <Fragment>
-      {contextHolder}
       <Layout className={styles.tasksLayout}>
         <Sider
           className={styles.sider}
           collapsed={collapsed}
           onCollapse={setCollapsed}
+          style={{height: '100vh', overflow: 'hidden'}}
           collapsible
         >
           <LogoComponent hasLogoText={false} />

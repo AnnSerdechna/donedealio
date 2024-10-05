@@ -1,7 +1,7 @@
-import { TasksTable } from '@/components/elements';
+import { TableView } from '@/components/pages';
 
-export default function TableView() {
+export default function Table() {
   return (
-    <TasksTable />
+    <TableView />
   );
 };

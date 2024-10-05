@@ -20,14 +20,14 @@ import { WorkspaceFormContent ,WorkspaceCard } from '@/components/elements';
 export const WorkspacesPage: FC = () => {
   const createForm = useForm();
   const updateForm = useForm();
-  const {data: session} = useSession();
+
   const [modalApi, contextModal] = Modal.useModal();
   const [messageApi, contextMessage] = message.useMessage();
   const [openModalCreate, setOpenModalCreate] = useState(false);
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
   const [isValueChange, setIsValueChange] = useState(false);
   const [selectedWorkspaceId, setSelectedWorkspaceId] = useState('');
-
+  const { data: session } = useSession();
   const userId = session?.user?.id as string;
 
   const { data: workspacesData, refetch } = useWorkspacesQuery({ variables: { where: { userId: { equals: userId } } } })

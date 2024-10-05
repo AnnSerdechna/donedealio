@@ -11,8 +11,6 @@ import {
   SearchOutlined, 
   DeleteTwoTone, 
   FileAddOutlined, 
-  RightOutlined, 
-  DownOutlined, 
   PlusCircleOutlined,
   } from '@ant-design/icons'
 import { 
@@ -27,7 +25,6 @@ import {
 } from '@/graphql/types';
 
 import { AddTaskForm } from '@/components/elements/tasks/add-task-form';
-import { Button as ButtonUi } from '@/components/ui';
 import { StatusFormList } from './status-form-list';
 import { StatusPopover } from './status-popover';
 import { StatusesContent } from './statuses-content';
@@ -136,17 +133,19 @@ export const TasksTable: FC = () => {
       title: 'Task',
       dataIndex: 'name',
       key: 'name',
+      fixed: 'left',
+   
       render: (name, data) => {
         return (
           <Typography.Paragraph
             editable={{
-              onChange: value => {
+              onChange: newValue => {
                 const newData = {
                   name: {
-                    set: value
+                    set: newValue
                   }
                 };
-                handleUpdateTask(newData, data?.id, 'Name')
+                name !== newValue && handleUpdateTask(newData, data?.id, 'Name')
               },
               maxLength: 50,
             }}
@@ -162,6 +161,8 @@ export const TasksTable: FC = () => {
       dataIndex: 'message',
       key: 'message',
       align: 'center',
+      fixed: 'left',
+      width: '5%',
       render: () => (
         <Button
           icon={(
@@ -276,17 +277,18 @@ export const TasksTable: FC = () => {
       dataIndex: 'note',
       key: 'note',
       align: 'center',
+      width: '15%',
       render: (note, data) => {
         return (
           <Typography.Paragraph
             editable={{
-              onChange: value => {
+              onChange: newValue => {
                 const newData = {
                   note: {
-                    set: value
+                    set: newValue
                   }
                 };
-                handleUpdateTask(newData, data?.id, 'Note')
+                note !== newValue && handleUpdateTask(newData, data?.id, 'Note');
               },
               maxLength: 50,
               icon: <PlusCircleOutlined />,
@@ -312,59 +314,34 @@ export const TasksTable: FC = () => {
   ];
 
   return (
-    <Flex vertical gap={24}>
+    <Flex vertical gap={4}>
       {contextHolder}
+      <Flex>
+        {!!selectedRowKeys.length && (
+          <Button
+            type={'text'}
+            icon={<DeleteTwoTone />}
+            loading={deleteTasksLoading}
+            onClick={handleRemoveSelectedTasks}
+          >
+            Delete
+          </Button>
+        )}
+      </Flex>
       <Table
         dataSource={tasksData?.tasks as Task[]}
         columns={columns}
         loading={dataLoading}
         size={'small'}
         pagination={false}
+        scroll={{ x: 1400 }}
         rowSelection={{
           selectedRowKeys,
           onChange: setSelectedRowKeys,
         }}
         rowKey={(record) => record.id}
-        expandable={{
-          expandedRowRender: () => (
-            <Table
-              dataSource={[]}
-              columns={[]}
-              size={'small'}
-              pagination={false}
-            />
-          ),
-          expandIcon: ({ expanded, onExpand, record }) =>
-            expanded ? (
-              <DownOutlined onClick={e => onExpand(record, e)} />
-            ) : (
-              <RightOutlined onClick={e => onExpand(record, e)} />
-            )
-        }}
         footer={() => <AddTaskForm workspaceId={data?.workspace?.id as string} refetchTasks={refetch} />}
       />
-      {!!selectedRowKeys.length && (
-        <div style={{ boxShadow: 'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px'}}>
-          <Flex justify={'space-between'}>
-            <Flex gap={8}>
-              {selectedRowKeys.map(item => (
-                <span
-                  key={item}
-                  style={{ display: 'block', width: 8, height: 8, background: 'blue', borderRadius: '50%' }}
-                />
-              ))}
-            </Flex>
-            <ButtonUi
-              text={'Delete'}
-              type={'text'}
-              icon={<DeleteTwoTone />}
-              wide={false}
-              loading={deleteTasksLoading}
-              onClick={handleRemoveSelectedTasks}
-            />
-          </Flex>
-        </div>
-      )}
     </Flex>
   );
 }

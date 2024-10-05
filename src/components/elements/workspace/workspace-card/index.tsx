@@ -42,7 +42,7 @@ export const WorkspaceCard: FC<WorkspaceCardProps> = ({ userId, id, name, descri
   return (
     <Card
       title={name}
-      onClick={() => router.push(`/${userId}/workspace/${id}`)}
+      onClick={() => router.push(`/${userId}/workspace/${id}/table`)}
       style={{ cursor: 'pointer' }}
       extra={(
         <Dropdown

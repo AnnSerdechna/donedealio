@@ -12,4 +12,6 @@ export { WorkspaceFormContent } from './workspace/workspace-form-content';
 
 export { StatusField } from './tasks/status';
 
+export { CreateTaskForm } from './tasks/create-task-form';
+
 

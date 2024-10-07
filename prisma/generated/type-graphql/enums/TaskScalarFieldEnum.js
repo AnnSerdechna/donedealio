@@ -12,7 +12,7 @@ var TaskScalarFieldEnum;
     TaskScalarFieldEnum["dueDate"] = "dueDate";
     TaskScalarFieldEnum["createdAt"] = "createdAt";
     TaskScalarFieldEnum["updatedAt"] = "updatedAt";
-    TaskScalarFieldEnum["statusid"] = "statusid";
+    TaskScalarFieldEnum["statusId"] = "statusId";
     TaskScalarFieldEnum["priorityId"] = "priorityId";
     TaskScalarFieldEnum["workspaceId"] = "workspaceId";
 })(TaskScalarFieldEnum || (exports.TaskScalarFieldEnum = TaskScalarFieldEnum = {}));

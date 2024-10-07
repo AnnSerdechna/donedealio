@@ -1,0 +1,7 @@
+mutation UpdateOneStatus($data: StatusUpdateInput!, $where: StatusWhereUniqueInput!) {
+  updateOneStatus(data: $data, where: $where) {
+    id
+    name
+    color
+  }
+}

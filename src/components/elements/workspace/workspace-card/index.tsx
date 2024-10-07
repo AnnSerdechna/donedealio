@@ -17,7 +17,8 @@ type WorkspaceCardProps = {
 }
 
 export const WorkspaceCard: FC<WorkspaceCardProps> = ({ userId, id, name, description, onEdit, onRemove }) => {
-  const router = useRouter()
+  const router = useRouter();
+  
   const items: MenuProps['items'] = [
     {
       key: '1',
@@ -42,7 +43,7 @@ export const WorkspaceCard: FC<WorkspaceCardProps> = ({ userId, id, name, descri
   return (
     <Card
       title={name}
-      onClick={() => router.push(`/${userId}/workspace/${id}`)}
+      onClick={() => router.push(`/${userId}/workspace/${id}/table`)}
       style={{ cursor: 'pointer' }}
       extra={(
         <Dropdown

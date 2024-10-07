@@ -1,7 +1,8 @@
-import { Button, FormItem } from '@/components/ui';
-import { Input } from 'antd'
-import { FC, Fragment } from 'react'
+import { Input } from 'antd';
+import { FC, Fragment } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
+
+import { Button, FormItem } from '@/components/ui';
 
 export const AddTaskFormContent: FC<{ loading: boolean }> = ({ loading }) => {
   return (

@@ -3,6 +3,11 @@
 .button {
   color: $text-color;
 
+  &.ghost {
+    color: #d9d9d9;
+    border-color: #d9d9d9;
+  }
+
   &.iconOnly {
     color: $text-color;
   }
@@ -12,6 +17,6 @@
   }
 
   &.wide {
-    width: 100%;
+    width: 100% !important;
   }
 }

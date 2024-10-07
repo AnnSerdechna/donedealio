@@ -5,15 +5,21 @@ import { useParams } from 'next/navigation';
 import { Flex } from "antd"
 
 import { Title } from '@/components/ui';
-import { TasksTable } from '@/components/elements';
+import { useWorkspaceQuery } from '@/graphql/types';
 
 export const WorkspacePage: FC = () => {
   const { workspaceId } = useParams();
+  const { data } = useWorkspaceQuery({
+    variables: {
+      where: {
+        id: workspaceId as string
+      }
+    }
+  });
 
   return (
-    <Flex vertical gap={24}>
-      <Title level={4}>Workspace #{workspaceId}</Title>
-      <TasksTable />
+    <Flex vertical gap={8}>
+      <Title level={5}>{data?.workspace?.name}</Title>
     </Flex>
   );
 }

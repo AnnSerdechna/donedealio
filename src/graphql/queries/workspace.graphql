@@ -18,10 +18,12 @@ query Workspace($where: WorkspaceWhereUniqueInput!) {
         id
       }
       status {
+        id
         name
         color
       }
       priority {
+        id
         name
         color
       }

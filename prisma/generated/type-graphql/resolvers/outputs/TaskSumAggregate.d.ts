@@ -1,4 +1,4 @@
 export declare class TaskSumAggregate {
-    statusid: number | null;
+    statusId: number | null;
     priorityId: number | null;
 }

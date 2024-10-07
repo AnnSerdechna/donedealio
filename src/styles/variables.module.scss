@@ -1,5 +1,6 @@
 $primary-color: #37447E;
 $secondary-color: #5f74d4;
+$error-color: #f5222d;
 $dark-bg: #333;
 $dark-bg-selected: #444;
 $white-color: #fff;
@@ -31,6 +32,7 @@ $screen-lg: 1024px;
 :export {
   primaryColor: $primary-color;
   secondaryColor: $secondary-color;
+  errorColor: $error-color;
   darkBg: $dark-bg;
   darkBgSelected: $dark-bg-selected;
   whiteColor: $white-color;

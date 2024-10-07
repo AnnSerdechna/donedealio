@@ -1,0 +1,7 @@
+mutation createOnePriority($data: PriorityCreateInput!) {
+  createOnePriority(data: $data) {
+    id
+    name
+    color
+  }
+}

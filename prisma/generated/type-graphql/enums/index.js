@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkspaceScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.TaskScalarFieldEnum = exports.StatusScalarFieldEnum = exports.SortOrder = exports.SessionScalarFieldEnum = exports.Role = exports.QueryMode = exports.PriorityScalarFieldEnum = exports.NullsOrder = exports.FileScalarFieldEnum = exports.AccountScalarFieldEnum = void 0;
+exports.WorkspaceScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.TaskScalarFieldEnum = exports.StatusType = exports.StatusScalarFieldEnum = exports.SortOrder = exports.SessionScalarFieldEnum = exports.Role = exports.QueryMode = exports.PriorityScalarFieldEnum = exports.NullsOrder = exports.FileScalarFieldEnum = exports.AccountScalarFieldEnum = void 0;
 var AccountScalarFieldEnum_1 = require("./AccountScalarFieldEnum");
 Object.defineProperty(exports, "AccountScalarFieldEnum", { enumerable: true, get: function () { return AccountScalarFieldEnum_1.AccountScalarFieldEnum; } });
 var FileScalarFieldEnum_1 = require("./FileScalarFieldEnum");
@@ -19,6 +19,8 @@ var SortOrder_1 = require("./SortOrder");
 Object.defineProperty(exports, "SortOrder", { enumerable: true, get: function () { return SortOrder_1.SortOrder; } });
 var StatusScalarFieldEnum_1 = require("./StatusScalarFieldEnum");
 Object.defineProperty(exports, "StatusScalarFieldEnum", { enumerable: true, get: function () { return StatusScalarFieldEnum_1.StatusScalarFieldEnum; } });
+var StatusType_1 = require("./StatusType");
+Object.defineProperty(exports, "StatusType", { enumerable: true, get: function () { return StatusType_1.StatusType; } });
 var TaskScalarFieldEnum_1 = require("./TaskScalarFieldEnum");
 Object.defineProperty(exports, "TaskScalarFieldEnum", { enumerable: true, get: function () { return TaskScalarFieldEnum_1.TaskScalarFieldEnum; } });
 var TransactionIsolationLevel_1 = require("./TransactionIsolationLevel");

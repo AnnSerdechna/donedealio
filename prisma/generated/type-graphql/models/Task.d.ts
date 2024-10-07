@@ -12,7 +12,7 @@ export declare class Task {
     createdAt: Date;
     updatedAt: Date;
     status?: Status | null;
-    statusid?: number | null;
+    statusId?: number | null;
     priority?: Priority | null;
     priorityId?: number | null;
     files?: File[];

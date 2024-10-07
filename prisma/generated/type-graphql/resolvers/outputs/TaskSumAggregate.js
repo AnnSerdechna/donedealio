@@ -11,7 +11,7 @@ tslib_1.__decorate([
         nullable: true
     }),
     tslib_1.__metadata("design:type", Number)
-], TaskSumAggregate.prototype, "statusid", void 0);
+], TaskSumAggregate.prototype, "statusId", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => TypeGraphQL.Int, {
         nullable: true

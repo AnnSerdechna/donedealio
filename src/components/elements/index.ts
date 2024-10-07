@@ -10,5 +10,6 @@ export { ConfirmPasswordForm } from './auth/auth-forms/confirm-password-form';
 export { WorkspaceCard } from './workspace/workspace-card';
 export { WorkspaceFormContent } from './workspace/workspace-form-content';
 
-export { TasksTable } from './tasks/tasks-table';
+export { StatusField } from './tasks/status';
+
 

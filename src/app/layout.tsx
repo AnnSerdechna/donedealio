@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Noto_Sans } from 'next/font/google';
+import { App as AntdApp } from "antd";
 
 import { ThemeProvider, ApolloProvider, SessionProvider } from '@/provider';
 import '@/styles/global.scss'
@@ -24,11 +25,13 @@ export default async function RootLayout({
       <body className={notoSans.className}>
         <SessionProvider>
           <ApolloProvider>
-            <AntdRegistry>
-              <ThemeProvider>
-                {children}
-              </ThemeProvider>
-            </AntdRegistry>
+            <AntdApp>
+              <AntdRegistry>
+                <ThemeProvider>
+                  {children}
+                </ThemeProvider>
+              </AntdRegistry>
+            </AntdApp>
           </ApolloProvider>
         </SessionProvider>
       </body>

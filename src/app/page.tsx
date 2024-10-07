@@ -1,15 +1,9 @@
 import { HomeLayout } from '@/components/layout';
-import { Col, Flex } from 'antd';
-import Image from 'next/image';
-
-import AuthImage from '@/assets/images/email.png';
-import styles from './page.module.scss';
-import { Button, Paragraph, Title } from '@/components/ui';
 
 export default function Home() {
   return (
     <HomeLayout>
-      <Flex className={styles.contentWrap} justify={'space-between'}>
+      {/* <Flex className={styles.contentWrap} justify={'space-between'}>
         <Col span={11} className={styles.contentCol}>
           <Flex align={'center'} justify={'center'} className={styles.content}>
             <Col span={20}>
@@ -42,7 +36,7 @@ export default function Home() {
             />
           </Flex>
         </Col>
-      </Flex>
+      </Flex> */}
     </HomeLayout>
   );
 };

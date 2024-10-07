@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import { ConfigProvider } from 'antd';
 import { FC, PropsWithChildren } from 'react';
 import { Noto_Sans } from 'next/font/google';
@@ -40,9 +41,9 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             triggerBg: variables.darkBg,
           },
         
-          Badge: {
-            colorError: variables.primaryColor,
-          },
+          // Badge: {
+          //   colorError: variables.primaryColor,
+          // },
           Form: {
             itemMarginBottom: 16,
           },

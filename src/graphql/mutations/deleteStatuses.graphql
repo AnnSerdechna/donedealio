@@ -1,0 +1,5 @@
+mutation deleteManyStatus($where: StatusWhereInput) {
+  deleteManyStatus(where: $where) {
+    count
+  }
+}

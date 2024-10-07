@@ -7,6 +7,7 @@ export { Role } from "./Role";
 export { SessionScalarFieldEnum } from "./SessionScalarFieldEnum";
 export { SortOrder } from "./SortOrder";
 export { StatusScalarFieldEnum } from "./StatusScalarFieldEnum";
+export { StatusType } from "./StatusType";
 export { TaskScalarFieldEnum } from "./TaskScalarFieldEnum";
 export { TransactionIsolationLevel } from "./TransactionIsolationLevel";
 export { UserScalarFieldEnum } from "./UserScalarFieldEnum";

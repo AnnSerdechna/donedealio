@@ -12,7 +12,7 @@ export declare class TaskOrderByWithAggregationInput {
     dueDate?: SortOrderInput | undefined;
     createdAt?: "asc" | "desc" | undefined;
     updatedAt?: "asc" | "desc" | undefined;
-    statusid?: SortOrderInput | undefined;
+    statusId?: SortOrderInput | undefined;
     priorityId?: SortOrderInput | undefined;
     workspaceId?: "asc" | "desc" | undefined;
     _count?: TaskCountOrderByAggregateInput | undefined;

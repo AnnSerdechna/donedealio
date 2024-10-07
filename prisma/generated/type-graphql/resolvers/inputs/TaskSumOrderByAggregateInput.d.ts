@@ -1,4 +1,4 @@
 export declare class TaskSumOrderByAggregateInput {
-    statusid?: "asc" | "desc" | undefined;
+    statusId?: "asc" | "desc" | undefined;
     priorityId?: "asc" | "desc" | undefined;
 }

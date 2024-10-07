@@ -472,7 +472,7 @@ export type CreateManyAndReturnTask = {
   priority?: Maybe<Priority>;
   priorityId?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Status>;
-  statusid?: Maybe<Scalars['Int']['output']>;
+  statusId?: Maybe<Scalars['Int']['output']>;
   updatedAt: Scalars['DateTimeISO']['output'];
   workspace: Workspace;
   workspaceId: Scalars['String']['output'];
@@ -2859,7 +2859,7 @@ export type Task = {
   priority?: Maybe<Priority>;
   priorityId?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Status>;
-  statusid?: Maybe<Scalars['Int']['output']>;
+  statusId?: Maybe<Scalars['Int']['output']>;
   updatedAt: Scalars['DateTimeISO']['output'];
   workspace: Workspace;
   workspaceId: Scalars['String']['output'];
@@ -2888,12 +2888,12 @@ export type TaskStatusArgs = {
 export type TaskAvgAggregate = {
   __typename?: 'TaskAvgAggregate';
   priorityId?: Maybe<Scalars['Float']['output']>;
-  statusid?: Maybe<Scalars['Float']['output']>;
+  statusId?: Maybe<Scalars['Float']['output']>;
 };
 
 export type TaskAvgOrderByAggregateInput = {
   priorityId?: InputMaybe<SortOrder>;
-  statusid?: InputMaybe<SortOrder>;
+  statusId?: InputMaybe<SortOrder>;
 };
 
 export type TaskCount = {
@@ -2916,7 +2916,7 @@ export type TaskCountAggregate = {
   name: Scalars['Int']['output'];
   note: Scalars['Int']['output'];
   priorityId: Scalars['Int']['output'];
-  statusid: Scalars['Int']['output'];
+  statusId: Scalars['Int']['output'];
   updatedAt: Scalars['Int']['output'];
   workspaceId: Scalars['Int']['output'];
 };
@@ -2929,7 +2929,7 @@ export type TaskCountOrderByAggregateInput = {
   name?: InputMaybe<SortOrder>;
   note?: InputMaybe<SortOrder>;
   priorityId?: InputMaybe<SortOrder>;
-  statusid?: InputMaybe<SortOrder>;
+  statusId?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   workspaceId?: InputMaybe<SortOrder>;
 };
@@ -2956,7 +2956,7 @@ export type TaskCreateManyInput = {
   name: Scalars['String']['input'];
   note?: InputMaybe<Scalars['String']['input']>;
   priorityId?: InputMaybe<Scalars['Int']['input']>;
-  statusid?: InputMaybe<Scalars['Int']['input']>;
+  statusId?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   workspaceId: Scalars['String']['input'];
 };
@@ -2968,7 +2968,7 @@ export type TaskCreateManyPriorityInput = {
   message?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   note?: InputMaybe<Scalars['String']['input']>;
-  statusid?: InputMaybe<Scalars['Int']['input']>;
+  statusId?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   workspaceId: Scalars['String']['input'];
 };
@@ -3003,7 +3003,7 @@ export type TaskCreateManyWorkspaceInput = {
   name: Scalars['String']['input'];
   note?: InputMaybe<Scalars['String']['input']>;
   priorityId?: InputMaybe<Scalars['Int']['input']>;
-  statusid?: InputMaybe<Scalars['Int']['input']>;
+  statusId?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -3125,7 +3125,7 @@ export type TaskGroupBy = {
   name: Scalars['String']['output'];
   note?: Maybe<Scalars['String']['output']>;
   priorityId?: Maybe<Scalars['Int']['output']>;
-  statusid?: Maybe<Scalars['Int']['output']>;
+  statusId?: Maybe<Scalars['Int']['output']>;
   updatedAt: Scalars['DateTimeISO']['output'];
   workspaceId: Scalars['String']['output'];
 };
@@ -3145,7 +3145,7 @@ export type TaskMaxAggregate = {
   name?: Maybe<Scalars['String']['output']>;
   note?: Maybe<Scalars['String']['output']>;
   priorityId?: Maybe<Scalars['Int']['output']>;
-  statusid?: Maybe<Scalars['Int']['output']>;
+  statusId?: Maybe<Scalars['Int']['output']>;
   updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
   workspaceId?: Maybe<Scalars['String']['output']>;
 };
@@ -3158,7 +3158,7 @@ export type TaskMaxOrderByAggregateInput = {
   name?: InputMaybe<SortOrder>;
   note?: InputMaybe<SortOrder>;
   priorityId?: InputMaybe<SortOrder>;
-  statusid?: InputMaybe<SortOrder>;
+  statusId?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   workspaceId?: InputMaybe<SortOrder>;
 };
@@ -3172,7 +3172,7 @@ export type TaskMinAggregate = {
   name?: Maybe<Scalars['String']['output']>;
   note?: Maybe<Scalars['String']['output']>;
   priorityId?: Maybe<Scalars['Int']['output']>;
-  statusid?: Maybe<Scalars['Int']['output']>;
+  statusId?: Maybe<Scalars['Int']['output']>;
   updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
   workspaceId?: Maybe<Scalars['String']['output']>;
 };
@@ -3185,7 +3185,7 @@ export type TaskMinOrderByAggregateInput = {
   name?: InputMaybe<SortOrder>;
   note?: InputMaybe<SortOrder>;
   priorityId?: InputMaybe<SortOrder>;
-  statusid?: InputMaybe<SortOrder>;
+  statusId?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   workspaceId?: InputMaybe<SortOrder>;
 };
@@ -3212,7 +3212,7 @@ export type TaskOrderByWithAggregationInput = {
   name?: InputMaybe<SortOrder>;
   note?: InputMaybe<SortOrderInput>;
   priorityId?: InputMaybe<SortOrderInput>;
-  statusid?: InputMaybe<SortOrderInput>;
+  statusId?: InputMaybe<SortOrderInput>;
   updatedAt?: InputMaybe<SortOrder>;
   workspaceId?: InputMaybe<SortOrder>;
 };
@@ -3228,7 +3228,7 @@ export type TaskOrderByWithRelationInput = {
   priority?: InputMaybe<PriorityOrderByWithRelationInput>;
   priorityId?: InputMaybe<SortOrderInput>;
   status?: InputMaybe<StatusOrderByWithRelationInput>;
-  statusid?: InputMaybe<SortOrderInput>;
+  statusId?: InputMaybe<SortOrderInput>;
   updatedAt?: InputMaybe<SortOrder>;
   workspace?: InputMaybe<WorkspaceOrderByWithRelationInput>;
   workspaceId?: InputMaybe<SortOrder>;
@@ -3242,7 +3242,7 @@ export enum TaskScalarFieldEnum {
   Name = 'name',
   Note = 'note',
   PriorityId = 'priorityId',
-  Statusid = 'statusid',
+  StatusId = 'statusId',
   UpdatedAt = 'updatedAt',
   WorkspaceId = 'workspaceId'
 }
@@ -3258,7 +3258,7 @@ export type TaskScalarWhereInput = {
   name?: InputMaybe<StringFilter>;
   note?: InputMaybe<StringNullableFilter>;
   priorityId?: InputMaybe<IntNullableFilter>;
-  statusid?: InputMaybe<IntNullableFilter>;
+  statusId?: InputMaybe<IntNullableFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   workspaceId?: InputMaybe<StringFilter>;
 };
@@ -3274,7 +3274,7 @@ export type TaskScalarWhereWithAggregatesInput = {
   name?: InputMaybe<StringWithAggregatesFilter>;
   note?: InputMaybe<StringNullableWithAggregatesFilter>;
   priorityId?: InputMaybe<IntNullableWithAggregatesFilter>;
-  statusid?: InputMaybe<IntNullableWithAggregatesFilter>;
+  statusId?: InputMaybe<IntNullableWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   workspaceId?: InputMaybe<StringWithAggregatesFilter>;
 };
@@ -3282,12 +3282,12 @@ export type TaskScalarWhereWithAggregatesInput = {
 export type TaskSumAggregate = {
   __typename?: 'TaskSumAggregate';
   priorityId?: Maybe<Scalars['Int']['output']>;
-  statusid?: Maybe<Scalars['Int']['output']>;
+  statusId?: Maybe<Scalars['Int']['output']>;
 };
 
 export type TaskSumOrderByAggregateInput = {
   priorityId?: InputMaybe<SortOrder>;
-  statusid?: InputMaybe<SortOrder>;
+  statusId?: InputMaybe<SortOrder>;
 };
 
 export type TaskUpdateInput = {
@@ -3491,7 +3491,7 @@ export type TaskWhereInput = {
   priority?: InputMaybe<PriorityNullableRelationFilter>;
   priorityId?: InputMaybe<IntNullableFilter>;
   status?: InputMaybe<StatusNullableRelationFilter>;
-  statusid?: InputMaybe<IntNullableFilter>;
+  statusId?: InputMaybe<IntNullableFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   workspace?: InputMaybe<WorkspaceRelationFilter>;
   workspaceId?: InputMaybe<StringFilter>;
@@ -3511,7 +3511,7 @@ export type TaskWhereUniqueInput = {
   priority?: InputMaybe<PriorityNullableRelationFilter>;
   priorityId?: InputMaybe<IntNullableFilter>;
   status?: InputMaybe<StatusNullableRelationFilter>;
-  statusid?: InputMaybe<IntNullableFilter>;
+  statusId?: InputMaybe<IntNullableFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   workspace?: InputMaybe<WorkspaceRelationFilter>;
   workspaceId?: InputMaybe<StringFilter>;
@@ -4401,6 +4401,20 @@ export type WorkspaceWhereUniqueInput = {
   userId?: InputMaybe<StringNullableFilter>;
 };
 
+export type CreateOnePriorityMutationVariables = Exact<{
+  data: PriorityCreateInput;
+}>;
+
+
+export type CreateOnePriorityMutation = { __typename?: 'Mutation', createOnePriority: { __typename?: 'Priority', id: number, name: string, color: string } };
+
+export type CreateOneStatusMutationVariables = Exact<{
+  data: StatusCreateInput;
+}>;
+
+
+export type CreateOneStatusMutation = { __typename?: 'Mutation', createOneStatus: { __typename?: 'Status', id: number, name: string, color: string } };
+
 export type CreateOneTaskMutationVariables = Exact<{
   data: TaskCreateInput;
 }>;
@@ -4421,6 +4435,20 @@ export type CreateOneWorkspaceMutationVariables = Exact<{
 
 
 export type CreateOneWorkspaceMutation = { __typename?: 'Mutation', createOneWorkspace: { __typename?: 'Workspace', id: string, name: string, description: string, user?: { __typename?: 'User', id: string } | null } };
+
+export type DeleteManyPriorityMutationVariables = Exact<{
+  where?: InputMaybe<PriorityWhereInput>;
+}>;
+
+
+export type DeleteManyPriorityMutation = { __typename?: 'Mutation', deleteManyPriority: { __typename?: 'AffectedRowsOutput', count: number } };
+
+export type DeleteManyStatusMutationVariables = Exact<{
+  where?: InputMaybe<StatusWhereInput>;
+}>;
+
+
+export type DeleteManyStatusMutation = { __typename?: 'Mutation', deleteManyStatus: { __typename?: 'AffectedRowsOutput', count: number } };
 
 export type DeleteManyTaskMutationVariables = Exact<{
   where?: InputMaybe<TaskWhereInput>;
@@ -4444,6 +4472,22 @@ export type UpdateOneWorkspaceMutationVariables = Exact<{
 
 export type UpdateOneWorkspaceMutation = { __typename?: 'Mutation', updateOneWorkspace?: { __typename?: 'Workspace', id: string, name: string, description: string } | null };
 
+export type UpdateOnePriorityMutationVariables = Exact<{
+  data: PriorityUpdateInput;
+  where: PriorityWhereUniqueInput;
+}>;
+
+
+export type UpdateOnePriorityMutation = { __typename?: 'Mutation', updateOnePriority?: { __typename?: 'Priority', id: number, name: string, color: string } | null };
+
+export type UpdateOneStatusMutationVariables = Exact<{
+  data: StatusUpdateInput;
+  where: StatusWhereUniqueInput;
+}>;
+
+
+export type UpdateOneStatusMutation = { __typename?: 'Mutation', updateOneStatus?: { __typename?: 'Status', id: number, name: string, color: string } | null };
+
 export type UpdateOneTaskMutationVariables = Exact<{
   data: TaskUpdateInput;
   where: TaskWhereUniqueInput;
@@ -4452,12 +4496,16 @@ export type UpdateOneTaskMutationVariables = Exact<{
 
 export type UpdateOneTaskMutation = { __typename?: 'Mutation', updateOneTask?: { __typename?: 'Task', id: string } | null };
 
-export type PrioritiesQueryVariables = Exact<{ [key: string]: never; }>;
+export type PrioritiesQueryVariables = Exact<{
+  where?: InputMaybe<PriorityWhereInput>;
+}>;
 
 
-export type PrioritiesQuery = { __typename?: 'Query', priorities: Array<{ __typename?: 'Priority', color: string, id: number, name: string }> };
+export type PrioritiesQuery = { __typename?: 'Query', priorities: Array<{ __typename?: 'Priority', id: number, name: string, color: string }> };
 
-export type StatusesQueryVariables = Exact<{ [key: string]: never; }>;
+export type StatusesQueryVariables = Exact<{
+  where?: InputMaybe<StatusWhereInput>;
+}>;
 
 
 export type StatusesQuery = { __typename?: 'Query', statuses: Array<{ __typename?: 'Status', id: number, name: string, color: string }> };
@@ -4481,7 +4529,7 @@ export type WorkspaceQueryVariables = Exact<{
 }>;
 
 
-export type WorkspaceQuery = { __typename?: 'Query', workspace?: { __typename?: 'Workspace', id: string, name: string, user?: { __typename?: 'User', id: string, firstName: string, lastName: string, role: Role } | null, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number }>, status?: { __typename?: 'Status', name: string, color: string } | null, priority?: { __typename?: 'Priority', name: string, color: string } | null }> } | null };
+export type WorkspaceQuery = { __typename?: 'Query', workspace?: { __typename?: 'Workspace', id: string, name: string, user?: { __typename?: 'User', id: string, firstName: string, lastName: string, role: Role } | null, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number }>, status?: { __typename?: 'Status', id: number, name: string, color: string } | null, priority?: { __typename?: 'Priority', id: number, name: string, color: string } | null }> } | null };
 
 export type WorkspacesQueryVariables = Exact<{
   where?: InputMaybe<WorkspaceWhereInput>;
@@ -4491,6 +4539,76 @@ export type WorkspacesQueryVariables = Exact<{
 export type WorkspacesQuery = { __typename?: 'Query', workspaces: Array<{ __typename?: 'Workspace', id: string, name: string, description: string }> };
 
 
+export const CreateOnePriorityDocument = gql`
+    mutation createOnePriority($data: PriorityCreateInput!) {
+  createOnePriority(data: $data) {
+    id
+    name
+    color
+  }
+}
+    `;
+export type CreateOnePriorityMutationFn = Apollo.MutationFunction<CreateOnePriorityMutation, CreateOnePriorityMutationVariables>;
+
+/**
+ * __useCreateOnePriorityMutation__
+ *
+ * To run a mutation, you first call `useCreateOnePriorityMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOnePriorityMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOnePriorityMutation, { data, loading, error }] = useCreateOnePriorityMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateOnePriorityMutation(baseOptions?: Apollo.MutationHookOptions<CreateOnePriorityMutation, CreateOnePriorityMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOnePriorityMutation, CreateOnePriorityMutationVariables>(CreateOnePriorityDocument, options);
+      }
+export type CreateOnePriorityMutationHookResult = ReturnType<typeof useCreateOnePriorityMutation>;
+export type CreateOnePriorityMutationResult = Apollo.MutationResult<CreateOnePriorityMutation>;
+export type CreateOnePriorityMutationOptions = Apollo.BaseMutationOptions<CreateOnePriorityMutation, CreateOnePriorityMutationVariables>;
+export const CreateOneStatusDocument = gql`
+    mutation CreateOneStatus($data: StatusCreateInput!) {
+  createOneStatus(data: $data) {
+    id
+    name
+    color
+  }
+}
+    `;
+export type CreateOneStatusMutationFn = Apollo.MutationFunction<CreateOneStatusMutation, CreateOneStatusMutationVariables>;
+
+/**
+ * __useCreateOneStatusMutation__
+ *
+ * To run a mutation, you first call `useCreateOneStatusMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOneStatusMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOneStatusMutation, { data, loading, error }] = useCreateOneStatusMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateOneStatusMutation(baseOptions?: Apollo.MutationHookOptions<CreateOneStatusMutation, CreateOneStatusMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOneStatusMutation, CreateOneStatusMutationVariables>(CreateOneStatusDocument, options);
+      }
+export type CreateOneStatusMutationHookResult = ReturnType<typeof useCreateOneStatusMutation>;
+export type CreateOneStatusMutationResult = Apollo.MutationResult<CreateOneStatusMutation>;
+export type CreateOneStatusMutationOptions = Apollo.BaseMutationOptions<CreateOneStatusMutation, CreateOneStatusMutationVariables>;
 export const CreateOneTaskDocument = gql`
     mutation CreateOneTask($data: TaskCreateInput!) {
   createOneTask(data: $data) {
@@ -4616,6 +4734,72 @@ export function useCreateOneWorkspaceMutation(baseOptions?: Apollo.MutationHookO
 export type CreateOneWorkspaceMutationHookResult = ReturnType<typeof useCreateOneWorkspaceMutation>;
 export type CreateOneWorkspaceMutationResult = Apollo.MutationResult<CreateOneWorkspaceMutation>;
 export type CreateOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<CreateOneWorkspaceMutation, CreateOneWorkspaceMutationVariables>;
+export const DeleteManyPriorityDocument = gql`
+    mutation deleteManyPriority($where: PriorityWhereInput) {
+  deleteManyPriority(where: $where) {
+    count
+  }
+}
+    `;
+export type DeleteManyPriorityMutationFn = Apollo.MutationFunction<DeleteManyPriorityMutation, DeleteManyPriorityMutationVariables>;
+
+/**
+ * __useDeleteManyPriorityMutation__
+ *
+ * To run a mutation, you first call `useDeleteManyPriorityMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteManyPriorityMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteManyPriorityMutation, { data, loading, error }] = useDeleteManyPriorityMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteManyPriorityMutation(baseOptions?: Apollo.MutationHookOptions<DeleteManyPriorityMutation, DeleteManyPriorityMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteManyPriorityMutation, DeleteManyPriorityMutationVariables>(DeleteManyPriorityDocument, options);
+      }
+export type DeleteManyPriorityMutationHookResult = ReturnType<typeof useDeleteManyPriorityMutation>;
+export type DeleteManyPriorityMutationResult = Apollo.MutationResult<DeleteManyPriorityMutation>;
+export type DeleteManyPriorityMutationOptions = Apollo.BaseMutationOptions<DeleteManyPriorityMutation, DeleteManyPriorityMutationVariables>;
+export const DeleteManyStatusDocument = gql`
+    mutation deleteManyStatus($where: StatusWhereInput) {
+  deleteManyStatus(where: $where) {
+    count
+  }
+}
+    `;
+export type DeleteManyStatusMutationFn = Apollo.MutationFunction<DeleteManyStatusMutation, DeleteManyStatusMutationVariables>;
+
+/**
+ * __useDeleteManyStatusMutation__
+ *
+ * To run a mutation, you first call `useDeleteManyStatusMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteManyStatusMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteManyStatusMutation, { data, loading, error }] = useDeleteManyStatusMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteManyStatusMutation(baseOptions?: Apollo.MutationHookOptions<DeleteManyStatusMutation, DeleteManyStatusMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteManyStatusMutation, DeleteManyStatusMutationVariables>(DeleteManyStatusDocument, options);
+      }
+export type DeleteManyStatusMutationHookResult = ReturnType<typeof useDeleteManyStatusMutation>;
+export type DeleteManyStatusMutationResult = Apollo.MutationResult<DeleteManyStatusMutation>;
+export type DeleteManyStatusMutationOptions = Apollo.BaseMutationOptions<DeleteManyStatusMutation, DeleteManyStatusMutationVariables>;
 export const DeleteManyTaskDocument = gql`
     mutation DeleteManyTask($where: TaskWhereInput) {
   deleteManyTask(where: $where) {
@@ -4718,6 +4902,78 @@ export function useUpdateOneWorkspaceMutation(baseOptions?: Apollo.MutationHookO
 export type UpdateOneWorkspaceMutationHookResult = ReturnType<typeof useUpdateOneWorkspaceMutation>;
 export type UpdateOneWorkspaceMutationResult = Apollo.MutationResult<UpdateOneWorkspaceMutation>;
 export type UpdateOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<UpdateOneWorkspaceMutation, UpdateOneWorkspaceMutationVariables>;
+export const UpdateOnePriorityDocument = gql`
+    mutation updateOnePriority($data: PriorityUpdateInput!, $where: PriorityWhereUniqueInput!) {
+  updateOnePriority(data: $data, where: $where) {
+    id
+    name
+    color
+  }
+}
+    `;
+export type UpdateOnePriorityMutationFn = Apollo.MutationFunction<UpdateOnePriorityMutation, UpdateOnePriorityMutationVariables>;
+
+/**
+ * __useUpdateOnePriorityMutation__
+ *
+ * To run a mutation, you first call `useUpdateOnePriorityMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateOnePriorityMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateOnePriorityMutation, { data, loading, error }] = useUpdateOnePriorityMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateOnePriorityMutation(baseOptions?: Apollo.MutationHookOptions<UpdateOnePriorityMutation, UpdateOnePriorityMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateOnePriorityMutation, UpdateOnePriorityMutationVariables>(UpdateOnePriorityDocument, options);
+      }
+export type UpdateOnePriorityMutationHookResult = ReturnType<typeof useUpdateOnePriorityMutation>;
+export type UpdateOnePriorityMutationResult = Apollo.MutationResult<UpdateOnePriorityMutation>;
+export type UpdateOnePriorityMutationOptions = Apollo.BaseMutationOptions<UpdateOnePriorityMutation, UpdateOnePriorityMutationVariables>;
+export const UpdateOneStatusDocument = gql`
+    mutation UpdateOneStatus($data: StatusUpdateInput!, $where: StatusWhereUniqueInput!) {
+  updateOneStatus(data: $data, where: $where) {
+    id
+    name
+    color
+  }
+}
+    `;
+export type UpdateOneStatusMutationFn = Apollo.MutationFunction<UpdateOneStatusMutation, UpdateOneStatusMutationVariables>;
+
+/**
+ * __useUpdateOneStatusMutation__
+ *
+ * To run a mutation, you first call `useUpdateOneStatusMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateOneStatusMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateOneStatusMutation, { data, loading, error }] = useUpdateOneStatusMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateOneStatusMutation(baseOptions?: Apollo.MutationHookOptions<UpdateOneStatusMutation, UpdateOneStatusMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateOneStatusMutation, UpdateOneStatusMutationVariables>(UpdateOneStatusDocument, options);
+      }
+export type UpdateOneStatusMutationHookResult = ReturnType<typeof useUpdateOneStatusMutation>;
+export type UpdateOneStatusMutationResult = Apollo.MutationResult<UpdateOneStatusMutation>;
+export type UpdateOneStatusMutationOptions = Apollo.BaseMutationOptions<UpdateOneStatusMutation, UpdateOneStatusMutationVariables>;
 export const UpdateOneTaskDocument = gql`
     mutation UpdateOneTask($data: TaskUpdateInput!, $where: TaskWhereUniqueInput!) {
   updateOneTask(data: $data, where: $where) {
@@ -4753,11 +5009,11 @@ export type UpdateOneTaskMutationHookResult = ReturnType<typeof useUpdateOneTask
 export type UpdateOneTaskMutationResult = Apollo.MutationResult<UpdateOneTaskMutation>;
 export type UpdateOneTaskMutationOptions = Apollo.BaseMutationOptions<UpdateOneTaskMutation, UpdateOneTaskMutationVariables>;
 export const PrioritiesDocument = gql`
-    query Priorities {
-  priorities {
-    color
+    query Priorities($where: PriorityWhereInput) {
+  priorities(where: $where) {
     id
     name
+    color
   }
 }
     `;
@@ -4774,6 +5030,7 @@ export const PrioritiesDocument = gql`
  * @example
  * const { data, loading, error } = usePrioritiesQuery({
  *   variables: {
+ *      where: // value for 'where'
  *   },
  * });
  */
@@ -4794,8 +5051,8 @@ export type PrioritiesLazyQueryHookResult = ReturnType<typeof usePrioritiesLazyQ
 export type PrioritiesSuspenseQueryHookResult = ReturnType<typeof usePrioritiesSuspenseQuery>;
 export type PrioritiesQueryResult = Apollo.QueryResult<PrioritiesQuery, PrioritiesQueryVariables>;
 export const StatusesDocument = gql`
-    query Statuses {
-  statuses {
+    query Statuses($where: StatusWhereInput) {
+  statuses(where: $where) {
     id
     name
     color
@@ -4815,6 +5072,7 @@ export const StatusesDocument = gql`
  * @example
  * const { data, loading, error } = useStatusesQuery({
  *   variables: {
+ *      where: // value for 'where'
  *   },
  * });
  */
@@ -4965,10 +5223,12 @@ export const WorkspaceDocument = gql`
         id
       }
       status {
+        id
         name
         color
       }
       priority {
+        id
         name
         color
       }

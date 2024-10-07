@@ -1,32 +1,22 @@
 import prisma from '../lib/prisma';
 
 const statuses = [
-  { name: 'done', color: '#36ba98' },
-  { name: 'in progress', color: '#f4a261' },
-  { name: 'stuck', color: '#e76f51' },
-  { name: 'not started', color: '#758694' },
+  { name: 'Done', color: '#36ba98'  },
+  { name: 'In Progress', color: '#f4a261'},
+  { name: 'Stuck', color: '#e76f51' },
+  { name: 'Not Started', color: '#758694'},
 ];
 
 const priorities = [
-  { name: 'critical', color: '#131842' },
-  { name: 'high', color: '#1F316F' },
-  { name: 'medium', color: '#1A4870' },
-  { name: 'low', color: '#5B99C2' },
+  { name: 'Critical', color: '#131842' },
+  { name: 'High', color: '#1F316F' },
+  { name: 'Medium', color: '#1A4870' },
+  { name: 'Low', color: '#5B99C2' },
   { name: '', color: '#758694' },
 ];
 
-async function main() {
-  for (const priority of priorities) {
-    await prisma.priority.upsert({
-      where: { name: priority.name },
-      update: {},
-      create: {
-        name: priority.name,
-        color: priority.color,
-      },
-    });
-  }
 
+async function main() {
   for (const status of statuses) {
     await prisma.status.upsert({
       where: { name: status.name },
@@ -34,6 +24,17 @@ async function main() {
       create: {
         name: status.name,
         color: status.color,
+      },
+    });
+  }
+
+  for (const priority of priorities) {
+    await prisma.priority.upsert({
+      where: { name: priority.name },
+      update: {},
+      create: {
+        name: priority.name,
+        color: priority.color,
       },
     });
   }

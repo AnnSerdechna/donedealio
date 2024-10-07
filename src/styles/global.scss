@@ -18,6 +18,10 @@ body {
   margin: 0;
 }
 
+div.ant-typography {
+  margin: 0 !important;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -32,9 +36,29 @@ a {
   background-color: $dark-bg-selected;
 }
 
+.ant-radio-button-wrapper.ant-popover-open,
 .ant-btn.ant-popover-open {
   width: 100%;
   color: #fff !important;
   font-family: inherit;
   text-transform: capitalize;
+}
+
+label.ant-radio-button-wrapper {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  border-radius: 6px !important;
+
+  &:hover {
+    color: rgba(#fff, 0.7);
+  }
+
+  &::before {
+    display: none !important;
+  }
+}
+
+.ant-upload.ant-upload-select {
+  display: block !important;
 }

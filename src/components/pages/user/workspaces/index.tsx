@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react';
 import { FC, Fragment, useState } from 'react';
-import { Flex, message, Modal } from 'antd';
+import { App, Flex, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
 
@@ -20,14 +20,13 @@ import { WorkspaceFormContent ,WorkspaceCard } from '@/components/elements';
 export const WorkspacesPage: FC = () => {
   const createForm = useForm();
   const updateForm = useForm();
-  const {data: session} = useSession();
-  const [modalApi, contextModal] = Modal.useModal();
-  const [messageApi, contextMessage] = message.useMessage();
+
+  const { modal, message } = App.useApp();
   const [openModalCreate, setOpenModalCreate] = useState(false);
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
   const [isValueChange, setIsValueChange] = useState(false);
   const [selectedWorkspaceId, setSelectedWorkspaceId] = useState('');
-
+  const { data: session } = useSession();
   const userId = session?.user?.id as string;
 
   const { data: workspacesData, refetch } = useWorkspacesQuery({ variables: { where: { userId: { equals: userId } } } })
@@ -50,7 +49,7 @@ export const WorkspacesPage: FC = () => {
       refetch();
     } catch (error) {
       console.log(error, 'Create Workspace error');
-      messageApi.error('Something went wrong!');
+      message.error('Something went wrong!');
     } finally {
       createForm[0].resetFields();
       setOpenModalCreate(false)
@@ -74,7 +73,7 @@ export const WorkspacesPage: FC = () => {
       refetch();
     } catch (error) {
       console.log(error, 'Update Workspace error');
-      messageApi.error('Something went wrong!');
+      message.error('Something went wrong!');
     } finally {
       updateForm[0].resetFields();
       setOpenModalUpdate(false);
@@ -95,7 +94,7 @@ export const WorkspacesPage: FC = () => {
       refetch();
     } catch(error) {
       console.log(error, 'Delete Workspace error');
-      messageApi.error('Something went wrong!')
+      message.error('Something went wrong!')
     }
   };
 
@@ -109,7 +108,7 @@ export const WorkspacesPage: FC = () => {
   };
 
   const onRemoveWorkspace = (id: string) => {
-    modalApi.confirm({
+    modal.confirm({
       title: 'Are you sure you want to delete warkspace?',
       onOk: () => handleDeleteWorkspace(id)
     })
@@ -126,8 +125,6 @@ export const WorkspacesPage: FC = () => {
 
   return (
     <Fragment>
-      {contextMessage}
-      {contextModal}
       <Flex vertical gap={40}>
         <Flex justify={'end'}>
           <Button 

@@ -429,7 +429,7 @@ type CreateManyAndReturnTask {
   priority(where: PriorityWhereInput): Priority
   priorityId: Int
   status(where: StatusWhereInput): Status
-  statusid: Int
+  statusId: Int
   updatedAt: DateTimeISO!
   workspace: Workspace!
   workspaceId: String!
@@ -1898,7 +1898,7 @@ type Task {
   priority(where: PriorityWhereInput): Priority
   priorityId: Int
   status(where: StatusWhereInput): Status
-  statusid: Int
+  statusId: Int
   updatedAt: DateTimeISO!
   workspace: Workspace!
   workspaceId: String!
@@ -1906,12 +1906,12 @@ type Task {
 
 type TaskAvgAggregate {
   priorityId: Float
-  statusid: Float
+  statusId: Float
 }
 
 input TaskAvgOrderByAggregateInput {
   priorityId: SortOrder
-  statusid: SortOrder
+  statusId: SortOrder
 }
 
 type TaskCount {
@@ -1927,7 +1927,7 @@ type TaskCountAggregate {
   name: Int!
   note: Int!
   priorityId: Int!
-  statusid: Int!
+  statusId: Int!
   updatedAt: Int!
   workspaceId: Int!
 }
@@ -1940,7 +1940,7 @@ input TaskCountOrderByAggregateInput {
   name: SortOrder
   note: SortOrder
   priorityId: SortOrder
-  statusid: SortOrder
+  statusId: SortOrder
   updatedAt: SortOrder
   workspaceId: SortOrder
 }
@@ -1967,7 +1967,7 @@ input TaskCreateManyInput {
   name: String!
   note: String
   priorityId: Int
-  statusid: Int
+  statusId: Int
   updatedAt: DateTimeISO
   workspaceId: String!
 }
@@ -1979,7 +1979,7 @@ input TaskCreateManyPriorityInput {
   message: String
   name: String!
   note: String
-  statusid: Int
+  statusId: Int
   updatedAt: DateTimeISO
   workspaceId: String!
 }
@@ -2014,7 +2014,7 @@ input TaskCreateManyWorkspaceInput {
   name: String!
   note: String
   priorityId: Int
-  statusid: Int
+  statusId: Int
   updatedAt: DateTimeISO
 }
 
@@ -2135,7 +2135,7 @@ type TaskGroupBy {
   name: String!
   note: String
   priorityId: Int
-  statusid: Int
+  statusId: Int
   updatedAt: DateTimeISO!
   workspaceId: String!
 }
@@ -2154,7 +2154,7 @@ type TaskMaxAggregate {
   name: String
   note: String
   priorityId: Int
-  statusid: Int
+  statusId: Int
   updatedAt: DateTimeISO
   workspaceId: String
 }
@@ -2167,7 +2167,7 @@ input TaskMaxOrderByAggregateInput {
   name: SortOrder
   note: SortOrder
   priorityId: SortOrder
-  statusid: SortOrder
+  statusId: SortOrder
   updatedAt: SortOrder
   workspaceId: SortOrder
 }
@@ -2180,7 +2180,7 @@ type TaskMinAggregate {
   name: String
   note: String
   priorityId: Int
-  statusid: Int
+  statusId: Int
   updatedAt: DateTimeISO
   workspaceId: String
 }
@@ -2193,7 +2193,7 @@ input TaskMinOrderByAggregateInput {
   name: SortOrder
   note: SortOrder
   priorityId: SortOrder
-  statusid: SortOrder
+  statusId: SortOrder
   updatedAt: SortOrder
   workspaceId: SortOrder
 }
@@ -2220,7 +2220,7 @@ input TaskOrderByWithAggregationInput {
   name: SortOrder
   note: SortOrderInput
   priorityId: SortOrderInput
-  statusid: SortOrderInput
+  statusId: SortOrderInput
   updatedAt: SortOrder
   workspaceId: SortOrder
 }
@@ -2236,7 +2236,7 @@ input TaskOrderByWithRelationInput {
   priority: PriorityOrderByWithRelationInput
   priorityId: SortOrderInput
   status: StatusOrderByWithRelationInput
-  statusid: SortOrderInput
+  statusId: SortOrderInput
   updatedAt: SortOrder
   workspace: WorkspaceOrderByWithRelationInput
   workspaceId: SortOrder
@@ -2250,7 +2250,7 @@ enum TaskScalarFieldEnum {
   name
   note
   priorityId
-  statusid
+  statusId
   updatedAt
   workspaceId
 }
@@ -2266,7 +2266,7 @@ input TaskScalarWhereInput {
   name: StringFilter
   note: StringNullableFilter
   priorityId: IntNullableFilter
-  statusid: IntNullableFilter
+  statusId: IntNullableFilter
   updatedAt: DateTimeFilter
   workspaceId: StringFilter
 }
@@ -2282,19 +2282,19 @@ input TaskScalarWhereWithAggregatesInput {
   name: StringWithAggregatesFilter
   note: StringNullableWithAggregatesFilter
   priorityId: IntNullableWithAggregatesFilter
-  statusid: IntNullableWithAggregatesFilter
+  statusId: IntNullableWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
   workspaceId: StringWithAggregatesFilter
 }
 
 type TaskSumAggregate {
   priorityId: Int
-  statusid: Int
+  statusId: Int
 }
 
 input TaskSumOrderByAggregateInput {
   priorityId: SortOrder
-  statusid: SortOrder
+  statusId: SortOrder
 }
 
 input TaskUpdateInput {
@@ -2498,7 +2498,7 @@ input TaskWhereInput {
   priority: PriorityNullableRelationFilter
   priorityId: IntNullableFilter
   status: StatusNullableRelationFilter
-  statusid: IntNullableFilter
+  statusId: IntNullableFilter
   updatedAt: DateTimeFilter
   workspace: WorkspaceRelationFilter
   workspaceId: StringFilter
@@ -2518,7 +2518,7 @@ input TaskWhereUniqueInput {
   priority: PriorityNullableRelationFilter
   priorityId: IntNullableFilter
   status: StatusNullableRelationFilter
-  statusid: IntNullableFilter
+  statusId: IntNullableFilter
   updatedAt: DateTimeFilter
   workspace: WorkspaceRelationFilter
   workspaceId: StringFilter

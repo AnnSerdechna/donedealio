@@ -1,7 +1,0 @@
-query getStatus($where: StatusWhereUniqueInput!) {
-  getStatus(where: $where) {
-    id
-    name
-    color
-  }
-}

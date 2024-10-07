@@ -11,7 +11,8 @@ export declare class TaskGroupBy {
     dueDate: Date | null;
     createdAt: Date;
     updatedAt: Date;
-    statusid: number | null;
+    statusId: number | null;
+    priorityId: number | null;
     workspaceId: string;
     _count: TaskCountAggregate | null;
     _avg: TaskAvgAggregate | null;

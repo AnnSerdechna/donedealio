@@ -1,7 +1,8 @@
-import { App, Form, message } from 'antd'
-import { FC, Fragment } from 'react'
+import { App, Form } from 'antd';
+import { FC, Fragment } from 'react';
+
 import { useCreateOneTaskMutation } from '@/graphql/types';
-import { AddTaskFormContent } from '../add-task-form-content';
+import { AddTaskFormContent } from './add-task-form-content';
 
 export const AddTaskForm: FC<{ workspaceId: string, refetchTasks: VoidFunction }> = ({ workspaceId, refetchTasks  }) => {
   const [form] = Form.useForm();

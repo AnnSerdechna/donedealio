@@ -1,6 +1,7 @@
 export { AccountScalarFieldEnum } from "./AccountScalarFieldEnum";
 export { FileScalarFieldEnum } from "./FileScalarFieldEnum";
 export { NullsOrder } from "./NullsOrder";
+export { PriorityScalarFieldEnum } from "./PriorityScalarFieldEnum";
 export { QueryMode } from "./QueryMode";
 export { Role } from "./Role";
 export { SessionScalarFieldEnum } from "./SessionScalarFieldEnum";

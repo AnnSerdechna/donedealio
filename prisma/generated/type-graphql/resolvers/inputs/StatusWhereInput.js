@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StatusWhereInput = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
-const EnumStatusTypeFilter_1 = require("../inputs/EnumStatusTypeFilter");
 const IntFilter_1 = require("../inputs/IntFilter");
 const StringFilter_1 = require("../inputs/StringFilter");
 const TaskListRelationFilter_1 = require("../inputs/TaskListRelationFilter");
@@ -46,12 +45,6 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", StringFilter_1.StringFilter)
 ], StatusWhereInput.prototype, "color", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => EnumStatusTypeFilter_1.EnumStatusTypeFilter, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", EnumStatusTypeFilter_1.EnumStatusTypeFilter)
-], StatusWhereInput.prototype, "type", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => TaskListRelationFilter_1.TaskListRelationFilter, {
         nullable: true

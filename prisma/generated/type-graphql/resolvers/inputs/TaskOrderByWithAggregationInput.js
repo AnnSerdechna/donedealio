@@ -60,7 +60,13 @@ tslib_1.__decorate([
         nullable: true
     }),
     tslib_1.__metadata("design:type", SortOrderInput_1.SortOrderInput)
-], TaskOrderByWithAggregationInput.prototype, "statusid", void 0);
+], TaskOrderByWithAggregationInput.prototype, "statusId", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrderInput_1.SortOrderInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", SortOrderInput_1.SortOrderInput)
+], TaskOrderByWithAggregationInput.prototype, "priorityId", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
         nullable: true

@@ -1,8 +1,9 @@
-'use client'
-import { FC, Fragment, useState } from "react";
+'use client';
+
+import { FC, useState } from "react";
 import { useParams } from 'next/navigation';
 
-import { Avatar, Badge, DatePicker, Button, Flex, Form, Input, message, Popover, Space, Table, Tag, Typography, Upload, App } from "antd"
+import { Avatar, Badge, DatePicker, Button, Flex, Input, Popover, Space, Table, Tag, Typography, Upload, App} from 'antd';
 import type { TableProps } from 'antd';
 import dayjs from 'dayjs';
 import {
@@ -15,9 +16,9 @@ import {
 } from '@ant-design/icons'
 import {
   Status,
-  StatusType,
   Task,
   useDeleteManyTaskMutation,
+  usePrioritiesQuery,
   useStatusesQuery,
   useTasksQuery,
   useUpdateOneTaskMutation,
@@ -25,7 +26,7 @@ import {
 } from '@/graphql/types';
 
 import { AddTaskForm } from '@/components/elements/tasks/add-task-form';
-import { StatusesContent, StatusFormList, StatusPopover } from '@/components/elements';
+import { StatusField } from '@/components/elements';
 
 
 const { Text } = Typography;
@@ -35,12 +36,10 @@ type UpdatedDataType = { [key: string]: { set: string | Date } } | { [key: strin
 export const TableView: FC = () => {
   const { message } = App.useApp();
   const { workspaceId } = useParams();
-
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [statusContent, setStatusContent] = useState<'change' | 'edit'>('change')
 
-  const { data: statusesData, refetch: reftchStatuses } = useStatusesQuery({ variables: { where: { type: { equals: StatusType.Status } } } });
-  const { data: prioritiesData } = useStatusesQuery({ variables: { where: { type: { equals: StatusType.Priority } } } });
+  const { data: statusesData } = useStatusesQuery();
+  const { data: prioritiesData } = usePrioritiesQuery();
   const { data } = useWorkspaceQuery({
     variables: {
       where: {
@@ -93,43 +92,6 @@ export const TableView: FC = () => {
     }
   };
 
-  const renderStatus = (status: Status, data: Task, statuses: Status[], statusType: StatusType) => {
-    return (
-      <StatusPopover
-        statusName={status?.name}
-        statusColor={status?.color}
-        content={(
-          <Fragment>
-            {statusContent === 'change'
-              ? (
-                <StatusesContent
-                  statusesData={statuses}
-                  taskId={data?.id}
-                  onStatus={(statusId) => {
-                    const newData = {
-                      status: {
-                        connect: {
-                          id: statusId
-                        }
-                      }
-                    };
-                    handleUpdateTask(newData, data?.id, 'Status')
-                  }}
-                  onEdit={() => setStatusContent('edit')}
-                />
-              )
-              : (
-                <Form onFinish={console.log}>
-                  <StatusFormList initialData={statuses} />
-                </Form>
-              )
-            }
-          </Fragment>
-        )}
-      />
-    )
-  }
-
   const columns: TableProps<Task>['columns'] = [
     {
       title: 'Task',
@@ -146,7 +108,10 @@ export const TableView: FC = () => {
                     set: newValue
                   }
                 };
-                name !== newValue && handleUpdateTask(newData, data?.id, 'Name')
+
+                if (name !== newValue) {
+                  handleUpdateTask(newData, data?.id, 'Name')
+                }
               },
               maxLength: 50,
             }}
@@ -156,7 +121,6 @@ export const TableView: FC = () => {
         )
       }
     },
-    // Table.EXPAND_COLUMN,
     {
       title: '',
       dataIndex: 'message',
@@ -230,7 +194,15 @@ export const TableView: FC = () => {
       key: 'status',
       width: 150,
       align: 'center',
-      render: (item, data) => renderStatus(item, data, prioritiesData?.statuses as Status[], StatusType.Status)
+      render: (_, data) => (
+        <StatusField 
+          data={statusesData?.statuses as Status[]}
+          taskId={data?.id}
+          status={data?.status as Status}
+          updatedField={'status'}
+          refetchTask={refetch}
+        />
+      )
     },
     {
       title: 'Due date',
@@ -271,7 +243,15 @@ export const TableView: FC = () => {
       key: 'priority',
       width: 150,
       align: 'center',
-      render: (item, data) => renderStatus(item, data, prioritiesData?.statuses as Status[], StatusType.Priority)
+      render: (_, data) => (
+        <StatusField
+          data={prioritiesData?.priorities as Status[]}
+          taskId={data?.id}
+          status={data?.priority as Status}
+          updatedField={'priority'}
+          refetchTask={refetch}
+        />
+      )
     },
     {
       title: 'Notes',
@@ -289,7 +269,10 @@ export const TableView: FC = () => {
                     set: newValue
                   }
                 };
-                note !== newValue && handleUpdateTask(newData, data?.id, 'Note');
+
+                if (note !== newValue) {
+                  handleUpdateTask(newData, data?.id, 'Note');
+                }
               },
               maxLength: 50,
               icon: <PlusCircleOutlined />,

@@ -4,7 +4,7 @@ import { StatusWhereInput } from "../../../inputs/StatusWhereInput";
 export declare class GroupByStatusArgs {
     where?: StatusWhereInput | undefined;
     orderBy?: StatusOrderByWithAggregationInput[] | undefined;
-    by: Array<"id" | "name" | "color" | "type">;
+    by: Array<"id" | "name" | "color">;
     having?: StatusScalarWhereWithAggregatesInput | undefined;
     take?: number | undefined;
     skip?: number | undefined;

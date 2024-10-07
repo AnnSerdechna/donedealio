@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkspaceCrudResolver = exports.UserCrudResolver = exports.TaskCrudResolver = exports.StatusCrudResolver = exports.SessionCrudResolver = exports.FileCrudResolver = exports.AccountCrudResolver = void 0;
+exports.WorkspaceCrudResolver = exports.UserCrudResolver = exports.TaskCrudResolver = exports.StatusCrudResolver = exports.SessionCrudResolver = exports.PriorityCrudResolver = exports.FileCrudResolver = exports.AccountCrudResolver = void 0;
 var AccountCrudResolver_1 = require("./Account/AccountCrudResolver");
 Object.defineProperty(exports, "AccountCrudResolver", { enumerable: true, get: function () { return AccountCrudResolver_1.AccountCrudResolver; } });
 var FileCrudResolver_1 = require("./File/FileCrudResolver");
 Object.defineProperty(exports, "FileCrudResolver", { enumerable: true, get: function () { return FileCrudResolver_1.FileCrudResolver; } });
+var PriorityCrudResolver_1 = require("./Priority/PriorityCrudResolver");
+Object.defineProperty(exports, "PriorityCrudResolver", { enumerable: true, get: function () { return PriorityCrudResolver_1.PriorityCrudResolver; } });
 var SessionCrudResolver_1 = require("./Session/SessionCrudResolver");
 Object.defineProperty(exports, "SessionCrudResolver", { enumerable: true, get: function () { return SessionCrudResolver_1.SessionCrudResolver; } });
 var StatusCrudResolver_1 = require("./Status/StatusCrudResolver");

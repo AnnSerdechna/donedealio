@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react';
 import { FC, Fragment, useState } from 'react';
-import { App, Flex, message, Modal } from 'antd';
+import { App, Flex, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
 

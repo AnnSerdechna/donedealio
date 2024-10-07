@@ -1,22 +1,44 @@
 "use client";
 
 import React, { FC, Fragment, useState } from 'react';
-import { Badge, Button, Calendar, DatePicker, Flex, Form, Input, Modal, Popover, Radio, Upload } from 'antd';
-import type { BadgeProps, CalendarProps } from 'antd';
+import { App, Badge, Calendar, DatePicker, Flex, Form, Input, Modal, Upload } from 'antd';
+import type { BadgeProps, CalendarProps, UploadProps } from 'antd';
 import type { Dayjs } from 'dayjs';
-import { FormItem } from '@/components/ui';
+import { Button, FormItem } from '@/components/ui';
 import { FileAddOutlined } from '@ant-design/icons'
-import { Status, StatusType, useStatusesQuery } from '@/graphql/types';
+
+import { Priority, Status, usePrioritiesQuery, useStatusesQuery } from '@/graphql/types';
+import { StatusField } from '@/components/elements';
+
 
 export const CalendarView: FC = () => {
   const [form] = Form.useForm();
+  const {message} = App.useApp();
 
-  const { data: statusesData, refetch: reftchStatuses } = useStatusesQuery({ variables: { where: { type: { equals: StatusType.Status } } } });
-  const { data: prioritiesData } = useStatusesQuery({ variables: { where: { type: { equals: StatusType.Priority } } } });
+  const { data: statusesData } = useStatusesQuery();
+  const { data: prioritiesData } = usePrioritiesQuery();
   const [openedTaskDate, setOpenTaskDate] = useState<Dayjs | null>(null)
 
   const statusValue= Form.useWatch('status', form);
   const priorityValue = Form.useWatch('priority', form);
+
+  const props: UploadProps = {
+    name: 'file',
+    action: 'https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload',
+    headers: {
+      authorization: 'authorization-text',
+    },
+    onChange(info) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === 'error') {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+  };
 
   const getListData = (value: Dayjs) => {
     let listData: { type: string; content: string }[] = []; // Specify the type of listData
@@ -88,58 +110,14 @@ export const CalendarView: FC = () => {
     console.log(value.format('YYYY-MM-DD'), mode);
   };
 
-  const statusItem = (data: Status[], fieldName: string, formItemValue: { name: string, color: string }) => {
-    return (
-      <Popover
-        placement={'bottom'}
-        trigger={'click'}
-        content={(
-          <Radio.Group
-            name={fieldName}
-            optionType="button"
-            buttonStyle="solid"
-            onChange={event => {
-              form.setFieldValue(fieldName, event.target.value)
-            }}
-          >
-            <Flex vertical gap={4}>
-              {data?.map(item => (
-                <Radio.Button
-                  value={item}
-                  style={{
-                    width: '100%',
-                    background: item?.color,
-                    borderRadius: 4,
-                  }}
-                >
-                  {item?.name}
-                </Radio.Button>
-              ))}
-            </Flex>
-          </Radio.Group>
-        )}
-      >
-        <Radio.Button
-          value=""
-          style={{
-            width: '100%',
-            background: formItemValue?.color,
-          }}
-        >
-          {formItemValue?.name}
-        </Radio.Button>
-      </Popover>
-    );
-  };
-
   const handleClosetaskForm = () => {
     form.resetFields();
     setOpenTaskDate(null);
   }
-
+ 
   const hanldeCreateTsk = (values: any) => {
     try {
-
+      console.log(values, 'Values')
     } catch(error) {
       console.log(error, 'Create task error')
     } finally {
@@ -160,21 +138,40 @@ export const CalendarView: FC = () => {
         open={!!openedTaskDate}
         onCancel={() => setOpenTaskDate(null)}
         onOk={form.submit}
+        okButtonProps={{size: 'large'}}
+        cancelButtonProps={{ size: 'large' }}
+        okText={'Create'}
+        confirmLoading={false}
+        styles={{content: {padding: '58px 32px 32px'}}}
         closable
       >
-        <Form form={form} onFinish={hanldeCreateTsk}>
+        <Form 
+          form={form} 
+          onFinish={hanldeCreateTsk}
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          labelAlign={'left'}
+          colon={false}
+          size={'large'}
+        >
           <Flex vertical>
             <FormItem
               name={'task'}
+              label={'Task'}
             >
-              <Input placeholder={'New task'} />
+              <Input />
             </FormItem>
 
             <FormItem
               name={'status'}
               label={'Status'}
             >
-              {statusItem(statusesData?.statuses as Status[], 'status', statusValue)}
+              <StatusField
+                form={form}
+                data={statusesData?.statuses as Status[]}
+                status={statusValue as Status}
+                updatedField={'status'}
+              />
             </FormItem>
 
             <FormItem
@@ -184,6 +181,7 @@ export const CalendarView: FC = () => {
               <DatePicker
                 format={'DD MMM'}
                 showNow={false}
+                placeholder=''
                 style={{width: '100%'}}
               />
             </FormItem>
@@ -192,7 +190,12 @@ export const CalendarView: FC = () => {
               name={'priority'}
               label={'Priority'}
             >
-              {statusItem(prioritiesData?.statuses as Status[], 'priority', priorityValue)}
+              <StatusField
+                form={form}
+                data={prioritiesData?.priorities as Priority[]}
+                status={priorityValue as Priority}
+                updatedField={'priority'}
+              />
             </FormItem>
             <FormItem
               name={'notes'}
@@ -204,8 +207,8 @@ export const CalendarView: FC = () => {
               name={'files'}
               label={'Files'}
             >
-              <Upload>
-                <Button type={'default'} icon={<FileAddOutlined style={{ fontSize: 18, color: '#000' }} />} />
+              <Upload {...props}>
+                <Button icon={<FileAddOutlined style={{color: '#d9d9d9'}} />} type={'default'} ghost />
               </Upload>
             </FormItem>
           </Flex>

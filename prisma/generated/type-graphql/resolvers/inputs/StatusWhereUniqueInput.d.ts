@@ -1,4 +1,3 @@
-import { EnumStatusTypeFilter } from "../inputs/EnumStatusTypeFilter";
 import { StatusWhereInput } from "../inputs/StatusWhereInput";
 import { StringFilter } from "../inputs/StringFilter";
 import { TaskListRelationFilter } from "../inputs/TaskListRelationFilter";
@@ -9,6 +8,5 @@ export declare class StatusWhereUniqueInput {
     OR?: StatusWhereInput[] | undefined;
     NOT?: StatusWhereInput[] | undefined;
     color?: StringFilter | undefined;
-    type?: EnumStatusTypeFilter | undefined;
     task?: TaskListRelationFilter | undefined;
 }

@@ -7,7 +7,6 @@ export declare class StatusGroupBy {
     id: number;
     name: string;
     color: string;
-    type: "STATUS" | "PRIORITY";
     _count: StatusCountAggregate | null;
     _avg: StatusAvgAggregate | null;
     _sum: StatusSumAggregate | null;

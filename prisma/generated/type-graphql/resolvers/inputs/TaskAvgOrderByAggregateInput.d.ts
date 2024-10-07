@@ -1,3 +1,4 @@
 export declare class TaskAvgOrderByAggregateInput {
-    statusid?: "asc" | "desc" | undefined;
+    statusId?: "asc" | "desc" | undefined;
+    priorityId?: "asc" | "desc" | undefined;
 }

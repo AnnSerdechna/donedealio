@@ -1,0 +1,38 @@
+import type { GraphQLResolveInfo } from "graphql";
+import { AggregatePriorityArgs } from "./args/AggregatePriorityArgs";
+import { CreateManyAndReturnPriorityArgs } from "./args/CreateManyAndReturnPriorityArgs";
+import { CreateManyPriorityArgs } from "./args/CreateManyPriorityArgs";
+import { CreateOnePriorityArgs } from "./args/CreateOnePriorityArgs";
+import { DeleteManyPriorityArgs } from "./args/DeleteManyPriorityArgs";
+import { DeleteOnePriorityArgs } from "./args/DeleteOnePriorityArgs";
+import { FindFirstPriorityArgs } from "./args/FindFirstPriorityArgs";
+import { FindFirstPriorityOrThrowArgs } from "./args/FindFirstPriorityOrThrowArgs";
+import { FindManyPriorityArgs } from "./args/FindManyPriorityArgs";
+import { FindUniquePriorityArgs } from "./args/FindUniquePriorityArgs";
+import { FindUniquePriorityOrThrowArgs } from "./args/FindUniquePriorityOrThrowArgs";
+import { GroupByPriorityArgs } from "./args/GroupByPriorityArgs";
+import { UpdateManyPriorityArgs } from "./args/UpdateManyPriorityArgs";
+import { UpdateOnePriorityArgs } from "./args/UpdateOnePriorityArgs";
+import { UpsertOnePriorityArgs } from "./args/UpsertOnePriorityArgs";
+import { Priority } from "../../../models/Priority";
+import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
+import { AggregatePriority } from "../../outputs/AggregatePriority";
+import { CreateManyAndReturnPriority } from "../../outputs/CreateManyAndReturnPriority";
+import { PriorityGroupBy } from "../../outputs/PriorityGroupBy";
+export declare class PriorityCrudResolver {
+    aggregatePriority(ctx: any, info: GraphQLResolveInfo, args: AggregatePriorityArgs): Promise<AggregatePriority>;
+    createManyPriority(ctx: any, info: GraphQLResolveInfo, args: CreateManyPriorityArgs): Promise<AffectedRowsOutput>;
+    createManyAndReturnPriority(ctx: any, info: GraphQLResolveInfo, args: CreateManyAndReturnPriorityArgs): Promise<CreateManyAndReturnPriority[]>;
+    createOnePriority(ctx: any, info: GraphQLResolveInfo, args: CreateOnePriorityArgs): Promise<Priority>;
+    deleteManyPriority(ctx: any, info: GraphQLResolveInfo, args: DeleteManyPriorityArgs): Promise<AffectedRowsOutput>;
+    deleteOnePriority(ctx: any, info: GraphQLResolveInfo, args: DeleteOnePriorityArgs): Promise<Priority | null>;
+    findFirstPriority(ctx: any, info: GraphQLResolveInfo, args: FindFirstPriorityArgs): Promise<Priority | null>;
+    findFirstPriorityOrThrow(ctx: any, info: GraphQLResolveInfo, args: FindFirstPriorityOrThrowArgs): Promise<Priority | null>;
+    priorities(ctx: any, info: GraphQLResolveInfo, args: FindManyPriorityArgs): Promise<Priority[]>;
+    priority(ctx: any, info: GraphQLResolveInfo, args: FindUniquePriorityArgs): Promise<Priority | null>;
+    getPriority(ctx: any, info: GraphQLResolveInfo, args: FindUniquePriorityOrThrowArgs): Promise<Priority | null>;
+    groupByPriority(ctx: any, info: GraphQLResolveInfo, args: GroupByPriorityArgs): Promise<PriorityGroupBy[]>;
+    updateManyPriority(ctx: any, info: GraphQLResolveInfo, args: UpdateManyPriorityArgs): Promise<AffectedRowsOutput>;
+    updateOnePriority(ctx: any, info: GraphQLResolveInfo, args: UpdateOnePriorityArgs): Promise<Priority | null>;
+    upsertOnePriority(ctx: any, info: GraphQLResolveInfo, args: UpsertOnePriorityArgs): Promise<Priority>;
+}

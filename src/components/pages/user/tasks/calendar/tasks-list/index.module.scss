@@ -1,9 +1,8 @@
-
 .tasksList {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  li {
+  li.taskItem {
     display: flex;
     align-items: center;
     height: 20px;
@@ -19,4 +18,8 @@
       cursor: pointer;
     }
   }
+}
+
+.listWrap {
+  height: 100%;
 }

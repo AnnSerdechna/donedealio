@@ -32,8 +32,12 @@ a {
   }
 }
 
-.ant-menu-item-divider {
-  background-color: $dark-bg-selected;
+// .ant-menu-item-divider {
+//   background-color: $dark-bg-selected;
+// }
+
+.ant-menu {
+  border: none !important;
 }
 
 .ant-radio-button-wrapper.ant-popover-open,

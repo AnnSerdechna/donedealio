@@ -12,7 +12,6 @@ export const TaskFormContent: FC<{ form: FormInstance }> = ({ form }) => {
 
   const statusValue = Form.useWatch('status', form);
   const priorityValue = Form.useWatch('priority', form);
-  const dueDate = Form.useWatch('dueDate', form);
 
   return (
     <Flex vertical>

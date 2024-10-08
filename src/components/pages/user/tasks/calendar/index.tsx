@@ -1,48 +1,40 @@
-"use client";
+'use client';
 
-import React, { FC, Fragment, useState } from 'react';
-import { Calendar, Flex, Form, Button } from 'antd';
-import type { CalendarProps } from 'antd';
-import dayjs, { Dayjs } from 'dayjs';
+import React, { FC, Fragment, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
+import { Calendar as AntCalendar, Form } from 'antd';
+import dayjs, { Dayjs } from 'dayjs';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import localeData from 'dayjs/plugin/localeData';
+import 'dayjs/locale/en'; 
 
 import { Task, useTasksQuery } from '@/graphql/types';
 import { CreateTaskForm, UpdateTaskForm } from '@/components/elements';
 import { Modal } from '@/components/ui';
-import styles from './index.module.scss';
+import { ControlPanel } from './control-panel';
+import { TasksList } from './tasks-list';
+
+dayjs.extend(isSameOrAfter);
+dayjs.extend(isSameOrBefore);
+dayjs.extend(localeData);
 
 export const CalendarView: FC = () => {
   const createTaskForm = Form.useForm();
   const updateTaskForm = Form.useForm();
   const { workspaceId } = useParams();
-  
-  const [selectedTaskId, setTaskId] = useState<string>('')
-  const [selectedDate, setDate] = useState<Dayjs | null>(null)
-
+  const [selectedTaskId, setTaskId] = useState<string>('');
+  const [selectedDate, setDate] = useState<Dayjs | null>(null);
   const { data: tasksData, refetch } = useTasksQuery({
     variables: {
       workspaceId: workspaceId as string
     }
   });
 
-  const getMonthData = (value: Dayjs) => {
-    if (value.month() === 8) {
-      return 1394;
-    }
-  };
-
-  const monthCellRender = (value: Dayjs) => {
-    const num = getMonthData(value);
-    return num ? (
-      <div className="notes-month">
-        <section>{num}</section>
-        <span>Backlog number</span>
-      </div>
-    ) : null;
-  };
+  const headerButtonRef = useRef(false);
 
   const onSelectTask = (item: Task, date: Dayjs) => {
-    setTaskId(item?.id)
+    setTaskId(item?.id);
 
     updateTaskForm[0].setFieldsValue({
       task: item?.name,
@@ -50,72 +42,45 @@ export const CalendarView: FC = () => {
       priority: item?.priority,
       notes: item?.note,
       dueDate: date
-    })
-
+    });
   };
-
-  const dateCellRender = (value: Dayjs) => {
-    const formattedDate = value.format('YYYY-MM-DD')
-    const data = tasksData?.tasks?.filter(item => dayjs(item?.dueDate).format('YYYY-MM-DD') === formattedDate)
-
-    return (
-      <Flex vertical justify={'space-between'} style={{ height: '100%' }}>
-        <ul className={styles.tasksList}>
-          {data?.map((item) => (
-            <li key={item?.id}>
-              <button
-                style={{ background: item?.status?.color }}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onSelectTask(item as Task, value)
-                }}
-              >
-                {item?.name}
-              </button>
-            </li>
-          ))}
-        </ul>
-
-        {!!data?.length && (
-          <Flex justify='end'>
-            <Button
-              type={'text'}
-              size={'small'}
-              onClick={() => onSelectCell(value)}
-            >
-              + Add
-            </Button>
-          </Flex>
-        )}
-      </Flex>
-    );
-  };
-
-  const cellRender: CalendarProps<Dayjs>['cellRender'] = (current, info) => {
-    if (info.type === 'date') return dateCellRender(current);
-    if (info.type === 'month') return monthCellRender(current);
-    return info.originNode;
-  };
-
-  const onPanelChange = (value: Dayjs, mode: CalendarProps<Dayjs>['mode']) => {
-    console.log(value.format('YYYY-MM-DD'), mode);
-  };
-
-  const handleCloseCreateTask = () => setDate(null);
-  const handleCloseUpdateTask = () => setTaskId('');
 
   const onSelectCell = (date: Dayjs) => {
+    if (headerButtonRef.current) {
+      headerButtonRef.current = false; 
+      return; 
+    }
+  
     setDate(date);
     createTaskForm[0].setFieldValue('dueDate', date);
   };
 
+  const handleCloseCreateTask = () => setDate(null);
+
+  const handleCloseUpdateTask = () => setTaskId('');
+
   return (
     <Fragment>
-      <Calendar
-        onPanelChange={onPanelChange}
-        cellRender={cellRender}
+      <AntCalendar
+        mode={'month'}
+        cellRender={(value) => (
+          <TasksList 
+            value={value} 
+            data={tasksData?.tasks as Task[]} 
+            onSelectCell={onSelectCell} 
+            onSelectTask={onSelectTask}
+          />
+        )}
         onSelect={onSelectCell}
+        headerRender={({ value, onChange }) => (
+          <ControlPanel
+            value={value}
+            onChange={onChange}
+            setButtonRef={() => headerButtonRef.current = true}
+          />
+        )}
       />
+
       <Modal
         open={!!selectedDate}
         onCancel={handleCloseCreateTask}

@@ -6,7 +6,7 @@ import { MenuItemProps } from '@/types';
 export const Menu: FC<MenuProps & { items: MenuItemProps[] }> = ({ items, ...props }) => {
   return (
     <AntMenu
-      theme={'dark'}
+      theme={'light'}
       items={items}
       {...props}
     />

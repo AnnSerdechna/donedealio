@@ -132,7 +132,7 @@ export const WorkspacesPage: FC = () => {
             icon={<PlusOutlined />} 
             text={'Add workspace'} 
             onClick={onOpenCreateModal} 
-            ghost
+            type={'default'}
           />
         </Flex>
 

@@ -3,16 +3,15 @@
 import { FC, useState } from "react";
 import { useParams } from 'next/navigation';
 
-import { Avatar, Badge, Button, Flex, Input, Popover, Space, Table, Tag, Typography, Upload, App} from 'antd';
+import { Badge, Button, Flex, Table, Upload, App} from 'antd';
 import type { TableProps } from 'antd';
 import dayjs from 'dayjs';
 import {
   MessageOutlined,
-  UserAddOutlined,
-  SearchOutlined,
   DeleteTwoTone,
   FileAddOutlined,
-} from '@ant-design/icons'
+  PlusCircleOutlined,
+} from '@ant-design/icons';
 import {
   Status,
   Task,
@@ -24,10 +23,8 @@ import {
 } from '@/graphql/types';
 
 import { AddTaskForm } from '@/components/elements/tasks/forms/add-task';
-import { DueDateField, StatusField, EditableText } from '@/components/elements';
+import { DueDateField, StatusField, EditableText, OwnerField } from '@/components/elements';
 import { getFormattedDate } from '@/functions/getFormattedDate';
-
-const { Text } = Typography;
 
 type UpdatedDataType = { [key: string]: { set: string | Date } } | { [key: string]: { connect: { id: number } } };
 
@@ -104,6 +101,7 @@ export const TableView: FC = () => {
         return (
           <EditableText 
             value={name}
+            tooltip={`Edit task`}
             onChange={newValue => handleEditContent(newValue, name, 'name', data?.id)}
           />
         )
@@ -132,49 +130,7 @@ export const TableView: FC = () => {
       dataIndex: 'user',
       key: 'user',
       align: 'center',
-      render: () => (
-        <Popover
-          overlayStyle={{ width: 400 }}
-          overlayInnerStyle={{ padding: 24 }}
-          content={(
-            <Space direction={'vertical'} size={16} style={{ width: '100%' }}>
-              <Flex wrap gap="small">
-                <Tag
-                  icon={<Avatar size={24} icon={<UserAddOutlined />} />}
-                  color="#bbb"
-                  style={{ borderRadius: '99px', margin: 0 }}
-                  closable
-                  bordered
-                  onClose={() => { }}
-                >
-                  {' '}{'Anna Serdechna'}
-                </Tag>
-              </Flex>
-
-              <Input
-                placeholder={'Search names, roles or teams'}
-                size={'large'}
-                prefix={<SearchOutlined style={{ fontSize: 20 }} />}
-              />
-
-              <Text>Suggested people</Text>
-
-              <Button
-                icon={<UserAddOutlined />}
-                type={'text'}
-                size={'large'}
-                style={{ width: '100%' }}
-              >
-                Invite a new member by email
-              </Button>
-            </Space>
-          )}
-          trigger={'click'}
-          placement={'bottom'}
-        >
-          <Avatar size={32} icon={<UserAddOutlined />} />
-        </Popover>
-      )
+      render: () => <OwnerField />
     },
     {
       title: 'Status',
@@ -240,6 +196,8 @@ export const TableView: FC = () => {
         return (
           <EditableText
             value={note}
+            icon={<PlusCircleOutlined />}
+            tooltip={`${!note ? 'Add' : 'Edit'} note`}
             onChange={newValue => handleEditContent(newValue, note, 'note', data?.id)}
           />
         )

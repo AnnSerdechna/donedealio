@@ -27,18 +27,19 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             fontSizeHeading4: 24,
           },
           Menu: {
-            darkItemBg: variables.darkBg,
-            darkItemSelectedBg: variables.darkBgSelected,
-            darkPopupBg: variables.darkBg,
-            darkSubMenuItemBg: variables.darkBg,
-            darkItemHoverBg: variables.darkBgSelected,
+            itemSelectedBg: 'rgba(0, 0, 0, 0.06)',
+            // darkItemBg: variables.darkBg,
+            // darkItemSelectedBg: variables.darkBgSelected,
+            // darkPopupBg: variables.darkBg,
+            // darkSubMenuItemBg: variables.darkBg,
+            // darkItemHoverBg: variables.darkBgSelected,
             itemBg: 'transparent',
-            itemActiveBg: 'red',        
           },
           Layout: {
             headerBg: 'transparent',
-            siderBg: variables.darkBg,
-            triggerBg: variables.darkBg,
+            siderBg: '#f5f5f5',
+            triggerBg: '#f5f5f5',
+            triggerColor: '#111'
           },
           Form: {
             itemMarginBottom: 16,

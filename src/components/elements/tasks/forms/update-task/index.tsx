@@ -25,7 +25,6 @@ type FormData = {
 export const UpdateTaskForm: FC<CreateTaskFormProps> = ({ form, taskId, refetchTasks, onCloseForm }) => {
   const { message } = App.useApp();
   const [updateTask, { loading }] = useUpdateOneTaskMutation();
-  const [disabled, setDisabled] = useState(true)
 
   const handleCloseForm = () => {
     form.resetFields();
@@ -41,8 +40,8 @@ export const UpdateTaskForm: FC<CreateTaskFormProps> = ({ form, taskId, refetchT
             status: { connect: { id: values?.status?.id } },
             priority: { connect: { id: values?.priority?.id } },
             note: { set: values?.notes },
-            dueDate: { set: getFormattedDate(values?.dueDate)}
-          }, 
+            dueDate: { set: getFormattedDate(values?.dueDate) }
+          },
           where: {
             id: taskId
           }
@@ -68,14 +67,19 @@ export const UpdateTaskForm: FC<CreateTaskFormProps> = ({ form, taskId, refetchT
       labelAlign={'left'}
       colon={false}
       size={'large'}
-      onValuesChange={() => setDisabled(false)}
     >
       <Flex vertical gap={32}>
         <TaskFormContent form={form} />
 
         <Flex justify={'end'} gap={8}>
           <Button text={'Cancel'} type={'default'} onClick={handleCloseForm} wide={false} />
-          <Button text={'Update'} type={'primary'} htmlType={'submit'} wide={false} loading={loading} disabled={disabled} />
+          <Button
+            text={'Update'}
+            type={'primary'}
+            htmlType={'submit'}
+            wide={false}
+            loading={loading}
+          />
         </Flex>
       </Flex>
     </Form>

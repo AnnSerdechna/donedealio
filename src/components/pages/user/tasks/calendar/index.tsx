@@ -1,21 +1,21 @@
 "use client";
 
 import React, { FC, Fragment, useState } from 'react';
-import { Calendar, Flex, Form, Modal, Button as AntBtn } from 'antd';
+import { Calendar, Flex, Form, Button } from 'antd';
 import type { CalendarProps } from 'antd';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
+import { useParams } from 'next/navigation';
 
 import { Task, useTasksQuery } from '@/graphql/types';
-import { CreateTaskForm } from '@/components/elements';
-import dayjs from 'dayjs';
-import { useParams } from 'next/navigation';
+import { CreateTaskForm, UpdateTaskForm } from '@/components/elements';
+import { Modal } from '@/components/ui';
 import styles from './index.module.scss';
-import { UpdateTaskForm } from '@/components/elements/tasks/update-task-form';
 
 export const CalendarView: FC = () => {
   const createTaskForm = Form.useForm();
   const updateTaskForm = Form.useForm();
   const { workspaceId } = useParams();
+  
   const [selectedTaskId, setTaskId] = useState<string>('')
   const [selectedDate, setDate] = useState<Dayjs | null>(null)
 
@@ -59,7 +59,7 @@ export const CalendarView: FC = () => {
     const data = tasksData?.tasks?.filter(item => dayjs(item?.dueDate).format('YYYY-MM-DD') === formattedDate)
 
     return (
-      <Flex vertical justify={'space-between'} style={{height: '100%'}}>
+      <Flex vertical justify={'space-between'} style={{ height: '100%' }}>
         <ul className={styles.tasksList}>
           {data?.map((item) => (
             <li key={item?.id}>
@@ -78,13 +78,13 @@ export const CalendarView: FC = () => {
 
         {!!data?.length && (
           <Flex justify='end'>
-            <AntBtn
+            <Button
               type={'text'}
               size={'small'}
               onClick={() => onSelectCell(value)}
             >
               + Add
-            </AntBtn>
+            </Button>
           </Flex>
         )}
       </Flex>
@@ -116,16 +116,13 @@ export const CalendarView: FC = () => {
         cellRender={cellRender}
         onSelect={onSelectCell}
       />
-      <Modal 
+      <Modal
         open={!!selectedDate}
         onCancel={handleCloseCreateTask}
-        styles={{content: {padding: '58px 32px 32px'}}}
-        footer={false}
-        closable
       >
-        <CreateTaskForm 
+        <CreateTaskForm
           form={createTaskForm[0]}
-          onCloseForm={handleCloseCreateTask} 
+          onCloseForm={handleCloseCreateTask}
           refetchTasks={refetch}
         />
       </Modal>
@@ -133,9 +130,6 @@ export const CalendarView: FC = () => {
       <Modal
         open={!!selectedTaskId}
         onCancel={() => setTaskId('')}
-        styles={{ content: { padding: '58px 32px 32px' } }}
-        footer={false}
-        closable
       >
         <UpdateTaskForm
           taskId={selectedTaskId}

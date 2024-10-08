@@ -3,14 +3,15 @@ import { FC, ReactNode } from 'react';
 
 import { RadioButtonProps } from 'antd/es/radio/radioButton';
 import { Priority, Status } from '@/graphql/types';
-import { StatusBtn } from '../status-btn';
+import { StatusBtn, StatusBtnProps } from '../status-btn';
 
-type StatusPopoverProps = RadioButtonProps & {
+type StatusPopoverProps = RadioButtonProps & Pick<StatusBtnProps, 'size'> & {
   content: ReactNode
   status: Status | Priority
+  size?: 'large' | 'medium'
 }
 
-export const StatusPopover: FC<StatusPopoverProps> = ({ status, content, ...props }) => {
+export const StatusPopover: FC<StatusPopoverProps> = ({ status, content, size, ...props }) => {
   return (
     <Popover
       placement={'bottom'}
@@ -22,6 +23,7 @@ export const StatusPopover: FC<StatusPopoverProps> = ({ status, content, ...prop
         value={status}
         label={status?.name}
         backgroundColor={status?.color ?? ''}
+        size={size}
         {...props}
       />
     </Popover>

@@ -10,8 +10,11 @@ export { ConfirmPasswordForm } from './auth/auth-forms/confirm-password-form';
 export { WorkspaceCard } from './workspace/workspace-card';
 export { WorkspaceFormContent } from './workspace/workspace-form-content';
 
-export { StatusField } from './tasks/status';
+export { StatusField } from './tasks/data-fields/status';
+export { DueDateField } from './tasks/data-fields/due-date';
+export { EditableText } from './tasks/data-fields/editable-text';
 
-export { CreateTaskForm } from './tasks/create-task-form';
+export { CreateTaskForm } from './tasks/forms/create-task';
+export { UpdateTaskForm } from './tasks/forms/update-task';
 
 

@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import { Noto_Sans } from 'next/font/google';
 import { App as AntdApp } from "antd";
+import { Roboto } from 'next/font/google';
 
 import { ThemeProvider, ApolloProvider, SessionProvider } from '@/provider';
 import '@/styles/global.scss'
-const notoSans = Noto_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '700', '900'] });
+
+const roboto = Roboto({ subsets: ['latin'], weight: ['400'] });
+
 
 export const metadata: Metadata = {
   title: 'DoneDealio',
@@ -22,7 +24,7 @@ export default async function RootLayout({
 
   return (
     <html lang={'en'}>
-      <body className={notoSans.className}>
+      <body className={roboto.className}>
         <SessionProvider>
           <ApolloProvider>
             <AntdApp>

@@ -3,7 +3,7 @@
 import { FC, useState } from "react";
 import { useParams } from 'next/navigation';
 
-import { Avatar, Badge, DatePicker, Button, Flex, Input, Popover, Space, Table, Tag, Typography, Upload, App} from 'antd';
+import { Avatar, Badge, Button, Flex, Input, Popover, Space, Table, Tag, Typography, Upload, App} from 'antd';
 import type { TableProps } from 'antd';
 import dayjs from 'dayjs';
 import {
@@ -12,7 +12,6 @@ import {
   SearchOutlined,
   DeleteTwoTone,
   FileAddOutlined,
-  PlusCircleOutlined,
 } from '@ant-design/icons'
 import {
   Status,
@@ -24,9 +23,9 @@ import {
   useUpdateOneTaskMutation,
 } from '@/graphql/types';
 
-import { AddTaskForm } from '@/components/elements/tasks/add-task-form';
-import { StatusField } from '@/components/elements';
-
+import { AddTaskForm } from '@/components/elements/tasks/forms/add-task';
+import { DueDateField, StatusField, EditableText } from '@/components/elements';
+import { getFormattedDate } from '@/functions/getFormattedDate';
 
 const { Text } = Typography;
 
@@ -84,6 +83,17 @@ export const TableView: FC = () => {
     }
   };
 
+  const handleEditContent = (newValue: string, value: string, updatedField: string, taskId: string) => {
+    const newData = {
+      [updatedField]: {
+        set: newValue
+      }
+    };
+    if (value !== newValue) {
+      handleUpdateTask(newData, taskId, updatedField)
+    };
+  }
+
   const columns: TableProps<Task>['columns'] = [
     {
       title: 'Task',
@@ -92,24 +102,10 @@ export const TableView: FC = () => {
       fixed: 'left',
       render: (name, data) => {
         return (
-          <Typography.Paragraph
-            editable={{
-              onChange: newValue => {
-                const newData = {
-                  name: {
-                    set: newValue
-                  }
-                };
-
-                if (name !== newValue) {
-                  handleUpdateTask(newData, data?.id, 'Name')
-                }
-              },
-              maxLength: 50,
-            }}
-          >
-            {name}
-          </Typography.Paragraph>
+          <EditableText 
+            value={name}
+            onChange={newValue => handleEditContent(newValue, name, 'name', data?.id)}
+          />
         )
       }
     },
@@ -201,33 +197,22 @@ export const TableView: FC = () => {
       dataIndex: 'dueDate',
       key: 'dueDate',
       align: 'center',
-      width: 150,
-      render: (dueDate, data) => {
-        return (
-          <Flex>
-            <DatePicker
-              value={!!dueDate ? dayjs(dueDate) : null}
-              format={'DD MMM'}
-              showNow={false}
-              variant={'borderless'}
-              onChange={date => {
-                const currentDate = new Date();
-                const newDate = dayjs(date)
-                  .set('hour', currentDate.getHours())
-                  .set('minute', currentDate.getMinutes())
-                  .set('second', currentDate.getSeconds());
-
-                const newData = {
-                  dueDate: {
-                    set: newDate.toDate()
-                  }
-                };
-                handleUpdateTask(newData, data?.id, 'Due date')
-              }}
-            />
-          </Flex>
-        )
-      }
+      render: (dueDate, data) => (
+        <DueDateField
+          value={!!dueDate ? dayjs(dueDate) : null}
+          dueDate={dueDate}
+          statusName={data?.status?.name as string}
+          variant={'borderless'}
+          onChange={date => {
+            const newData = {
+              dueDate: {
+                set: getFormattedDate(date)
+              }
+            };
+            handleUpdateTask(newData, data?.id, 'Due date')
+          }}
+        />
+      )
     },
     {
       title: 'Priority',
@@ -253,26 +238,10 @@ export const TableView: FC = () => {
       width: '15%',
       render: (note, data) => {
         return (
-          <Typography.Paragraph
-            editable={{
-              onChange: newValue => {
-                const newData = {
-                  note: {
-                    set: newValue
-                  }
-                };
-
-                if (note !== newValue) {
-                  handleUpdateTask(newData, data?.id, 'Note');
-                }
-              },
-              maxLength: 50,
-              icon: <PlusCircleOutlined />,
-              tooltip: `${!!note ? 'Add' : 'Edit'} note`
-            }}
-          >
-            {note}
-          </Typography.Paragraph>
+          <EditableText
+            value={note}
+            onChange={newValue => handleEditContent(newValue, note, 'note', data?.id)}
+          />
         )
       }
     },

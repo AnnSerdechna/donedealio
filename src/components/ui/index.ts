@@ -8,3 +8,5 @@ export { FormItem } from './form-item';
 
 export { Button } from './button';
 export { LinkBtn } from './link-btn';
+
+export { Modal } from './modal';

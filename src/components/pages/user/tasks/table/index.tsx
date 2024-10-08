@@ -22,7 +22,6 @@ import {
   useStatusesQuery,
   useTasksQuery,
   useUpdateOneTaskMutation,
-  useWorkspaceQuery
 } from '@/graphql/types';
 
 import { AddTaskForm } from '@/components/elements/tasks/add-task-form';
@@ -40,13 +39,6 @@ export const TableView: FC = () => {
 
   const { data: statusesData } = useStatusesQuery();
   const { data: prioritiesData } = usePrioritiesQuery();
-  const { data } = useWorkspaceQuery({
-    variables: {
-      where: {
-        id: workspaceId as string
-      }
-    }
-  });
   const { data: tasksData, refetch, loading: dataLoading } = useTasksQuery({
     variables: {
       workspaceId: workspaceId as string
@@ -323,7 +315,7 @@ export const TableView: FC = () => {
           onChange: setSelectedRowKeys,
         }}
         rowKey={(record) => record.id}
-        footer={() => <AddTaskForm workspaceId={data?.workspace?.id as string} refetchTasks={refetch} />}
+        footer={() => <AddTaskForm workspaceId={workspaceId as string} refetchTasks={refetch} />}
       />
     </Flex>
   );

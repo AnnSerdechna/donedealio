@@ -19,7 +19,6 @@ export const AddTaskFormContent: FC<{ loading: boolean }> = ({ loading }) => {
         <Input placeholder={'+ Add task'} allowClear />
       </FormItem>
       <FormItem>
-
         <Button
           type={'text'}
           size={'small'}

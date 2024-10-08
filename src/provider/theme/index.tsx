@@ -2,11 +2,11 @@
 
 import { ConfigProvider } from 'antd';
 import { FC, PropsWithChildren } from 'react';
-import { Noto_Sans } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 
 import variables from '@/styles/variables.module.scss';
 
-const notoSans = Noto_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '700', '900' ]});
+const roboto = Roboto({ subsets: ['latin'], weight: ['400'] });
 
 export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -14,8 +14,8 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
       theme={{
         token: {
           colorPrimary: variables.primaryColor,
-          fontSize: 14,
-          fontFamily: notoSans.style.fontFamily,
+          fontSize: 15,
+          fontFamily: roboto.style.fontFamily,
         },
         components: {
           Typography: {
@@ -27,37 +27,29 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             fontSizeHeading4: 24,
           },
           Menu: {
-            darkItemBg: variables.darkBg,
-            darkItemSelectedBg: variables.darkBgSelected,
-            darkPopupBg: variables.darkBg,
-            darkSubMenuItemBg: variables.darkBg,
-            darkItemHoverBg: variables.darkBgSelected,
+            itemSelectedBg: 'rgba(0, 0, 0, 0.06)',
+            // darkItemBg: variables.darkBg,
+            // darkItemSelectedBg: variables.darkBgSelected,
+            // darkPopupBg: variables.darkBg,
+            // darkSubMenuItemBg: variables.darkBg,
+            // darkItemHoverBg: variables.darkBgSelected,
             itemBg: 'transparent',
-            itemActiveBg: 'red',        
           },
           Layout: {
             headerBg: 'transparent',
-            siderBg: variables.darkBg,
-            triggerBg: variables.darkBg,
+            siderBg: '#f5f5f5',
+            triggerBg: '#f5f5f5',
+            triggerColor: '#111'
           },
-        
-          // Badge: {
-          //   colorError: variables.primaryColor,
-          // },
           Form: {
             itemMarginBottom: 16,
           },
           Input: {
-            fontFamily: 'inherit'
           },
           Avatar: {
             colorTextPlaceholder: variables.primaryColor,
           },
-          Checkbox: {
-            // controlInteractiveSize: 18
-          },
           Button: {
-            // onlyIconSizeSM: 20,
             defaultBg: 'transparent',
             defaultColor: variables.secondaryColor,
             defaultBorderColor: variables.secondaryColor,

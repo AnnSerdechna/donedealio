@@ -3,17 +3,15 @@
 import { FC, useState } from "react";
 import { useParams } from 'next/navigation';
 
-import { Avatar, Badge, DatePicker, Button, Flex, Input, Popover, Space, Table, Tag, Typography, Upload, App} from 'antd';
+import { Badge, Button, Flex, Table, Upload, App} from 'antd';
 import type { TableProps } from 'antd';
 import dayjs from 'dayjs';
 import {
   MessageOutlined,
-  UserAddOutlined,
-  SearchOutlined,
   DeleteTwoTone,
   FileAddOutlined,
   PlusCircleOutlined,
-} from '@ant-design/icons'
+} from '@ant-design/icons';
 import {
   Status,
   Task,
@@ -22,14 +20,11 @@ import {
   useStatusesQuery,
   useTasksQuery,
   useUpdateOneTaskMutation,
-  useWorkspaceQuery
 } from '@/graphql/types';
 
-import { AddTaskForm } from '@/components/elements/tasks/add-task-form';
-import { StatusField } from '@/components/elements';
-
-
-const { Text } = Typography;
+import { AddTaskForm } from '@/components/elements/tasks/forms/add-task';
+import { DueDateField, StatusField, EditableText, OwnerField } from '@/components/elements';
+import { getFormattedDate } from '@/functions/getFormattedDate';
 
 type UpdatedDataType = { [key: string]: { set: string | Date } } | { [key: string]: { connect: { id: number } } };
 
@@ -40,13 +35,6 @@ export const TableView: FC = () => {
 
   const { data: statusesData } = useStatusesQuery();
   const { data: prioritiesData } = usePrioritiesQuery();
-  const { data } = useWorkspaceQuery({
-    variables: {
-      where: {
-        id: workspaceId as string
-      }
-    }
-  });
   const { data: tasksData, refetch, loading: dataLoading } = useTasksQuery({
     variables: {
       workspaceId: workspaceId as string
@@ -92,6 +80,17 @@ export const TableView: FC = () => {
     }
   };
 
+  const handleEditContent = (newValue: string, value: string, updatedField: string, taskId: string) => {
+    const newData = {
+      [updatedField]: {
+        set: newValue
+      }
+    };
+    if (value !== newValue) {
+      handleUpdateTask(newData, taskId, updatedField)
+    };
+  }
+
   const columns: TableProps<Task>['columns'] = [
     {
       title: 'Task',
@@ -100,24 +99,11 @@ export const TableView: FC = () => {
       fixed: 'left',
       render: (name, data) => {
         return (
-          <Typography.Paragraph
-            editable={{
-              onChange: newValue => {
-                const newData = {
-                  name: {
-                    set: newValue
-                  }
-                };
-
-                if (name !== newValue) {
-                  handleUpdateTask(newData, data?.id, 'Name')
-                }
-              },
-              maxLength: 50,
-            }}
-          >
-            {name}
-          </Typography.Paragraph>
+          <EditableText 
+            value={name}
+            tooltip={`Edit task`}
+            onChange={newValue => handleEditContent(newValue, name, 'name', data?.id)}
+          />
         )
       }
     },
@@ -144,49 +130,7 @@ export const TableView: FC = () => {
       dataIndex: 'user',
       key: 'user',
       align: 'center',
-      render: () => (
-        <Popover
-          overlayStyle={{ width: 400 }}
-          overlayInnerStyle={{ padding: 24 }}
-          content={(
-            <Space direction={'vertical'} size={16} style={{ width: '100%' }}>
-              <Flex wrap gap="small">
-                <Tag
-                  icon={<Avatar size={24} icon={<UserAddOutlined />} />}
-                  color="#bbb"
-                  style={{ borderRadius: '99px', margin: 0 }}
-                  closable
-                  bordered
-                  onClose={() => { }}
-                >
-                  {' '}{'Anna Serdechna'}
-                </Tag>
-              </Flex>
-
-              <Input
-                placeholder={'Search names, roles or teams'}
-                size={'large'}
-                prefix={<SearchOutlined style={{ fontSize: 20 }} />}
-              />
-
-              <Text>Suggested people</Text>
-
-              <Button
-                icon={<UserAddOutlined />}
-                type={'text'}
-                size={'large'}
-                style={{ width: '100%' }}
-              >
-                Invite a new member by email
-              </Button>
-            </Space>
-          )}
-          trigger={'click'}
-          placement={'bottom'}
-        >
-          <Avatar size={32} icon={<UserAddOutlined />} />
-        </Popover>
-      )
+      render: () => <OwnerField />
     },
     {
       title: 'Status',
@@ -209,33 +153,22 @@ export const TableView: FC = () => {
       dataIndex: 'dueDate',
       key: 'dueDate',
       align: 'center',
-      width: 150,
-      render: (dueDate, data) => {
-        return (
-          <Flex>
-            <DatePicker
-              value={!!dueDate ? dayjs(dueDate) : null}
-              format={'DD MMM'}
-              showNow={false}
-              variant={'borderless'}
-              onChange={date => {
-                const currentDate = new Date();
-                const newDate = dayjs(date)
-                  .set('hour', currentDate.getHours())
-                  .set('minute', currentDate.getMinutes())
-                  .set('second', currentDate.getSeconds());
-
-                const newData = {
-                  dueDate: {
-                    set: newDate.toDate()
-                  }
-                };
-                handleUpdateTask(newData, data?.id, 'Due date')
-              }}
-            />
-          </Flex>
-        )
-      }
+      render: (dueDate, data) => (
+        <DueDateField
+          value={!!dueDate ? dayjs(dueDate) : null}
+          dueDate={dueDate}
+          statusName={data?.status?.name as string}
+          variant={'borderless'}
+          onChange={date => {
+            const newData = {
+              dueDate: {
+                set: getFormattedDate(date)
+              }
+            };
+            handleUpdateTask(newData, data?.id, 'Due date')
+          }}
+        />
+      )
     },
     {
       title: 'Priority',
@@ -261,26 +194,12 @@ export const TableView: FC = () => {
       width: '15%',
       render: (note, data) => {
         return (
-          <Typography.Paragraph
-            editable={{
-              onChange: newValue => {
-                const newData = {
-                  note: {
-                    set: newValue
-                  }
-                };
-
-                if (note !== newValue) {
-                  handleUpdateTask(newData, data?.id, 'Note');
-                }
-              },
-              maxLength: 50,
-              icon: <PlusCircleOutlined />,
-              tooltip: `${!!note ? 'Add' : 'Edit'} note`
-            }}
-          >
-            {note}
-          </Typography.Paragraph>
+          <EditableText
+            value={note}
+            icon={<PlusCircleOutlined />}
+            tooltip={`${!note ? 'Add' : 'Edit'} note`}
+            onChange={newValue => handleEditContent(newValue, note, 'note', data?.id)}
+          />
         )
       }
     },
@@ -323,7 +242,7 @@ export const TableView: FC = () => {
           onChange: setSelectedRowKeys,
         }}
         rowKey={(record) => record.id}
-        footer={() => <AddTaskForm workspaceId={data?.workspace?.id as string} refetchTasks={refetch} />}
+        footer={() => <AddTaskForm workspaceId={workspaceId as string} refetchTasks={refetch} />}
       />
     </Flex>
   );

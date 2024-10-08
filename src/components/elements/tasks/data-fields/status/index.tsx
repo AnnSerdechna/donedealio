@@ -3,37 +3,32 @@
 import { FC, Fragment, useState } from 'react';
 
 import { StatusPopover } from './status-popover';
-import { StatusChange } from './status-change';
+import { StatusChange, StatusChangeProps } from './status-change';
 import { StatusEdit } from './status-edit';
-import { Priority, Status } from '@/graphql/types';
 import { PriorityEdit } from './priority-edit';
-import { FormInstance } from 'antd';
+import { Priority, Status } from '@/graphql/types';
+import { StatusBtnProps } from './status-btn';
 
-type StatusFieldProps = {
-  data: Status[] | Priority[]
-  taskId?: string
-  form?: FormInstance
-  status: Status | Priority
-  updatedField: 'status' | 'priority'
-  refetchTask?: VoidFunction
-};
+type StatusFieldProps = Omit<StatusChangeProps, 'onEdit'> & Pick<StatusBtnProps, 'size'> & { status: Status | Priority };
 
 export const StatusField: FC<StatusFieldProps> = ({
   data, 
   taskId,
   form,
   status, 
+  size,
   updatedField,
   refetchTask, 
 }) => {
-  const [statusContent, setStatusContent] = useState<'change' | 'edit'>('change')
+  const [statusContent, setStatusContent] = useState<'change' | 'edit'>('change');
 
-  const handleSetContentAsChange = () => setStatusContent('change')
-  const handleSetContentAsEdit = () => setStatusContent('edit')
+  const handleSetContentAsChange = () => setStatusContent('change');
+  const handleSetContentAsEdit = () => setStatusContent('edit');
 
   return (
     <StatusPopover
       status={status}
+      size={size}
       onClick={handleSetContentAsChange}
       content={(
         <Fragment>

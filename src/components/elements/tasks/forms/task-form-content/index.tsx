@@ -4,7 +4,7 @@ import { FileAddOutlined } from '@ant-design/icons';
 
 import { FormItem } from '@/components/ui'
 import { Priority, Status, usePrioritiesQuery, useStatusesQuery } from '@/graphql/types';
-import { StatusField } from '../status';
+import { StatusField } from '../../data-fields/status';
 
 export const TaskFormContent: FC<{ form: FormInstance }> = ({ form }) => {
   const { data: statusesData } = useStatusesQuery();
@@ -37,6 +37,7 @@ export const TaskFormContent: FC<{ form: FormInstance }> = ({ form }) => {
           data={statusesData?.statuses as Status[]}
           status={statusValue as Status}
           updatedField={'status'}
+          size={'large'}
         />
       </FormItem>
 
@@ -61,6 +62,7 @@ export const TaskFormContent: FC<{ form: FormInstance }> = ({ form }) => {
           data={prioritiesData?.priorities as Priority[]}
           status={priorityValue as Priority}
           updatedField={'priority'}
+          size={'large'}
         />
       </FormItem>
       <FormItem

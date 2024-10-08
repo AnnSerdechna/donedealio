@@ -7,7 +7,7 @@ import { Priority, Status, useUpdateOneTaskMutation } from '@/graphql/types';
 import { AggregationColor } from 'antd/es/color-picker/color';
 import { StatusBtn } from '../status-btn';
 
-type StatusAddProps = RadioGroupProps & {
+export type StatusChangeProps = RadioGroupProps & {
   data: Status[] | Priority[]
   taskId?: string
   form?: FormInstance
@@ -16,7 +16,15 @@ type StatusAddProps = RadioGroupProps & {
   refetchTask?: VoidFunction
 };
 
-export const StatusChange: FC<StatusAddProps> = ({ form, updatedField, data, taskId, refetchTask, onEdit, ...props }) => {
+export const StatusChange: FC<StatusChangeProps> = ({ 
+  form, 
+  updatedField, 
+  data, 
+  taskId, 
+  refetchTask, 
+  onEdit, 
+  ...props 
+}) => {
   const { message } = App.useApp();
   const [updateTask] = useUpdateOneTaskMutation();
 
@@ -49,34 +57,34 @@ export const StatusChange: FC<StatusAddProps> = ({ form, updatedField, data, tas
   };
 
   return (
-    <Flex vertical>
-      <Radio.Group
-        optionType={'button'}
-        buttonStyle={'solid'}
-        size={'large'}
-        {...props}
-      >
-        <Flex vertical gap={4}>
-          {data?.map(status => (
-            <StatusBtn
-            key={status?.id} 
-              value={status}
-              label={status?.name}
-              backgroundColor={status?.color}
-              onClick={() => handleUpdateTaskStatus(status)}
-            />
-          ))}
-          <Divider style={{ margin: '8px 0' }} />
-          <Button
-            text={'Edit label'}
-            icon={<EditOutlined />}
-            type={'text'}
+    <Radio.Group
+      optionType={'button'}
+      buttonStyle={'solid'}
+      size={'large'}
+      style={{width: '100%'}}
+      {...props}
+    >
+      <Flex vertical gap={4}>
+        {data?.map(status => (
+          <StatusBtn
+            key={status?.id}
+            value={status}
+            label={status?.name}
+            backgroundColor={status?.color}
             size={'large'}
-            style={{ width: '100%' }}
-            onClick={onEdit}
+            onChange={() => handleUpdateTaskStatus(status)}
           />
-        </Flex>
-      </Radio.Group>
-    </Flex>
+        ))}
+        <Divider style={{ margin: '8px 0' }} />
+        <Button
+          text={'Edit label'}
+          icon={<EditOutlined />}
+          type={'text'}
+          size={'large'}
+          style={{ width: '100%' }}
+          onClick={onEdit}
+        />
+      </Flex>
+    </Radio.Group>
   )
 }

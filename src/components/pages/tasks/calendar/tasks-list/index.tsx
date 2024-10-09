@@ -18,7 +18,7 @@ export const TasksList: FC<TasksListProps> = ({ value, data, onSelectCell, onSel
   const tasksData = data?.filter(item => dayjs(item?.dueDate).format('YYYY-MM-DD') === formattedDate)
 
   return (
-    <Flex vertical justify={'space-between'} className={styles.listWrap}>
+    <Flex vertical justify={'space-between'} gap={8} className={styles.listWrap}>
       <ul className={styles.tasksList}>
         {tasksData?.map((item) => (
           <li key={item?.id} className={styles.taskItem}>

@@ -53,7 +53,7 @@ export const WorkspaceCard: FC<WorkspaceCardProps> = ({ userId, id, name, descri
           <Button
             size={'small'}
             type={'link'}
-            icon={<MoreOutlined />}
+            icon={<MoreOutlined style={{fontSize: 18}} />}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation(); 

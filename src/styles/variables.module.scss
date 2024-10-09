@@ -1,14 +1,10 @@
-$primary-color: #37447E;
+$primary-color: #7695FF;
 $secondary-color: #5f74d4;
 $error-color: #f5222d;
-$dark-bg: #333;
-$dark-bg-selected: #444;
-$white-color: #fff;
-$text-color: rgb(9, 17, 51);
-$text-secondary-color: rgb(80, 95, 152);
-$text-dark-color: rgba(255, 255, 255, 0.65);
+$text-color: #444;
+$bg-grey-color: #f5f5f5;
 
-$header-height: 64px;
+$header-height: 56px;
 
 $height-sm: 40px;
 $height-md: 48px;
@@ -33,12 +29,8 @@ $screen-lg: 1024px;
   primaryColor: $primary-color;
   secondaryColor: $secondary-color;
   errorColor: $error-color;
-  darkBg: $dark-bg;
-  darkBgSelected: $dark-bg-selected;
-  whiteColor: $white-color;
   textColor: $text-color;
-  textSecondaryColor: $text-secondary-color;
-  textDarkColor: $text-dark-color;
+  bgGreyColor: $bg-grey-color;
 
   headerHeight: $header-height;
 

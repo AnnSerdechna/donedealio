@@ -31,20 +31,20 @@ export const TasksHeader: FC<TasksHeaderProps> = ({ onShowMobileDrawer, onConfir
   ];
 
   return (
-    <Header style={{padding: `0 ${variables.sizeSm}`}}>
+    <Header style={{padding: `0 ${variables.sizeSm}`, margin: '8px 16px', borderRadius: 8}}>
       <Flex justify={'space-between'} align={'center'} gap={16}>
         <div className={styles.menuBtnWrap}>
           <Button
-            type={'link'}
-            size={'small'}
+            type={'text'}
+            size={'middle'}
             icon={<MenuOutlined />} 
             onClick={onShowMobileDrawer}
           />
         </div>
 
-        <Col sm={16} md={8} lg={8}>
+        <Col sm={16} md={8} lg={6}>
           <Input
-            size={'middle'}
+            size={'small'}
             suffix={<Icon icon={<SearchOutlined />} />}
           />
         </Col>

@@ -7,10 +7,14 @@ import styles from './index.module.scss';
 
 const karantina = Karantina({ subsets: ['latin'], weight: '400' });
 
-export type LogoProps = { hasLogoText?: boolean };
+export type LogoProps = { hasLogoText?: boolean, size?: string | number };
 
-export const Logo: FC<LogoProps> = ({ hasLogoText = true  }) => (
-  <Link href={'/'} className={styles.logoLink} style={{fontFamily: karantina.style.fontFamily}}>
+export const Logo: FC<LogoProps> = ({ hasLogoText = false, size  }) => (
+  <Link 
+    href={'/'} 
+    className={styles.logoLink} 
+    style={{fontFamily: karantina.style.fontFamily, fontSize: !!size ? size : 30}}
+    >
     <SvgIcon type={'logo'} />
     {hasLogoText && <span>DoneDeal</span>}
   </Link>

@@ -1,10 +1,5 @@
-import { ForgotPasswordForm } from '@/components/elements'
-import { Fragment } from 'react'
+import { ForgotPasswordForm } from '@/components/elements';
 
 export default function ForgotPassword ()  {
-  return (
-    <Fragment>
-      <ForgotPasswordForm />
-    </Fragment>
-  )
+  return <ForgotPasswordForm />
 }

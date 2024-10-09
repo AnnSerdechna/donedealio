@@ -1,2 +1,3 @@
 export { TasksLayout } from './tasks/layout';
-export { HomeLayout } from './home/layout';
+export { AuthLayout } from './auth';
+export { WorkspaceViewLayout } from './workspaces';

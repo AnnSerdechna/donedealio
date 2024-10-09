@@ -1,20 +1,32 @@
 'use client';
 
-import { Flex, Input, message } from 'antd';
+import { App, Flex, Input } from 'antd';
 import Link from 'next/link';
-import { signIn } from "next-auth/react";
-import { FC, Fragment } from 'react';
+import { signIn, useSession } from "next-auth/react";
+import { FC, useEffect } from 'react';
 import bcrypt from 'bcryptjs';
 
 import { AuthFormContent } from '@/components/elements';
-import { Form, FormItem, Text, Button } from '@/components/ui';
+import { FormItem, Text, Button } from '@/components/ui';
 import { Role, useCreateOneUserMutation, UserCreateInput } from '@/graphql/types';
+import { AuthForm } from '../../auth-form';
+import { useRouter } from 'next/navigation';
 
 const { Password } = Input;
 
 export const RegisterForm: FC = () => {
-  const [messageApi, contextHolder] = message.useMessage();
+  const {message} = App.useApp();
+  const router = useRouter();
+  const { data: session } = useSession();
   const [register, { loading }] = useCreateOneUserMutation();
+
+  const userId = session?.user?.id;
+
+  useEffect(() => {
+    if (session?.user?.id) {
+      router.push(`/${userId}/workspace`)
+    }
+  }, [session]);
 
   const onFinish = async (values: UserCreateInput) => {
     try {
@@ -42,21 +54,20 @@ export const RegisterForm: FC = () => {
       });
 
       if (loginResult?.error) {
-        messageApi.error(loginResult?.error);
+        message.error(loginResult?.error);
       }
 
-      messageApi.success('Register success');
+      message.success('Register success');
     } catch (error) {
       console.log(error, 'Register error');
-      messageApi.error('Register failed');
+      message.error('Register failed');
     }
   }
 
   return (
-    <Fragment>
-      {contextHolder}
-      <Form onFinish={onFinish}>
-        <AuthFormContent title={'Sign up'}>
+    <AuthForm onFinish={onFinish}>
+      <AuthFormContent title={'Sign up'}>
+        <Flex align={'center'} gap={16}>
           <FormItem
             name={'firstName'}
             label={'First name'}
@@ -75,73 +86,74 @@ export const RegisterForm: FC = () => {
           >
             <Input size={'large'} />
           </FormItem>
-          <FormItem
-            name={'email'}
-            label={'Email'}
-            rules={[
-              {
-                type: 'email',
-                message: 'The input is not valid E-mail!',
-              },
-              {
-                required: true,
-                message: 'Please input your E-mail!',
-              },
-            ]}
-          >
-            <Input type={'email'} size={'large'} />
-          </FormItem>
-          <FormItem
-            name={'password'}
-            label={'Password'}
-            rules={[
-              {
-                required: true,
-                message: 'Please input your password!',
-              },
-            ]}
-            hasFeedback
-          >
-            <Password size={'large'} />
-          </FormItem>
+        </Flex>
+        <FormItem
+          name={'email'}
+          label={'Email'}
+          rules={[
+            {
+              type: 'email',
+              message: 'The input is not valid E-mail!',
+            },
+            {
+              required: true,
+              message: 'Please input your E-mail!',
+            },
+          ]}
+        >
+          <Input type={'email'} size={'large'} />
+        </FormItem>
+        <FormItem
+          name={'password'}
+          label={'Password'}
+          rules={[
+            {
+              required: true,
+              message: 'Please input your password!',
+            },
+          ]}
+          hasFeedback
+        >
+          <Password size={'large'} />
+        </FormItem>
 
-          <FormItem
-            name={'confirm'}
-            label={'Confirm assword'}
-            dependencies={['password']}
-            hasFeedback
-            rules={[
-              {
-                required: true,
-                message: 'Please confirm your password!',
+        <FormItem
+          name={'confirm'}
+          label={'Confirm assword'}
+          dependencies={['password']}
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: 'Please confirm your password!',
+            },
+            ({ getFieldValue }) => ({
+              validator: (_, value) => {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('The new password that you entered do not match!'));
               },
-              ({ getFieldValue }) => ({
-                validator: (_, value) => {
-                  if (!value || getFieldValue('password') === value) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(new Error('The new password that you entered do not match!'));
-                },
-              }),
-            ]}
-          >
-            <Password size={'large'} />
-          </FormItem>
+            }),
+          ]}
+        >
+          <Password size={'large'} />
+        </FormItem>
 
-          <FormItem>
-            <Button
-              text={'Sign in'}
-              htmlType={'submit'}
-              loading={loading}
-            />
-          </FormItem>
+        <FormItem>
+          <Button
+            text={'Sign in'}
+            htmlType={'submit'}
+            loading={loading}
+            wide
+          />
+        </FormItem>
 
-          <Flex justify={'space-between'} align={'center'}>
-            <Text>Already have account?</Text>
-            <Link href={'/auth/login'}>Log in</Link>
-          </Flex>
-        </AuthFormContent>
-      </Form>
-    </Fragment>
+        <Flex justify={'space-between'} align={'center'}>
+          <Text>Already have account?</Text>
+          <Link href={'/auth/login'}>Log in</Link>
+        </Flex>
+      </AuthFormContent>
+    </AuthForm>
   )
 }

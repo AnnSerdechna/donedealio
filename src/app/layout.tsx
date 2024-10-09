@@ -9,7 +9,6 @@ import '@/styles/global.scss'
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['400'] });
 
-
 export const metadata: Metadata = {
   title: 'DoneDealio',
   description: 'Task management app',

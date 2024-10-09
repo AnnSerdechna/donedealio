@@ -61,6 +61,7 @@ export const ControlPanel: FC<ControlPanelProps> = ({ value, onChange, setButton
 
         <Flex>
           <Button
+            size='small'
             type={'text'}
             onClick={() => {
               setButtonRef();
@@ -70,6 +71,7 @@ export const ControlPanel: FC<ControlPanelProps> = ({ value, onChange, setButton
             <LeftOutlined />
           </Button>
           <Button
+            size='small'
             type={'text'}
             onClick={() => {
               setButtonRef();

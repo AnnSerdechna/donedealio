@@ -67,6 +67,7 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({ form, refetchTasks, on
       labelAlign={'left'}
       colon={false}
       size={'large'}
+      requiredMark={false}
     >
       <Flex vertical gap={32}>
         <TaskFormContent form={form} />

@@ -4,13 +4,14 @@ import { Input } from 'antd';
 import { FC } from 'react';
 
 import { AuthFormContent } from '@/components/elements';
-import { Form, FormItem, Button } from '@/components/ui';
+import { FormItem, Button } from '@/components/ui';
+import { AuthForm } from '../../auth-form';
 
 const { Password } = Input;
 
 export const ConfirmPasswordForm: FC = () => {
   return (
-    <Form>
+    <AuthForm>
       <AuthFormContent title={'Confirm password'}>
         <FormItem
           name={'password'}
@@ -50,9 +51,9 @@ export const ConfirmPasswordForm: FC = () => {
         </FormItem>
 
         <FormItem>
-          <Button text={'Save'} htmlType={'submit'} />
+          <Button text={'Save'} htmlType={'submit'} wide />
         </FormItem>
       </AuthFormContent>
-    </Form>
+    </AuthForm>
   )
 };

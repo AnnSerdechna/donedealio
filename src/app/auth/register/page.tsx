@@ -1,10 +1,5 @@
-import { RegisterForm } from '@/components/elements'
-import { Fragment } from 'react'
+import { RegisterForm } from '@/components/elements';
 
 export default function Register ()  {
-  return (
-    <Fragment>
-      <RegisterForm  />
-    </Fragment>
-  )
+  return <RegisterForm />
 }

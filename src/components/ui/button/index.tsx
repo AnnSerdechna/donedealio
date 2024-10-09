@@ -10,18 +10,14 @@ type CustomButtonProps = ButtonProps & {
   theme?: 'dark' | 'light'
 }
 
-export const Button: FC<CustomButtonProps> = ({ text, wide = true, type, size, icon, theme = 'light', ghost, ...props }) => {
+export const Button: FC<CustomButtonProps> = ({ text, wide = false, type, size, icon, theme = 'light', ghost, ...props }) => {
   return (
     <AntButton
       type={type ?? 'primary'}
       size={size ?? 'large'}
       className={classNames(
         styles.button, 
-        { [styles.ghost]: ghost },
         {[styles.wide]: wide},
-        {[styles.outlined]: wide },
-        {[styles.iconOnly]: !!icon },
-        { [styles.darkTheme]: theme === 'dark' }
       )}
       icon={icon}
       {...props}

@@ -1,6 +1,7 @@
-import { Button, FormItem } from '@/components/ui'
-import { Input } from 'antd'
-import { FC, Fragment } from 'react'
+import { Input } from 'antd';
+import { FC, Fragment } from 'react';
+
+import { Button, FormItem } from '@/components/ui';
 
 type WorkspaceFormContentProps = {
   loading: boolean,
@@ -31,7 +32,13 @@ export const WorkspaceFormContent: FC<WorkspaceFormContentProps> = ({ loading, d
       </FormItem>
 
       <FormItem>
-        <Button text={btntext} htmlType={'submit'} loading={loading} disabled={disabled} />
+        <Button 
+          text={btntext} 
+          htmlType={'submit'} 
+          loading={loading} 
+          disabled={disabled} 
+          wide
+        />
       </FormItem>
     </Fragment>
   )

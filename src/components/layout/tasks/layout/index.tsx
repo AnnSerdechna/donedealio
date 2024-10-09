@@ -9,6 +9,8 @@ import { Logo, LogoProps } from '@/components/elements';
 import { SideMenu } from '../side-menu';
 import { TasksHeader } from '../header';
 import styles from './index.module.scss';
+import { Button, Icon } from '@/components/ui';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 const { Content, Sider } = Layout;
 
@@ -54,21 +56,27 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
           className={styles.sider}
           collapsed={collapsed}
           onCollapse={setCollapsed}
-          style={{height: '100vh', overflow: 'hidden'}}
-          collapsible
+          style={{ height: 'calc(100vh - 16px)', overflow: 'hidden'}}
         >
-          <LogoComponent hasLogoText={false} />
+          <LogoComponent />
+      
           <SideMenu />
+          <Row align={'middle'} justify={"center"} className={styles.logoWrap}>
+            {collapsed ? (
+              <Button type={'link'} size={'middle'} icon={<Icon icon={<LeftOutlined />} />} onClick={() => setCollapsed(false)} />
+            ) : (
+              <Button type={'link'} size={'middle'} icon={<Icon icon={<RightOutlined />} />} onClick={() => setCollapsed(true)} />
+            )}
+          </Row>
         </Sider>
-        <Layout>
+
+        <Layout >
           <TasksHeader 
             onShowMobileDrawer={onOpenMenu} 
             onConfirmLogout={onConfirmLogout}
           />
           <Content className={styles.content}>
-            <div className={styles.contentWrap}>
-              {children}
-            </div>
+            {children}
           </Content>
         </Layout>
       </Layout>

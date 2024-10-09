@@ -23,7 +23,7 @@ div.ant-typography {
 }
 
 a {
-  color: inherit;
+  color: $primary-color !important;
   text-decoration: none;
 
   &:hover {
@@ -31,10 +31,6 @@ a {
     opacity: 0.8;
   }
 }
-
-// .ant-menu-item-divider {
-//   background-color: $dark-bg-selected;
-// }
 
 .ant-menu {
   border: none !important;
@@ -65,4 +61,29 @@ label.ant-radio-button-wrapper {
 
 .ant-upload.ant-upload-select {
   display: block !important;
+}
+
+
+
+.ant-modal-root{
+  .ant-modal-mask {
+    background-color: rgba(80, 95, 152, 0.5) !important;
+  }
+}
+
+.ant-modal.ant-modal-confirm-confirm {
+  .ant-modal-content {
+    .ant-modal-body {
+      .ant-modal-confirm-btns {
+        .ant-btn.ant-btn-default.ant-btn-variant-outlined {
+            border: 1px solid $primary-color;
+            color: $primary-color;
+        }
+        .ant-btn.ant-btn-color-primary {
+          background: $primary-color;
+        }
+      }
+    }
+    
+  }
 }

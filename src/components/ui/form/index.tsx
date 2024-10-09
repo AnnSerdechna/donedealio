@@ -8,7 +8,8 @@ export const Form: FC<PropsWithChildren<FormProps & { form?: FormInstance }>> = 
     form={form}
     layout={'vertical'}
     className={styles.form}
-  requiredMark={false}
+    requiredMark={false}
+    size={'large'}
     {...props}
   >
     {children}

@@ -17,6 +17,7 @@ export const EditableText: FC<EditableFieldProps> = ({ value, onChange, tooltip,
       icon: !!icon ? icon : <EditOutlined />,
       tooltip: !!tooltip ? tooltip : false
     }}
+    ellipsis
   >
     {value}
   </Typography.Paragraph>

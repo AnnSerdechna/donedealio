@@ -113,7 +113,7 @@ export const TableView: FC = () => {
       key: 'message',
       align: 'center',
       fixed: 'left',
-      width: '5%',
+      width: 60,
       render: () => (
         <Button
           icon={(
@@ -130,6 +130,7 @@ export const TableView: FC = () => {
       dataIndex: 'user',
       key: 'user',
       align: 'center',
+      width: 100,
       render: () => <OwnerField />
     },
     {
@@ -153,12 +154,14 @@ export const TableView: FC = () => {
       dataIndex: 'dueDate',
       key: 'dueDate',
       align: 'center',
+      width: 150,
       render: (dueDate, data) => (
         <DueDateField
           value={!!dueDate ? dayjs(dueDate) : null}
           dueDate={dueDate}
           statusName={data?.status?.name as string}
           variant={'borderless'}
+          style={{ width: '90%' }}
           onChange={date => {
             const newData = {
               dueDate: {
@@ -191,7 +194,7 @@ export const TableView: FC = () => {
       dataIndex: 'note',
       key: 'note',
       align: 'center',
-      width: '15%',
+      width: 250,
       render: (note, data) => {
         return (
           <EditableText
@@ -208,6 +211,7 @@ export const TableView: FC = () => {
       dataIndex: 'files',
       key: 'files',
       align: 'center',
+      width: 100,
       render: () => (
         <Upload>
           <Button type={'link'} icon={<FileAddOutlined style={{ fontSize: 18, color: '#000' }} />} />
@@ -236,7 +240,7 @@ export const TableView: FC = () => {
         loading={dataLoading}
         size={'small'}
         pagination={false}
-        scroll={{ x: 1400 }}
+        scroll={{ x: 1250 }}
         rowSelection={{
           selectedRowKeys,
           onChange: setSelectedRowKeys,

@@ -13,8 +13,6 @@ export const DueDateField: FC<DueDateProps> = ({ dueDate, statusName, ...props }
   const diffInDays = due.diff(today, 'day');
   const percent = Math.round((diffInDays / 8) * 100);
 
-  console.log(percent, 'percent')
-
   const renderIcon = useMemo(() => {
     switch (true) {
       case statusName?.toLowerCase() === 'done':
@@ -46,7 +44,7 @@ export const DueDateField: FC<DueDateProps> = ({ dueDate, statusName, ...props }
   }, [diffInDays, percent, statusName]);
 
   return (
-    <Flex align={'center'}>
+    <Flex align={'center'} gap={3}>
       {!!dueDate && renderIcon}
       <DatePicker
         format={'DD MMM'}

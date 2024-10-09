@@ -4,12 +4,13 @@ import { FC } from 'react';
 import { Flex, Input } from 'antd';
 import Link from 'next/link';
 
-import { Form, FormItem, Button } from '@/components/ui';
+import { FormItem, Button } from '@/components/ui';
 import { AuthFormContent } from '@/components/elements';
+import { AuthForm } from '../../auth-form';
 
 export const ForgotPasswordForm :FC= () => {
   return (
-    <Form>
+    <AuthForm>
       <AuthFormContent title={'Forgot password'}>
         <FormItem
           name={'email'}
@@ -29,13 +30,13 @@ export const ForgotPasswordForm :FC= () => {
         </FormItem>
 
         <FormItem>
-          <Button text={'Send'} htmlType={'submit'} />
+          <Button text={'Send'} htmlType={'submit'} wide />
         </FormItem>
 
         <Flex justify={'flex-end'} align={'center'} gap={16}>
           <Link href={'/auth/login'} style={{ fontSize: 16 }}>Log in</Link>
         </Flex>
       </AuthFormContent>
-    </Form>
+    </AuthForm>
   )
 }

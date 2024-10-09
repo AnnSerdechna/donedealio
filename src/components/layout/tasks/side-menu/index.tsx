@@ -67,7 +67,7 @@ export const HomeMenu: FC = () => (
 export const SideMenu: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const {data: session} = useSession();
+  const { data: session } = useSession();
 
   const activeKeys = [...items, ...bottomItems].filter((item) => pathname?.includes(`${item?.key}`)).map(item => item?.key) as string[];
 

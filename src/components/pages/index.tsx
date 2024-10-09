@@ -1,6 +1,5 @@
-export { DashboardPage } from './user/dashboard';
-export { WorkspacesPage } from './user/workspaces';
-export { WorkspacePage } from './user/workspace-single';
+export { DashboardPage } from './dashboard';
+export { WorkspacesPage } from './workspaces';
 
-export { TableView } from './user/tasks/table';
-export { CalendarView } from './user/tasks/calendar';
+export { TableView } from './tasks/table';
+export { CalendarView } from './tasks/calendar';

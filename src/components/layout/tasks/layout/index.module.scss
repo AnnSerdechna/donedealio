@@ -8,21 +8,23 @@
     height: $header-height;
   }
 
+  .triggerWrap {
+    height: 40px;
+  }
+
   .sider {
+    border-radius: 8px;
+    margin: 8px 0 8px 8px;
     @media only screen and (max-width: $screen-md) {
       display: none;
     }
   }
 
   .content {
-    margin: 0 8px 8px;
+    margin: 0 16px 8px 16px;
     overflow-y: scroll;
-
-    .contentWrap {
-      min-height: 100%;
-      padding: 16px;
-      background-color: $white-color;
-      border-radius: $round-sm;
-    }
+    padding: 16px;
+    background-color: $white-color;
+    border-radius: $round-sm;
   }
 }

@@ -20,10 +20,10 @@ export const LoginForm: FC = () => {
   const userId = session?.user?.id;
 
   useEffect(() => {
-    if (session?.user?.id) {
+    if (userId) {
       router.push(`/${userId}/workspace`);
     }
-  }, [session]);
+  }, [router, userId]);
 
   const handleSubmit = async (values: any) => {
     try {

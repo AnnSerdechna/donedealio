@@ -7,10 +7,9 @@ import styles from './index.module.scss';
 type CustomButtonProps = ButtonProps & {
   text?: string
   wide?: boolean
-  theme?: 'dark' | 'light'
 }
 
-export const Button: FC<CustomButtonProps> = ({ text, wide = false, type, size, icon, theme = 'light', ghost, ...props }) => {
+export const Button: FC<CustomButtonProps> = ({ text, wide = false, type, size, icon, ...props }) => {
   return (
     <AntButton
       type={type ?? 'primary'}

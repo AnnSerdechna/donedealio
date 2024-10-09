@@ -33,9 +33,9 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
           },
           Layout: {
             headerHeight: 56,
-            headerBg: '#fff',
-            siderBg: '#fff',
-            triggerBg: '#fff',
+            headerBg: variables.whiteColor,
+            siderBg: variables.whiteColor,
+            triggerBg: variables.whiteColor,
           },
           Form: {
             itemMarginBottom: 16,

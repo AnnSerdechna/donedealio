@@ -23,10 +23,10 @@ export const RegisterForm: FC = () => {
   const userId = session?.user?.id;
 
   useEffect(() => {
-    if (session?.user?.id) {
-      router.push(`/${userId}/workspace`)
+    if (userId) {
+      router.push(`/${userId}/workspace`);
     }
-  }, [session]);
+  }, [router, userId]);
 
   const onFinish = async (values: UserCreateInput) => {
     try {

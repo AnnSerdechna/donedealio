@@ -32,16 +32,24 @@ export const UpdateTaskForm: FC<CreateTaskFormProps> = ({ form, taskId, refetchT
   };
 
   const hanldeUpdateTask = async (values: FormData) => {
+    let data = {
+      name: { set: values.task },
+      note: { set: values?.notes },
+      dueDate: { set: getFormattedDate(values?.dueDate) }
+    };
+
+    if (!!values?.status?.id) {
+      data = Object.assign(data, { status: { connect: { id: values?.status?.id } } })
+    };
+
+    if (!!values?.priority?.id) {
+      data = Object.assign(data, { priority: { connect: { id: values?.priority?.id } } })
+    };
+
     try {
       await updateTask({
         variables: {
-          data: {
-            name: { set: values.task },
-            status: { connect: { id: values?.status?.id } },
-            priority: { connect: { id: values?.priority?.id } },
-            note: { set: values?.notes },
-            dueDate: { set: getFormattedDate(values?.dueDate) }
-          },
+          data,
           where: {
             id: taskId
           }

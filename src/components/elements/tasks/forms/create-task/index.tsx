@@ -35,19 +35,24 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({ form, refetchTasks, on
   };
 
   const hanldeCreateTask = async (values: FormData) => {
+    let data = {
+      workspace: { connect: { id: workspaceId as string } },
+      name: values.task,
+      note: values?.notes,
+      dueDate: getFormattedDate(values?.dueDate)
+    };
+
+    if (!!values?.status?.id) {
+      data = Object.assign(data, { status: { connect: { id: values?.status?.id } } })
+    };
+
+    if (!!values?.priority?.id) {
+      data = Object.assign(data, { priority: { connect: { id: values?.priority?.id } } })
+    };
+
     try {
-      await createTask({
-        variables: {
-          data: {
-            workspace: { connect: { id: workspaceId as string } },
-            name: values.task,
-            status: { connect: { id: values?.status?.id } },
-            priority: { connect: { id: values?.priority?.id } },
-            note: values?.notes,
-            dueDate: getFormattedDate(values?.dueDate)
-          }
-        }
-      });
+      
+      await createTask({variables: { data }});
       refetchTasks();
       message.success('Task was created successfully!');
     } catch (error) {
@@ -55,6 +60,8 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({ form, refetchTasks, on
       message.error('Something went wrong!');
     } finally {
       handleCloseForm();
+
+      console.log(data, 'data')
     }
   };
 

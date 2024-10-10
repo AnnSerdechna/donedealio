@@ -1,15 +1,24 @@
-import NextAuth, { AuthOptions } from 'next-auth';
+import NextAuth, { AuthOptions, Profile } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import GoogleProvider from "next-auth/providers/google"
 
 import prisma from '../../../../../lib/prisma';
-import { Role } from '@prisma/client';
+import { Account, Role, User } from '@prisma/client';
+import { AdapterUser } from 'next-auth/adapters';
+
+const clientId = process.env.GOOGLE_ID as string;
+const clientSecret = process.env.GOOGLE_SECRET as string;
 
 const authOptions: AuthOptions = {
   debug: true,
   adapter: PrismaAdapter(prisma),
   providers: [
+    GoogleProvider({
+      clientId,
+      clientSecret,
+    }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -18,23 +27,21 @@ const authOptions: AuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Invalid email or password");
+          throw new Error('Invalid email or password');
         }
 
         const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email,
-          },
+          where: { email: credentials.email },
         });
 
-        if (!user) {
-          throw new Error("No user found with this email");
+        if (!user || !user.password) {
+          throw new Error('No user found with this email or missing password');
         }
 
         const isValid = await bcrypt.compare(credentials.password, user.password);
 
         if (!isValid) {
-          throw new Error("Incorrect password");
+          throw new Error('Incorrect password');
         }
 
         return {
@@ -52,6 +59,27 @@ const authOptions: AuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
+    async signIn({ user, account, profile }) {
+      if (account?.provider === 'google') {
+        const existingUser = await prisma.user.findUnique({
+          where: { email: user.email },
+        });
+
+        if (!existingUser) {
+          await prisma.user.create({
+            data: {
+              email: user.email!,
+              firstName: profile?.name || 'First',
+              lastName: profile?.name || 'Last',
+              password: '',
+              role: Role.ADMIN, 
+              image: profile?.image || undefined,
+            },
+          });
+        }
+      }
+      return true; 
+    },
     async session({ session, token }) {
       if (token?.sub) {
         session.user.id = token.sub; 

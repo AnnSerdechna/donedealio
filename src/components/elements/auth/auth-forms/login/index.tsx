@@ -1,7 +1,8 @@
 'use client';
 
-import { FC, useEffect } from 'react';
-import { App, Checkbox, Flex, Input } from 'antd';
+import { FC, useEffect, useState } from 'react';
+import { App, Checkbox, Divider, Flex, Input } from 'antd';
+import { GoogleOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
@@ -9,15 +10,17 @@ import { useRouter } from 'next/navigation';
 import { Text, FormItem, Button } from '@/components/ui';
 import { AuthFormContent } from '@/components/elements';
 import { AuthForm } from '../../auth-form';
+import { login } from '@/functions/login';
 
 const { Password } = Input;
 
 export const LoginForm: FC = () => {
   const { message } = App.useApp();
+  const [hasError, setHasError] = useState(false);
   const router = useRouter();
   const { data: session } = useSession()
 
-  const userId = session?.user?.id;
+  const userId = session?.user?.id as string;
 
   useEffect(() => {
     if (userId) {
@@ -25,26 +28,39 @@ export const LoginForm: FC = () => {
     }
   }, [router, userId]);
 
+
   const handleSubmit = async (values: any) => {
     try {
-      const result = await signIn('credentials', {
-        redirect: true,
-        email: values.email,
-        password: values.password,
-        callbackUrl: `${window.location.href}/${session?.user?.id}/dashboard`,
-      });
+      const result = await login(values, userId, hasError);
 
       if (result?.error) {
+        setHasError(true);
         message.error(result?.error);
       } 
+   
     } catch (error) {
       console.log(error, 'Login error');
+    } finally {
+      setHasError(false)
     }
+  };
+
+  const handleGoogleSignIn = () => {
+    signIn('google', { callbackUrl: `${window.location.origin}/${userId}/dashboard` });
   };
 
   return (
     <AuthForm onFinish={handleSubmit}>
       <AuthFormContent title={'Log in'}>
+        <Button
+          text={'Sign in with Google'}
+          type={'default'}
+          onClick={handleGoogleSignIn}
+          icon={<GoogleOutlined />}
+          wide
+         />
+
+        <Divider>or</Divider>
         <FormItem
           name={'email'}
           label={'Email'}

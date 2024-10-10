@@ -1,17 +1,28 @@
 'use client';
 
-import { Flex, Input } from 'antd';
+import { Divider, Flex, Input } from 'antd';
 import Link from 'next/link';
 import { FC } from 'react';
+import { GoogleOutlined } from '@ant-design/icons';
 
 import { AuthFormContent } from '@/components/elements';
 import { FormItem, Text, Button } from '@/components/ui';
 
 const { Password } = Input;
 
-export const RegisterFormContent: FC<{ loading : boolean }> = ({ loading  }) => {
+export const RegisterFormContent: FC<{ loading: boolean, onGoogleSignIn: () => void }> = ({ loading, onGoogleSignIn }) => {
   return (
     <AuthFormContent title={'Sign up'}>
+      <Button
+        text={'Sign in with Google'}
+        type={'default'}
+        onClick={onGoogleSignIn}
+        icon={<GoogleOutlined />}
+        wide
+      />
+
+      <Divider>or</Divider>
+
       <Flex align={'center'} gap={16}>
         <FormItem
           name={'firstName'}

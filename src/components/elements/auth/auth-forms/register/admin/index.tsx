@@ -3,10 +3,8 @@
 import { FC, useEffect, useState } from 'react';
 
 import { Role, useCreateOneUserMutation, UserCreateInput } from '@/graphql/types';
-import { useRegister } from '@/hooks/useRegister';
 import { AuthForm } from '../../../auth-form';
 import { RegisterFormContent } from '../form-content';
-import { login } from '@/functions/login';
 import bcrypt from 'bcryptjs';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -76,9 +74,13 @@ export const RegisterForm: FC = () => {
     }
   };
 
+  const handleGoogleSignUp = () => {
+    signIn('google', { callbackUrl: `${window.location.origin}/${userId}/dashboard` });
+  };
+
   return (
     <AuthForm onFinish={handleRegister}>
-      <RegisterFormContent loading={loading} />
+      <RegisterFormContent loading={loading} onGoogleSignIn={handleGoogleSignUp} />
     </AuthForm>
   )
 }

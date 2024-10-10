@@ -1,12 +1,11 @@
-import NextAuth, { AuthOptions, Profile } from 'next-auth';
+import NextAuth, { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import GoogleProvider from "next-auth/providers/google"
 
 import prisma from '../../../../../lib/prisma';
-import { Account, Role, User } from '@prisma/client';
-import { AdapterUser } from 'next-auth/adapters';
+import { Role } from '@prisma/client';
 
 const clientId = process.env.GOOGLE_ID as string;
 const clientSecret = process.env.GOOGLE_SECRET as string;

@@ -12,7 +12,7 @@ export const RegisterForm: FC = () => {
 
   return (
     <AuthForm onFinish={handleRegister}>
-      <RegisterFormContent loading={loading} />
+      <RegisterFormContent onGoogleSignIn={() => {}} loading={loading} />
     </AuthForm>
   )
 }

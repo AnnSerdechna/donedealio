@@ -13,6 +13,9 @@ const clientSecret = process.env.GOOGLE_SECRET as string;
 const authOptions: AuthOptions = {
   debug: true,
   adapter: PrismaAdapter(prisma),
+  pages: {
+    signIn: '/auth/register'
+  },
   providers: [
     GoogleProvider({
       clientId,

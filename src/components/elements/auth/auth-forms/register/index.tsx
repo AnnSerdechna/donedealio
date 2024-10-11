@@ -1,15 +1,15 @@
 'use client';
 
 import { FC, useEffect, useState } from 'react';
+import { App } from 'antd';
+import bcrypt from 'bcryptjs';
+import { useRouter } from 'next/navigation';
+import { signIn, useSession } from 'next-auth/react';
 
 import { Role, useCreateOneUserMutation, UserCreateInput } from '@/graphql/types';
-import { AuthForm } from '../../../auth-form';
-import { RegisterFormContent } from '../form-content';
-import bcrypt from 'bcryptjs';
-import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { App } from 'antd';
-import prisma from '../../../../../../../lib/prisma';
+import { RegisterFormContent } from './form-content';
+import { AuthForm } from '../../auth-form';
+import prisma from '../../../../../../lib/prisma';
 
 export const RegisterForm: FC = () => {
   const { message } = App.useApp();
@@ -74,13 +74,9 @@ export const RegisterForm: FC = () => {
     }
   };
 
-  const handleGoogleSignUp = () => {
-    signIn('google', { callbackUrl: `${window.location.origin}/${userId}/dashboard` });
-  };
-
   return (
     <AuthForm onFinish={handleRegister}>
-      <RegisterFormContent loading={loading} onGoogleSignIn={handleGoogleSignUp} />
+      <RegisterFormContent loading={loading} />
     </AuthForm>
   )
 }

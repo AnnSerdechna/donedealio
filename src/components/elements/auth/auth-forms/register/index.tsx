@@ -74,9 +74,13 @@ export const RegisterForm: FC = () => {
     }
   };
 
+  const handleGoogleSignIn = () => {
+    signIn('google', { callbackUrl: `${window.location.origin}/${userId}/dashboard` });
+  };
+
   return (
     <AuthForm onFinish={handleRegister}>
-      <RegisterFormContent loading={loading} />
+      <RegisterFormContent loading={loading} onGoogleSignIn={handleGoogleSignIn} />
     </AuthForm>
   )
 }

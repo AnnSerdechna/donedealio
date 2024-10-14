@@ -3,15 +3,25 @@
 import { Flex, Input } from 'antd';
 import Link from 'next/link';
 import { FC } from 'react';
+import { GoogleOutlined } from '@ant-design/icons';
 
 import { AuthFormContent } from '@/components/elements';
 import { FormItem, Text, Button } from '@/components/ui';
 
 const { Password } = Input;
 
-export const RegisterFormContent: FC<{ loading: boolean }> = ({ loading }) => {
+export const RegisterFormContent: FC<{ loading: boolean, onGoogleSignIn: VoidFunction }> = ({ loading, onGoogleSignIn }) => {
+
   return (
     <AuthFormContent title={'Sign up'}>
+      <Button
+        text={'Sign up with Google'}
+        type={'default'}
+        onClick={onGoogleSignIn}
+        icon={<GoogleOutlined />}
+        wide
+      />
+
       <Flex align={'center'} gap={16}>
         <FormItem
           name={'firstName'}
@@ -64,7 +74,7 @@ export const RegisterFormContent: FC<{ loading: boolean }> = ({ loading }) => {
 
       <FormItem
         name={'confirm'}
-        label={'Confirm assword'}
+        label={'Confirm password'}
         dependencies={['password']}
         hasFeedback
         rules={[
@@ -87,7 +97,7 @@ export const RegisterFormContent: FC<{ loading: boolean }> = ({ loading }) => {
 
       <FormItem>
         <Button
-          text={'Sign in'}
+          text={'Sign up'}
           htmlType={'submit'}
           loading={loading}
           wide
@@ -96,7 +106,7 @@ export const RegisterFormContent: FC<{ loading: boolean }> = ({ loading }) => {
 
       <Flex justify={'space-between'} align={'center'}>
         <Text>Already have account?</Text>
-        <Link href={'/auth/login'}>Log in</Link>
+        <Link href={'/'}>Log in</Link>
       </Flex>
     </AuthFormContent>
   )

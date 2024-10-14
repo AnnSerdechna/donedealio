@@ -18,7 +18,7 @@ export const AuthFormContent: FC<AuthFormContentProps> = ({ title, children }) =
           <Title centered>{title}</Title>
         </Flex>
 
-        <div>{children}</div>
+        <Flex vertical gap={16}>{children}</Flex>
       </Flex>
     </Fragment>
   )

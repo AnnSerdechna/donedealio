@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Karantina } from 'next/font/google';
 import { FC } from 'react';
 
-import { SvgIcon } from '@/assets/icons';
 import styles from './index.module.scss';
+import { SvgIcon } from '@/assets/icons';
 
 const karantina = Karantina({ subsets: ['latin'], weight: '400' });
 

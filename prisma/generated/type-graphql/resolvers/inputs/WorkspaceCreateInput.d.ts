@@ -3,7 +3,7 @@ import { UserCreateNestedOneWithoutWorkspacesInput } from "../inputs/UserCreateN
 export declare class WorkspaceCreateInput {
     id?: string | undefined;
     name: string;
-    description: string;
+    description?: string | undefined;
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
     task?: TaskCreateNestedManyWithoutWorkspaceInput | undefined;

@@ -22,7 +22,7 @@ tslib_1.__decorate([
 ], WorkspaceCreateInput.prototype, "name", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
-        nullable: false
+        nullable: true
     }),
     tslib_1.__metadata("design:type", String)
 ], WorkspaceCreateInput.prototype, "description", void 0);

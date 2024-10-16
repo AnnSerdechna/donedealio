@@ -6,8 +6,8 @@ import { GraphQLSchema, lexicographicSortSchema } from 'graphql';
 import { printSchemaWithDirectives } from '@graphql-tools/utils';
 import { buildSchema } from 'type-graphql';
 import fs from 'node:fs/promises';
-import { resolvers } from '../../../../prisma/generated/type-graphql';
-import prisma from '../../../../lib/prisma';
+import { resolvers } from '../../../prisma/generated/type-graphql';
+import prisma from '../../../lib/prisma';
 
 // Context type
 export type Context = {
@@ -33,7 +33,7 @@ async function emitSchemaDefinitionWithDirectivesFile(
     // Skip writing schema file in production
     return;
   }
-  
+
   const schemaFileContent = printSchemaWithDirectives(lexicographicSortSchema(schema));
   await fs.writeFile(schemaFilePath, schemaFileContent);
 };

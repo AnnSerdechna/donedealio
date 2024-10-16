@@ -9,7 +9,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { Role, useCreateOneUserMutation, UserCreateInput } from '@/graphql/types';
 import { RegisterFormContent } from './form-content';
 import { AuthForm } from '../../auth-form';
-import prisma from '../../../../../../lib/prisma';
+import prisma from '../../../../../lib/prisma';
 
 export const RegisterForm: FC = () => {
   const { message } = App.useApp();

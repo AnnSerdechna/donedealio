@@ -1,66 +1,38 @@
 'use client';
 
-import { FC, useEffect, useState } from 'react';
-import { App, Checkbox, Divider, Flex, Input } from 'antd';
-import { GoogleOutlined } from '@ant-design/icons';
+import * as z from 'zod';
+import { FC, useState, useTransition } from 'react';
+import { Checkbox, Flex, Input } from 'antd';
 import Link from 'next/link';
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from 'next/navigation';
 
 import { Text, FormItem, Button } from '@/components/ui';
 import { AuthFormContent } from '@/components/elements';
 import { AuthForm } from '../../auth-form';
-import { login } from '@/functions/login';
+import { LoginSchema } from '@/auth/schemas';
+import { login } from '@/actions/login';
 
 const { Password } = Input;
 
+type FormValuesProps = z.infer<typeof LoginSchema>;
+
 export const LoginForm: FC = () => {
-  const { message } = App.useApp();
-  const [hasError, setHasError] = useState(false);
-  const router = useRouter();
-  const { data: session } = useSession()
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>('');
 
-  const userId = session?.user?.id as string;
+  const handleSubmit = async (values: FormValuesProps) => {
+    setError('');
 
-  useEffect(() => {
-    if (userId) {
-      router.push(`/${userId}/workspace`);
-    }
-  }, [router, userId]);
-
-
-  const handleSubmit = async (values: any) => {
-    try {
-      const result = await login(values, userId, hasError);
-
-      if (result?.error) {
-        setHasError(true);
-        message.error(result?.error);
-      } 
-   
-    } catch (error) {
-      console.log(error, 'Login error');
-    } finally {
-      setHasError(false)
-    }
-  };
-
-  const handleGoogleSignIn = () => {
-    signIn('google', { callbackUrl: `${window.location.origin}/${userId}/dashboard` });
+    startTransition(() => {
+      login(values)
+      .then(data => {
+        setError(data?.error)
+      })
+    });
   };
 
   return (
-    <AuthForm onFinish={handleSubmit}>
+    <AuthForm onFinish={handleSubmit} error={error}>
       <AuthFormContent title={'Log in'}>
-        <Button
-          text={'Sign in with Google'}
-          type={'default'}
-          onClick={handleGoogleSignIn}
-          icon={<GoogleOutlined />}
-          wide
-         />
-
-        <Divider>or</Divider>
         <FormItem
           name={'email'}
           label={'Email'}
@@ -104,6 +76,7 @@ export const LoginForm: FC = () => {
           <Button
             text={'Log in'}
             htmlType={'submit'}
+            loading={isPending}
             wide
           />
         </FormItem>

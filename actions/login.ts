@@ -35,5 +35,7 @@ export const login = async (values: LoginValuesProps) => {
     }
 
     throw error;
-  }
+  };
+
+  return { success: 'User loggined!' };
 }

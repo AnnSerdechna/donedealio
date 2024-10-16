@@ -5,7 +5,7 @@ import { FC, PropsWithChildren } from 'react';
 
 export const SessionProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <AuthSessionProvider basePath={''}>
+    <AuthSessionProvider>
       {children}
     </AuthSessionProvider>
   );

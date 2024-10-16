@@ -12,6 +12,9 @@ type RegisterValuesProps = z.infer<typeof RegisterSchema>;
 export const register = async (values: RegisterValuesProps) => {
   const validateFields = RegisterSchema.safeParse(values);
 
+  console.log({validateFields}, 'validateFields');
+  
+
   if (!validateFields.success) {
     return { error: 'Invalid fields!' };
   };

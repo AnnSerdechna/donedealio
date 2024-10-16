@@ -1,9 +1,8 @@
 export declare class UserCountAggregate {
     id: number;
+    name: number;
     email: number;
     emailVerified: number;
-    firstName: number;
-    lastName: number;
     password: number;
     role: number;
     image: number;

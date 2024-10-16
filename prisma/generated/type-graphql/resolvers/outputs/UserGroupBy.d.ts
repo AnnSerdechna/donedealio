@@ -3,11 +3,10 @@ import { UserMaxAggregate } from "../outputs/UserMaxAggregate";
 import { UserMinAggregate } from "../outputs/UserMinAggregate";
 export declare class UserGroupBy {
     id: string;
+    name: string;
     email: string;
     emailVerified: Date | null;
-    firstName: string;
-    lastName: string;
-    password: string;
+    password: string | null;
     role: "ADMIN" | "MEMBER" | "USER";
     image: string | null;
     createdAt: Date;

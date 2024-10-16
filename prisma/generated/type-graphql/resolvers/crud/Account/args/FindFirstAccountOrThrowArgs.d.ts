@@ -7,5 +7,5 @@ export declare class FindFirstAccountOrThrowArgs {
     cursor?: AccountWhereUniqueInput | undefined;
     take?: number | undefined;
     skip?: number | undefined;
-    distinct?: Array<"id" | "userId" | "provider" | "providerAccountId" | "type" | "access_token" | "expires_at"> | undefined;
+    distinct?: Array<"userId" | "type" | "provider" | "providerAccountId" | "refresh_token" | "access_token" | "expires_at" | "token_type" | "scope" | "id_token" | "session_state" | "createdAt" | "updatedAt"> | undefined;
 }

@@ -4,7 +4,7 @@ import { WorkspaceMinAggregate } from "../outputs/WorkspaceMinAggregate";
 export declare class WorkspaceGroupBy {
     id: string;
     name: string;
-    description: string;
+    description: string | null;
     createdAt: Date;
     updatedAt: Date;
     userId: string | null;

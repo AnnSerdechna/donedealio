@@ -20,5 +20,4 @@ export default defineNextConfig({
 
     return config
   }
-
 });

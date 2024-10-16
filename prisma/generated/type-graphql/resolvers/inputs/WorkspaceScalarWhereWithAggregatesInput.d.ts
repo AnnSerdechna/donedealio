@@ -7,7 +7,7 @@ export declare class WorkspaceScalarWhereWithAggregatesInput {
     NOT?: WorkspaceScalarWhereWithAggregatesInput[] | undefined;
     id?: StringWithAggregatesFilter | undefined;
     name?: StringWithAggregatesFilter | undefined;
-    description?: StringWithAggregatesFilter | undefined;
+    description?: StringNullableWithAggregatesFilter | undefined;
     createdAt?: DateTimeWithAggregatesFilter | undefined;
     updatedAt?: DateTimeWithAggregatesFilter | undefined;
     userId?: StringNullableWithAggregatesFilter | undefined;

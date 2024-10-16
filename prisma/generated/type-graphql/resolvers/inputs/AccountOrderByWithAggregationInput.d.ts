@@ -5,13 +5,19 @@ import { AccountMinOrderByAggregateInput } from "../inputs/AccountMinOrderByAggr
 import { AccountSumOrderByAggregateInput } from "../inputs/AccountSumOrderByAggregateInput";
 import { SortOrderInput } from "../inputs/SortOrderInput";
 export declare class AccountOrderByWithAggregationInput {
-    id?: "asc" | "desc" | undefined;
     userId?: "asc" | "desc" | undefined;
+    type?: "asc" | "desc" | undefined;
     provider?: "asc" | "desc" | undefined;
     providerAccountId?: "asc" | "desc" | undefined;
-    type?: "asc" | "desc" | undefined;
+    refresh_token?: SortOrderInput | undefined;
     access_token?: SortOrderInput | undefined;
     expires_at?: SortOrderInput | undefined;
+    token_type?: SortOrderInput | undefined;
+    scope?: SortOrderInput | undefined;
+    id_token?: SortOrderInput | undefined;
+    session_state?: SortOrderInput | undefined;
+    createdAt?: "asc" | "desc" | undefined;
+    updatedAt?: "asc" | "desc" | undefined;
     _count?: AccountCountOrderByAggregateInput | undefined;
     _avg?: AccountAvgOrderByAggregateInput | undefined;
     _max?: AccountMaxOrderByAggregateInput | undefined;

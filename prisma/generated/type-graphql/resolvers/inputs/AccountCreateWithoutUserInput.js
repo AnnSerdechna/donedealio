@@ -8,10 +8,10 @@ let AccountCreateWithoutUserInput = class AccountCreateWithoutUserInput {
 exports.AccountCreateWithoutUserInput = AccountCreateWithoutUserInput;
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
-        nullable: true
+        nullable: false
     }),
     tslib_1.__metadata("design:type", String)
-], AccountCreateWithoutUserInput.prototype, "id", void 0);
+], AccountCreateWithoutUserInput.prototype, "type", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
         nullable: false
@@ -26,10 +26,10 @@ tslib_1.__decorate([
 ], AccountCreateWithoutUserInput.prototype, "providerAccountId", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
-        nullable: false
+        nullable: true
     }),
     tslib_1.__metadata("design:type", String)
-], AccountCreateWithoutUserInput.prototype, "type", void 0);
+], AccountCreateWithoutUserInput.prototype, "refresh_token", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
         nullable: true
@@ -42,6 +42,42 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", Number)
 ], AccountCreateWithoutUserInput.prototype, "expires_at", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountCreateWithoutUserInput.prototype, "token_type", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountCreateWithoutUserInput.prototype, "scope", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountCreateWithoutUserInput.prototype, "id_token", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountCreateWithoutUserInput.prototype, "session_state", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => Date, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", Date)
+], AccountCreateWithoutUserInput.prototype, "createdAt", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => Date, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", Date)
+], AccountCreateWithoutUserInput.prototype, "updatedAt", void 0);
 exports.AccountCreateWithoutUserInput = AccountCreateWithoutUserInput = tslib_1.__decorate([
     TypeGraphQL.InputType("AccountCreateWithoutUserInput", {})
 ], AccountCreateWithoutUserInput);

@@ -7,7 +7,7 @@ export declare class WorkspaceScalarWhereInput {
     NOT?: WorkspaceScalarWhereInput[] | undefined;
     id?: StringFilter | undefined;
     name?: StringFilter | undefined;
-    description?: StringFilter | undefined;
+    description?: StringNullableFilter | undefined;
     createdAt?: DateTimeFilter | undefined;
     updatedAt?: DateTimeFilter | undefined;
     userId?: StringNullableFilter | undefined;

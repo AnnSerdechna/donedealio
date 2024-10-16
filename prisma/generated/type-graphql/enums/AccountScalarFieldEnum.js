@@ -5,13 +5,19 @@ const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
 var AccountScalarFieldEnum;
 (function (AccountScalarFieldEnum) {
-    AccountScalarFieldEnum["id"] = "id";
     AccountScalarFieldEnum["userId"] = "userId";
+    AccountScalarFieldEnum["type"] = "type";
     AccountScalarFieldEnum["provider"] = "provider";
     AccountScalarFieldEnum["providerAccountId"] = "providerAccountId";
-    AccountScalarFieldEnum["type"] = "type";
+    AccountScalarFieldEnum["refresh_token"] = "refresh_token";
     AccountScalarFieldEnum["access_token"] = "access_token";
     AccountScalarFieldEnum["expires_at"] = "expires_at";
+    AccountScalarFieldEnum["token_type"] = "token_type";
+    AccountScalarFieldEnum["scope"] = "scope";
+    AccountScalarFieldEnum["id_token"] = "id_token";
+    AccountScalarFieldEnum["session_state"] = "session_state";
+    AccountScalarFieldEnum["createdAt"] = "createdAt";
+    AccountScalarFieldEnum["updatedAt"] = "updatedAt";
 })(AccountScalarFieldEnum || (exports.AccountScalarFieldEnum = AccountScalarFieldEnum = {}));
 TypeGraphQL.registerEnumType(AccountScalarFieldEnum, {
     name: "AccountScalarFieldEnum",

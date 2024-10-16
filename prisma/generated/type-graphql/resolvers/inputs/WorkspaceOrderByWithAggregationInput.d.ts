@@ -5,7 +5,7 @@ import { WorkspaceMinOrderByAggregateInput } from "../inputs/WorkspaceMinOrderBy
 export declare class WorkspaceOrderByWithAggregationInput {
     id?: "asc" | "desc" | undefined;
     name?: "asc" | "desc" | undefined;
-    description?: "asc" | "desc" | undefined;
+    description?: SortOrderInput | undefined;
     createdAt?: "asc" | "desc" | undefined;
     updatedAt?: "asc" | "desc" | undefined;
     userId?: SortOrderInput | undefined;

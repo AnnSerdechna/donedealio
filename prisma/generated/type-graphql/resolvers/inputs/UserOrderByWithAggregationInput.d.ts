@@ -4,11 +4,10 @@ import { UserMaxOrderByAggregateInput } from "../inputs/UserMaxOrderByAggregateI
 import { UserMinOrderByAggregateInput } from "../inputs/UserMinOrderByAggregateInput";
 export declare class UserOrderByWithAggregationInput {
     id?: "asc" | "desc" | undefined;
+    name?: "asc" | "desc" | undefined;
     email?: "asc" | "desc" | undefined;
     emailVerified?: SortOrderInput | undefined;
-    firstName?: "asc" | "desc" | undefined;
-    lastName?: "asc" | "desc" | undefined;
-    password?: "asc" | "desc" | undefined;
+    password?: SortOrderInput | undefined;
     role?: "asc" | "desc" | undefined;
     image?: SortOrderInput | undefined;
     createdAt?: "asc" | "desc" | undefined;

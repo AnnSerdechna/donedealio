@@ -4,7 +4,6 @@ exports.UserCreateWithoutWorkspacesInput = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
 const AccountCreateNestedManyWithoutUserInput_1 = require("../inputs/AccountCreateNestedManyWithoutUserInput");
-const SessionCreateNestedManyWithoutUserInput_1 = require("../inputs/SessionCreateNestedManyWithoutUserInput");
 const Role_1 = require("../../enums/Role");
 let UserCreateWithoutWorkspacesInput = class UserCreateWithoutWorkspacesInput {
 };
@@ -20,6 +19,12 @@ tslib_1.__decorate([
         nullable: false
     }),
     tslib_1.__metadata("design:type", String)
+], UserCreateWithoutWorkspacesInput.prototype, "name", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", String)
 ], UserCreateWithoutWorkspacesInput.prototype, "email", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => Date, {
@@ -29,19 +34,7 @@ tslib_1.__decorate([
 ], UserCreateWithoutWorkspacesInput.prototype, "emailVerified", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
-        nullable: false
-    }),
-    tslib_1.__metadata("design:type", String)
-], UserCreateWithoutWorkspacesInput.prototype, "firstName", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => String, {
-        nullable: false
-    }),
-    tslib_1.__metadata("design:type", String)
-], UserCreateWithoutWorkspacesInput.prototype, "lastName", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => String, {
-        nullable: false
+        nullable: true
     }),
     tslib_1.__metadata("design:type", String)
 ], UserCreateWithoutWorkspacesInput.prototype, "password", void 0);
@@ -75,12 +68,6 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", AccountCreateNestedManyWithoutUserInput_1.AccountCreateNestedManyWithoutUserInput)
 ], UserCreateWithoutWorkspacesInput.prototype, "accounts", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => SessionCreateNestedManyWithoutUserInput_1.SessionCreateNestedManyWithoutUserInput, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", SessionCreateNestedManyWithoutUserInput_1.SessionCreateNestedManyWithoutUserInput)
-], UserCreateWithoutWorkspacesInput.prototype, "sessions", void 0);
 exports.UserCreateWithoutWorkspacesInput = UserCreateWithoutWorkspacesInput = tslib_1.__decorate([
     TypeGraphQL.InputType("UserCreateWithoutWorkspacesInput", {})
 ], UserCreateWithoutWorkspacesInput);

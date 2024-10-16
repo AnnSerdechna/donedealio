@@ -6,6 +6,7 @@ import bcryptjs from 'bcryptjs';
 
 import { LoginSchema } from './schemas';
 import { getUserByEmail } from '@/data/user';
+import { User } from '@prisma/client';
 
 export default {
   providers: [
@@ -18,7 +19,7 @@ export default {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     Credentials({
-      async authorize(credentials) {
+      authorize: async(credentials): Promise<User | null | any> => {
         const validateFields = LoginSchema.safeParse(credentials);
 
         if (validateFields.success) {

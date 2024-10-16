@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import { Alert, Divider, Flex } from 'antd'
+import { Divider, Flex } from 'antd'
 
 import { Title } from '@/components/ui';
 import variables from '@/styles/variables.module.scss';

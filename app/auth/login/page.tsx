@@ -1,7 +1,10 @@
 import { LoginForm } from '@/components/elements';
+import { Suspense } from 'react';
 
 export default function Home() {
   return (
-    <LoginForm />
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   );
 };

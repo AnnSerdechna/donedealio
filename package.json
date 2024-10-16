@@ -42,6 +42,7 @@
     "react-dom": "^18",
     "react-responsive": "^10.0.0",
     "reflect-metadata": "^0.2.2",
+    "resend": "^4.0.0",
     "sass": "^1.79.4",
     "tslib": "^2.7.0",
     "type-graphql": "^2.0.0-rc.2",

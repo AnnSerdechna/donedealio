@@ -7,6 +7,7 @@ import { RegisterSchema } from '@/auth/schemas';
 import prisma from '@/lib/prisma';
 import { getUserByEmail } from '@/data/user';
 import { generateVerificationToken } from '@/lib/tokens';
+import { sendVerificationEmail } from '@/lib/mail';
 
 type RegisterValuesProps = z.infer<typeof RegisterSchema>;
 
@@ -38,7 +39,7 @@ export const register = async (values: RegisterValuesProps) => {
   });
 
   const verificationToken = await generateVerificationToken(email);
-  //Todo send email
+  await sendVerificationEmail(verificationToken.email, verificationToken.token)
 
   return { success: 'Confirmation email sent!' };
 };

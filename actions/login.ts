@@ -6,6 +6,8 @@ import { AuthError } from 'next-auth';
 import { signIn } from '@/auth/auth';
 import { DEFAULT_LOGIN_REDIRECT } from '@/auth/routes';
 import { LoginSchema } from '@/auth/schemas';
+import { getUserByEmail } from '@/data/user';
+import { generateVerificationToken } from '@/lib/tokens';
 
 type LoginValuesProps = z.infer<typeof LoginSchema>;
 
@@ -13,10 +15,22 @@ export const login = async (values: LoginValuesProps) => {
   const validateFields = LoginSchema.safeParse(values);
 
   if (!validateFields.success) {
-    return { error: 'Invalid fields!'}
+    return { error: 'Invalid fields!' }
   }
-  
+
   const { email, password } = validateFields.data;
+
+  const existingUser = await getUserByEmail(email);
+
+  if (!existingUser || !existingUser.email || !existingUser.password) {
+    return { error: 'Email doesn\'t exist!'}
+  }
+
+  if (!existingUser.emailVerified) {
+    const verificationToken = await generateVerificationToken(existingUser.email);
+
+    return {success: 'Confirmation email sent!'}
+  }
 
   try {
     await signIn('credentials', {
@@ -26,10 +40,10 @@ export const login = async (values: LoginValuesProps) => {
     })
   } catch (error) {
     if (error instanceof AuthError) {
-      switch(error.type) {
+      switch (error.type) {
         case 'CredentialsSignin':
-          return { error: 'Invalid credentials!'}
-        default: 
+          return { error: 'Invalid credentials!' }
+        default:
           return { error: 'Something went wrong!' }
       }
     }

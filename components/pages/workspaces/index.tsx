@@ -1,6 +1,5 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { FC, Fragment, useState } from 'react';
 import { App, Flex, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
@@ -10,7 +9,6 @@ import {
   useCreateOneWorkspaceMutation, 
   useDeleteOneWorkspaceMutation, 
   useUpdateOneWorkspaceMutation, 
-  useWorkspacesQuery, 
   WorkspaceCreateInput,
   WorkspaceUpdateInput,
 } from '@/graphql/types';
@@ -26,27 +24,27 @@ export const WorkspacesPage: FC = () => {
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
   const [isValueChange, setIsValueChange] = useState(false);
   const [selectedWorkspaceId, setSelectedWorkspaceId] = useState('');
-  const { data: session } = useSession();
-  const userId = session?.user?.id as string;
+  // const { data: session } = useSession();
+  // const userId = session?.user?.id as string;
 
-  const { data: workspacesData, refetch } = useWorkspacesQuery({ variables: { where: { userId: { equals: userId } } } })
+  // const { data: workspacesData, refetch } = useWorkspacesQuery({ variables: { where: { userId: { equals: userId } } } })
   const [createWorkspace, { loading: createLoading }] = useCreateOneWorkspaceMutation();
   const [updateWorkspace, {loading: updateLoading}] = useUpdateOneWorkspaceMutation();
   const [deleteWorkspase] = useDeleteOneWorkspaceMutation();
 
   const handleCreateWorkspace = async (values: WorkspaceCreateInput) => {
     try {
-      await createWorkspace({
-        variables: {
-          data: {
-            name: values.name,
-            description: values.description,
-            user: { connect: { id: userId as string } }
-          }
-        }
-      });
+      // await createWorkspace({
+      //   variables: {
+      //     data: {
+      //       name: values.name,
+      //       description: values.description,
+      //       user: { connect: { id: userId as string } }
+      //     }
+      //   }
+      // });
 
-      refetch();
+      // refetch();
     } catch (error) {
       console.log(error, 'Create Workspace error');
       message.error('Something went wrong!');
@@ -58,19 +56,19 @@ export const WorkspacesPage: FC = () => {
 
   const handleUpdateWorkspace = async (values: WorkspaceUpdateInput) => {
     try {
-      await updateWorkspace({
-        variables: {
-          data: {
-            name: { set: `${values.name}`},
-            description: { set: `${values.description}` },
-          },
-          where: {
-            id: selectedWorkspaceId
-          }
-        }
-      });
+      // await updateWorkspace({
+      //   variables: {
+      //     data: {
+      //       name: { set: `${values.name}`},
+      //       description: { set: `${values.description}` },
+      //     },
+      //     where: {
+      //       id: selectedWorkspaceId
+      //     }
+      //   }
+      // });
 
-      refetch();
+      // refetch();
     } catch (error) {
       console.log(error, 'Update Workspace error');
       message.error('Something went wrong!');
@@ -84,14 +82,14 @@ export const WorkspacesPage: FC = () => {
 
   const handleDeleteWorkspace = async (id: string) => {
     try {
-      await deleteWorkspase({
-        variables: {
-          where: {
-            id
-          }
-        }
-      });
-      refetch();
+      // await deleteWorkspase({
+      //   variables: {
+      //     where: {
+      //       id
+      //     }
+      //   }
+      // });
+      // refetch();
     } catch(error) {
       console.log(error, 'Delete Workspace error');
       message.error('Something went wrong!')
@@ -136,7 +134,7 @@ export const WorkspacesPage: FC = () => {
           />
         </Flex>
 
-        <Flex gap={24} wrap>
+        {/* <Flex gap={24} wrap>
           {workspacesData?.workspaces?.map(item => (
             <WorkspaceCard
               key={item?.id}
@@ -148,7 +146,7 @@ export const WorkspacesPage: FC = () => {
               onRemove={() => onRemoveWorkspace(item.id)}
             />
           ))}
-        </Flex>
+        </Flex> */}
       </Flex>
 
       <Modal

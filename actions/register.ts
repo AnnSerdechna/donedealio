@@ -6,6 +6,7 @@ import bcryptjs from 'bcryptjs';
 import { RegisterSchema } from '@/auth/schemas';
 import prisma from '@/lib/prisma';
 import { getUserByEmail } from '@/data/user';
+import { generateVerificationToken } from '@/lib/tokens';
 
 type RegisterValuesProps = z.infer<typeof RegisterSchema>;
 
@@ -19,7 +20,7 @@ export const register = async (values: RegisterValuesProps) => {
     return { error: 'Invalid fields!' };
   };
 
-  const { email, firstName, lastName, password } = validateFields.data;
+  const { email, name, password } = validateFields.data;
   const hashPassword = await bcryptjs.hash(password, 10)
 
   const existingUser = await getUserByEmail(email)  
@@ -30,14 +31,14 @@ export const register = async (values: RegisterValuesProps) => {
 
   await prisma.user.create({
     data: {
-      firstName,
-      lastName,
+      name,
       email,
       password: hashPassword
     }
   });
 
-  // TODO Send verification token email
+  const verificationToken = await generateVerificationToken(email);
+  //Todo send email
 
-  return { success: 'User created!' };
+  return { success: 'Confirmation email sent!' };
 };

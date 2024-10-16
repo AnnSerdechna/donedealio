@@ -2,8 +2,9 @@
 
 import * as z from 'zod';
 import { FC, useState, useTransition } from 'react';
-import { Checkbox, Flex, Input } from 'antd';
+import { Alert, Checkbox, Flex, Input } from 'antd';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 import { Text, FormItem, Button } from '@/components/ui';
 import { AuthFormContent } from '@/components/elements';
@@ -16,22 +17,33 @@ const { Password } = Input;
 type FormValuesProps = z.infer<typeof LoginSchema>;
 
 export const LoginForm: FC = () => {
+  const searchParams = useSearchParams()
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>('');
+  const [success, setSuccess] = useState<string | undefined>('');
+
+  const oauthError = searchParams.get('error') === 'OAuthAccountNotLinked' 
+  ? 'Email already taken!' 
+  : '';
+
+  console.log(oauthError, 'oauthError');
+  
 
   const handleSubmit = async (values: FormValuesProps) => {
     setError('');
+    setSuccess('');
 
     startTransition(() => {
       login(values)
       .then(data => {
-        setError(data?.error)
+        setError(data?.error);
+        setSuccess(data?.success);
       })
     });
   };
 
   return (
-    <AuthForm onFinish={handleSubmit} error={error}>
+    <AuthForm onFinish={handleSubmit} >
       <AuthFormContent title={'Log in'}>
         <FormItem
           name={'email'}
@@ -71,6 +83,9 @@ export const LoginForm: FC = () => {
             <Link href={'/auth/forgot-password'}>Forgot password</Link>
           </Flex>
         </FormItem>
+
+        {!!error || !!oauthError && <Alert message={error || oauthError} type={'error'} showIcon />}
+        {!!success && <Alert message={success} type={'success'} showIcon />}
 
         <FormItem>
           <Button

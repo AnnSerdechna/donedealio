@@ -16,13 +16,13 @@ tslib_1.__decorate([
         nullable: false
     }),
     tslib_1.__metadata("design:type", String)
-], AccountGroupBy.prototype, "id", void 0);
+], AccountGroupBy.prototype, "userId", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
         nullable: false
     }),
     tslib_1.__metadata("design:type", String)
-], AccountGroupBy.prototype, "userId", void 0);
+], AccountGroupBy.prototype, "type", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
         nullable: false
@@ -37,10 +37,10 @@ tslib_1.__decorate([
 ], AccountGroupBy.prototype, "providerAccountId", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
-        nullable: false
+        nullable: true
     }),
     tslib_1.__metadata("design:type", String)
-], AccountGroupBy.prototype, "type", void 0);
+], AccountGroupBy.prototype, "refresh_token", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
         nullable: true
@@ -53,6 +53,42 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", Number)
 ], AccountGroupBy.prototype, "expires_at", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountGroupBy.prototype, "token_type", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountGroupBy.prototype, "scope", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountGroupBy.prototype, "id_token", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountGroupBy.prototype, "session_state", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => Date, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", Date)
+], AccountGroupBy.prototype, "createdAt", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => Date, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", Date)
+], AccountGroupBy.prototype, "updatedAt", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => AccountCountAggregate_1.AccountCountAggregate, {
         nullable: true

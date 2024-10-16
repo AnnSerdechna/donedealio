@@ -4,7 +4,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { App as AntdApp } from "antd";
 import { Roboto } from 'next/font/google';
 
-import { ThemeProvider, ApolloProvider, SessionProvider } from '@/provider';
+import { ThemeProvider, ApolloProvider } from '@/provider';
 import '@/styles/global.scss'
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['400'] });
@@ -24,7 +24,7 @@ export default async function RootLayout({
   return (
     <html lang={'en'}>
       <body className={roboto.className}>
-        <SessionProvider>
+        {/* <SessionProvider> */}
           <ApolloProvider>
             <AntdApp>
               <AntdRegistry>
@@ -34,7 +34,7 @@ export default async function RootLayout({
               </AntdRegistry>
             </AntdApp>
           </ApolloProvider>
-        </SessionProvider>
+        {/* </SessionProvider> */}
       </body>
     </html>
   );

@@ -5,11 +5,10 @@ import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStri
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 export declare class UserUpdateManyMutationInput {
     id?: StringFieldUpdateOperationsInput | undefined;
+    name?: StringFieldUpdateOperationsInput | undefined;
     email?: StringFieldUpdateOperationsInput | undefined;
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | undefined;
-    firstName?: StringFieldUpdateOperationsInput | undefined;
-    lastName?: StringFieldUpdateOperationsInput | undefined;
-    password?: StringFieldUpdateOperationsInput | undefined;
+    password?: NullableStringFieldUpdateOperationsInput | undefined;
     role?: EnumRoleFieldUpdateOperationsInput | undefined;
     image?: NullableStringFieldUpdateOperationsInput | undefined;
     createdAt?: DateTimeFieldUpdateOperationsInput | undefined;

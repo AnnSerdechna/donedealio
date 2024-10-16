@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkspaceCountTaskArgs = exports.UserCountWorkspacesArgs = exports.UserCountSessionsArgs = exports.UserCountAccountsArgs = exports.TaskCountFilesArgs = exports.StatusCountTaskArgs = exports.PriorityCountTaskArgs = exports.CreateManyAndReturnWorkspaceUserArgs = exports.CreateManyAndReturnTaskStatusArgs = exports.CreateManyAndReturnTaskPriorityArgs = exports.CreateManyAndReturnFileTaskArgs = void 0;
+exports.WorkspaceCountTaskArgs = exports.UserCountWorkspacesArgs = exports.UserCountAccountsArgs = exports.TaskCountFilesArgs = exports.StatusCountTaskArgs = exports.PriorityCountTaskArgs = exports.CreateManyAndReturnWorkspaceUserArgs = exports.CreateManyAndReturnTaskStatusArgs = exports.CreateManyAndReturnTaskPriorityArgs = exports.CreateManyAndReturnFileTaskArgs = void 0;
 var CreateManyAndReturnFileTaskArgs_1 = require("./CreateManyAndReturnFileTaskArgs");
 Object.defineProperty(exports, "CreateManyAndReturnFileTaskArgs", { enumerable: true, get: function () { return CreateManyAndReturnFileTaskArgs_1.CreateManyAndReturnFileTaskArgs; } });
 var CreateManyAndReturnTaskPriorityArgs_1 = require("./CreateManyAndReturnTaskPriorityArgs");
@@ -17,8 +17,6 @@ var TaskCountFilesArgs_1 = require("./TaskCountFilesArgs");
 Object.defineProperty(exports, "TaskCountFilesArgs", { enumerable: true, get: function () { return TaskCountFilesArgs_1.TaskCountFilesArgs; } });
 var UserCountAccountsArgs_1 = require("./UserCountAccountsArgs");
 Object.defineProperty(exports, "UserCountAccountsArgs", { enumerable: true, get: function () { return UserCountAccountsArgs_1.UserCountAccountsArgs; } });
-var UserCountSessionsArgs_1 = require("./UserCountSessionsArgs");
-Object.defineProperty(exports, "UserCountSessionsArgs", { enumerable: true, get: function () { return UserCountSessionsArgs_1.UserCountSessionsArgs; } });
 var UserCountWorkspacesArgs_1 = require("./UserCountWorkspacesArgs");
 Object.defineProperty(exports, "UserCountWorkspacesArgs", { enumerable: true, get: function () { return UserCountWorkspacesArgs_1.UserCountWorkspacesArgs; } });
 var WorkspaceCountTaskArgs_1 = require("./WorkspaceCountTaskArgs");

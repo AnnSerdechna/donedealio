@@ -1,6 +1,5 @@
 'use server';
 
-import * as z from 'zod';
 import { AuthError } from 'next-auth';
 
 import { signIn } from '@/auth';
@@ -9,14 +8,14 @@ import { LoginSchema } from '@/schemas';
 import { getUserByEmail } from '@/data/user';
 import { generateVerificationToken } from '@/lib/tokens';
 import { sendVerificationEmail } from '@/lib/mail';
+import { LoginValuesProps } from '@/schemas/types';
+import { MessageProps } from '@/types';
 
-type LoginValuesProps = z.infer<typeof LoginSchema>;
-
-export const login = async (values: LoginValuesProps) => {
+export const login = async (values: LoginValuesProps): Promise<MessageProps> => {
   const validateFields = LoginSchema.safeParse(values);
 
   if (!validateFields.success) {
-    return { error: 'Invalid fields!' }
+    return { status: 'error', content: 'Invalid fields!'};
   }
 
   const { email, password } = validateFields.data;
@@ -24,7 +23,7 @@ export const login = async (values: LoginValuesProps) => {
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: 'Email doesn\'t exist!' }
+    return { status: 'error', content: 'Email doesn\'t exist!' };
   }
 
   if (!existingUser.emailVerified) {
@@ -35,7 +34,7 @@ export const login = async (values: LoginValuesProps) => {
       verificationToken.token
     );
 
-    return { success: 'Confirmation email sent!' }
+    return { status: 'success', content: 'Confirmation email sent!' };
   }
 
   try {
@@ -48,14 +47,14 @@ export const login = async (values: LoginValuesProps) => {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return { error: 'Invalid credentials!' }
+          return { status: 'error', content: 'Invalid credentials!' };
         default:
-          return { error: 'Something went wrong!' }
+          return { status: 'error', content: 'Something went wrong!' };
       }
     }
 
     throw error;
   };
 
-  return { success: 'User loggined!' };
+  return { status: 'success', content: 'User loggined!' };
 }

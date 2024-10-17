@@ -1,10 +1,9 @@
 import { FC, ReactNode } from 'react'
-import { Divider, Flex } from 'antd'
+import { Flex } from 'antd'
 
 import { Title } from '@/components/ui';
 import variables from '@/styles/variables.module.scss';
 import { Logo } from '../../logo';
-import { SocialBtns } from '../social-btns';
 
 type AuthFormContentProps = {
   title: string
@@ -18,8 +17,6 @@ export const AuthFormContent: FC<AuthFormContentProps> = ({ title, children }) =
         <Title centered>{title}</Title>
       </Flex>
 
-      <SocialBtns />
-      <Divider style={{margin: 0}}>or</Divider>
       <Flex vertical gap={16}>{children}</Flex>
     </Flex>
   )

@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Workspace = exports.VerificationToken = exports.User = exports.Task = exports.Status = exports.Priority = exports.File = exports.Account = void 0;
+exports.Workspace = exports.VerificationToken = exports.User = exports.Task = exports.Status = exports.Priority = exports.PasswordResetToken = exports.File = exports.Account = void 0;
 var Account_1 = require("./Account");
 Object.defineProperty(exports, "Account", { enumerable: true, get: function () { return Account_1.Account; } });
 var File_1 = require("./File");
 Object.defineProperty(exports, "File", { enumerable: true, get: function () { return File_1.File; } });
+var PasswordResetToken_1 = require("./PasswordResetToken");
+Object.defineProperty(exports, "PasswordResetToken", { enumerable: true, get: function () { return PasswordResetToken_1.PasswordResetToken; } });
 var Priority_1 = require("./Priority");
 Object.defineProperty(exports, "Priority", { enumerable: true, get: function () { return Priority_1.Priority; } });
 var Status_1 = require("./Status");

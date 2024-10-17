@@ -1,35 +1,31 @@
 'use client';
 
-import * as z from 'zod';
 import { FC, useState, useTransition } from 'react';
-import { Alert, Flex, Input } from 'antd';
+import { Divider, Flex, Input } from 'antd';
 import Link from 'next/link';
 
 import { AuthForm } from '@/components/elements/auth/auth-form';
-import { RegisterSchema } from '@/schemas';
 import { register } from '@/actions/register';
 import { AuthFormContent } from '@/components/elements/auth/auth-form-content';
 import { Button, FormItem, Text } from '@/components/ui';
-
+import { SocialBtns } from '../../social-btns';
+import { RegisterValuesProps } from '@/schemas/types';
+import { AlertMessage } from '@/components/ui/alert-message';
+import { MessageProps } from '@/types';
 
 const { Password } = Input;
 
-type FormValuesProps = z.infer<typeof RegisterSchema>;
-
 export const RegisterForm: FC = () => {
   const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string | undefined>('');
-  const [success, setSuccess] = useState<string | undefined>('');
+  const [message, setMessage] = useState<MessageProps | null>(null);
 
-  const handleRegister = async (values: FormValuesProps) => {
-    setError('');
-    setSuccess('');
+  const handleRegister = async (values: RegisterValuesProps) => {
+    setMessage(null);
 
     startTransition(() => {
       register(values)
-        .then(data => {
-          setError(data?.error);
-          setSuccess(data?.success);
+        .then((data) => {
+          setMessage(data)
         })
     });
   };
@@ -38,6 +34,8 @@ export const RegisterForm: FC = () => {
   return (
     <AuthForm onFinish={handleRegister}>
       <AuthFormContent title={'Sign up'}>
+        <SocialBtns />
+        <Divider style={{ margin: 0 }}>or</Divider>
         <FormItem
           name={'name'}
           label={'Name'}
@@ -103,9 +101,7 @@ export const RegisterForm: FC = () => {
           <Password size={'large'} />
         </FormItem>
 
-        {!!error && <Alert message={error} type={'error'} showIcon />}
-
-        {!!success && <Alert message={success} type={'success'} showIcon />}
+        <AlertMessage data={message} />
 
         <FormItem>
           <Button

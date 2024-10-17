@@ -1,30 +1,31 @@
 'use client';
 
-import { verification } from '@/actions/verification';
-import { Alert, Flex, Spin } from 'antd';
+import { Flex, Spin } from 'antd';
 import { useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 
-export const Verification = () => {
-  const [error, setError] = useState<string | undefined>('');
-  const [success, setSuccess] = useState<string | undefined>('');
+import { verification } from '@/actions/verification';
+import { AlertMessage } from '@/components/ui/alert-message';
+import { MessageProps } from '@/types';
+
+export const Verification: FC = () => {
+  const [message, setMessage] = useState<MessageProps | null>(null);
   const searchParams = useSearchParams();
 
   const token = searchParams.get('token');
 
   const onSubmit = useCallback(() => {
     if (!token) {
-      setError('Missing token!');
+      setMessage({ status: 'error', content: 'Missing token!' });
       return;
     };
     
     verification(token)
-      .then(data => {
-        setError(data?.error);
-        setSuccess(data?.success);
+      .then((data) => {
+        setMessage(data)
       })
       .catch(() => {
-        setError('Something went wrong!');
+        setMessage({ status: 'error', content: 'Something went wrong!' });
       });
   }, [token]);
 
@@ -34,9 +35,11 @@ export const Verification = () => {
 
   return (
     <Flex vertical>
-      {!error && !success && <Spin />}
-      {!!error && <Alert message={error} type={'error'} showIcon />}
-      {!!success && <Alert message={success} type={'success'} showIcon />}
+      {
+        !message 
+          ? <Spin /> 
+          : <AlertMessage data={message} />
+      }
     </Flex>
   )
 }

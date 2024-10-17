@@ -1,5 +1,6 @@
 export { Account } from "./Account";
 export { File } from "./File";
+export { PasswordResetToken } from "./PasswordResetToken";
 export { Priority } from "./Priority";
 export { Status } from "./Status";
 export { Task } from "./Task";

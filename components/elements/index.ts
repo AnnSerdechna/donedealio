@@ -2,6 +2,7 @@ export { Logo, type LogoProps } from './logo';
 
 export { AuthFormContent } from './auth/auth-form-content';
 export { LoginForm } from './auth/auth-forms/login';
+export { Verification } from './auth/auth-forms/verification';
 export { RegisterForm } from './auth/auth-forms/register';
 export { ForgotPasswordForm } from './auth/auth-forms/forgot-password';
 export { ConfirmPasswordForm } from './auth/auth-forms/confirm-password-form';

@@ -3,9 +3,9 @@
 import * as z from 'zod';
 import { AuthError } from 'next-auth';
 
-import { signIn } from '@/auth/auth';
-import { DEFAULT_LOGIN_REDIRECT } from '@/auth/routes';
-import { LoginSchema } from '@/auth/schemas';
+import { signIn } from '@/auth';
+import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
+import { LoginSchema } from '@/schemas';
 import { getUserByEmail } from '@/data/user';
 import { generateVerificationToken } from '@/lib/tokens';
 import { sendVerificationEmail } from '@/lib/mail';
@@ -24,7 +24,7 @@ export const login = async (values: LoginValuesProps) => {
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: 'Email doesn\'t exist!'}
+    return { error: 'Email doesn\'t exist!' }
   }
 
   if (!existingUser.emailVerified) {
@@ -35,7 +35,7 @@ export const login = async (values: LoginValuesProps) => {
       verificationToken.token
     );
 
-    return {success: 'Confirmation email sent!'}
+    return { success: 'Confirmation email sent!' }
   }
 
   try {

@@ -6,7 +6,7 @@ import { Alert, Flex, Input } from 'antd';
 import Link from 'next/link';
 
 import { AuthForm } from '@/components/elements/auth/auth-form';
-import { RegisterSchema } from '@/auth/schemas';
+import { RegisterSchema } from '@/schemas';
 import { register } from '@/actions/register';
 import { AuthFormContent } from '@/components/elements/auth/auth-form-content';
 import { Button, FormItem, Text } from '@/components/ui';

@@ -9,7 +9,7 @@ import { useSearchParams } from 'next/navigation';
 import { Text, FormItem, Button } from '@/components/ui';
 import { AuthFormContent } from '@/components/elements';
 import { AuthForm } from '../../auth-form';
-import { LoginSchema } from '@/auth/schemas';
+import { LoginSchema } from '@/schemas';
 import { login } from '@/actions/login';
 
 const { Password } = Input;
@@ -22,12 +22,12 @@ export const LoginForm: FC = () => {
   const [error, setError] = useState<string | undefined>('');
   const [success, setSuccess] = useState<string | undefined>('');
 
-  const oauthError = searchParams.get('error') === 'OAuthAccountNotLinked' 
-  ? 'Email already taken!' 
-  : '';
+  const oauthError = searchParams.get('error') === 'OAuthAccountNotLinked'
+    ? 'Email already taken!'
+    : '';
 
   console.log(oauthError, 'oauthError');
-  
+
 
   const handleSubmit = async (values: FormValuesProps) => {
     setError('');
@@ -35,10 +35,10 @@ export const LoginForm: FC = () => {
 
     startTransition(() => {
       login(values)
-      .then(data => {
-        setError(data?.error);
-        setSuccess(data?.success);
-      })
+        .then(data => {
+          setError(data?.error);
+          setSuccess(data?.success);
+        })
     });
   };
 

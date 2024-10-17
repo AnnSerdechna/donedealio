@@ -3,7 +3,7 @@
 import { FC, useState } from "react";
 import { useParams } from 'next/navigation';
 
-import { Badge, Button, Flex, Table, Upload, App} from 'antd';
+import { Badge, Button, Flex, Table, Upload, App } from 'antd';
 import type { TableProps } from 'antd';
 import dayjs from 'dayjs';
 import {
@@ -99,7 +99,7 @@ export const TableView: FC = () => {
       fixed: 'left',
       render: (name, data) => {
         return (
-          <EditableText 
+          <EditableText
             value={name}
             tooltip={`Edit task`}
             onChange={newValue => handleEditContent(newValue, name, 'name', data?.id)}
@@ -140,7 +140,7 @@ export const TableView: FC = () => {
       width: 150,
       align: 'center',
       render: (_, data) => (
-        <StatusField 
+        <StatusField
           data={statusesData?.statuses as Status[]}
           taskId={data?.id}
           status={data?.status as Status}

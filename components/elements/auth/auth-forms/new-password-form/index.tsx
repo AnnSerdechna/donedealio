@@ -1,26 +1,30 @@
 'use client';
 
-import { FC, useState, useTransition } from 'react';
 import { Input } from 'antd';
+import { FC, useState, useTransition } from 'react';
+import { useSearchParams } from 'next/navigation';
 
+import { FormItem, Button, Form } from '@/components/ui';
 import { AuthCard } from '@/components/elements/auth/auth-card';
-import { register } from '@/actions/register';
-import { Button, Form, FormItem } from '@/components/ui';
-import { RegisterValuesProps } from '@/schemas/types';
-import { AlertMessage } from '@/components/ui/alert-message';
+import { newPassword } from '@/actions/new-password';
+import { NewPasswordValuesProps } from '@/schemas/types';
 import { MessageProps } from '@/types';
+import { AlertMessage } from '@/components/ui/alert-message';
 
 const { Password } = Input;
 
-export const RegisterForm: FC = () => {
+export const NewPasswordForm: FC = () => {
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<MessageProps | null>(null);
+  const searchParams = useSearchParams();
 
-  const handleRegister = async (values: RegisterValuesProps) => {
+  const token = searchParams.get('token');
+
+  const handleSubmit = async (values: NewPasswordValuesProps) => {
     setMessage(null);
 
     startTransition(() => {
-      register(values)
+      newPassword(values, token)
         .then((data) => {
           setMessage(data)
         })
@@ -29,44 +33,15 @@ export const RegisterForm: FC = () => {
 
   return (
     <AuthCard
-      title={'Sign up'}
-      description={'Already have account?'}
+      title={'New password'}
+      description={'Set new password and'}
       backLinkUrl={'/auth/login'}
       backLinkLabel={'Sign in'}
-      hasSocials
     >
-      <Form onFinish={handleRegister}>
-        <FormItem
-          name={'name'}
-          label={'Name'}
-          rules={[
-            {
-              required: true,
-              message: 'Please input your E-mail!',
-            },
-          ]}
-        >
-          <Input size={'large'} placeholder={'Your name'} />
-        </FormItem>
-        <FormItem
-          name={'email'}
-          label={'Email'}
-          rules={[
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-            {
-              required: true,
-              message: 'Please input your E-mail!',
-            },
-          ]}
-        >
-          <Input type={'email'} size={'large'} placeholder={'email@example.com'} />
-        </FormItem>
+      <Form onFinish={handleSubmit}>
         <FormItem
           name={'password'}
-          label={'Password'}
+          label={'New password'}
           rules={[
             {
               required: true,
@@ -83,8 +58,8 @@ export const RegisterForm: FC = () => {
         </FormItem>
 
         <FormItem
-          name={'confirm'}
-          label={'Confirm password'}
+          name="confirmPassword"
+          label="Confirm Password"
           dependencies={['password']}
           hasFeedback
           rules={[
@@ -93,7 +68,7 @@ export const RegisterForm: FC = () => {
               message: 'Please confirm your password!',
             },
             ({ getFieldValue }) => ({
-              validator: (_, value) => {
+              validator(_, value) {
                 if (!value || getFieldValue('password') === value) {
                   return Promise.resolve();
                 }
@@ -108,14 +83,9 @@ export const RegisterForm: FC = () => {
         <AlertMessage data={message} />
 
         <FormItem>
-          <Button
-            text={'Sign up'}
-            htmlType={'submit'}
-            loading={isPending}
-            wide
-          />
+          <Button text={'Save'} htmlType={'submit'} loading={isPending} wide />
         </FormItem>
       </Form>
     </AuthCard>
   )
-}
+};

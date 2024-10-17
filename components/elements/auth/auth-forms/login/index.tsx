@@ -1,50 +1,48 @@
 'use client';
 
-import * as z from 'zod';
 import { FC, useState, useTransition } from 'react';
-import { Alert, Checkbox, Flex, Input } from 'antd';
+import { Flex, Input } from 'antd';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-import { Text, FormItem, Button } from '@/components/ui';
-import { AuthFormContent } from '@/components/elements';
-import { AuthForm } from '../../auth-form';
-import { LoginSchema } from '@/auth/schemas';
+import { FormItem, Button, Form } from '@/components/ui';
+import { AuthCard } from '@/components/elements/auth/auth-card';
 import { login } from '@/actions/login';
+import { LoginValuesProps } from '@/schemas/types';
+import { MessageProps } from '@/types';
+import { AlertMessage } from '@/components/ui/alert-message';
 
 const { Password } = Input;
 
-type FormValuesProps = z.infer<typeof LoginSchema>;
-
 export const LoginForm: FC = () => {
-  const searchParams = useSearchParams()
   const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string | undefined>('');
-  const [success, setSuccess] = useState<string | undefined>('');
+  const [message, setMessage] = useState<MessageProps | null>(null);
+  const searchParams = useSearchParams();
 
-  const oauthError = searchParams.get('error') === 'OAuthAccountNotLinked' 
-  ? 'Email already taken!' 
-  : '';
+  const oauthError = searchParams.get('error') === 'OAuthAccountNotLinked'
+    ? 'Email already taken!'
+    : '';
 
-  console.log(oauthError, 'oauthError');
-  
-
-  const handleSubmit = async (values: FormValuesProps) => {
-    setError('');
-    setSuccess('');
+  const handleSubmit = async (values: LoginValuesProps) => {
+    setMessage(null);
 
     startTransition(() => {
       login(values)
-      .then(data => {
-        setError(data?.error);
-        setSuccess(data?.success);
-      })
+        .then((data) => {
+          setMessage(data)
+        })
     });
   };
 
   return (
-    <AuthForm onFinish={handleSubmit} >
-      <AuthFormContent title={'Log in'}>
+    <AuthCard
+      title={'Sign in'}
+      description={"Haven't account yet?"}
+      backLinkUrl={'/auth/register'}
+      backLinkLabel={'Sign up'}
+      hasSocials
+    >
+      <Form onFinish={handleSubmit}>
         <FormItem
           name={'email'}
           label={'Email'}
@@ -59,7 +57,7 @@ export const LoginForm: FC = () => {
             },
           ]}
         >
-          <Input type={'email'} size={'large'} />
+          <Input type={'email'} size={'large'} placeholder={'email@example.com'} />
         </FormItem>
         <FormItem
           name={'password'}
@@ -72,20 +70,16 @@ export const LoginForm: FC = () => {
           ]}
           hasFeedback
         >
-          <Password size={'large'} />
+          <Password size={'large'} placeholder={'******'} />
         </FormItem>
 
-        <FormItem>
-          <Flex justify={'space-between'} align={'center'}>
-            <FormItem name={'remember'} valuePropName={'checked'} noStyle>
-              <Checkbox>Remember me</Checkbox>
-            </FormItem>
-            <Link href={'/auth/forgot-password'}>Forgot password</Link>
-          </Flex>
-        </FormItem>
+        <Flex justify={'end'} style={{ marginBottom: 16 }}>
+          <Link href={'/auth/forgot-password'}>Forgot password</Link>
+        </Flex>
 
-        {!!error || !!oauthError && <Alert message={error || oauthError} type={'error'} showIcon />}
-        {!!success && <Alert message={success} type={'success'} showIcon />}
+        {!!oauthError && <AlertMessage message={oauthError} type={'error'} />}
+
+        <AlertMessage data={message} />
 
         <FormItem>
           <Button
@@ -95,12 +89,7 @@ export const LoginForm: FC = () => {
             wide
           />
         </FormItem>
-
-        <Flex justify={'space-between'} align={'center'}>
-          <Text>{"Haven't account yet?"}</Text>
-          <Link href={'/auth/register'}>Sign up</Link>
-        </Flex>
-      </AuthFormContent>
-    </AuthForm>
+      </Form>
+    </AuthCard>
   )
 }

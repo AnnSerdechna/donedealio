@@ -1,4 +1,4 @@
-import { auth } from '@/auth/auth';
+import { auth } from '@/auth';
 import { DashboardPage } from '@/components/pages';
 
 export default async function Dashboard() {

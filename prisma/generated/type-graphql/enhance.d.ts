@@ -9,6 +9,7 @@ declare const crudResolversMap: {
     User: typeof crudResolvers.UserCrudResolver;
     Account: typeof crudResolvers.AccountCrudResolver;
     VerificationToken: typeof crudResolvers.VerificationTokenCrudResolver;
+    PasswordResetToken: typeof crudResolvers.PasswordResetTokenCrudResolver;
     Workspace: typeof crudResolvers.WorkspaceCrudResolver;
     File: typeof crudResolvers.FileCrudResolver;
     Task: typeof crudResolvers.TaskCrudResolver;

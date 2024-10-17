@@ -10,5 +10,5 @@ export const AlertMessage: FC<AlertMessageProps> = ({ data, ...props }) => {
 
   if (!data) return null;
 
-  return <Alert type={data?.status} message={data?.content}  showIcon />
+  return <Alert type={data?.status} message={data?.content} showIcon {...props} />
 }

@@ -39,16 +39,19 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
           },
           Form: {
             itemMarginBottom: 16,
+            verticalLabelMargin: 0,
+            verticalLabelPadding: 0,
           },
           Avatar: {
             colorTextPlaceholder: variables.primaryColor,
           },
           Button: {
             defaultBg: 'transparent',
-            defaultColor: variables.primaryColor,
-            defaultBorderColor: variables.primaryColor,
             colorLink: variables.primaryColor
           },
+          Input: {
+            sizeLG: 56
+          }
         },
       }}
     >

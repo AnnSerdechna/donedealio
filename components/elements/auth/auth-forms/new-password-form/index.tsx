@@ -2,11 +2,10 @@
 
 import { Input } from 'antd';
 import { FC, useState, useTransition } from 'react';
-
-import { AuthFormContent } from '@/components/elements';
-import { FormItem, Button } from '@/components/ui';
-import { AuthForm } from '../../auth-form';
 import { useSearchParams } from 'next/navigation';
+
+import { FormItem, Button, Form } from '@/components/ui';
+import { AuthCard } from '@/components/elements/auth/auth-card';
 import { newPassword } from '@/actions/new-password';
 import { NewPasswordValuesProps } from '@/schemas/types';
 import { MessageProps } from '@/types';
@@ -33,8 +32,13 @@ export const NewPasswordForm: FC = () => {
   };
 
   return (
-    <AuthForm onFinish={handleSubmit}>
-      <AuthFormContent title={'New password'}>
+    <AuthCard
+      title={'New password'}
+      description={'Set new password and'}
+      backLinkUrl={'/auth/login'}
+      backLinkLabel={'Sign in'}
+    >
+      <Form onFinish={handleSubmit}>
         <FormItem
           name={'password'}
           label={'New password'}
@@ -43,10 +47,14 @@ export const NewPasswordForm: FC = () => {
               required: true,
               message: 'Please input your password!',
             },
+            {
+              min: 6,
+              message: 'Min 6 characters required!',
+            }
           ]}
           hasFeedback
         >
-          <Password size={'large'} />
+          <Password size={'large'} placeholder={'******'} />
         </FormItem>
 
         <FormItem
@@ -69,7 +77,7 @@ export const NewPasswordForm: FC = () => {
             }),
           ]}
         >
-          <Password size={'large'} />
+          <Password size={'large'} placeholder={'******'} />
         </FormItem>
 
         <AlertMessage data={message} />
@@ -77,7 +85,7 @@ export const NewPasswordForm: FC = () => {
         <FormItem>
           <Button text={'Save'} htmlType={'submit'} loading={isPending} wide />
         </FormItem>
-      </AuthFormContent>
-    </AuthForm>
+      </Form>
+    </AuthCard>
   )
 };

@@ -1,14 +1,11 @@
 'use client';
 
 import { FC, useState, useTransition } from 'react';
-import { Divider, Flex, Input } from 'antd';
-import Link from 'next/link';
+import { Input } from 'antd';
 
-import { AuthForm } from '@/components/elements/auth/auth-form';
+import { AuthCard } from '@/components/elements/auth/auth-card';
 import { register } from '@/actions/register';
-import { AuthFormContent } from '@/components/elements/auth/auth-form-content';
-import { Button, FormItem, Text } from '@/components/ui';
-import { SocialBtns } from '../../social-btns';
+import { Button, Form, FormItem } from '@/components/ui';
 import { RegisterValuesProps } from '@/schemas/types';
 import { AlertMessage } from '@/components/ui/alert-message';
 import { MessageProps } from '@/types';
@@ -30,12 +27,15 @@ export const RegisterForm: FC = () => {
     });
   };
 
-
   return (
-    <AuthForm onFinish={handleRegister}>
-      <AuthFormContent title={'Sign up'}>
-        <SocialBtns />
-        <Divider style={{ margin: 0 }}>or</Divider>
+    <AuthCard
+      title={'Sign up'}
+      description={'Already have account?'}
+      backLinkUrl={'/auth/login'}
+      backLinkLabel={'Sign in'}
+      hasSocials
+    >
+      <Form onFinish={handleRegister}>
         <FormItem
           name={'name'}
           label={'Name'}
@@ -46,7 +46,7 @@ export const RegisterForm: FC = () => {
             },
           ]}
         >
-          <Input size={'large'} />
+          <Input size={'large'} placeholder={'Your name'} />
         </FormItem>
         <FormItem
           name={'email'}
@@ -62,7 +62,7 @@ export const RegisterForm: FC = () => {
             },
           ]}
         >
-          <Input type={'email'} size={'large'} />
+          <Input type={'email'} size={'large'} placeholder={'email@example.com'} />
         </FormItem>
         <FormItem
           name={'password'}
@@ -72,10 +72,14 @@ export const RegisterForm: FC = () => {
               required: true,
               message: 'Please input your password!',
             },
+            {
+              min: 6,
+              message: 'Min 6 characters required!',
+            }
           ]}
           hasFeedback
         >
-          <Password size={'large'} />
+          <Password size={'large'} placeholder={'******'} />
         </FormItem>
 
         <FormItem
@@ -98,7 +102,7 @@ export const RegisterForm: FC = () => {
             }),
           ]}
         >
-          <Password size={'large'} />
+          <Password size={'large'} placeholder={'******'} />
         </FormItem>
 
         <AlertMessage data={message} />
@@ -111,12 +115,7 @@ export const RegisterForm: FC = () => {
             wide
           />
         </FormItem>
-
-        <Flex justify={'space-between'} align={'center'}>
-          <Text>Already have account?</Text>
-          <Link href={'/'}>Log in</Link>
-        </Flex>
-      </AuthFormContent>
-    </AuthForm>
+      </Form>
+    </AuthCard>
   )
 }

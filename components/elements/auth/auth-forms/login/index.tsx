@@ -1,15 +1,13 @@
 'use client';
 
 import { FC, useState, useTransition } from 'react';
-import { Divider, Flex, Input } from 'antd';
+import { Flex, Input } from 'antd';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-import { Text, FormItem, Button } from '@/components/ui';
-import { AuthFormContent } from '@/components/elements';
-import { AuthForm } from '../../auth-form';
+import { FormItem, Button, Form } from '@/components/ui';
+import { AuthCard } from '@/components/elements/auth/auth-card';
 import { login } from '@/actions/login';
-import { SocialBtns } from '../../social-btns';
 import { LoginValuesProps } from '@/schemas/types';
 import { MessageProps } from '@/types';
 import { AlertMessage } from '@/components/ui/alert-message';
@@ -37,10 +35,14 @@ export const LoginForm: FC = () => {
   };
 
   return (
-    <AuthForm onFinish={handleSubmit}>
-      <AuthFormContent title={'Log in'}>
-        <SocialBtns />
-        <Divider style={{ margin: 0 }}>or</Divider>
+    <AuthCard
+      title={'Sign in'}
+      description={"Haven't account yet?"}
+      backLinkUrl={'/auth/register'}
+      backLinkLabel={'Sign up'}
+      hasSocials
+    >
+      <Form onFinish={handleSubmit}>
         <FormItem
           name={'email'}
           label={'Email'}
@@ -55,7 +57,7 @@ export const LoginForm: FC = () => {
             },
           ]}
         >
-          <Input type={'email'} size={'large'} />
+          <Input type={'email'} size={'large'} placeholder={'email@example.com'} />
         </FormItem>
         <FormItem
           name={'password'}
@@ -68,14 +70,12 @@ export const LoginForm: FC = () => {
           ]}
           hasFeedback
         >
-          <Password size={'large'} />
+          <Password size={'large'} placeholder={'******'} />
         </FormItem>
 
-        <FormItem>
-          <Flex justify={'end'}>
-            <Link href={'/auth/forgot-password'}>Forgot password</Link>
-          </Flex>
-        </FormItem>
+        <Flex justify={'end'} style={{ marginBottom: 16 }}>
+          <Link href={'/auth/forgot-password'}>Forgot password</Link>
+        </Flex>
 
         {!!oauthError && <AlertMessage message={oauthError} type={'error'} />}
 
@@ -89,12 +89,7 @@ export const LoginForm: FC = () => {
             wide
           />
         </FormItem>
-
-        <Flex justify={'space-between'} align={'center'}>
-          <Text>{"Haven't account yet?"}</Text>
-          <Link href={'/auth/register'}>Sign up</Link>
-        </Flex>
-      </AuthFormContent>
-    </AuthForm>
+      </Form>
+    </AuthCard>
   )
 }

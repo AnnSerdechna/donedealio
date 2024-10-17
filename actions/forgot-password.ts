@@ -29,6 +29,5 @@ export const forgotPassword = async (values: ForgotPasswordValuesProps): Promise
     passwordResetoken.token
   );
 
-
   return { status: 'success', content: 'Email sent!' };
 };

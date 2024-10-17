@@ -1,18 +1,16 @@
 'use client';
 
 import { FC, useState, useTransition } from 'react';
-import { Flex, Input } from 'antd';
-import Link from 'next/link';
+import { Input } from 'antd';
 
-import { FormItem, Button } from '@/components/ui';
-import { AuthFormContent } from '@/components/elements';
-import { AuthForm } from '../../auth-form';
+import { FormItem, Button, Form } from '@/components/ui';
+import { AuthCard } from '@/components/elements/auth/auth-card';
 import { ForgotPasswordValuesProps } from '@/schemas/types';
 import { forgotPassword } from '@/actions/forgot-password';
 import { MessageProps } from '@/types';
 import { AlertMessage } from '@/components/ui/alert-message';
 
-export const ForgotPasswordForm :FC= () => {
+export const ForgotPasswordForm: FC = () => {
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<MessageProps | null>(null);
 
@@ -21,15 +19,18 @@ export const ForgotPasswordForm :FC= () => {
 
     startTransition(() => {
       forgotPassword(values)
-        .then((data)=> {
+        .then((data) => {
           setMessage(data)
         })
     });
   };
 
   return (
-    <AuthForm onFinish={handleSubmit}>
-      <AuthFormContent title={'Forgot password'}>
+    <AuthCard
+      title={'Forgot password?'}
+      description={"We'll send new password link to email"}
+    >
+      <Form onFinish={handleSubmit}>
         <FormItem
           name={'email'}
           label={'Email'}
@@ -44,7 +45,7 @@ export const ForgotPasswordForm :FC= () => {
             },
           ]}
         >
-          <Input type={'email'} size={'large'} />
+          <Input type={'email'} size={'large'} placeholder={'email@example.com'} />
         </FormItem>
 
         <AlertMessage data={message} />
@@ -52,11 +53,7 @@ export const ForgotPasswordForm :FC= () => {
         <FormItem>
           <Button text={'Send'} htmlType={'submit'} loading={isPending} wide />
         </FormItem>
-
-        <Flex justify={'flex-end'} align={'center'} gap={16}>
-          <Link href={'/auth/login'} style={{ fontSize: 16 }}>Log in</Link>
-        </Flex>
-      </AuthFormContent>
-    </AuthForm>
+      </Form>
+    </AuthCard>
   )
 }

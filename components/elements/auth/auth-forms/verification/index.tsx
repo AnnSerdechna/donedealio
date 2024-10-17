@@ -1,12 +1,15 @@
 'use client';
 
-import { Flex, Spin } from 'antd';
+import { Spin } from 'antd';
 import { useSearchParams } from 'next/navigation';
 import { FC, useCallback, useEffect, useState } from 'react';
+import Link from 'next/link';
 
 import { verification } from '@/actions/verification';
 import { AlertMessage } from '@/components/ui/alert-message';
 import { MessageProps } from '@/types';
+import { Logo } from '@/components/elements/logo';
+import { AuthCard } from '@/components/elements/auth/auth-card';
 
 export const Verification: FC = () => {
   const [message, setMessage] = useState<MessageProps | null>(null);
@@ -19,7 +22,7 @@ export const Verification: FC = () => {
       setMessage({ status: 'error', content: 'Missing token!' });
       return;
     };
-    
+
     verification(token)
       .then((data) => {
         setMessage(data)
@@ -34,12 +37,18 @@ export const Verification: FC = () => {
   }, [onSubmit])
 
   return (
-    <Flex vertical>
+    <AuthCard
+      title={'Verify email address'}
+      description={''}
+    >
+      <Logo size={60} />
       {
-        !message 
-          ? <Spin /> 
+        !message
+          ? <Spin />
           : <AlertMessage data={message} />
       }
-    </Flex>
+
+      <Link href={'/auth/login'}>Log in</Link>
+    </AuthCard>
   )
 }

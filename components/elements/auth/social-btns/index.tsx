@@ -9,9 +9,10 @@ import { signIn } from 'next-auth/react';
 
 const SocialBtn: FC<ButtonProps> = ({ ...props }) => (
   <Button 
-    type={'primary'} 
+    type={'default'} 
     style={{ width: '100%' }} 
     icon={<GoogleOutlined />} 
+    size={'large'}
     {...props}
   />
 )
@@ -22,15 +23,19 @@ export const SocialBtns: FC = () => {
   };
 
   return (
-    <Flex gap={8}>
+    <Flex gap={16} vertical>
       <SocialBtn 
         icon={<GoogleOutlined />} 
         onClick={() => onSignin('google')}
-      />
+      >
+        {'Sign in with Google'}
+      </SocialBtn>
       <SocialBtn
         icon={<GithubOutlined />}
         onClick={() => onSignin('github')}
-      />
+      >
+        {'Sign in with Google'}
+      </SocialBtn>
     </Flex>
   )
 }

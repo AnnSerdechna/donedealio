@@ -10,6 +10,8 @@ export { StatusScalarFieldEnum } from "./StatusScalarFieldEnum";
 export { StatusType } from "./StatusType";
 export { TaskScalarFieldEnum } from "./TaskScalarFieldEnum";
 export { TransactionIsolationLevel } from "./TransactionIsolationLevel";
+export { TwoFactorConfirnationScalarFieldEnum } from "./TwoFactorConfirnationScalarFieldEnum";
+export { TwoFactorTokenScalarFieldEnum } from "./TwoFactorTokenScalarFieldEnum";
 export { UserScalarFieldEnum } from "./UserScalarFieldEnum";
 export { VerificationTokenScalarFieldEnum } from "./VerificationTokenScalarFieldEnum";
 export { WorkspaceScalarFieldEnum } from "./WorkspaceScalarFieldEnum";

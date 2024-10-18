@@ -35,9 +35,8 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
 
   const logOut = () => {
     try {
-      signOut({ callbackUrl: window.location.origin })
+      signOut({ callbackUrl: `${window.location.origin}/auth/login` })
     } catch (error) {
-      console.log(error, 'Log out error');
       message.error('Something went wrong!')
     }
   };

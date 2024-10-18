@@ -7,6 +7,10 @@ import { GithubOutlined, GoogleOutlined } from '@ant-design/icons';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { signIn } from 'next-auth/react';
 
+export type SocialBtnsProps = {
+  isLogin?: boolean
+}
+
 const SocialBtn: FC<ButtonProps> = ({ ...props }) => (
   <Button 
     type={'default'} 
@@ -17,24 +21,24 @@ const SocialBtn: FC<ButtonProps> = ({ ...props }) => (
   />
 )
 
-export const SocialBtns: FC = () => {
+export const SocialBtns: FC<SocialBtnsProps> = ({ isLogin = false }) => {
   const onSignin = (provider: 'google' | 'github') => {
     signIn(provider, { callbackUrl: DEFAULT_LOGIN_REDIRECT })
   };
 
   return (
-    <Flex gap={16} vertical>
+    <Flex gap={24} vertical>
       <SocialBtn 
         icon={<GoogleOutlined />} 
         onClick={() => onSignin('google')}
       >
-        {'Sign in with Google'}
+        {`Sign ${isLogin ? 'in' : 'up'} with Google`}
       </SocialBtn>
       <SocialBtn
         icon={<GithubOutlined />}
         onClick={() => onSignin('github')}
       >
-        {'Sign in with Google'}
+        {`Sign ${isLogin ? 'in' : 'up'} with Google`}
       </SocialBtn>
     </Flex>
   )

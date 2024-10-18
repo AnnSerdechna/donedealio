@@ -4,10 +4,10 @@ import { Card, Divider, Flex } from 'antd';
 import { Title, Text } from '@/components/ui';
 import styles from './index.module.scss';
 import { Logo } from '../../logo';
-import { SocialBtns } from '../social-btns';
+import { SocialBtns, SocialBtnsProps } from '../social-btns';
 import Link from 'next/link';
 
-type AuthCardProps = {
+type AuthCardProps = SocialBtnsProps & {
   title: string
   description: ReactNode
   backLinkUrl?: string
@@ -20,6 +20,7 @@ export const AuthCard: FC<AuthCardProps> = ({
   description,
   backLinkUrl,
   backLinkLabel,
+  isLogin = false,
   hasSocials = false,
   children,
 }) => {
@@ -41,11 +42,13 @@ export const AuthCard: FC<AuthCardProps> = ({
 
         {hasSocials && (
           <Fragment>
-            <SocialBtns />
+            <SocialBtns isLogin={isLogin} />
             <Divider style={{ margin: 0 }}>or</Divider>
           </Fragment>
         )}
-        {children}
+        <Flex gap={24} vertical>
+          {children}
+        </Flex>
       </Flex>
     </Card>
   )

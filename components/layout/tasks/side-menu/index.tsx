@@ -36,7 +36,7 @@ const items: MenuItemProps[] = [
   ),
   getItem(
     'Workspace',
-    'workspace',
+    'workspaces',
     <BulbOutlined />
   ),
   getItem(

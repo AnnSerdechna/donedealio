@@ -16,17 +16,20 @@ datasource postgres {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String
-  email         String    @unique
-  emailVerified DateTime?
-  password      String?
-  role          Role      @default(USER)
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  accounts      Account[]
-  workspaces    Workspace[]
+  id                      String    @id @default(cuid())
+  name                    String
+  email                   String    @unique
+  emailVerified           DateTime?
+  password                String?
+  role                    Role      @default(USER)
+  image                   String?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  isTwoFactorEnable       Boolean @default(false)
+
+  twoFactorConfirnation   TwoFactorConfirnation?
+  accounts                Account[]
+  workspaces              Workspace[]
 }
 
 model Account {
@@ -42,10 +45,10 @@ model Account {
   id_token          String?
   session_state     String?
  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
  
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User @relation(fields: [userId], references: [id], onDelete: Cascade)
  
   @@id([provider, providerAccountId])
 }
@@ -66,6 +69,24 @@ model PasswordResetToken {
   expires       DateTime
   
   @@unique([email, token])
+}
+
+model TwoFactorToken {
+  id            String    @id @default(cuid())
+  email         String    
+  token         String    @unique
+  expires       DateTime
+  
+  @@unique([email, token])
+}
+
+model TwoFactorConfirnation {
+  id            String    @id @default(cuid())
+
+  userId        String
+  user          User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
 }
 
 model Workspace {

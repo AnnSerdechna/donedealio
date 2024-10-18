@@ -61,6 +61,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", Date)
 ], CreateManyAndReturnUser.prototype, "updatedAt", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => Boolean, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", Boolean)
+], CreateManyAndReturnUser.prototype, "isTwoFactorEnable", void 0);
 exports.CreateManyAndReturnUser = CreateManyAndReturnUser = tslib_1.__decorate([
     TypeGraphQL.ObjectType("CreateManyAndReturnUser", {})
 ], CreateManyAndReturnUser);

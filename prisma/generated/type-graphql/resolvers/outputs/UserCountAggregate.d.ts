@@ -8,5 +8,6 @@ export declare class UserCountAggregate {
     image: number;
     createdAt: number;
     updatedAt: number;
+    isTwoFactorEnable: number;
     _all: number;
 }

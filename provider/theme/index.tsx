@@ -38,7 +38,7 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             triggerBg: variables.whiteColor,
           },
           Form: {
-            itemMarginBottom: 16,
+            itemMarginBottom: 0,
             verticalLabelMargin: 0,
             verticalLabelPadding: 0,
           },

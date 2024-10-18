@@ -1,6 +1,6 @@
 'use client';
 
-import { Input } from 'antd';
+import { Flex, Input, Form as AntForm } from 'antd';
 import { FC, useState, useTransition } from 'react';
 import { useSearchParams } from 'next/navigation';
 
@@ -14,6 +14,7 @@ import { AlertMessage } from '@/components/ui/alert-message';
 const { Password } = Input;
 
 export const NewPasswordForm: FC = () => {
+  const [form] = AntForm.useForm();
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<MessageProps | null>(null);
   const searchParams = useSearchParams();
@@ -27,6 +28,8 @@ export const NewPasswordForm: FC = () => {
       newPassword(values, token)
         .then((data) => {
           setMessage(data)
+        }).finally(() => {
+          form.resetFields()
         })
     });
   };
@@ -38,53 +41,55 @@ export const NewPasswordForm: FC = () => {
       backLinkUrl={'/auth/login'}
       backLinkLabel={'Sign in'}
     >
-      <Form onFinish={handleSubmit}>
-        <FormItem
-          name={'password'}
-          label={'New password'}
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-            {
-              min: 6,
-              message: 'Min 6 characters required!',
-            }
-          ]}
-          hasFeedback
-        >
-          <Password size={'large'} placeholder={'******'} />
-        </FormItem>
-
-        <FormItem
-          name="confirmPassword"
-          label="Confirm Password"
-          dependencies={['password']}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: 'Please confirm your password!',
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error('The new password that you entered do not match!'));
+      <Form form={form} onFinish={handleSubmit}>
+        <Flex gap={24} vertical>
+          <FormItem
+            name={'password'}
+            label={'New password'}
+            rules={[
+              {
+                required: true,
+                message: 'Please input your password!',
               },
-            }),
-          ]}
-        >
-          <Password size={'large'} placeholder={'******'} />
-        </FormItem>
+              {
+                min: 6,
+                message: 'Min 6 characters required!',
+              }
+            ]}
+            hasFeedback
+          >
+            <Password size={'large'} placeholder={'******'} />
+          </FormItem>
 
-        <AlertMessage data={message} />
+          <FormItem
+            name="confirmPassword"
+            label="Confirm Password"
+            dependencies={['password']}
+            hasFeedback
+            rules={[
+              {
+                required: true,
+                message: 'Please confirm your password!',
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('The new password that you entered do not match!'));
+                },
+              }),
+            ]}
+          >
+            <Password size={'large'} placeholder={'******'} />
+          </FormItem>
 
-        <FormItem>
-          <Button text={'Save'} htmlType={'submit'} loading={isPending} wide />
-        </FormItem>
+          <AlertMessage data={message} />
+
+          <FormItem>
+            <Button text={'Save'} htmlType={'submit'} loading={isPending} wide />
+          </FormItem>
+        </Flex>
       </Form>
     </AuthCard>
   )

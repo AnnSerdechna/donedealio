@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkspaceScalarFieldEnum = exports.VerificationTokenScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.TaskScalarFieldEnum = exports.StatusType = exports.StatusScalarFieldEnum = exports.SortOrder = exports.Role = exports.QueryMode = exports.PriorityScalarFieldEnum = exports.PasswordResetTokenScalarFieldEnum = exports.NullsOrder = exports.FileScalarFieldEnum = exports.AccountScalarFieldEnum = void 0;
+exports.WorkspaceScalarFieldEnum = exports.VerificationTokenScalarFieldEnum = exports.UserScalarFieldEnum = exports.TwoFactorTokenScalarFieldEnum = exports.TwoFactorConfirnationScalarFieldEnum = exports.TransactionIsolationLevel = exports.TaskScalarFieldEnum = exports.StatusType = exports.StatusScalarFieldEnum = exports.SortOrder = exports.Role = exports.QueryMode = exports.PriorityScalarFieldEnum = exports.PasswordResetTokenScalarFieldEnum = exports.NullsOrder = exports.FileScalarFieldEnum = exports.AccountScalarFieldEnum = void 0;
 var AccountScalarFieldEnum_1 = require("./AccountScalarFieldEnum");
 Object.defineProperty(exports, "AccountScalarFieldEnum", { enumerable: true, get: function () { return AccountScalarFieldEnum_1.AccountScalarFieldEnum; } });
 var FileScalarFieldEnum_1 = require("./FileScalarFieldEnum");
@@ -25,6 +25,10 @@ var TaskScalarFieldEnum_1 = require("./TaskScalarFieldEnum");
 Object.defineProperty(exports, "TaskScalarFieldEnum", { enumerable: true, get: function () { return TaskScalarFieldEnum_1.TaskScalarFieldEnum; } });
 var TransactionIsolationLevel_1 = require("./TransactionIsolationLevel");
 Object.defineProperty(exports, "TransactionIsolationLevel", { enumerable: true, get: function () { return TransactionIsolationLevel_1.TransactionIsolationLevel; } });
+var TwoFactorConfirnationScalarFieldEnum_1 = require("./TwoFactorConfirnationScalarFieldEnum");
+Object.defineProperty(exports, "TwoFactorConfirnationScalarFieldEnum", { enumerable: true, get: function () { return TwoFactorConfirnationScalarFieldEnum_1.TwoFactorConfirnationScalarFieldEnum; } });
+var TwoFactorTokenScalarFieldEnum_1 = require("./TwoFactorTokenScalarFieldEnum");
+Object.defineProperty(exports, "TwoFactorTokenScalarFieldEnum", { enumerable: true, get: function () { return TwoFactorTokenScalarFieldEnum_1.TwoFactorTokenScalarFieldEnum; } });
 var UserScalarFieldEnum_1 = require("./UserScalarFieldEnum");
 Object.defineProperty(exports, "UserScalarFieldEnum", { enumerable: true, get: function () { return UserScalarFieldEnum_1.UserScalarFieldEnum; } });
 var VerificationTokenScalarFieldEnum_1 = require("./VerificationTokenScalarFieldEnum");

@@ -3,11 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserUpdateWithoutAccountsInput = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
+const BoolFieldUpdateOperationsInput_1 = require("../inputs/BoolFieldUpdateOperationsInput");
 const DateTimeFieldUpdateOperationsInput_1 = require("../inputs/DateTimeFieldUpdateOperationsInput");
 const EnumRoleFieldUpdateOperationsInput_1 = require("../inputs/EnumRoleFieldUpdateOperationsInput");
 const NullableDateTimeFieldUpdateOperationsInput_1 = require("../inputs/NullableDateTimeFieldUpdateOperationsInput");
 const NullableStringFieldUpdateOperationsInput_1 = require("../inputs/NullableStringFieldUpdateOperationsInput");
 const StringFieldUpdateOperationsInput_1 = require("../inputs/StringFieldUpdateOperationsInput");
+const TwoFactorConfirnationUpdateOneWithoutUserNestedInput_1 = require("../inputs/TwoFactorConfirnationUpdateOneWithoutUserNestedInput");
 const WorkspaceUpdateManyWithoutUserNestedInput_1 = require("../inputs/WorkspaceUpdateManyWithoutUserNestedInput");
 let UserUpdateWithoutAccountsInput = class UserUpdateWithoutAccountsInput {
 };
@@ -66,6 +68,18 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", DateTimeFieldUpdateOperationsInput_1.DateTimeFieldUpdateOperationsInput)
 ], UserUpdateWithoutAccountsInput.prototype, "updatedAt", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => BoolFieldUpdateOperationsInput_1.BoolFieldUpdateOperationsInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", BoolFieldUpdateOperationsInput_1.BoolFieldUpdateOperationsInput)
+], UserUpdateWithoutAccountsInput.prototype, "isTwoFactorEnable", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => TwoFactorConfirnationUpdateOneWithoutUserNestedInput_1.TwoFactorConfirnationUpdateOneWithoutUserNestedInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", TwoFactorConfirnationUpdateOneWithoutUserNestedInput_1.TwoFactorConfirnationUpdateOneWithoutUserNestedInput)
+], UserUpdateWithoutAccountsInput.prototype, "twoFactorConfirnation", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => WorkspaceUpdateManyWithoutUserNestedInput_1.WorkspaceUpdateManyWithoutUserNestedInput, {
         nullable: true

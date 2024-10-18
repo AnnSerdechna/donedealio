@@ -4,6 +4,8 @@ export { PasswordResetTokenCrudResolver } from "./PasswordResetToken/PasswordRes
 export { PriorityCrudResolver } from "./Priority/PriorityCrudResolver";
 export { StatusCrudResolver } from "./Status/StatusCrudResolver";
 export { TaskCrudResolver } from "./Task/TaskCrudResolver";
+export { TwoFactorConfirnationCrudResolver } from "./TwoFactorConfirnation/TwoFactorConfirnationCrudResolver";
+export { TwoFactorTokenCrudResolver } from "./TwoFactorToken/TwoFactorTokenCrudResolver";
 export { UserCrudResolver } from "./User/UserCrudResolver";
 export { VerificationTokenCrudResolver } from "./VerificationToken/VerificationTokenCrudResolver";
 export { WorkspaceCrudResolver } from "./Workspace/WorkspaceCrudResolver";

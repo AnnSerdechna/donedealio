@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, useState, useTransition } from 'react';
-import { Input } from 'antd';
+import { Flex, Input, Form as AntForm } from 'antd';
 
 import { FormItem, Button, Form } from '@/components/ui';
 import { AuthCard } from '@/components/elements/auth/auth-card';
@@ -11,6 +11,7 @@ import { MessageProps } from '@/types';
 import { AlertMessage } from '@/components/ui/alert-message';
 
 export const ForgotPasswordForm: FC = () => {
+  const [form] = AntForm.useForm();
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<MessageProps | null>(null);
 
@@ -21,7 +22,9 @@ export const ForgotPasswordForm: FC = () => {
       forgotPassword(values)
         .then((data) => {
           setMessage(data)
-        })
+        }).finally(() => {
+          form.resetFields()
+        });
     });
   };
 
@@ -30,29 +33,31 @@ export const ForgotPasswordForm: FC = () => {
       title={'Forgot password?'}
       description={"We'll send new password link to email"}
     >
-      <Form onFinish={handleSubmit}>
-        <FormItem
-          name={'email'}
-          label={'Email'}
-          rules={[
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-            {
-              required: true,
-              message: 'Please input your E-mail!',
-            },
-          ]}
-        >
-          <Input type={'email'} size={'large'} placeholder={'email@example.com'} />
-        </FormItem>
+      <Form form={form} onFinish={handleSubmit}>
+        <Flex gap={24} vertical> 
+          <FormItem
+            name={'email'}
+            label={'Email'}
+            rules={[
+              {
+                type: 'email',
+                message: 'The input is not valid E-mail!',
+              },
+              {
+                required: true,
+                message: 'Please input your E-mail!',
+              },
+            ]}
+          >
+            <Input type={'email'} size={'large'} placeholder={'email@example.com'} />
+          </FormItem>
 
-        <AlertMessage data={message} />
+          <AlertMessage data={message} />
 
-        <FormItem>
-          <Button text={'Send'} htmlType={'submit'} loading={isPending} wide />
-        </FormItem>
+          <FormItem>
+            <Button text={'Send'} htmlType={'submit'} loading={isPending} wide />
+          </FormItem>
+        </Flex>
       </Form>
     </AuthCard>
   )

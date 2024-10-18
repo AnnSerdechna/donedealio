@@ -1,4 +1,5 @@
 import { Account } from "../models/Account";
+import { TwoFactorConfirnation } from "../models/TwoFactorConfirnation";
 import { Workspace } from "../models/Workspace";
 import { UserCount } from "../resolvers/outputs/UserCount";
 export declare class User {
@@ -11,6 +12,8 @@ export declare class User {
     image?: string | null;
     createdAt: Date;
     updatedAt: Date;
+    isTwoFactorEnable: boolean;
+    twoFactorConfirnation?: TwoFactorConfirnation | null;
     accounts?: Account[];
     workspaces?: Workspace[];
     _count?: UserCount | null;

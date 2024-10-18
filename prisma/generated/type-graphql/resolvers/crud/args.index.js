@@ -7,6 +7,8 @@ tslib_1.__exportStar(require("./PasswordResetToken/args"), exports);
 tslib_1.__exportStar(require("./Priority/args"), exports);
 tslib_1.__exportStar(require("./Status/args"), exports);
 tslib_1.__exportStar(require("./Task/args"), exports);
+tslib_1.__exportStar(require("./TwoFactorConfirnation/args"), exports);
+tslib_1.__exportStar(require("./TwoFactorToken/args"), exports);
 tslib_1.__exportStar(require("./User/args"), exports);
 tslib_1.__exportStar(require("./VerificationToken/args"), exports);
 tslib_1.__exportStar(require("./Workspace/args"), exports);

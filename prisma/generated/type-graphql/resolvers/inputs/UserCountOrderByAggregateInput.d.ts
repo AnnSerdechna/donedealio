@@ -8,4 +8,5 @@ export declare class UserCountOrderByAggregateInput {
     image?: "asc" | "desc" | undefined;
     createdAt?: "asc" | "desc" | undefined;
     updatedAt?: "asc" | "desc" | undefined;
+    isTwoFactorEnable?: "asc" | "desc" | undefined;
 }

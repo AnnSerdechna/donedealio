@@ -1,43 +1,49 @@
 import React, { FC } from 'react';
 import {
-  UserOutlined,
   BellOutlined,
   SearchOutlined,
   MenuOutlined,
-  LogoutOutlined
 } from '@ant-design/icons';
-import { Avatar, Badge, Col, Dropdown, Flex, Input, Layout, MenuProps } from 'antd';
-
-import variables from '@/styles/variables.module.scss';
-import styles from './index.module.scss';
+import { App, Badge, Col, Flex, Input, Layout } from 'antd';
+import { signOut } from 'next-auth/react';
 
 import { Button, Icon } from '@/components/ui';
+import variables from '@/styles/variables.module.scss';
+import styles from './index.module.scss';
+import { AvaratBtn } from '@/components/elements/avatar-btn';
 
 const { Header } = Layout;
 
 type TasksHeaderProps = {
   onShowMobileDrawer: VoidFunction
-  onConfirmLogout: VoidFunction
 }
 
-export const TasksHeader: FC<TasksHeaderProps> = ({ onShowMobileDrawer, onConfirmLogout  }) => {
-  const items: MenuProps['items'] = [
-    {
-      key: '2',
-      label: 'Log out',
-      icon: <LogoutOutlined />,
-      onClick: onConfirmLogout
-    },
-  ];
+export const TasksHeader: FC<TasksHeaderProps> = ({ onShowMobileDrawer }) => {
+  const { message, modal } = App.useApp();
+
+  const logOut = () => {
+    try {
+      signOut({ callbackUrl: `${window.location.origin}/auth/login` })
+    } catch (error) {
+      message.error('Something went wrong!')
+    }
+  };
+
+  const hanldeConfirmLogout = () => {
+    modal.confirm({
+      title: 'Are you sure you want log out?',
+      onOk: logOut,
+    });
+  };
 
   return (
-    <Header style={{padding: `0 ${variables.sizeSm}`, margin: '8px 16px', borderRadius: 8}}>
+    <Header style={{ padding: `0 ${variables.sizeSm}`, margin: '8px 16px', borderRadius: 8 }}>
       <Flex justify={'space-between'} align={'center'} gap={16}>
         <div className={styles.menuBtnWrap}>
           <Button
             type={'text'}
             size={'middle'}
-            icon={<MenuOutlined />} 
+            icon={<MenuOutlined />}
             onClick={onShowMobileDrawer}
           />
         </div>
@@ -50,17 +56,10 @@ export const TasksHeader: FC<TasksHeaderProps> = ({ onShowMobileDrawer, onConfir
         </Col>
         <Flex align={'center'} gap={16}>
           <Badge count={5} size={'small'}>
-            <Icon icon={<BellOutlined />} size='1.4em'  />
+            <Icon icon={<BellOutlined />} size='1.4em' />
           </Badge>
 
-          <Dropdown menu={{ items }}>
-            <div className={styles.avatarWrap}>
-              <Avatar
-                size={'large'}
-                icon={<UserOutlined />}
-              />
-            </div>
-          </Dropdown>
+          <AvaratBtn onLogout={hanldeConfirmLogout} />
         </Flex>
       </Flex>
     </Header>

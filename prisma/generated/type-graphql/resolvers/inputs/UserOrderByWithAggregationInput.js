@@ -66,6 +66,12 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", String)
 ], UserOrderByWithAggregationInput.prototype, "updatedAt", void 0);
 tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], UserOrderByWithAggregationInput.prototype, "isTwoFactorEnable", void 0);
+tslib_1.__decorate([
     TypeGraphQL.Field(_type => UserCountOrderByAggregateInput_1.UserCountOrderByAggregateInput, {
         nullable: true
     }),

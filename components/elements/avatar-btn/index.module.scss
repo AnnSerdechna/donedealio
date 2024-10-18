@@ -1,0 +1,20 @@
+@import '@/styles/variables.module.scss';
+
+.menuBtnWrap,
+.avatarWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuBtnWrap {
+  @media only screen and (min-width: $screen-md) {
+    display: none;
+  }
+}
+
+.avatarWrap {
+  @media only screen and (max-width: $screen-md) {
+      display: none;
+    }
+}

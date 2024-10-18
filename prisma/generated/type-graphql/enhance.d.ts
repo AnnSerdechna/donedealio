@@ -10,6 +10,8 @@ declare const crudResolversMap: {
     Account: typeof crudResolvers.AccountCrudResolver;
     VerificationToken: typeof crudResolvers.VerificationTokenCrudResolver;
     PasswordResetToken: typeof crudResolvers.PasswordResetTokenCrudResolver;
+    TwoFactorToken: typeof crudResolvers.TwoFactorTokenCrudResolver;
+    TwoFactorConfirnation: typeof crudResolvers.TwoFactorConfirnationCrudResolver;
     Workspace: typeof crudResolvers.WorkspaceCrudResolver;
     File: typeof crudResolvers.FileCrudResolver;
     Task: typeof crudResolvers.TaskCrudResolver;
@@ -41,6 +43,7 @@ export declare function applyArgsTypesEnhanceMap(argsTypesEnhanceMap: ArgsTypesE
 declare const relationResolversMap: {
     User: typeof relationResolvers.UserRelationsResolver;
     Account: typeof relationResolvers.AccountRelationsResolver;
+    TwoFactorConfirnation: typeof relationResolvers.TwoFactorConfirnationRelationsResolver;
     Workspace: typeof relationResolvers.WorkspaceRelationsResolver;
     File: typeof relationResolvers.FileRelationsResolver;
     Task: typeof relationResolvers.TaskRelationsResolver;

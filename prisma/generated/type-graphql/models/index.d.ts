@@ -4,6 +4,8 @@ export { PasswordResetToken } from "./PasswordResetToken";
 export { Priority } from "./Priority";
 export { Status } from "./Status";
 export { Task } from "./Task";
+export { TwoFactorConfirnation } from "./TwoFactorConfirnation";
+export { TwoFactorToken } from "./TwoFactorToken";
 export { User } from "./User";
 export { VerificationToken } from "./VerificationToken";
 export { Workspace } from "./Workspace";

@@ -41,7 +41,6 @@ export const Verification: FC = () => {
       title={'Verify email address'}
       description={''}
     >
-      <Logo size={60} />
       {
         !message
           ? <Spin />

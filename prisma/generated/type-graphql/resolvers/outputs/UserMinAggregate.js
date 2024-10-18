@@ -61,6 +61,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", Date)
 ], UserMinAggregate.prototype, "updatedAt", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => Boolean, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", Boolean)
+], UserMinAggregate.prototype, "isTwoFactorEnable", void 0);
 exports.UserMinAggregate = UserMinAggregate = tslib_1.__decorate([
     TypeGraphQL.ObjectType("UserMinAggregate", {})
 ], UserMinAggregate);

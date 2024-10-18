@@ -5,6 +5,7 @@ import { Role } from '@prisma/client';
 import authConfig from '@/auth.config';
 import { getUserById } from '@/data/user';
 import prisma from '@/lib/prisma';
+import { getTwoFactorConfirmationByUserId } from './data/two-factor-confirmation';
 
 export const {
   handlers,
@@ -28,9 +29,19 @@ export const {
     async signIn({ user, account }) {
       if (account?.provider !== 'credentials') return true;
 
-      const existingUser = await getUserById(user.id ?? '')
+      const existingUser = await getUserById(user.id ?? '');
 
       if (!existingUser?.emailVerified) return false;
+
+      if (existingUser?.isTwoFactorEnable) {
+        const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);
+
+        if (!twoFactorConfirmation) return false;
+
+        await prisma.twoFactorConfirnation.delete({
+          where: { id: twoFactorConfirmation.id }
+        });
+      };
 
       return true;
     },

@@ -1,7 +1,7 @@
+import { ProfilePage } from '@/components/pages/profile';
+
 export default function Profile() {
   return (
-    <section>
-      Profile
-    </section>
+    <ProfilePage />
   );
 };

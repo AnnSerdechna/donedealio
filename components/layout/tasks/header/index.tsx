@@ -25,6 +25,7 @@ export const TasksHeader: FC<TasksHeaderProps> = ({ onShowMobileDrawer }) => {
     try {
       signOut({ callbackUrl: `${window.location.origin}/auth/login` })
     } catch (error) {
+      console.log(error, 'Log out error');
       message.error('Something went wrong!')
     }
   };

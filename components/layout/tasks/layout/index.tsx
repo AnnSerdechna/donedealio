@@ -1,9 +1,8 @@
 'use client';
 
 import React, { FC, Fragment, PropsWithChildren, useEffect, useState } from 'react';
-import { App, Drawer, Layout, Row } from 'antd';
+import { Drawer, Layout, Row } from 'antd';
 import { usePathname } from 'next/navigation';
-import { signOut } from 'next-auth/react';
 
 import { Logo, LogoProps } from '@/components/elements';
 import { SideMenu } from '../side-menu';
@@ -22,7 +21,6 @@ const LogoComponent: FC<LogoProps> = ({ ...props }) => (
 
 export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
   const pathname = usePathname();
-  const { message, modal } = App.useApp();
   const [collapsed, setCollapsed] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -33,21 +31,6 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
   const onOpenMenu = () => setOpenMenu(true);
   const onCloseMenu = () => setOpenMenu(false);
 
-  const logOut = () => {
-    try {
-      signOut({ callbackUrl: `${window.location.origin}/auth/login` })
-    } catch (error) {
-      message.error('Something went wrong!')
-    }
-  };
-
-  const onConfirmLogout = () => {
-    modal.confirm({
-      title: 'Are you sure you want log out?',
-      onOk: logOut,
-    });
-  };
- 
   return (
     <Fragment>
       <Layout className={styles.tasksLayout}>
@@ -70,10 +53,7 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
         </Sider>
 
         <Layout >
-          <TasksHeader 
-            onShowMobileDrawer={onOpenMenu} 
-            onConfirmLogout={onConfirmLogout}
-          />
+          <TasksHeader onShowMobileDrawer={onOpenMenu} />
           <Content className={styles.content}>
             {children}
           </Content>

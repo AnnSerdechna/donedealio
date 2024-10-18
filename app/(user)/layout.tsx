@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { SessionProvider } from 'next-auth/react';
 
 import { TasksLayout } from '@/components/layout';
-import { ApolloProvider } from '@/provider';
+import { ApolloProvider } from '@/provider/apollo';
 import { auth } from '@/auth';
 
 export default async function UserLayout({

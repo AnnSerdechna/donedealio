@@ -4,7 +4,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { App as AntdApp } from "antd";
 import { Roboto } from 'next/font/google';
 
-import { ThemeProvider } from '@/provider';
+import { ThemeProvider } from '@/provider/theme';
 import '@/styles/global.scss'
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['400'] });

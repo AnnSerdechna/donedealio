@@ -21,6 +21,7 @@ function getItem(
 ): MenuItemProps {
 
   // Access routes by role
+  
   return {
     key,
     icon,
@@ -36,7 +37,7 @@ const items: MenuItemProps[] = [
   ),
   getItem(
     'Workspace',
-    'workspaces',
+    'workspace',
     <BulbOutlined />
   ),
   getItem(

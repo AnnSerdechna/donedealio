@@ -38,7 +38,7 @@ export const SocialBtns: FC<SocialBtnsProps> = ({ isLogin = false }) => {
         icon={<GithubOutlined />}
         onClick={() => onSignin('github')}
       >
-        {`Sign ${isLogin ? 'in' : 'up'} with Google`}
+        {`Sign ${isLogin ? 'in' : 'up'} with Github`}
       </SocialBtn>
     </Flex>
   )

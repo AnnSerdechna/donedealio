@@ -33,7 +33,7 @@ export const login = async (values: LoginValuesProps): Promise<MessageProps | { 
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { status: 'error', content: 'Email doesn\'t exist!' };
+    return { status: 'error', content: 'Invalid credentials!' };
   }
 
   if (!existingUser.emailVerified) {

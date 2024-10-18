@@ -1,12 +1,13 @@
-import { auth } from '@/auth';
+
 import { DashboardPage } from '@/components/pages';
+import { currentUser } from '@/lib/auth';
 
 export default async function Dashboard() {
-  const session = await auth();
+  const user = await currentUser();
 
   return (
     <div>
-      {JSON.stringify(session)}
+      {JSON.stringify(user)}
       <DashboardPage />
     </div>
   );

@@ -8,7 +8,6 @@ import Link from 'next/link';
 import { verification } from '@/actions/verification';
 import { AlertMessage } from '@/components/ui/alert-message';
 import { MessageProps } from '@/types';
-import { Logo } from '@/components/elements/logo';
 import { AuthCard } from '@/components/elements/auth/auth-card';
 
 export const Verification: FC = () => {

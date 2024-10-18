@@ -39,7 +39,7 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
           },
           Form: {
             itemMarginBottom: 0,
-            verticalLabelMargin: 0,
+            verticalLabelMargin: 2,
             verticalLabelPadding: 0,
           },
           Avatar: {

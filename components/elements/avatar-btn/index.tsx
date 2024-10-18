@@ -1,10 +1,10 @@
 import { Avatar, Dropdown, Flex, MenuProps } from 'antd'
-import { LogoutOutlined, UserAddOutlined } from '@ant-design/icons';
+import { LogoutOutlined } from '@ant-design/icons';
 import { FC } from 'react';
 
 import styles from './index.module.scss';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
-import { Text, Title } from '@/components/ui';
+import { Text } from '@/components/ui';
 
 type AvaratBtnProps = {
   onLogout: VoidFunction

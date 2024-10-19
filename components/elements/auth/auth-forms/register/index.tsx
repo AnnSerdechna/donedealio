@@ -19,14 +19,15 @@ export const RegisterForm: FC = () => {
 
   const handleRegister = async (values: RegisterValuesProps) => {
     setMessage(null);
+    console.log(values, 'VALS');
+    
 
     startTransition(() => {
       register(values)
         .then((data) => {
           setMessage(data)
-        }).finally(() => {
           form.resetFields()
-        });
+        })
     });
   };
 
@@ -87,7 +88,7 @@ export const RegisterForm: FC = () => {
           </FormItem>
 
           <FormItem
-            name={'confirm'}
+            name={'confirmPassword'}
             label={'Confirm password'}
             dependencies={['password']}
             hasFeedback

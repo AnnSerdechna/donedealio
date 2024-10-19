@@ -38,7 +38,6 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             triggerBg: variables.whiteColor,
           },
           Form: {
-            itemMarginBottom: 0,
             verticalLabelMargin: 2,
             verticalLabelPadding: 0,
           },
@@ -51,6 +50,12 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
           },
           Input: {
             sizeLG: 56
+          },
+          Modal: {
+            colorBgMask: variables.bgMask
+          },
+          Drawer: {
+            colorBgMask: variables.bgMask,
           }
         },
       }}

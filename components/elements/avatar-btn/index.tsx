@@ -1,10 +1,10 @@
 import { Avatar, Dropdown, Flex, MenuProps } from 'antd'
-import { LogoutOutlined } from '@ant-design/icons';
+import { EditOutlined, LogoutOutlined } from '@ant-design/icons';
 import { FC } from 'react';
 
-import styles from './index.module.scss';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { Text } from '@/components/ui';
+import { useRouter } from 'next/navigation';
 
 type AvaratBtnProps = {
   onLogout: VoidFunction
@@ -16,12 +16,11 @@ const getAvatarLabel = (name: string) => name
   .slice(0, 1).toUpperCase())
   .join('');
 
-
-console.log(getAvatarLabel('Anna Serdechna'));
-
-
 export const AvaratBtn: FC<AvaratBtnProps> = ({ onLogout }) => {
   const user = useCurrentUser();
+  const router = useRouter();
+
+  const onEdit = () => router.push('/profile')
 
   const items: MenuProps['items'] = [
     {
@@ -37,23 +36,27 @@ export const AvaratBtn: FC<AvaratBtnProps> = ({ onLogout }) => {
       type: 'divider'
     },
     {
+      key: 'edit',
+      label: 'Edit',
+      icon: <EditOutlined />,
+      onClick: onEdit,
+    },
+    {
       key: 'logout',
       label: 'Log out',
       icon: <LogoutOutlined />,
       onClick: onLogout,
     },
   ];
-
+  
   return (
     <Dropdown menu={{ items }}>
-      <div className={styles.avatarWrap}>
-        <Avatar
-          size={'large'}
-          src={user?.image}
-        >
-          {!!user?.name ? getAvatarLabel(user?.name) : ''}
-        </Avatar>
-      </div>
+      <Avatar
+        size={'large'}
+        src={user?.image}
+      >
+        {!!user?.name ? getAvatarLabel(user?.name) : ''}
+      </Avatar>
     </Dropdown>
   )
 }

@@ -1,7 +1,6 @@
 import { FC, Key, ReactNode } from 'react';
 import {
   PieChartOutlined,
-  TeamOutlined,
   UserOutlined,
   BulbOutlined,
 } from '@ant-design/icons';
@@ -38,17 +37,17 @@ const items: MenuItemProps[] = [
     'workspace',
     <BulbOutlined />
   ),
-  getItem(
-    'Team',
-    'team',
-    <TeamOutlined />
-  ),
+];
+
+const bottomItems: MenuItemProps[] = [
+  {type: 'divider'},
   getItem(
     'Profile',
     'profile',
     <UserOutlined />
   )
 ];
+
 
 export const HomeMenu: FC = () => (
   <Menu items={items} mode={'horizontal'} />
@@ -58,7 +57,7 @@ export const SideMenu: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const activeKeys = items.filter((item) => pathname?.includes(`${item?.key}`)).map(item => item?.key) as string[];
+  const activeKeys = [...items, ...bottomItems].filter((item) => pathname?.includes(`${item?.key}`)).map(item => item?.key) as string[];
 
   const onMemuItemClick: MenuProps['onClick'] = (event) => {
     router.push(`/${event.key}`);
@@ -67,6 +66,7 @@ export const SideMenu: FC = () => {
   return (
     <Flex vertical justify={'space-between'} className={styles.menuContainer}>
       <Menu selectedKeys={activeKeys} items={items} onClick={onMemuItemClick} mode={'inline'} />
+      <Menu selectedKeys={activeKeys} items={bottomItems} onClick={onMemuItemClick} mode={'inline'} />
     </Flex>
   )
 }

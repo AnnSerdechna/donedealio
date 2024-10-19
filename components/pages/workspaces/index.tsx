@@ -15,6 +15,7 @@ import {
 } from '@/graphql/types';
 import { Button, Form } from '@/components/ui';
 import { WorkspaceFormContent ,WorkspaceCard } from '@/components/elements';
+import { ContentWrap } from '@/components/layout/tasks/content-wrap';
 
 export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
   const createForm = useForm();
@@ -122,17 +123,18 @@ export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
 
   return (
     <Fragment>
-      <Flex vertical gap={40}>
-        <Flex justify={'end'}>
-          <Button 
-            wide={false} 
-            icon={<PlusOutlined />} 
-            text={'Add workspace'} 
-            onClick={onOpenCreateModal} 
+      <ContentWrap 
+        title={'Workspaces'}
+        headerActions={(
+          <Button
+            wide={false}
+            icon={<PlusOutlined />}
+            text={'Add workspace'}
+            onClick={onOpenCreateModal}
             type={'default'}
           />
-        </Flex>
-
+        )}
+      >
         <Flex gap={24} wrap>
           {workspacesData?.workspaces?.map(item => (
             <WorkspaceCard
@@ -146,12 +148,13 @@ export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
             />
           ))}
         </Flex>
-      </Flex>
+      </ContentWrap>
 
       <Modal
         open={openModalCreate}
         onCancel={onCloseCreateModal}
         footer={false}
+        centered
       >
         <Form 
           form={createForm[0]} 
@@ -165,6 +168,7 @@ export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
         open={openModalUpdate}
         onCancel={onCloseEditModal}
         footer={false}
+        centered
       >
         <Form 
           form={updateForm[0]} 

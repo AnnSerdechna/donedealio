@@ -41,7 +41,7 @@ export const LoginForm: FC = () => {
           }
         })
         .catch(() => {
-          setMessage({status: 'error', content: 'Something went wrong 1!'});
+          setMessage({status: 'error', content: 'Something went wrong!'});
         });
     });
   };

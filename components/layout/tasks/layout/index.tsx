@@ -1,26 +1,28 @@
 'use client';
 
 import React, { FC, Fragment, PropsWithChildren, useEffect, useState } from 'react';
-import { Drawer, Layout, Row } from 'antd';
+import { Drawer, Grid, Layout, Row } from 'antd';
 import { usePathname } from 'next/navigation';
 
-import { Logo, LogoProps } from '@/components/elements';
+import { Logo } from '@/components/elements';
 import { SideMenu } from '../side-menu';
 import { TasksHeader } from '../header';
 import styles from './index.module.scss';
-import { Button, Icon } from '@/components/ui';
+import { Button } from '@/components/ui';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 const { Content, Sider } = Layout;
+const { useBreakpoint } = Grid;
 
-const LogoComponent: FC<LogoProps> = ({ ...props }) => (
-  <Row align={'middle'} justify={"center"} className={styles.logoWrap}>
-    <Logo {...props} />
+const IconWrap: FC<PropsWithChildren> = ({ children }) => (
+  <Row align={'middle'} justify={"center"} className={styles.iconWrap}>
+    {children}
   </Row>
 );
 
 export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
   const pathname = usePathname();
+  const { md } = useBreakpoint();
   const [collapsed, setCollapsed] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -31,25 +33,34 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
   const onOpenMenu = () => setOpenMenu(true);
   const onCloseMenu = () => setOpenMenu(false);
 
+const logo = (
+  <IconWrap>
+    <Logo />
+  </IconWrap>
+);
+
   return (
     <Fragment>
       <Layout className={styles.tasksLayout}>
         <Sider
+          breakpoint='md'
           className={styles.sider}
           collapsed={collapsed}
           onCollapse={setCollapsed}
-          style={{ height: 'calc(100vh - 16px)', overflow: 'hidden'}}
+          collapsedWidth={!md ? 0 : 60}
         >
-          <LogoComponent />
-      
+          {logo}
+    
           <SideMenu />
-          <Row align={'middle'} justify={"center"} className={styles.logoWrap}>
-            {collapsed ? (
-              <Button type={'link'} size={'middle'} icon={<Icon icon={<LeftOutlined />} />} onClick={() => setCollapsed(false)} />
-            ) : (
-              <Button type={'link'} size={'middle'} icon={<Icon icon={<RightOutlined />} />} onClick={() => setCollapsed(true)} />
-            )}
-          </Row>
+
+          <IconWrap>
+            <Button
+              type={'link'}
+              size={'middle'}
+              icon={collapsed ? <LeftOutlined /> : <RightOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+            />
+          </IconWrap>
         </Sider>
 
         <Layout >
@@ -60,10 +71,12 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
         </Layout>
       </Layout>
       <Drawer 
-        title={<LogoComponent />}
+        title={logo}
         open={openMenu}
-        width={'100%'}
+        width={'50%'}
         placement={'left'}
+        styles={{body: {padding: '16px 8px'}}}
+        closeIcon={false}
         onClose={onCloseMenu}
       >
         <SideMenu />

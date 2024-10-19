@@ -1,12 +1,12 @@
 
 import { FC } from 'react';
 
-import { Title } from '@/components/ui';
+import { ContentWrap } from '@/components/layout/tasks/content-wrap';
 
 export const DashboardPage: FC = () => {
   return (
-    <section>
-      <Title level={4}>Welcome</Title>
-    </section>
+    <ContentWrap title={'Welcome'}>
+        <></>
+    </ContentWrap>
   )
 }

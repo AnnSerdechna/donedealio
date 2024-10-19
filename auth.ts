@@ -6,6 +6,7 @@ import authConfig from '@/auth.config';
 import { getUserById } from '@/data/user';
 import prisma from '@/lib/prisma';
 import { getTwoFactorConfirmationByUserId } from './data/two-factor-confirmation';
+import { getAccountByUserId } from './data/account';
 
 export const {
   handlers,
@@ -52,11 +53,23 @@ export const {
 
       if (!existingUser) return token;
 
+      const existingAccount = await getAccountByUserId(existingUser.id);
+
+      token.isOAuth = !!existingAccount;
+      token.name = existingUser.name;
+      token.email = existingUser.email;
       token.role = existingUser.role;
+      token.isTwoFactorEnable = existingUser.isTwoFactorEnable;
 
       return token
     },
     session({ session, token }) {
+      if (session.user) {
+        session.user.isOAuth = token.isOAuth;
+        session.user.name = token.name
+        session.user.email = token.email;
+        session.user.isTwoFactorEnable = token.isTwoFactorEnable;
+      }
 
       if (session.user && token.sub) {
         session.user.id = token.sub

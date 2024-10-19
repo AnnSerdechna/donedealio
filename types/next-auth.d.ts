@@ -1,23 +1,14 @@
 import { Role } from '@prisma/client';
 import { DefaultSession, DefaultUser } from 'next-auth';
 
+export type User = DeafaultSession['user'] & {
+  role: Role
+  isTwoFactorEnabled: boolean
+  isOAuth: boolean
+}
+
 declare module 'next-auth' {
-  interface User extends DefaultUser {
-    firstName: string;
-    lastName: string;
-    role: Role;
-    image?: string | null;
-    email: string;
-  }
-
-  interface Session extends DefaultSession {
-    user: User & {
-      id: string; 
-    };
-    
-  }
-
-  interface JWT extends User{
-    id: string; 
+  interface Session {
+    user: User
   }
 }

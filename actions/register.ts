@@ -18,7 +18,7 @@ export const register = async (values: RegisterValuesProps): Promise<MessageProp
   };
 
   const { email, name, password } = validateFields.data;
-  const hashPassword = await bcryptjs.hash(password, 10)
+  const hashPassword = await bcryptjs.hash(password, 10);
 
   const existingUser = await getUserByEmail(email)
 

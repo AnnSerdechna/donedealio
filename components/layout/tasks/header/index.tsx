@@ -38,7 +38,7 @@ export const TasksHeader: FC<TasksHeaderProps> = ({ onShowMobileDrawer }) => {
   };
 
   return (
-    <Header style={{ padding: `0 ${variables.sizeSm}`, margin: '8px 16px', borderRadius: 8 }}>
+    <Header style={{ padding: `0 ${variables.sizeSm}` }} className={styles.taskHeader}>
       <Flex justify={'space-between'} align={'center'} gap={16}>
         <div className={styles.menuBtnWrap}>
           <Button

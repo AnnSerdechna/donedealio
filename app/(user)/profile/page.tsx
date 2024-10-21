@@ -1,6 +1,6 @@
 import { ContentContainer, ProfileForm } from '@/components/user';
 
-export default function Profile() {
+export default async function Profile() {
   return (
     <ContentContainer title={'Profile'}>
       <ProfileForm />

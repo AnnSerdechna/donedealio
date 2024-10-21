@@ -10,7 +10,7 @@ import { sendVerificationEmail } from '@/lib/mail';
 import bcryptjs from 'bcryptjs';
 
 export const profile = async (values: ProfileValuesProps): Promise<MessageProps> => {
-  const user = await currentUser();
+  const user = await currentUser();  
 
   if (!user) {
     return {status: 'error', content: 'Unauthorized!'}
@@ -64,7 +64,7 @@ export const profile = async (values: ProfileValuesProps): Promise<MessageProps>
     values.confirmPassword = undefined;
   }
 
-  await prisma.user.update({
+  const updatedUser = await prisma.user.update({
     where: {id: dbUser.id },
     data: {
       ...values

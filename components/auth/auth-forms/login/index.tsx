@@ -20,6 +20,7 @@ export const LoginForm: FC = () => {
   const [message, setMessage] = useState<MessageProps | null>(null);
   const searchParams = useSearchParams();
 
+  const callbackUrl = searchParams.get('callbackUrl');
   const oauthError = searchParams.get('error') === 'OAuthAccountNotLinked'
     ? 'Email already taken!'
     : '';
@@ -28,7 +29,7 @@ export const LoginForm: FC = () => {
     setMessage(null);
 
     startTransition(() => {
-      login(values)
+      login(values, callbackUrl)
         .then((data) => {
           if (typeof data === 'object' && 'status' in data) {
             form.resetFields()

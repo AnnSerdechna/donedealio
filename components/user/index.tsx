@@ -17,3 +17,5 @@ export { UpdateTaskForm } from '@/components/user/tasks/forms/update-task';
 export { ControlPanel } from '@/components/user/tasks/calendar/control-panel';
 export { TasksList } from '@/components/user/tasks/calendar/tasks-list';
 export { AddTaskForm } from '@/components/user/tasks/table/add-task';
+export  {CalendarView} from '@/components/user/tasks/calendar';
+export { TableView } from '@/components/user/tasks/table';

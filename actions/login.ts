@@ -21,7 +21,10 @@ import prisma from '@/lib/prisma';
 import { getTwoFactorConfirmationByUserId } from '@/data/two-factor-confirmation';
 import bcryptjs from 'bcryptjs';
 
-export const login = async (values: LoginValuesProps): Promise<MessageProps | { twoFactorToken: boolean }> => {
+export const login = async (
+  values: LoginValuesProps,
+  callbackUrl?: string | null
+  ): Promise<MessageProps | { twoFactorToken: boolean }> => {
   const validateFields = LoginSchema.safeParse(values);
 
   if (!validateFields.success) {
@@ -104,7 +107,7 @@ export const login = async (values: LoginValuesProps): Promise<MessageProps | { 
     await signIn('credentials', {
       email,
       password,
-      redirectTo: DEFAULT_LOGIN_REDIRECT
+      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT
     })
   } catch (error) {
     if (error instanceof AuthError) {

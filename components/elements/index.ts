@@ -1,11 +1,5 @@
 export { Logo, type LogoProps } from './logo';
 
-export { LoginForm } from './auth/auth-forms/login';
-export { Verification } from './auth/auth-forms/verification';
-export { RegisterForm } from './auth/auth-forms/register';
-export { ForgotPasswordForm } from './auth/auth-forms/forgot-password';
-export { NewPasswordForm } from './auth/auth-forms/new-password-form';
-
 export { WorkspaceCard } from './workspace/workspace-card';
 export { WorkspaceFormContent } from './workspace/workspace-form-content';
 

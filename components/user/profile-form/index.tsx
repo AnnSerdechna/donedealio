@@ -10,7 +10,7 @@ import { UploadPhoto } from '@/components/user';
 import { MessageProps } from '@/types';
 import { profile } from '@/actions/profile';
 import { ProfileValuesProps } from '@/schemas/types';
-import { AlertMessage } from '@/components/ui/alert-message';
+import { AlertMessage } from '@/components/elements/alert-message';
 
 const { Password } = Input;
 const { useBreakpoint } = Grid;

@@ -3,8 +3,8 @@ import { Card, Divider, Flex } from 'antd';
 
 import { Title, Text } from '@/components/ui';
 import styles from './index.module.scss';
-import { Logo } from '../../logo';
-import { SocialBtns, SocialBtnsProps } from '../social-btns';
+import { Logo } from '../../elements/logo';
+import { SocialBtns, SocialBtnsProps } from '@/components/auth';
 import Link from 'next/link';
 
 type AuthCardProps = SocialBtnsProps & {

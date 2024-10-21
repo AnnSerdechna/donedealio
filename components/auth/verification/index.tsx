@@ -6,9 +6,9 @@ import { FC, useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { verification } from '@/actions/verification';
-import { AlertMessage } from '@/components/ui/alert-message';
+import { AlertMessage } from '@/components/elements/alert-message';
 import { MessageProps } from '@/types';
-import { AuthCard } from '@/components/elements/auth/auth-card';
+import { AuthCard } from '@/components/auth/auth-card';
 
 export const Verification: FC = () => {
   const [message, setMessage] = useState<MessageProps | null>(null);

@@ -1,10 +1,18 @@
-import {  NewPasswordForm } from '@/components/elements';
 import { Suspense } from 'react';
+
+import { AuthCard, NewPasswordForm } from '@/components/auth';
 
 export default function Home() {
   return (
     <Suspense fallback={null}>
-      <NewPasswordForm />
+      <AuthCard
+        title={'New password'}
+        description={'Set new password and'}
+        backLinkUrl={'/auth/login'}
+        backLinkLabel={'Sign in'}
+      >
+        <NewPasswordForm />
+      </AuthCard>
     </Suspense>
   );
 };

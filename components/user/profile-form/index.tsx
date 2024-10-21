@@ -18,8 +18,8 @@ const { useBreakpoint } = Grid;
 export const ProfileForm: FC = () => {
   const [form] = AntForm.useForm();
   const user = useCurrentUser();
-  const screens = useBreakpoint();
   const { update } = useSession();
+  const screens = useBreakpoint();
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<MessageProps | null>(null);
 

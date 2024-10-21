@@ -1,4 +1,4 @@
-import { Verification } from '@/components/elements';
+import { Verification } from '@/components/auth';
 import { Suspense } from 'react';
 
 export default function VerificationPage() {

@@ -6,6 +6,7 @@ export declare class UserMaxAggregate {
     password: string | null;
     role: "ADMIN" | "MEMBER" | "USER" | null;
     image: string | null;
+    imageId: string | null;
     createdAt: Date | null;
     updatedAt: Date | null;
     isTwoFactorEnable: boolean | null;

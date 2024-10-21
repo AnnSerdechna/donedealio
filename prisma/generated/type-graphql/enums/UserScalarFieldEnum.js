@@ -12,6 +12,7 @@ var UserScalarFieldEnum;
     UserScalarFieldEnum["password"] = "password";
     UserScalarFieldEnum["role"] = "role";
     UserScalarFieldEnum["image"] = "image";
+    UserScalarFieldEnum["imageId"] = "imageId";
     UserScalarFieldEnum["createdAt"] = "createdAt";
     UserScalarFieldEnum["updatedAt"] = "updatedAt";
     UserScalarFieldEnum["isTwoFactorEnable"] = "isTwoFactorEnable";

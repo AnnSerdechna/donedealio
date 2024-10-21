@@ -11,6 +11,8 @@ export const ProfileSchema = z.object({
     .string()
     .email({ message: 'Email isn\'t valid!' }
   )),
+  image: z.string().or(z.null()),
+  imageId: z.string().or(z.null()),
   password: z.optional(z.string()),
   newPassword: z.optional(z.string()),
   confirmPassword: z.optional(z.string())

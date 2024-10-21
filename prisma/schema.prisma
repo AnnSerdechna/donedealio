@@ -23,6 +23,7 @@ model User {
   password                String?
   role                    Role      @default(USER)
   image                   String?
+  imageId                 String?
   createdAt               DateTime  @default(now())
   updatedAt               DateTime  @updatedAt
   isTwoFactorEnable       Boolean @default(false)

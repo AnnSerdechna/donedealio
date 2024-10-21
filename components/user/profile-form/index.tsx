@@ -1,16 +1,16 @@
 'use client';
 
-import { Flex, Form as AntForm, Input, Col, Grid, Switch } from 'antd';
+import { Flex, Form as AntForm, Input, Col, Grid, Switch, Upload } from 'antd';
 import { FC, Fragment, useState, useTransition } from 'react';
 import { useSession } from 'next-auth/react';
 
 import { Button, Form, FormItem, Text, VSpace } from '@/components/ui';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
-import { UploadPhoto } from '@/components/user';
 import { MessageProps } from '@/types';
 import { profile } from '@/actions/profile';
 import { ProfileValuesProps } from '@/schemas/types';
 import { AlertMessage } from '@/components/elements/alert-message';
+import { useUploadFile } from '@/hooks/useUploadFiles';
 
 const { Password } = Input;
 const { useBreakpoint } = Grid;
@@ -22,13 +22,17 @@ export const ProfileForm: FC = () => {
   const screens = useBreakpoint();
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<MessageProps | null>(null);
+  const { uploadProps, uploadedFiles, handleDeleteAllFiles, setUploadedFile, setUploadedFiles } = useUploadFile();
 
   const onSubmit = async (values: ProfileValuesProps) => {
     startTransition(() => {
-      profile({ ...values })
+      profile({ ...values, image: uploadedFiles[0]?.url ?? null, imageId: uploadedFiles[0]?.id ?? null })
         .then((data) => {
           setMessage(data);
           update();
+          handleDeleteAllFiles();
+          setUploadedFiles([]);
+          setUploadedFile(null)
         })
         .catch(() => {
           setMessage({ status: 'error', content: 'Something went wrong!' });
@@ -153,7 +157,9 @@ export const ProfileForm: FC = () => {
           lg={{ span: 11, offset: 2, order: 2 }}
         >
           <FormItem>
-            <UploadPhoto form={form} />
+            <Upload {...uploadProps}>
+              {'+ Upload'}
+            </Upload>
           </FormItem>
         </Col>
       </Flex>

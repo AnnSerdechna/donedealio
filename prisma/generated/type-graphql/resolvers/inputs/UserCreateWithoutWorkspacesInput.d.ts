@@ -8,6 +8,7 @@ export declare class UserCreateWithoutWorkspacesInput {
     password?: string | undefined;
     role?: "ADMIN" | "MEMBER" | "USER" | undefined;
     image?: string | undefined;
+    imageId?: string | undefined;
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
     isTwoFactorEnable?: boolean | undefined;

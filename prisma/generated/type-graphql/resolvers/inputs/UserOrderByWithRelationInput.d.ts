@@ -10,6 +10,7 @@ export declare class UserOrderByWithRelationInput {
     password?: SortOrderInput | undefined;
     role?: "asc" | "desc" | undefined;
     image?: SortOrderInput | undefined;
+    imageId?: SortOrderInput | undefined;
     createdAt?: "asc" | "desc" | undefined;
     updatedAt?: "asc" | "desc" | undefined;
     isTwoFactorEnable?: "asc" | "desc" | undefined;

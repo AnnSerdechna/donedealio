@@ -6,6 +6,7 @@ export declare enum UserScalarFieldEnum {
     password = "password",
     role = "role",
     image = "image",
+    imageId = "imageId",
     createdAt = "createdAt",
     updatedAt = "updatedAt",
     isTwoFactorEnable = "isTwoFactorEnable"

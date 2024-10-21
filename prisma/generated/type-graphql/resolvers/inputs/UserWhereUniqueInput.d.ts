@@ -19,6 +19,7 @@ export declare class UserWhereUniqueInput {
     password?: StringNullableFilter | undefined;
     role?: EnumRoleFilter | undefined;
     image?: StringNullableFilter | undefined;
+    imageId?: StringNullableFilter | undefined;
     createdAt?: DateTimeFilter | undefined;
     updatedAt?: DateTimeFilter | undefined;
     isTwoFactorEnable?: BoolFilter | undefined;

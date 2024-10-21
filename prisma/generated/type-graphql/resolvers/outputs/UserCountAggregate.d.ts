@@ -6,6 +6,7 @@ export declare class UserCountAggregate {
     password: number;
     role: number;
     image: number;
+    imageId: number;
     createdAt: number;
     updatedAt: number;
     isTwoFactorEnable: number;

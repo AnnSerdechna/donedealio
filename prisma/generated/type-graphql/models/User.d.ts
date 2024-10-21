@@ -10,6 +10,7 @@ export declare class User {
     password?: string | null;
     role: "ADMIN" | "MEMBER" | "USER";
     image?: string | null;
+    imageId?: string | null;
     createdAt: Date;
     updatedAt: Date;
     isTwoFactorEnable: boolean;

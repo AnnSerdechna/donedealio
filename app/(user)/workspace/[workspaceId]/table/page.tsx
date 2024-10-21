@@ -1,4 +1,4 @@
-import { TableView } from '@/components/pages';
+import { TableView } from '@/components/user';
 
 export default function Table() {
   return (

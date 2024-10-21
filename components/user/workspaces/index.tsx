@@ -14,10 +14,9 @@ import {
   WorkspaceUpdateInput,
 } from '@/graphql/types';
 import { Button, Form } from '@/components/ui';
-import { WorkspaceFormContent, WorkspaceCard } from '@/components/elements';
-import { ContentContainer } from '@/components/user';
+import { ContentContainer, WorkspaceFormContent, WorkspaceCard } from '@/components/user';
 
-export const WorkspacesPage: FC<{ userId: string }> = ({ userId }) => {
+export const Workspaces: FC<{ userId: string }> = ({ userId }) => {
   const createForm = useForm();
   const updateForm = useForm();
 

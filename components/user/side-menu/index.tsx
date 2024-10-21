@@ -1,3 +1,5 @@
+'use client';
+
 import { FC, Key, ReactNode } from 'react';
 import {
   UserOutlined,

@@ -1,16 +1,14 @@
-'use client';
-
 import { App, Flex, Form, FormInstance } from 'antd';
 import { FC } from 'react';
 import { Dayjs } from 'dayjs';
-import { useParams } from 'next/navigation';
 
-import { TaskFormContent } from '../task-form-content';
-import { Priority, Status, useCreateOneTaskMutation } from '@/graphql/types';
+import { Priority, Status, useUpdateOneTaskMutation } from '@/graphql/types';
 import { Button } from '@/components/ui';
 import { getFormattedDate } from '@/functions/getFormattedDate';
+import { TaskFormContent } from '../task-form-content';
 
 type CreateTaskFormProps = {
+  taskId: string
   form: FormInstance
   refetchTasks: VoidFunction
   onCloseForm: VoidFunction
@@ -24,22 +22,20 @@ type FormData = {
   notes: string
 };
 
-export const CreateTaskForm: FC<CreateTaskFormProps> = ({ form, refetchTasks, onCloseForm }) => {
+export const UpdateTaskForm: FC<CreateTaskFormProps> = ({ form, taskId, refetchTasks, onCloseForm }) => {
   const { message } = App.useApp();
-  const { workspaceId } = useParams();
-  const [createTask, { loading }] = useCreateOneTaskMutation();
+  const [updateTask, { loading }] = useUpdateOneTaskMutation();
 
   const handleCloseForm = () => {
     form.resetFields();
     onCloseForm();
   };
 
-  const hanldeCreateTask = async (values: FormData) => {
+  const hanldeUpdateTask = async (values: FormData) => {
     let data = {
-      workspace: { connect: { id: workspaceId as string } },
-      name: values.task,
-      note: values?.notes,
-      dueDate: getFormattedDate(values?.dueDate)
+      name: { set: values.task },
+      note: { set: values?.notes },
+      dueDate: { set: getFormattedDate(values?.dueDate) }
     };
 
     if (!!values?.status?.id) {
@@ -51,8 +47,15 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({ form, refetchTasks, on
     };
 
     try {
-      
-      await createTask({variables: { data }});
+      await updateTask({
+        variables: {
+          data,
+          where: {
+            id: taskId
+          }
+        }
+      });
+      handleCloseForm();
       refetchTasks();
       message.success('Task was created successfully!');
     } catch (error) {
@@ -60,15 +63,13 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({ form, refetchTasks, on
       message.error('Something went wrong!');
     } finally {
       handleCloseForm();
-
-      console.log(data, 'data')
     }
   };
 
   return (
     <Form
       form={form}
-      onFinish={hanldeCreateTask}
+      onFinish={hanldeUpdateTask}
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       labelAlign={'left'}
@@ -81,7 +82,13 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({ form, refetchTasks, on
 
         <Flex justify={'end'} gap={8}>
           <Button text={'Cancel'} type={'default'} onClick={handleCloseForm} wide={false} />
-          <Button text={'Create'} type={'primary'} htmlType={'submit'} wide={false} loading={loading} />
+          <Button
+            text={'Update'}
+            type={'primary'}
+            htmlType={'submit'}
+            wide={false}
+            loading={loading}
+          />
         </Flex>
       </Flex>
     </Form>

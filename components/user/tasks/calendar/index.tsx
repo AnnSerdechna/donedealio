@@ -10,10 +10,8 @@ import localeData from 'dayjs/plugin/localeData';
 import 'dayjs/locale/en'; 
 
 import { Task, useTasksQuery } from '@/graphql/types';
-import { CreateTaskForm, UpdateTaskForm } from '@/components/elements';
+import { CreateTaskForm, UpdateTaskForm, ControlPanel, TasksList } from '@/components/user';
 import { Modal } from '@/components/ui';
-import { ControlPanel } from './control-panel';
-import { TasksList } from './tasks-list';
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);

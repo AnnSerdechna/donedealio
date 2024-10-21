@@ -22,8 +22,7 @@ import {
   useUpdateOneTaskMutation,
 } from '@/graphql/types';
 
-import { AddTaskForm } from '@/components/elements/tasks/forms/add-task';
-import { DueDateField, StatusField, EditableText, OwnerField } from '@/components/elements';
+import { DueDateField, StatusField, EditableText, OwnerField, AddTaskForm } from '@/components/user';
 import { getFormattedDate } from '@/functions/getFormattedDate';
 
 type UpdatedDataType = { [key: string]: { set: string | Date } } | { [key: string]: { connect: { id: number } } };

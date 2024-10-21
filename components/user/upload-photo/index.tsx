@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC, useState } from 'react';
 import { Upload } from 'antd';
 import type { GetProp, UploadProps, UploadFile, FormInstance } from 'antd';

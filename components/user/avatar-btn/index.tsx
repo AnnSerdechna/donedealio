@@ -1,3 +1,5 @@
+'use client';
+
 import { Avatar, Dropdown, Flex, MenuProps } from 'antd'
 import { EditOutlined, LogoutOutlined } from '@ant-design/icons';
 import { FC } from 'react';

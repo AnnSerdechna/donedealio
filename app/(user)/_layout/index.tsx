@@ -1,15 +1,14 @@
 'use client';
 
 import React, { FC, Fragment, PropsWithChildren, useEffect, useState } from 'react';
-import { Drawer, Grid, Layout, Row } from 'antd';
 import { usePathname } from 'next/navigation';
+import { Drawer, Grid, Layout, Row } from 'antd';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 import { Logo } from '@/components/elements';
-import { SideMenu } from '../side-menu';
-import { TasksHeader } from '../header';
-import styles from './index.module.scss';
 import { Button } from '@/components/ui';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { UserHeader, SideMenu } from '@/components/user';
+import styles from './index.module.scss';
 
 const { Content, Sider } = Layout;
 const { useBreakpoint } = Grid;
@@ -20,7 +19,7 @@ const IconWrap: FC<PropsWithChildren> = ({ children }) => (
   </Row>
 );
 
-export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
+export const UserLayout: FC<PropsWithChildren> = ({ children }) => {
   const pathname = usePathname();
   const { md } = useBreakpoint();
   const [collapsed, setCollapsed] = useState(false);
@@ -33,15 +32,15 @@ export const TasksLayout: FC<PropsWithChildren> = ({ children }) => {
   const onOpenMenu = () => setOpenMenu(true);
   const onCloseMenu = () => setOpenMenu(false);
 
-const logo = (
-  <IconWrap>
-    <Logo />
-  </IconWrap>
-);
+  const logo = (
+    <IconWrap>
+      <Logo />
+    </IconWrap>
+  );
 
   return (
     <Fragment>
-      <Layout className={styles.tasksLayout}>
+      <Layout className={styles.userLayout}>
         <Sider
           breakpoint='md'
           className={styles.sider}
@@ -50,7 +49,7 @@ const logo = (
           collapsedWidth={!md ? 0 : 60}
         >
           {logo}
-    
+
           <SideMenu />
 
           <IconWrap>
@@ -64,18 +63,18 @@ const logo = (
         </Sider>
 
         <Layout >
-          <TasksHeader onShowMobileDrawer={onOpenMenu} />
+          <UserHeader onShowMobileDrawer={onOpenMenu} />
           <Content className={styles.content}>
             {children}
           </Content>
         </Layout>
       </Layout>
-      <Drawer 
+      <Drawer
         title={logo}
         open={openMenu}
         width={'50%'}
         placement={'left'}
-        styles={{body: {padding: '16px 8px'}}}
+        styles={{ body: { padding: '16px 8px' } }}
         closeIcon={false}
         onClose={onCloseMenu}
       >

@@ -1,4 +1,3 @@
-export { DashboardPage } from './dashboard';
 export { WorkspacesPage } from './workspaces';
 
 export { TableView } from './tasks/table';

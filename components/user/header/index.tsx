@@ -10,7 +10,7 @@ import { signOut } from 'next-auth/react';
 import { Button, Icon } from '@/components/ui';
 import variables from '@/styles/variables.module.scss';
 import styles from './index.module.scss';
-import { AvaratBtn } from '@/components/elements/avatar-btn';
+import { AvaratBtn } from '@/components/user';
 
 const { Header } = Layout;
 
@@ -18,7 +18,7 @@ type TasksHeaderProps = {
   onShowMobileDrawer: VoidFunction
 }
 
-export const TasksHeader: FC<TasksHeaderProps> = ({ onShowMobileDrawer }) => {
+export const UserHeader: FC<TasksHeaderProps> = ({ onShowMobileDrawer }) => {
   const { message, modal } = App.useApp();
 
   const logOut = () => {

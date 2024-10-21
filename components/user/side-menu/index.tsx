@@ -3,11 +3,10 @@ import {
   UserOutlined,
   BulbOutlined,
 } from '@ant-design/icons';
-import { Flex, MenuProps } from 'antd';
+import { Flex, Menu, MenuProps } from 'antd';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { MenuItemProps } from '@/types';
-import { Menu } from './menu';
 import styles from './index.module.scss';
 
 function getItem(
@@ -62,6 +61,7 @@ export const SideMenu: FC = () => {
       <Menu 
         selectedKeys={activeKeys} 
         items={items} 
+        theme={'light'}
         mode={'inline'} 
         onClick={onMemuItemClick} 
       />

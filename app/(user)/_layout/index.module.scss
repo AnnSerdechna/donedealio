@@ -1,6 +1,6 @@
 @import '@/styles/variables.module.scss';
 
-.tasksLayout {
+.userLayout {
   height: 100vh;
   overflow: hidden;
 
@@ -24,7 +24,7 @@
   }
 
   .content {
-    margin: 8px ;
+    margin: 8px;
     overflow-y: scroll;
     padding: 40px;
     background-color: $white-color;

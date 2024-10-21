@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 import { SessionProvider } from 'next-auth/react';
 
-import { TasksLayout } from '@/components/layout';
-import { ApolloProvider } from '@/provider/apollo';
 import { auth } from '@/auth';
+import { ApolloProvider } from '@/provider/apollo';
+import { UserLayout } from '@/app/(user)/_layout';
 
-export default async function UserLayout({
+export default async function Layout({
   children,
 }: Readonly<{
   children: ReactNode;
@@ -14,9 +14,9 @@ export default async function UserLayout({
   return (
     <SessionProvider session={session}>
       <ApolloProvider>
-        <TasksLayout>
+        <UserLayout>
           {children}
-        </TasksLayout>
+        </UserLayout>
       </ApolloProvider>
     </SessionProvider>
   );

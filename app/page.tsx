@@ -1,7 +1,6 @@
 import { Flex } from 'antd';
 import Link from 'next/link';
 
-
 export default function Home() {
   return (
     <div style={{padding: '0 40px'}}>

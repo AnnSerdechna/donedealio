@@ -5,19 +5,19 @@ import { App, Flex, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
 
-import { 
-  useCreateOneWorkspaceMutation, 
-  useDeleteOneWorkspaceMutation, 
-  useUpdateOneWorkspaceMutation, 
-  useWorkspacesQuery, 
+import {
+  useCreateOneWorkspaceMutation,
+  useDeleteOneWorkspaceMutation,
+  useUpdateOneWorkspaceMutation,
+  useWorkspacesQuery,
   WorkspaceCreateInput,
   WorkspaceUpdateInput,
 } from '@/graphql/types';
 import { Button, Form } from '@/components/ui';
-import { WorkspaceFormContent ,WorkspaceCard } from '@/components/elements';
-import { ContentWrap } from '@/components/layout/tasks/content-wrap';
+import { WorkspaceFormContent, WorkspaceCard } from '@/components/elements';
+import { ContentContainer } from '@/components/user';
 
-export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
+export const WorkspacesPage: FC<{ userId: string }> = ({ userId }) => {
   const createForm = useForm();
   const updateForm = useForm();
 
@@ -29,7 +29,7 @@ export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
 
   const { data: workspacesData, refetch } = useWorkspacesQuery({ variables: { where: { userId: { equals: userId } } } })
   const [createWorkspace, { loading: createLoading }] = useCreateOneWorkspaceMutation();
-  const [updateWorkspace, {loading: updateLoading}] = useUpdateOneWorkspaceMutation();
+  const [updateWorkspace, { loading: updateLoading }] = useUpdateOneWorkspaceMutation();
   const [deleteWorkspase] = useDeleteOneWorkspaceMutation();
 
   const handleCreateWorkspace = async (values: WorkspaceCreateInput) => {
@@ -59,7 +59,7 @@ export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
       await updateWorkspace({
         variables: {
           data: {
-            name: { set: `${values.name}`},
+            name: { set: `${values.name}` },
             description: { set: `${values.description}` },
           },
           where: {
@@ -90,7 +90,7 @@ export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
         }
       });
       refetch();
-    } catch(error) {
+    } catch (error) {
       console.log(error, 'Delete Workspace error');
       message.error('Something went wrong!')
     }
@@ -113,7 +113,7 @@ export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
   };
 
   const onOpenCreateModal = () => setOpenModalCreate(true);
-  
+
   const onCloseCreateModal = () => setOpenModalCreate(false);
 
   const onCloseEditModal = () => {
@@ -123,7 +123,7 @@ export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
 
   return (
     <Fragment>
-      <ContentWrap 
+      <ContentContainer
         title={'Workspaces'}
         headerActions={(
           <Button
@@ -148,7 +148,7 @@ export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
             />
           ))}
         </Flex>
-      </ContentWrap>
+      </ContentContainer>
 
       <Modal
         open={openModalCreate}
@@ -156,8 +156,8 @@ export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
         footer={false}
         centered
       >
-        <Form 
-          form={createForm[0]} 
+        <Form
+          form={createForm[0]}
           onFinish={handleCreateWorkspace}
         >
           <WorkspaceFormContent loading={createLoading} btntext={'Add'} />
@@ -170,15 +170,15 @@ export const WorkspacesPage: FC<{ userId: string}> = ({ userId }) => {
         footer={false}
         centered
       >
-        <Form 
-          form={updateForm[0]} 
+        <Form
+          form={updateForm[0]}
           onFinish={handleUpdateWorkspace}
           onValuesChange={() => setIsValueChange(true)}
         >
-          <WorkspaceFormContent 
-            loading={updateLoading} 
+          <WorkspaceFormContent
+            loading={updateLoading}
             btntext={'Edit'}
-            disabled={!isValueChange} 
+            disabled={!isValueChange}
           />
         </Form>
       </Modal>

@@ -1,6 +1,5 @@
 import { FC, Key, ReactNode } from 'react';
 import {
-  PieChartOutlined,
   UserOutlined,
   BulbOutlined,
 } from '@ant-design/icons';
@@ -27,11 +26,6 @@ function getItem(
 }
 
 const items: MenuItemProps[] = [
-  getItem(
-    'Dashboard',
-    'dashboard',
-    <PieChartOutlined />,
-  ),
   getItem(
     'Workspace',
     'workspace',
@@ -63,10 +57,21 @@ export const SideMenu: FC = () => {
     router.push(`/${event.key}`);
   };
 
+  const menu = (items: MenuItemProps[]) => {
+    return (
+      <Menu 
+        selectedKeys={activeKeys} 
+        items={items} 
+        mode={'inline'} 
+        onClick={onMemuItemClick} 
+      />
+    )
+  }
+
   return (
     <Flex vertical justify={'space-between'} className={styles.menuContainer}>
-      <Menu selectedKeys={activeKeys} items={items} onClick={onMemuItemClick} mode={'inline'} />
-      <Menu selectedKeys={activeKeys} items={bottomItems} onClick={onMemuItemClick} mode={'inline'} />
+      {menu(items)}
+      {menu(bottomItems)}
     </Flex>
   )
 }

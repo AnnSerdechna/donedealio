@@ -1,5 +1,15 @@
-import { RegisterForm } from '@/components/elements';
+import { AuthCard, RegisterForm } from '@/components/auth';
 
 export default function Register ()  {
-  return <RegisterForm />
+  return (
+    <AuthCard
+      title = { 'Sign up'}
+      description = { 'Already have account?'}
+      backLinkUrl = { '/auth/login'}
+      backLinkLabel = { 'Sign in'}
+      hasSocials
+    >
+    <RegisterForm />
+  </AuthCard >
+  )
 }

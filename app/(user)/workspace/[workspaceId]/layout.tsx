@@ -1,5 +1,6 @@
-import { WorkspaceViewLayout } from '@/components/layout';
 import type { ReactNode } from 'react';
+
+import { WorkspaceViewLayout } from '@/app/(user)/workspace/[workspaceId]/_layout';
 
 export default async function ViewLayout({
   children,

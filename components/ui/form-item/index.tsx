@@ -4,7 +4,7 @@ import { FC, PropsWithChildren } from 'react';
 const { Item } = Form
 
 export const FormItem: FC<PropsWithChildren<FormItemProps>> = ({ children, ...props }) => (
-  <Item hasFeedback {...props}>
+  <Item {...props}>
     {children}
   </Item>
 )

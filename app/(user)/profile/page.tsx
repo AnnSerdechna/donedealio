@@ -1,7 +1,9 @@
-import { ProfilePage } from '@/components/pages/profile';
+import { ContentContainer, ProfileForm } from '@/components/user';
 
 export default function Profile() {
   return (
-    <ProfilePage />
+    <ContentContainer title={'Profile'}>
+      <ProfileForm />
+    </ContentContainer>
   );
 };

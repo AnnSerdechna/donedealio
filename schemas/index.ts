@@ -11,39 +11,43 @@ export const ProfileSchema = z.object({
     .string()
     .email({ message: 'Email isn\'t valid!' }
   )),
-  password: z
-    .optional(z
-    .string()
-    .min(6, { message: 'Minimum 6 characters required!' }
-  )),
-  newPassword: z
-    .optional(z
-    .string()
-    .min(6, { message: 'Minimum 6 characters required!' }
-  )),
+  password: z.optional(z.string()),
+  newPassword: z.optional(z.string()),
   confirmPassword: z.optional(z.string())
 })
-.refine(data => 
-  data.newPassword === data.confirmPassword, 
-  {
+  .refine((data) => data.newPassword === data.confirmPassword, {
     message: "Passwords don't match",
-    path: ['confirmPassword']
-  }
-)
-.refine(
-  data => data.password && !data.newPassword, 
-  {
-    message: "New password is required",
-    path: ['newPassword']
-  }
-)
-.refine(
-  data => !data.password && data.newPassword, 
-  {
-    message: "Password is required",
-    path: ['password']
-  }
-);
+    path: ['confirmPassword'],
+  })
+  .refine((data) => !(data.newPassword && !data.password), {
+    message: "Password is required when setting a new password",
+    path: ['password'],
+  })
+  .refine((data) => !(data.password && !data.newPassword), {
+    message: "New password is required when changing the password",
+    path: ['newPassword'],
+  });
+// .refine(data => 
+//   data.newPassword === data.confirmPassword, 
+//   {
+//     message: "Passwords don't match",
+//     path: ['confirmPassword']
+//   }
+// )
+// .refine(
+//   data => data.password && !data.newPassword, 
+//   {
+//     message: "New password is required",
+//     path: ['newPassword']
+//   }
+// )
+// .refine(
+//   data => !data.password && data.newPassword, 
+//   {
+//     message: "Password is required",
+//     path: ['password']
+//   }
+// );
 
 export const ForgotPasswordSchema = z.object({
   email: z

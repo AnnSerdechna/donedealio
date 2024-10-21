@@ -25,10 +25,8 @@ export const ProfilePage = () => {
   const [message, setMessage] = useState<MessageProps | null>(null);
 
   const onSubmit = async (values: ProfileValuesProps) => {
-    setMessage(null);
-
     startTransition(() => {
-      profile({...values})
+      profile({ ...values })
         .then((data) => {
           setMessage(data);
           update();
@@ -37,6 +35,7 @@ export const ProfilePage = () => {
           setMessage({ status: 'error', content: 'Something went wrong!' });
         });
     });
+    setMessage(null);
   };
 
   return (
@@ -61,12 +60,6 @@ export const ProfilePage = () => {
               <FormItem
                 name={'name'}
                 label={'Name'}
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please input your E-mail!',
-                  },
-                ]}
               >
                 <Input size={'large'} placeholder={'Your name'} />
               </FormItem>
@@ -111,7 +104,7 @@ export const ProfilePage = () => {
                     rules={[
                       ({ getFieldValue }) => ({
                         validator: (_, value) => {
-                          if (!value || getFieldValue('password') === value) {
+                          if (!value || getFieldValue('newPassword') === value) {
                             return Promise.resolve();
                           }
                           return Promise.reject(new Error('The new password that you entered do not match!'));

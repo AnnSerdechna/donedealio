@@ -15,38 +15,42 @@ import {
 } from '@/graphql/types';
 import { Button, Form } from '@/components/ui';
 import { ContentContainer, WorkspaceFormContent, WorkspaceCard } from '@/components/user';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
 
-export const Workspaces: FC<{ userId: string }> = ({ userId }) => {
+export const Workspaces: FC = () => {
   const createForm = useForm();
   const updateForm = useForm();
-
+  const user = useCurrentUser();
   const { modal, message } = App.useApp();
   const [openModalCreate, setOpenModalCreate] = useState(false);
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
   const [isValueChange, setIsValueChange] = useState(false);
   const [selectedWorkspaceId, setSelectedWorkspaceId] = useState('');
-
-  const { data: workspacesData, refetch } = useWorkspacesQuery({ variables: { where: { userId: { equals: userId } } } })
   const [createWorkspace, { loading: createLoading }] = useCreateOneWorkspaceMutation();
   const [updateWorkspace, { loading: updateLoading }] = useUpdateOneWorkspaceMutation();
   const [deleteWorkspase] = useDeleteOneWorkspaceMutation();
+  const { data: workspacesData, refetch } = useWorkspacesQuery({
+    variables: {
+      where: {
+        userId: { equals: user.id ?? '' }
+      }
+    }
+  });
 
   const handleCreateWorkspace = async (values: WorkspaceCreateInput) => {
     try {
       await createWorkspace({
         variables: {
           data: {
-            name: values.name,
-            description: values.description,
-            user: { connect: { id: userId as string } }
+            user: { connect: { id: user.id } },
+            ...values
           }
         }
       });
 
       refetch();
     } catch (error) {
-      console.log(error, 'Create Workspace error');
-      message.error('Something went wrong!');
+      message.error('Create workspace failed!');
     } finally {
       createForm[0].resetFields();
       setOpenModalCreate(false)
@@ -69,8 +73,7 @@ export const Workspaces: FC<{ userId: string }> = ({ userId }) => {
 
       refetch();
     } catch (error) {
-      console.log(error, 'Update Workspace error');
-      message.error('Something went wrong!');
+      message.error('Update workspace failed!');
     } finally {
       updateForm[0].resetFields();
       setOpenModalUpdate(false);
@@ -82,20 +85,15 @@ export const Workspaces: FC<{ userId: string }> = ({ userId }) => {
   const handleDeleteWorkspace = async (id: string) => {
     try {
       await deleteWorkspase({
-        variables: {
-          where: {
-            id
-          }
-        }
+        variables: { where: { id } }
       });
       refetch();
     } catch (error) {
-      console.log(error, 'Delete Workspace error');
-      message.error('Something went wrong!')
+      message.error('Delete workspace failed!')
     }
   };
 
-  const onEditWorkspace = (id: string, name: string, description: string) => {
+  const onEditWorkspace = (id: string, name: string, description: string | undefined | null) => {
     updateForm[0].setFieldsValue({
       name,
       description,
@@ -138,10 +136,9 @@ export const Workspaces: FC<{ userId: string }> = ({ userId }) => {
           {workspacesData?.workspaces?.map(item => (
             <WorkspaceCard
               key={item?.id}
-              userId={userId}
               id={item?.id}
               name={item?.name}
-              description={item?.description}
+              description={item?.description as string}
               onEdit={() => onEditWorkspace(item?.id, item?.name, item?.description)}
               onRemove={() => onRemoveWorkspace(item.id)}
             />

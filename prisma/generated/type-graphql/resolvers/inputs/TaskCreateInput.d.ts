@@ -13,5 +13,5 @@ export declare class TaskCreateInput {
     status?: StatusCreateNestedOneWithoutTaskInput | undefined;
     priority?: PriorityCreateNestedOneWithoutTaskInput | undefined;
     files?: FileCreateNestedManyWithoutTaskInput | undefined;
-    workspace: WorkspaceCreateNestedOneWithoutTaskInput;
+    workspace?: WorkspaceCreateNestedOneWithoutTaskInput | undefined;
 }

@@ -4,7 +4,7 @@ import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDa
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
 import { PriorityUpdateOneWithoutTaskNestedInput } from "../inputs/PriorityUpdateOneWithoutTaskNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
-import { WorkspaceUpdateOneRequiredWithoutTaskNestedInput } from "../inputs/WorkspaceUpdateOneRequiredWithoutTaskNestedInput";
+import { WorkspaceUpdateOneWithoutTaskNestedInput } from "../inputs/WorkspaceUpdateOneWithoutTaskNestedInput";
 export declare class TaskUpdateWithoutStatusInput {
     id?: StringFieldUpdateOperationsInput | undefined;
     name?: StringFieldUpdateOperationsInput | undefined;
@@ -15,5 +15,5 @@ export declare class TaskUpdateWithoutStatusInput {
     updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
     priority?: PriorityUpdateOneWithoutTaskNestedInput | undefined;
     files?: FileUpdateManyWithoutTaskNestedInput | undefined;
-    workspace?: WorkspaceUpdateOneRequiredWithoutTaskNestedInput | undefined;
+    workspace?: WorkspaceUpdateOneWithoutTaskNestedInput | undefined;
 }

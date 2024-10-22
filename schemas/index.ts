@@ -101,3 +101,8 @@ export const RegisterSchema = z.object({
     message: "Passwords don't match",
     path: ['confirmPassword'],
 });
+
+export const WorkspaceSchema = z.object({
+  name: z.string(),
+  description: z.optional(z.string()).or(z.null()),
+});

@@ -6,17 +6,16 @@ import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
 
 import { Button, Text } from '@/components/ui';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { WorkspaceValuesProps } from '@/schemas/types';
 
-type WorkspaceCardProps = {
-  userId: string
+type WorkspaceCardProps = WorkspaceValuesProps & {
   id: string
-  name: string
-  description: string
   onEdit: VoidFunction
   onRemove: VoidFunction
 }
 
-export const WorkspaceCard: FC<WorkspaceCardProps> = ({ userId, id, name, description, onEdit, onRemove }) => {
+export const WorkspaceCard: FC<WorkspaceCardProps> = ({ id, name, description, onEdit, onRemove }) => {
   const router = useRouter();
   
   const items: MenuProps['items'] = [
@@ -43,7 +42,7 @@ export const WorkspaceCard: FC<WorkspaceCardProps> = ({ userId, id, name, descri
   return (
     <Card
       title={name}
-      onClick={() => router.push(`/${userId}/workspace/${id}/table`)}
+      onClick={() => router.push(`/workspace/${id}/table`)}
       style={{ cursor: 'pointer' }}
       extra={(
         <Dropdown

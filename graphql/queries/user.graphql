@@ -2,8 +2,7 @@ query user($where: UserWhereUniqueInput!) {
   user(where: $where) {
     id
     email
-    firstName
-    lastName
+    name
     role
     image
     workspaces {

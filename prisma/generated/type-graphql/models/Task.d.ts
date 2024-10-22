@@ -16,7 +16,7 @@ export declare class Task {
     priority?: Priority | null;
     priorityId?: number | null;
     files?: File[];
-    workspace?: Workspace;
+    workspace?: Workspace | null;
     workspaceId: string;
     _count?: TaskCount | null;
 }

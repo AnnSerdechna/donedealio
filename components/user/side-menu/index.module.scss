@@ -9,4 +9,17 @@
   }
 }
 
+.workspacesList {
+  padding: 0 16px !important;
+  .workspacesListItem {
+    padding: 8px 0 !important;
+    border: none !important;
+
+    a {
+      font-size: 16px;
+      text-transform: capitalize;
+    }
+  }
+}
+
 

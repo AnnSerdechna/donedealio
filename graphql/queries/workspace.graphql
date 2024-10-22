@@ -4,8 +4,7 @@ query Workspace($where: WorkspaceWhereUniqueInput!) {
     name
     user {
       id
-      firstName
-      lastName
+      name
       role
     }
     task {

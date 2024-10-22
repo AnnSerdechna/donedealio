@@ -1,6 +1,7 @@
 export { CreateManyAndReturnFileTaskArgs } from "./CreateManyAndReturnFileTaskArgs";
 export { CreateManyAndReturnTaskPriorityArgs } from "./CreateManyAndReturnTaskPriorityArgs";
 export { CreateManyAndReturnTaskStatusArgs } from "./CreateManyAndReturnTaskStatusArgs";
+export { CreateManyAndReturnTaskWorkspaceArgs } from "./CreateManyAndReturnTaskWorkspaceArgs";
 export { CreateManyAndReturnWorkspaceUserArgs } from "./CreateManyAndReturnWorkspaceUserArgs";
 export { PriorityCountTaskArgs } from "./PriorityCountTaskArgs";
 export { StatusCountTaskArgs } from "./StatusCountTaskArgs";

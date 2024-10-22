@@ -5,11 +5,15 @@ import {
   UserOutlined,
   BulbOutlined,
 } from '@ant-design/icons';
-import { Flex, Menu, MenuProps } from 'antd';
+import { Flex, List, Menu, MenuProps } from 'antd';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { MenuItemProps } from '@/types';
 import styles from './index.module.scss';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { useWorkspacesQuery } from '@/graphql/types';
+import { VSpace } from '@/components/ui';
+import Link from 'next/link';
 
 function getItem(
   label: ReactNode,
@@ -51,6 +55,16 @@ export const HomeMenu: FC = () => (
 export const SideMenu: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const user = useCurrentUser();
+  const { data: workspacesData, refetch } = useWorkspacesQuery({
+    variables: {
+      where: {
+        userId: { equals: user.id ?? ''}
+      }
+    }
+  });
+
+console.log(user, 'USER');
 
   const activeKeys = [...items, ...bottomItems].filter((item) => pathname?.includes(`${item?.key}`)).map(item => item?.key) as string[];
 
@@ -72,7 +86,21 @@ export const SideMenu: FC = () => {
 
   return (
     <Flex vertical justify={'space-between'} className={styles.menuContainer}>
-      {menu(items)}
+      <VSpace size={8}>
+        {menu(items)}
+
+        <List
+          loading={!workspacesData?.workspaces?.length}
+          dataSource={workspacesData?.workspaces}
+          rootClassName={styles.workspacesList}
+          renderItem={(item) => (
+            <List.Item className={styles.workspacesListItem}>
+              <Link href={`/workspace/${item.id}/table`}>{item.name}</Link>
+            </List.Item>
+          )}
+        />
+      </VSpace>
+
       {menu(bottomItems)}
     </Flex>
   )

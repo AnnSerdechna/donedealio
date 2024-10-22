@@ -2,7 +2,8 @@ import { domain } from '@/variables';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const apolloClient = new ApolloClient({
-  uri: `${domain}/api/graphql`,
+  uri: `http://localhost:3000/api/graphql`,
+  // uri: `${domain}/api/graphql`,
   cache: new InMemoryCache(),
 });
 

@@ -12,7 +12,7 @@ const StatusNullableRelationFilter_1 = require("../inputs/StatusNullableRelation
 const StringFilter_1 = require("../inputs/StringFilter");
 const StringNullableFilter_1 = require("../inputs/StringNullableFilter");
 const TaskWhereInput_1 = require("../inputs/TaskWhereInput");
-const WorkspaceRelationFilter_1 = require("../inputs/WorkspaceRelationFilter");
+const WorkspaceNullableRelationFilter_1 = require("../inputs/WorkspaceNullableRelationFilter");
 let TaskWhereUniqueInput = class TaskWhereUniqueInput {
 };
 exports.TaskWhereUniqueInput = TaskWhereUniqueInput;
@@ -113,10 +113,10 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", FileListRelationFilter_1.FileListRelationFilter)
 ], TaskWhereUniqueInput.prototype, "files", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => WorkspaceRelationFilter_1.WorkspaceRelationFilter, {
+    TypeGraphQL.Field(_type => WorkspaceNullableRelationFilter_1.WorkspaceNullableRelationFilter, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", WorkspaceRelationFilter_1.WorkspaceRelationFilter)
+    tslib_1.__metadata("design:type", WorkspaceNullableRelationFilter_1.WorkspaceNullableRelationFilter)
 ], TaskWhereUniqueInput.prototype, "workspace", void 0);
 exports.TaskWhereUniqueInput = TaskWhereUniqueInput = tslib_1.__decorate([
     TypeGraphQL.InputType("TaskWhereUniqueInput", {})

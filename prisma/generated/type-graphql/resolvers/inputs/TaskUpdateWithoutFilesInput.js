@@ -9,7 +9,7 @@ const NullableStringFieldUpdateOperationsInput_1 = require("../inputs/NullableSt
 const PriorityUpdateOneWithoutTaskNestedInput_1 = require("../inputs/PriorityUpdateOneWithoutTaskNestedInput");
 const StatusUpdateOneWithoutTaskNestedInput_1 = require("../inputs/StatusUpdateOneWithoutTaskNestedInput");
 const StringFieldUpdateOperationsInput_1 = require("../inputs/StringFieldUpdateOperationsInput");
-const WorkspaceUpdateOneRequiredWithoutTaskNestedInput_1 = require("../inputs/WorkspaceUpdateOneRequiredWithoutTaskNestedInput");
+const WorkspaceUpdateOneWithoutTaskNestedInput_1 = require("../inputs/WorkspaceUpdateOneWithoutTaskNestedInput");
 let TaskUpdateWithoutFilesInput = class TaskUpdateWithoutFilesInput {
 };
 exports.TaskUpdateWithoutFilesInput = TaskUpdateWithoutFilesInput;
@@ -68,10 +68,10 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", PriorityUpdateOneWithoutTaskNestedInput_1.PriorityUpdateOneWithoutTaskNestedInput)
 ], TaskUpdateWithoutFilesInput.prototype, "priority", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => WorkspaceUpdateOneRequiredWithoutTaskNestedInput_1.WorkspaceUpdateOneRequiredWithoutTaskNestedInput, {
+    TypeGraphQL.Field(_type => WorkspaceUpdateOneWithoutTaskNestedInput_1.WorkspaceUpdateOneWithoutTaskNestedInput, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", WorkspaceUpdateOneRequiredWithoutTaskNestedInput_1.WorkspaceUpdateOneRequiredWithoutTaskNestedInput)
+    tslib_1.__metadata("design:type", WorkspaceUpdateOneWithoutTaskNestedInput_1.WorkspaceUpdateOneWithoutTaskNestedInput)
 ], TaskUpdateWithoutFilesInput.prototype, "workspace", void 0);
 exports.TaskUpdateWithoutFilesInput = TaskUpdateWithoutFilesInput = tslib_1.__decorate([
     TypeGraphQL.InputType("TaskUpdateWithoutFilesInput", {})

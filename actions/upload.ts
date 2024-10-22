@@ -49,19 +49,19 @@ export async function removeFile(publicId: string, fileUrl: string, resourceType
   }
 };
 
-export async function getFile(publicId: string) {
-  try {
-    // Generate the file URL or retrieve file info using Cloudinary API
-    const fileUrl = cloudinary.v2.url(publicId, {
-      secure: true, // ensures the URL is https
-    });
+// export async function getFile(publicId: string) {
+//   try {
+//     // Generate the file URL or retrieve file info using Cloudinary API
+//     const fileUrl = cloudinary.v2.url(publicId, {
+//       secure: true, // ensures the URL is https
+//     });
 
-    // Or if you want detailed info about the asset
-    const fileInfo = await cloudinary.v2.api.resource(publicId);
+//     // Or if you want detailed info about the asset
+//     const fileInfo = await cloudinary.v2.api.resource(publicId);
 
-    return { fileUrl, fileInfo };
-  } catch (error) {
-    console.error('Error fetching file from Cloudinary:', error);
-    return null;
-  }
-}
+//     return { fileUrl, fileInfo };
+//   } catch (error) {
+//     console.error('Error fetching file from Cloudinary:', error);
+//     return null;
+//   }
+// }

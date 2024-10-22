@@ -1,97 +1,108 @@
-import { App, UploadFile } from 'antd';
+import { App, UploadFile, Upload } from 'antd';
 import { RcFile, UploadProps } from 'antd/es/upload';
 import { useState } from 'react';
 
-import { getFile, removeFile, uploadFile } from '@/actions/upload';
-import { useCurrentUser } from './useCurrentUser';
-import { UploadFileStatus } from 'antd/es/upload/interface';
+import { uploadFile, removeFile } from '@/actions/upload';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
 
 type UploadedFileProps = {
-  url: string, 
-  id: string
-} 
+  url: string;
+  id: string;
+};
 
 export const useUploadFile = () => {
   const { message } = App.useApp();
-  const user = useCurrentUser()
+  const user = useCurrentUser();
 
-  const defaultFile = user?.image ? [
-    {
-      uid: '',
-      size: 100,
-      fileName: user?.name,
-      name: user?.name,
-      url: user.image
-    }
-  ] : [];
-
-  const [fileList, setFileList] = useState<UploadFile[]>(defaultFile);
-  const [uploadedFile, setUploadedFile] = useState<UploadedFileProps | null>(user?.image ? { url: user?.image, id: user?.imageId } : null)
-  const [uploadedFiles, setUploadedFiles] = useState<UploadedFileProps[]>(
-    user?.image 
-      ? [{url: user?.image, id: user?.imageId}] 
-      : []
-  );
-
-  console.log(uploadedFiles, 'zfILES');
+  const defaultFile = user?.image
+    ? [
+        {
+          uid: user?.imageId || '',
+          size: 100,
+          name: user?.name || '',
+          url: user.image, 
+        },
+      ]
+    : [];
   
-  const handleUploadFile = async (file: RcFile) => {
-    try {
-      if (!file) return;
+  const existedFile = user?.image ? { url: user.image, id: user.imageId } : null
 
-      const reader = new FileReader();
+  const [previewFileList, setPreviewFileList] = useState<UploadFile[]>(defaultFile);
+  const [fileList, setFileList] = useState<RcFile[]>([]);
+  const [uploadedFile, setUploadedFile] = useState<UploadedFileProps | null>(existedFile);
 
+  const handleBeforeUpload = (file: RcFile) => {
+    const isLt1MB = file.size / 1024 / 1024 < 1;
+    
+    if (!isLt1MB) {
+      message.error('File must be smaller than 1MB!');
+      return Upload.LIST_IGNORE;
+    }
+
+    const fileUrl = URL.createObjectURL(file);
+
+    setPreviewFileList([{...file, url: fileUrl}]);
+    setFileList([file]);
+
+    return false;
+  };
+
+  const handleUploadFile = async () => {
+    if (!fileList.length) return null;
+    const file = fileList[0];
+
+    const reader = new FileReader();
+
+    return new Promise<UploadedFileProps>((resolve, reject) => {
       reader.onloadend = async () => {
-        const base64String = reader.result as string;
+        try {
+          if (uploadedFile) {
+            await removeFile(uploadedFile.id, uploadedFile.url, 'image');
+          }
 
-        const response = await uploadFile(base64String, 'image');
+          const base64String = reader.result as string;
+          const response = await uploadFile(base64String, 'image');
 
-        setUploadedFile({ url: response.url, id: response.id });
-        setUploadedFiles(prev => [...prev, { url: response.url, id: response.id }])
+          setUploadedFile({ url: response.url, id: response.id });
+          setPreviewFileList([{ uid: file.uid, url: response.url, name: file.name, size: file.size }]);
+
+          resolve({ url: response.url, id: response.id });
+        } catch (err) {
+          message.error('Upload file failed!');
+          reject(err);
+        }
       };
 
-      setFileList([file])
-      reader.readAsDataURL(file);
-    } catch (err) {
-      message.error('Upload file failed!');
-    }
+      reader.readAsDataURL(file as any);
+    });
   };
-
-  console.log(uploadedFile, 'uploadedFile');
-  
 
   const handleDeleteFile = async () => {
-    try {
-      if (uploadedFile) {
-        setUploadedFiles(prev => prev.filter(file => file.id !== uploadedFile.id))     
+    if (uploadedFile) {
+      try {
+        await removeFile(uploadedFile.id, uploadedFile.url, 'image');
+        setUploadedFile(null);
+        setPreviewFileList([]);
+        setFileList([]);
+      } catch (error) {
+        message.error('Error removing file.');
       }
-    } catch (error) {
-      message.error('Delete file error: ' + error);
-    }
-  };
-
-  const handleDeleteAllFiles = async () => {
-    try {
-      if (uploadedFile) {
-        const files: UploadedFileProps[] = uploadedFiles.length > 1 ? uploadedFiles.reverse().slice(1) : uploadedFiles;
-
-        files.forEach(async (item) => {
-          await removeFile(item.id, item.url, 'image')
-        })
-      }
-    } catch (error) {
-      message.error('Delete file error: ' + error);
     }
   };
 
   const uploadProps: UploadProps = {
-    fileList,
+    fileList: previewFileList, 
     maxCount: 1,
-    listType: 'picture-card',
-    beforeUpload: handleUploadFile,
-    onChange: ({ fileList: newFileList }) => setFileList(newFileList),
+    listType: 'picture-card', 
+    beforeUpload: handleBeforeUpload,
     onRemove: () => handleDeleteFile(),
   };
 
-  return { uploadProps, uploadedFile, uploadedFiles, setUploadedFiles, setUploadedFile, handleDeleteAllFiles }
-}
+  return {
+    uploadProps,
+    uploadedFile,
+    handleUploadFile,
+    handleDeleteFile,
+    setFileList,
+  };
+};

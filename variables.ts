@@ -1,3 +1,3 @@
 export const domain = process.env.NODE_ENV === 'production' 
-  ? p 
+  ? process.env.NEXT_PUBLIC_APP_URL
   : 'http://localhost:3000';

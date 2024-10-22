@@ -47,7 +47,7 @@ export const ProfileForm: FC = () => {
             message.error('Profile update failed!');
           })
       });
-    } catch (error) {
+    } catch {
       message.error('Error while saving the profile!');
     }
   };

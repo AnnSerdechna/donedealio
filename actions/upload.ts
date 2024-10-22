@@ -29,8 +29,7 @@ export async function uploadFile(
     );
 
     return { url: response.secure_url, id: response.public_id }; 
-  } catch (error) {
-    console.error('Error uploading file:', error);
+  } catch {
     throw new Error('File upload failed');
   }
 };
@@ -41,27 +40,7 @@ export async function removeFile(publicId: string, fileUrl: string, resourceType
       publicId, 
       { resource_type: resourceType }
     );
-
-    console.log('File was remove successfully')
-  } catch (error) {
-    console.error('Error remove file:', error);
+  } catch {
     throw new Error('File remove failed');
   }
 };
-
-// export async function getFile(publicId: string) {
-//   try {
-//     // Generate the file URL or retrieve file info using Cloudinary API
-//     const fileUrl = cloudinary.v2.url(publicId, {
-//       secure: true, // ensures the URL is https
-//     });
-
-//     // Or if you want detailed info about the asset
-//     const fileInfo = await cloudinary.v2.api.resource(publicId);
-
-//     return { fileUrl, fileInfo };
-//   } catch (error) {
-//     console.error('Error fetching file from Cloudinary:', error);
-//     return null;
-//   }
-// }

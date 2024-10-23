@@ -24,7 +24,19 @@ tslib_1.__decorate([
         nullable: true
     }),
     tslib_1.__metadata("design:type", String)
-], FileOrderByWithAggregationInput.prototype, "file", void 0);
+], FileOrderByWithAggregationInput.prototype, "url", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], FileOrderByWithAggregationInput.prototype, "fileId", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], FileOrderByWithAggregationInput.prototype, "name", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => SortOrderInput_1.SortOrderInput, {
         nullable: true

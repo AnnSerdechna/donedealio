@@ -4,7 +4,7 @@ import { FileWhereInput } from "../../../inputs/FileWhereInput";
 export declare class GroupByFileArgs {
     where?: FileWhereInput | undefined;
     orderBy?: FileOrderByWithAggregationInput[] | undefined;
-    by: Array<"id" | "file" | "taskId">;
+    by: Array<"id" | "url" | "fileId" | "name" | "taskId">;
     having?: FileScalarWhereWithAggregatesInput | undefined;
     take?: number | undefined;
     skip?: number | undefined;

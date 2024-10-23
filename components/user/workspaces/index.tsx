@@ -49,7 +49,7 @@ export const Workspaces: FC = () => {
       });
 
       refetch();
-    } catch (error) {
+    } catch {
       message.error('Create workspace failed!');
     } finally {
       createForm[0].resetFields();
@@ -72,7 +72,7 @@ export const Workspaces: FC = () => {
       });
 
       refetch();
-    } catch (error) {
+    } catch {
       message.error('Update workspace failed!');
     } finally {
       updateForm[0].resetFields();
@@ -88,7 +88,7 @@ export const Workspaces: FC = () => {
         variables: { where: { id } }
       });
       refetch();
-    } catch (error) {
+    } catch {
       message.error('Delete workspace failed!')
     }
   };

@@ -8,37 +8,38 @@ cloudinary.v2.config({
   api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
 });
 
-type ResourceType = 'image' | 'raw';
 
 type ResponseProps = {
   url: string
   id: string
+  format?: string
+  name?: string
+  size?: number
 }
 
 export async function uploadFile(
   file: string, 
-  resourceType: ResourceType
 ): Promise<ResponseProps> {
   try {
     const response = await cloudinary.v2.uploader.upload(
       file, 
       {
-        resource_type: resourceType, 
+        resource_type: 'image', 
         upload_preset: 'donedealio', 
       }
     );
 
-    return { url: response.secure_url, id: response.public_id }; 
+    return { url: response.secure_url, id: response.public_id, name: response.signature }; 
   } catch {
     throw new Error('File upload failed');
   }
 };
 
-export async function removeFile(publicId: string, fileUrl: string, resourceType: ResourceType) {
+export async function removeFile(publicId: string) {
   try {
     await cloudinary.v2.uploader.destroy(
       publicId, 
-      { resource_type: resourceType }
+      { resource_type: 'image' }
     );
   } catch {
     throw new Error('File remove failed');

@@ -609,10 +609,12 @@ export type CreateManyAndReturnAccount = {
 
 export type CreateManyAndReturnFile = {
   __typename?: 'CreateManyAndReturnFile';
-  file: Scalars['String']['output'];
+  fileId: Scalars['String']['output'];
   id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
   task?: Maybe<Task>;
   taskId?: Maybe<Scalars['String']['output']>;
+  url: Scalars['String']['output'];
 };
 
 
@@ -805,10 +807,12 @@ export type EnumRoleWithAggregatesFilter = {
 
 export type File = {
   __typename?: 'File';
-  file: Scalars['String']['output'];
+  fileId: Scalars['String']['output'];
   id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
   task?: Maybe<Task>;
   taskId?: Maybe<Scalars['String']['output']>;
+  url: Scalars['String']['output'];
 };
 
 
@@ -828,31 +832,41 @@ export type FileAvgOrderByAggregateInput = {
 export type FileCountAggregate = {
   __typename?: 'FileCountAggregate';
   _all: Scalars['Int']['output'];
-  file: Scalars['Int']['output'];
+  fileId: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
   taskId: Scalars['Int']['output'];
+  url: Scalars['Int']['output'];
 };
 
 export type FileCountOrderByAggregateInput = {
-  file?: InputMaybe<SortOrder>;
+  fileId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
   taskId?: InputMaybe<SortOrder>;
+  url?: InputMaybe<SortOrder>;
 };
 
 export type FileCreateInput = {
-  file: Scalars['String']['input'];
+  fileId: Scalars['String']['input'];
+  name: Scalars['String']['input'];
   task?: InputMaybe<TaskCreateNestedOneWithoutFilesInput>;
+  url: Scalars['String']['input'];
 };
 
 export type FileCreateManyInput = {
-  file: Scalars['String']['input'];
+  fileId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['Int']['input']>;
+  name: Scalars['String']['input'];
   taskId?: InputMaybe<Scalars['String']['input']>;
+  url: Scalars['String']['input'];
 };
 
 export type FileCreateManyTaskInput = {
-  file: Scalars['String']['input'];
+  fileId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['Int']['input']>;
+  name: Scalars['String']['input'];
+  url: Scalars['String']['input'];
 };
 
 export type FileCreateManyTaskInputEnvelope = {
@@ -873,7 +887,9 @@ export type FileCreateOrConnectWithoutTaskInput = {
 };
 
 export type FileCreateWithoutTaskInput = {
-  file: Scalars['String']['input'];
+  fileId: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  url: Scalars['String']['input'];
 };
 
 export type FileGroupBy = {
@@ -883,9 +899,11 @@ export type FileGroupBy = {
   _max?: Maybe<FileMaxAggregate>;
   _min?: Maybe<FileMinAggregate>;
   _sum?: Maybe<FileSumAggregate>;
-  file: Scalars['String']['output'];
+  fileId: Scalars['String']['output'];
   id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
   taskId?: Maybe<Scalars['String']['output']>;
+  url: Scalars['String']['output'];
 };
 
 export type FileListRelationFilter = {
@@ -896,28 +914,36 @@ export type FileListRelationFilter = {
 
 export type FileMaxAggregate = {
   __typename?: 'FileMaxAggregate';
-  file?: Maybe<Scalars['String']['output']>;
+  fileId?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
   taskId?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
 };
 
 export type FileMaxOrderByAggregateInput = {
-  file?: InputMaybe<SortOrder>;
+  fileId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
   taskId?: InputMaybe<SortOrder>;
+  url?: InputMaybe<SortOrder>;
 };
 
 export type FileMinAggregate = {
   __typename?: 'FileMinAggregate';
-  file?: Maybe<Scalars['String']['output']>;
+  fileId?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
   taskId?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
 };
 
 export type FileMinOrderByAggregateInput = {
-  file?: InputMaybe<SortOrder>;
+  fileId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
   taskId?: InputMaybe<SortOrder>;
+  url?: InputMaybe<SortOrder>;
 };
 
 export type FileOrderByRelationAggregateInput = {
@@ -930,40 +956,50 @@ export type FileOrderByWithAggregationInput = {
   _max?: InputMaybe<FileMaxOrderByAggregateInput>;
   _min?: InputMaybe<FileMinOrderByAggregateInput>;
   _sum?: InputMaybe<FileSumOrderByAggregateInput>;
-  file?: InputMaybe<SortOrder>;
+  fileId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
   taskId?: InputMaybe<SortOrderInput>;
+  url?: InputMaybe<SortOrder>;
 };
 
 export type FileOrderByWithRelationInput = {
-  file?: InputMaybe<SortOrder>;
+  fileId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
   task?: InputMaybe<TaskOrderByWithRelationInput>;
   taskId?: InputMaybe<SortOrderInput>;
+  url?: InputMaybe<SortOrder>;
 };
 
 export enum FileScalarFieldEnum {
-  File = 'file',
+  FileId = 'fileId',
   Id = 'id',
-  TaskId = 'taskId'
+  Name = 'name',
+  TaskId = 'taskId',
+  Url = 'url'
 }
 
 export type FileScalarWhereInput = {
   AND?: InputMaybe<Array<FileScalarWhereInput>>;
   NOT?: InputMaybe<Array<FileScalarWhereInput>>;
   OR?: InputMaybe<Array<FileScalarWhereInput>>;
-  file?: InputMaybe<StringFilter>;
+  fileId?: InputMaybe<StringFilter>;
   id?: InputMaybe<IntFilter>;
+  name?: InputMaybe<StringFilter>;
   taskId?: InputMaybe<StringNullableFilter>;
+  url?: InputMaybe<StringFilter>;
 };
 
 export type FileScalarWhereWithAggregatesInput = {
   AND?: InputMaybe<Array<FileScalarWhereWithAggregatesInput>>;
   NOT?: InputMaybe<Array<FileScalarWhereWithAggregatesInput>>;
   OR?: InputMaybe<Array<FileScalarWhereWithAggregatesInput>>;
-  file?: InputMaybe<StringWithAggregatesFilter>;
+  fileId?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<IntWithAggregatesFilter>;
+  name?: InputMaybe<StringWithAggregatesFilter>;
   taskId?: InputMaybe<StringNullableWithAggregatesFilter>;
+  url?: InputMaybe<StringWithAggregatesFilter>;
 };
 
 export type FileSumAggregate = {
@@ -976,12 +1012,16 @@ export type FileSumOrderByAggregateInput = {
 };
 
 export type FileUpdateInput = {
-  file?: InputMaybe<StringFieldUpdateOperationsInput>;
+  fileId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
   task?: InputMaybe<TaskUpdateOneWithoutFilesNestedInput>;
+  url?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
 export type FileUpdateManyMutationInput = {
-  file?: InputMaybe<StringFieldUpdateOperationsInput>;
+  fileId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  url?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
 export type FileUpdateManyWithWhereWithoutTaskInput = {
@@ -1009,7 +1049,9 @@ export type FileUpdateWithWhereUniqueWithoutTaskInput = {
 };
 
 export type FileUpdateWithoutTaskInput = {
-  file?: InputMaybe<StringFieldUpdateOperationsInput>;
+  fileId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  url?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
 export type FileUpsertWithWhereUniqueWithoutTaskInput = {
@@ -1022,20 +1064,24 @@ export type FileWhereInput = {
   AND?: InputMaybe<Array<FileWhereInput>>;
   NOT?: InputMaybe<Array<FileWhereInput>>;
   OR?: InputMaybe<Array<FileWhereInput>>;
-  file?: InputMaybe<StringFilter>;
+  fileId?: InputMaybe<StringFilter>;
   id?: InputMaybe<IntFilter>;
+  name?: InputMaybe<StringFilter>;
   task?: InputMaybe<TaskNullableRelationFilter>;
   taskId?: InputMaybe<StringNullableFilter>;
+  url?: InputMaybe<StringFilter>;
 };
 
 export type FileWhereUniqueInput = {
   AND?: InputMaybe<Array<FileWhereInput>>;
   NOT?: InputMaybe<Array<FileWhereInput>>;
   OR?: InputMaybe<Array<FileWhereInput>>;
-  file?: InputMaybe<StringFilter>;
+  fileId?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
+  name?: InputMaybe<StringFilter>;
   task?: InputMaybe<TaskNullableRelationFilter>;
   taskId?: InputMaybe<StringNullableFilter>;
+  url?: InputMaybe<StringFilter>;
 };
 
 export type IntFilter = {
@@ -5387,6 +5433,13 @@ export type WorkspaceWhereUniqueInput = {
   userId?: InputMaybe<StringNullableFilter>;
 };
 
+export type CreateFileMutationVariables = Exact<{
+  data: FileCreateInput;
+}>;
+
+
+export type CreateFileMutation = { __typename?: 'Mutation', createOneFile: { __typename?: 'File', url: string, name: string, fileId: string, taskId?: string | null } };
+
 export type CreateOnePriorityMutationVariables = Exact<{
   data: PriorityCreateInput;
 }>;
@@ -5406,7 +5459,7 @@ export type CreateOneTaskMutationVariables = Exact<{
 }>;
 
 
-export type CreateOneTaskMutation = { __typename?: 'Mutation', createOneTask: { __typename?: 'Task', name: string, message?: string | null, note?: string | null, dueDate?: any | null, workspaceId: string, status?: { __typename?: 'Status', id: number } | null, priority?: { __typename?: 'Priority', id: number } | null, files: Array<{ __typename?: 'File', id: number }>, workspace?: { __typename?: 'Workspace', id: string } | null } };
+export type CreateOneTaskMutation = { __typename?: 'Mutation', createOneTask: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, workspaceId: string, status?: { __typename?: 'Status', id: number } | null, priority?: { __typename?: 'Priority', id: number } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string }>, workspace?: { __typename?: 'Workspace', id: string } | null } };
 
 export type CreateOneUserMutationVariables = Exact<{
   data: UserCreateInput;
@@ -5421,6 +5474,13 @@ export type CreateOneWorkspaceMutationVariables = Exact<{
 
 
 export type CreateOneWorkspaceMutation = { __typename?: 'Mutation', createOneWorkspace: { __typename?: 'Workspace', id: string, name: string, description?: string | null, user?: { __typename?: 'User', id: string } | null } };
+
+export type DeleteFileMutationVariables = Exact<{
+  where: FileWhereUniqueInput;
+}>;
+
+
+export type DeleteFileMutation = { __typename?: 'Mutation', deleteOneFile?: { __typename?: 'File', id: number, fileId: string } | null };
 
 export type DeleteManyPriorityMutationVariables = Exact<{
   where?: InputMaybe<PriorityWhereInput>;
@@ -5496,12 +5556,19 @@ export type StatusesQueryVariables = Exact<{
 
 export type StatusesQuery = { __typename?: 'Query', statuses: Array<{ __typename?: 'Status', id: number, name: string, color: string }> };
 
+export type TaskQueryVariables = Exact<{
+  where: TaskWhereUniqueInput;
+}>;
+
+
+export type TaskQuery = { __typename?: 'Query', task?: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number, url: string, name: string, fileId: string }>, status?: { __typename?: 'Status', id: number, name: string, color: string } | null, priority?: { __typename?: 'Priority', id: number, name: string, color: string } | null, workspace?: { __typename?: 'Workspace', id: string } | null } | null };
+
 export type TasksQueryVariables = Exact<{
   workspaceId: Scalars['String']['input'];
 }>;
 
 
-export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number }>, status?: { __typename?: 'Status', id: number, name: string, color: string } | null, priority?: { __typename?: 'Priority', id: number, name: string, color: string } | null, workspace?: { __typename?: 'Workspace', id: string } | null }> };
+export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number, url: string, name: string, fileId: string }>, status?: { __typename?: 'Status', id: number, name: string, color: string } | null, priority?: { __typename?: 'Priority', id: number, name: string, color: string } | null, workspace?: { __typename?: 'Workspace', id: string } | null }> };
 
 export type UserQueryVariables = Exact<{
   where: UserWhereUniqueInput;
@@ -5515,7 +5582,7 @@ export type WorkspaceQueryVariables = Exact<{
 }>;
 
 
-export type WorkspaceQuery = { __typename?: 'Query', workspace?: { __typename?: 'Workspace', id: string, name: string, user?: { __typename?: 'User', id: string, name: string, role: Role } | null, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number }>, status?: { __typename?: 'Status', id: number, name: string, color: string } | null, priority?: { __typename?: 'Priority', id: number, name: string, color: string } | null }> } | null };
+export type WorkspaceQuery = { __typename?: 'Query', workspace?: { __typename?: 'Workspace', id: string, name: string, user?: { __typename?: 'User', id: string, name: string, role: Role } | null, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number, url: string, name: string, fileId: string }>, status?: { __typename?: 'Status', id: number, name: string, color: string } | null, priority?: { __typename?: 'Priority', id: number, name: string, color: string } | null }> } | null };
 
 export type WorkspacesQueryVariables = Exact<{
   where?: InputMaybe<WorkspaceWhereInput>;
@@ -5525,6 +5592,42 @@ export type WorkspacesQueryVariables = Exact<{
 export type WorkspacesQuery = { __typename?: 'Query', workspaces: Array<{ __typename?: 'Workspace', id: string, name: string, description?: string | null }> };
 
 
+export const CreateFileDocument = gql`
+    mutation createFile($data: FileCreateInput!) {
+  createOneFile(data: $data) {
+    url
+    name
+    fileId
+    taskId
+  }
+}
+    `;
+export type CreateFileMutationFn = Apollo.MutationFunction<CreateFileMutation, CreateFileMutationVariables>;
+
+/**
+ * __useCreateFileMutation__
+ *
+ * To run a mutation, you first call `useCreateFileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateFileMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createFileMutation, { data, loading, error }] = useCreateFileMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateFileMutation(baseOptions?: Apollo.MutationHookOptions<CreateFileMutation, CreateFileMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateFileMutation, CreateFileMutationVariables>(CreateFileDocument, options);
+      }
+export type CreateFileMutationHookResult = ReturnType<typeof useCreateFileMutation>;
+export type CreateFileMutationResult = Apollo.MutationResult<CreateFileMutation>;
+export type CreateFileMutationOptions = Apollo.BaseMutationOptions<CreateFileMutation, CreateFileMutationVariables>;
 export const CreateOnePriorityDocument = gql`
     mutation createOnePriority($data: PriorityCreateInput!) {
   createOnePriority(data: $data) {
@@ -5598,6 +5701,7 @@ export type CreateOneStatusMutationOptions = Apollo.BaseMutationOptions<CreateOn
 export const CreateOneTaskDocument = gql`
     mutation CreateOneTask($data: TaskCreateInput!) {
   createOneTask(data: $data) {
+    id
     name
     message
     note
@@ -5610,6 +5714,8 @@ export const CreateOneTaskDocument = gql`
     }
     files {
       id
+      url
+      fileId
     }
     workspace {
       id
@@ -5719,6 +5825,40 @@ export function useCreateOneWorkspaceMutation(baseOptions?: Apollo.MutationHookO
 export type CreateOneWorkspaceMutationHookResult = ReturnType<typeof useCreateOneWorkspaceMutation>;
 export type CreateOneWorkspaceMutationResult = Apollo.MutationResult<CreateOneWorkspaceMutation>;
 export type CreateOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<CreateOneWorkspaceMutation, CreateOneWorkspaceMutationVariables>;
+export const DeleteFileDocument = gql`
+    mutation deleteFile($where: FileWhereUniqueInput!) {
+  deleteOneFile(where: $where) {
+    id
+    fileId
+  }
+}
+    `;
+export type DeleteFileMutationFn = Apollo.MutationFunction<DeleteFileMutation, DeleteFileMutationVariables>;
+
+/**
+ * __useDeleteFileMutation__
+ *
+ * To run a mutation, you first call `useDeleteFileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteFileMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteFileMutation, { data, loading, error }] = useDeleteFileMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteFileMutation(baseOptions?: Apollo.MutationHookOptions<DeleteFileMutation, DeleteFileMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteFileMutation, DeleteFileMutationVariables>(DeleteFileDocument, options);
+      }
+export type DeleteFileMutationHookResult = ReturnType<typeof useDeleteFileMutation>;
+export type DeleteFileMutationResult = Apollo.MutationResult<DeleteFileMutation>;
+export type DeleteFileMutationOptions = Apollo.BaseMutationOptions<DeleteFileMutation, DeleteFileMutationVariables>;
 export const DeleteManyPriorityDocument = gql`
     mutation deleteManyPriority($where: PriorityWhereInput) {
   deleteManyPriority(where: $where) {
@@ -6077,6 +6217,69 @@ export type StatusesQueryHookResult = ReturnType<typeof useStatusesQuery>;
 export type StatusesLazyQueryHookResult = ReturnType<typeof useStatusesLazyQuery>;
 export type StatusesSuspenseQueryHookResult = ReturnType<typeof useStatusesSuspenseQuery>;
 export type StatusesQueryResult = Apollo.QueryResult<StatusesQuery, StatusesQueryVariables>;
+export const TaskDocument = gql`
+    query task($where: TaskWhereUniqueInput!) {
+  task(where: $where) {
+    id
+    name
+    message
+    note
+    dueDate
+    files {
+      id
+      url
+      name
+      fileId
+    }
+    status {
+      id
+      name
+      color
+    }
+    priority {
+      id
+      name
+      color
+    }
+    workspace {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useTaskQuery__
+ *
+ * To run a query within a React component, call `useTaskQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTaskQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTaskQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useTaskQuery(baseOptions: Apollo.QueryHookOptions<TaskQuery, TaskQueryVariables> & ({ variables: TaskQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TaskQuery, TaskQueryVariables>(TaskDocument, options);
+      }
+export function useTaskLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TaskQuery, TaskQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TaskQuery, TaskQueryVariables>(TaskDocument, options);
+        }
+export function useTaskSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<TaskQuery, TaskQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<TaskQuery, TaskQueryVariables>(TaskDocument, options);
+        }
+export type TaskQueryHookResult = ReturnType<typeof useTaskQuery>;
+export type TaskLazyQueryHookResult = ReturnType<typeof useTaskLazyQuery>;
+export type TaskSuspenseQueryHookResult = ReturnType<typeof useTaskSuspenseQuery>;
+export type TaskQueryResult = Apollo.QueryResult<TaskQuery, TaskQueryVariables>;
 export const TasksDocument = gql`
     query Tasks($workspaceId: String!) {
   tasks(where: {workspaceId: {equals: $workspaceId}}, orderBy: {createdAt: asc}) {
@@ -6087,6 +6290,9 @@ export const TasksDocument = gql`
     dueDate
     files {
       id
+      url
+      name
+      fileId
     }
     status {
       id
@@ -6204,6 +6410,9 @@ export const WorkspaceDocument = gql`
       dueDate
       files {
         id
+        url
+        name
+        fileId
       }
       status {
         id

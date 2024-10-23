@@ -56,15 +56,13 @@ export const SideMenu: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
   const user = useCurrentUser();
-  const { data: workspacesData, refetch } = useWorkspacesQuery({
+  const { data: workspacesData } = useWorkspacesQuery({
     variables: {
       where: {
         userId: { equals: user.id ?? ''}
       }
     }
   });
-
-console.log(user, 'USER');
 
   const activeKeys = [...items, ...bottomItems].filter((item) => pathname?.includes(`${item?.key}`)).map(item => item?.key) as string[];
 

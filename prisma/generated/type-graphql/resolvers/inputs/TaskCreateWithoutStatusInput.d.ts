@@ -10,6 +10,6 @@ export declare class TaskCreateWithoutStatusInput {
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
     priority?: PriorityCreateNestedOneWithoutTaskInput | undefined;
-    files?: FileCreateNestedManyWithoutTaskInput | undefined;
     workspace?: WorkspaceCreateNestedOneWithoutTaskInput | undefined;
+    files?: FileCreateNestedManyWithoutTaskInput | undefined;
 }

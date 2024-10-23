@@ -1,3 +1,5 @@
 export declare class FileCreateWithoutTaskInput {
-    file: string;
+    url: string;
+    fileId: string;
+    name: string;
 }

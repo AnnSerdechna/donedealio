@@ -57,11 +57,11 @@ export const useUploadFile = () => {
       reader.onloadend = async () => {
         try {
           if (uploadedFile) {
-            await removeFile(uploadedFile.id, uploadedFile.url, 'image');
+            await removeFile(uploadedFile.id);
           }
 
           const base64String = reader.result as string;
-          const response = await uploadFile(base64String, 'image');
+          const response = await uploadFile(base64String);
 
           setUploadedFile({ url: response.url, id: response.id });
           setPreviewFileList([{ uid: file.uid, url: response.url, name: file.name, size: file.size }]);
@@ -80,7 +80,7 @@ export const useUploadFile = () => {
   const handleDeleteFile = async () => {
     if (uploadedFile) {
       try {
-        await removeFile(uploadedFile.id, uploadedFile.url, 'image');
+        await removeFile(uploadedFile.id);
         setUploadedFile(null);
         setPreviewFileList([]);
         setFileList([]);

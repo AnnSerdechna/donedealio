@@ -16,6 +16,6 @@ export declare class TaskUpdateInput {
     updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
     status?: StatusUpdateOneWithoutTaskNestedInput | undefined;
     priority?: PriorityUpdateOneWithoutTaskNestedInput | undefined;
-    files?: FileUpdateManyWithoutTaskNestedInput | undefined;
     workspace?: WorkspaceUpdateOneWithoutTaskNestedInput | undefined;
+    files?: FileUpdateManyWithoutTaskNestedInput | undefined;
 }

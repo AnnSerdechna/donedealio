@@ -7,5 +7,5 @@ export declare class FindManyFileArgs {
     cursor?: FileWhereUniqueInput | undefined;
     take?: number | undefined;
     skip?: number | undefined;
-    distinct?: Array<"id" | "file" | "taskId"> | undefined;
+    distinct?: Array<"id" | "url" | "fileId" | "name" | "taskId"> | undefined;
 }

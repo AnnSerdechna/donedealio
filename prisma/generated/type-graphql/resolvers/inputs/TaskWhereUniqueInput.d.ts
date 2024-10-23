@@ -24,6 +24,6 @@ export declare class TaskWhereUniqueInput {
     workspaceId?: StringFilter | undefined;
     status?: StatusNullableRelationFilter | undefined;
     priority?: PriorityNullableRelationFilter | undefined;
-    files?: FileListRelationFilter | undefined;
     workspace?: WorkspaceNullableRelationFilter | undefined;
+    files?: FileListRelationFilter | undefined;
 }

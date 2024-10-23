@@ -3,13 +3,12 @@
 import { FC, useState } from "react";
 import { useParams } from 'next/navigation';
 
-import { Badge, Button, Flex, Table, Upload, App } from 'antd';
+import { Badge, Button, Flex, Table, App } from 'antd';
 import type { TableProps } from 'antd';
 import dayjs from 'dayjs';
 import {
   MessageOutlined,
   DeleteTwoTone,
-  FileAddOutlined,
   PlusCircleOutlined,
 } from '@ant-design/icons';
 import {
@@ -24,6 +23,7 @@ import {
 
 import { DueDateField, StatusField, EditableText, OwnerField, AddTaskForm } from '@/components/user';
 import { getFormattedDate } from '@/functions/getFormattedDate';
+import { FilesUpload } from '../data-fields/files';
 
 type UpdatedDataType = { [key: string]: { set: string | Date } } | { [key: string]: { connect: { id: number } } };
 
@@ -210,12 +210,8 @@ export const TableView: FC = () => {
       dataIndex: 'files',
       key: 'files',
       align: 'center',
-      width: 100,
-      render: () => (
-        <Upload>
-          <Button type={'link'} icon={<FileAddOutlined style={{ fontSize: 18, color: '#000' }} />} />
-        </Upload>
-      )
+      width: 200,
+      render: (_, data) => <FilesUpload files={data?.files} taskId={data?.id} refetch={refetch} />
     },
   ];
 

@@ -1,5 +1,7 @@
 export declare class FileMinAggregate {
     id: number | null;
-    file: string | null;
+    url: string | null;
+    fileId: string | null;
+    name: string | null;
     taskId: string | null;
 }

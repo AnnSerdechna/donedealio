@@ -104,7 +104,9 @@ model Workspace {
 
 model File {
   id  Int @id @default(autoincrement())
-  file String
+  url String
+  fileId String @unique
+  name String
 
   task Task? @relation(fields: [taskId], references: [id])
   taskId  String?
@@ -125,10 +127,10 @@ model Task  {
   priority Priority?  @relation(fields: [priorityId], references: [id])
   priorityId Int?
 
-  files File[]
-
   workspace Workspace? @relation(fields: [workspaceId], references: [id])
   workspaceId String
+
+  files File[]
 }
 
 model Status {

@@ -1,5 +1,6 @@
 mutation CreateOneTask($data: TaskCreateInput!) {
   createOneTask(data: $data) {
+    id
     name
     message
     note
@@ -12,6 +13,8 @@ mutation CreateOneTask($data: TaskCreateInput!) {
     }
     files {
       id
+      url
+      fileId
     }
     workspace {
       id

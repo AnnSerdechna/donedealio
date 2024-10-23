@@ -107,17 +107,17 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", PriorityNullableRelationFilter_1.PriorityNullableRelationFilter)
 ], TaskWhereUniqueInput.prototype, "priority", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => FileListRelationFilter_1.FileListRelationFilter, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", FileListRelationFilter_1.FileListRelationFilter)
-], TaskWhereUniqueInput.prototype, "files", void 0);
-tslib_1.__decorate([
     TypeGraphQL.Field(_type => WorkspaceNullableRelationFilter_1.WorkspaceNullableRelationFilter, {
         nullable: true
     }),
     tslib_1.__metadata("design:type", WorkspaceNullableRelationFilter_1.WorkspaceNullableRelationFilter)
 ], TaskWhereUniqueInput.prototype, "workspace", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => FileListRelationFilter_1.FileListRelationFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", FileListRelationFilter_1.FileListRelationFilter)
+], TaskWhereUniqueInput.prototype, "files", void 0);
 exports.TaskWhereUniqueInput = TaskWhereUniqueInput = tslib_1.__decorate([
     TypeGraphQL.InputType("TaskWhereUniqueInput", {})
 ], TaskWhereUniqueInput);

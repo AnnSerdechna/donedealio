@@ -1,5 +1,7 @@
 export declare enum FileScalarFieldEnum {
     id = "id",
-    file = "file",
+    url = "url",
+    fileId = "fileId",
+    name = "name",
     taskId = "taskId"
 }

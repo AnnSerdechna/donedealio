@@ -6,7 +6,9 @@ import { FileSumOrderByAggregateInput } from "../inputs/FileSumOrderByAggregateI
 import { SortOrderInput } from "../inputs/SortOrderInput";
 export declare class FileOrderByWithAggregationInput {
     id?: "asc" | "desc" | undefined;
-    file?: "asc" | "desc" | undefined;
+    url?: "asc" | "desc" | undefined;
+    fileId?: "asc" | "desc" | undefined;
+    name?: "asc" | "desc" | undefined;
     taskId?: SortOrderInput | undefined;
     _count?: FileCountOrderByAggregateInput | undefined;
     _avg?: FileAvgOrderByAggregateInput | undefined;

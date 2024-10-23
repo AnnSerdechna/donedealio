@@ -9,7 +9,7 @@ import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import localeData from 'dayjs/plugin/localeData';
 import 'dayjs/locale/en'; 
 
-import { Task, useTasksQuery } from '@/graphql/types';
+import { Task, useTaskQuery, useTasksQuery } from '@/graphql/types';
 import { CreateTaskForm, UpdateTaskForm, ControlPanel, TasksList } from '@/components/user';
 import { Modal } from '@/components/ui';
 
@@ -28,6 +28,15 @@ export const CalendarView: FC = () => {
       workspaceId: workspaceId as string
     }
   });
+
+  const { data: taskData } = useTaskQuery({
+    variables: {
+      where: {
+        id: selectedTaskId
+      }
+    }
+  })
+
 
   const headerButtonRef = useRef(false);
 
@@ -84,10 +93,12 @@ export const CalendarView: FC = () => {
         onCancel={handleCloseCreateTask}
       >
         <CreateTaskForm
+          taskId={selectedTaskId}
           form={createTaskForm[0]}
-          onCloseForm={handleCloseCreateTask}
-          refetchTasks={refetch}
-        />
+          files={taskData?.task?.files ?? []}
+          onCancel={handleCloseCreateTask}
+          refetchTasks={refetch} 
+          />
       </Modal>
 
       <Modal
@@ -97,7 +108,8 @@ export const CalendarView: FC = () => {
         <UpdateTaskForm
           taskId={selectedTaskId}
           form={updateTaskForm[0]}
-          onCloseForm={handleCloseUpdateTask}
+          files={taskData?.task?.files ?? []}
+          onCancel={handleCloseUpdateTask}
           refetchTasks={refetch}
         />
       </Modal>

@@ -1,6 +1,6 @@
-query Tasks($workspaceId: String!) {
-  tasks(where: { workspaceId: { equals: $workspaceId } }, orderBy: {createdAt: asc}) {
-    id
+query task($where: TaskWhereUniqueInput!) {
+  task(where: $where) {
+     id
     name
     message
     note

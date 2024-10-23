@@ -11,6 +11,6 @@ import { TaskWorkspaceArgs } from "./args/TaskWorkspaceArgs";
 export declare class TaskRelationsResolver {
     status(task: Task, ctx: any, info: GraphQLResolveInfo, args: TaskStatusArgs): Promise<Status | null>;
     priority(task: Task, ctx: any, info: GraphQLResolveInfo, args: TaskPriorityArgs): Promise<Priority | null>;
-    files(task: Task, ctx: any, info: GraphQLResolveInfo, args: TaskFilesArgs): Promise<File[]>;
     workspace(task: Task, ctx: any, info: GraphQLResolveInfo, args: TaskWorkspaceArgs): Promise<Workspace | null>;
+    files(task: Task, ctx: any, info: GraphQLResolveInfo, args: TaskFilesArgs): Promise<File[]>;
 }

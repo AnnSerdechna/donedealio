@@ -572,10 +572,12 @@ type CreateManyAndReturnAccount {
 }
 
 type CreateManyAndReturnFile {
-  file: String!
+  fileId: String!
   id: Int!
+  name: String!
   task(where: TaskWhereInput): Task
   taskId: String
+  url: String!
 }
 
 type CreateManyAndReturnPasswordResetToken {
@@ -738,10 +740,12 @@ input EnumRoleWithAggregatesFilter {
 }
 
 type File {
-  file: String!
+  fileId: String!
   id: Int!
+  name: String!
   task(where: TaskWhereInput): Task
   taskId: String
+  url: String!
 }
 
 type FileAvgAggregate {
@@ -754,31 +758,41 @@ input FileAvgOrderByAggregateInput {
 
 type FileCountAggregate {
   _all: Int!
-  file: Int!
+  fileId: Int!
   id: Int!
+  name: Int!
   taskId: Int!
+  url: Int!
 }
 
 input FileCountOrderByAggregateInput {
-  file: SortOrder
+  fileId: SortOrder
   id: SortOrder
+  name: SortOrder
   taskId: SortOrder
+  url: SortOrder
 }
 
 input FileCreateInput {
-  file: String!
+  fileId: String!
+  name: String!
   task: TaskCreateNestedOneWithoutFilesInput
+  url: String!
 }
 
 input FileCreateManyInput {
-  file: String!
+  fileId: String!
   id: Int
+  name: String!
   taskId: String
+  url: String!
 }
 
 input FileCreateManyTaskInput {
-  file: String!
+  fileId: String!
   id: Int
+  name: String!
+  url: String!
 }
 
 input FileCreateManyTaskInputEnvelope {
@@ -799,7 +813,9 @@ input FileCreateOrConnectWithoutTaskInput {
 }
 
 input FileCreateWithoutTaskInput {
-  file: String!
+  fileId: String!
+  name: String!
+  url: String!
 }
 
 type FileGroupBy {
@@ -808,9 +824,11 @@ type FileGroupBy {
   _max: FileMaxAggregate
   _min: FileMinAggregate
   _sum: FileSumAggregate
-  file: String!
+  fileId: String!
   id: Int!
+  name: String!
   taskId: String
+  url: String!
 }
 
 input FileListRelationFilter {
@@ -820,27 +838,35 @@ input FileListRelationFilter {
 }
 
 type FileMaxAggregate {
-  file: String
+  fileId: String
   id: Int
+  name: String
   taskId: String
+  url: String
 }
 
 input FileMaxOrderByAggregateInput {
-  file: SortOrder
+  fileId: SortOrder
   id: SortOrder
+  name: SortOrder
   taskId: SortOrder
+  url: SortOrder
 }
 
 type FileMinAggregate {
-  file: String
+  fileId: String
   id: Int
+  name: String
   taskId: String
+  url: String
 }
 
 input FileMinOrderByAggregateInput {
-  file: SortOrder
+  fileId: SortOrder
   id: SortOrder
+  name: SortOrder
   taskId: SortOrder
+  url: SortOrder
 }
 
 input FileOrderByRelationAggregateInput {
@@ -853,40 +879,50 @@ input FileOrderByWithAggregationInput {
   _max: FileMaxOrderByAggregateInput
   _min: FileMinOrderByAggregateInput
   _sum: FileSumOrderByAggregateInput
-  file: SortOrder
+  fileId: SortOrder
   id: SortOrder
+  name: SortOrder
   taskId: SortOrderInput
+  url: SortOrder
 }
 
 input FileOrderByWithRelationInput {
-  file: SortOrder
+  fileId: SortOrder
   id: SortOrder
+  name: SortOrder
   task: TaskOrderByWithRelationInput
   taskId: SortOrderInput
+  url: SortOrder
 }
 
 enum FileScalarFieldEnum {
-  file
+  fileId
   id
+  name
   taskId
+  url
 }
 
 input FileScalarWhereInput {
   AND: [FileScalarWhereInput!]
   NOT: [FileScalarWhereInput!]
   OR: [FileScalarWhereInput!]
-  file: StringFilter
+  fileId: StringFilter
   id: IntFilter
+  name: StringFilter
   taskId: StringNullableFilter
+  url: StringFilter
 }
 
 input FileScalarWhereWithAggregatesInput {
   AND: [FileScalarWhereWithAggregatesInput!]
   NOT: [FileScalarWhereWithAggregatesInput!]
   OR: [FileScalarWhereWithAggregatesInput!]
-  file: StringWithAggregatesFilter
+  fileId: StringWithAggregatesFilter
   id: IntWithAggregatesFilter
+  name: StringWithAggregatesFilter
   taskId: StringNullableWithAggregatesFilter
+  url: StringWithAggregatesFilter
 }
 
 type FileSumAggregate {
@@ -898,12 +934,16 @@ input FileSumOrderByAggregateInput {
 }
 
 input FileUpdateInput {
-  file: StringFieldUpdateOperationsInput
+  fileId: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
   task: TaskUpdateOneWithoutFilesNestedInput
+  url: StringFieldUpdateOperationsInput
 }
 
 input FileUpdateManyMutationInput {
-  file: StringFieldUpdateOperationsInput
+  fileId: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  url: StringFieldUpdateOperationsInput
 }
 
 input FileUpdateManyWithWhereWithoutTaskInput {
@@ -931,7 +971,9 @@ input FileUpdateWithWhereUniqueWithoutTaskInput {
 }
 
 input FileUpdateWithoutTaskInput {
-  file: StringFieldUpdateOperationsInput
+  fileId: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  url: StringFieldUpdateOperationsInput
 }
 
 input FileUpsertWithWhereUniqueWithoutTaskInput {
@@ -944,20 +986,24 @@ input FileWhereInput {
   AND: [FileWhereInput!]
   NOT: [FileWhereInput!]
   OR: [FileWhereInput!]
-  file: StringFilter
+  fileId: StringFilter
   id: IntFilter
+  name: StringFilter
   task: TaskNullableRelationFilter
   taskId: StringNullableFilter
+  url: StringFilter
 }
 
 input FileWhereUniqueInput {
   AND: [FileWhereInput!]
   NOT: [FileWhereInput!]
   OR: [FileWhereInput!]
-  file: StringFilter
+  fileId: String
   id: Int
+  name: StringFilter
   task: TaskNullableRelationFilter
   taskId: StringNullableFilter
+  url: StringFilter
 }
 
 input IntFilter {

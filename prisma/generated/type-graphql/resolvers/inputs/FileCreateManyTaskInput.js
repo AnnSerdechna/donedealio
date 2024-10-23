@@ -17,7 +17,19 @@ tslib_1.__decorate([
         nullable: false
     }),
     tslib_1.__metadata("design:type", String)
-], FileCreateManyTaskInput.prototype, "file", void 0);
+], FileCreateManyTaskInput.prototype, "url", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", String)
+], FileCreateManyTaskInput.prototype, "fileId", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", String)
+], FileCreateManyTaskInput.prototype, "name", void 0);
 exports.FileCreateManyTaskInput = FileCreateManyTaskInput = tslib_1.__decorate([
     TypeGraphQL.InputType("FileCreateManyTaskInput", {})
 ], FileCreateManyTaskInput);

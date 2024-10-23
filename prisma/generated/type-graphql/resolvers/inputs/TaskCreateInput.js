@@ -65,17 +65,17 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", PriorityCreateNestedOneWithoutTaskInput_1.PriorityCreateNestedOneWithoutTaskInput)
 ], TaskCreateInput.prototype, "priority", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => FileCreateNestedManyWithoutTaskInput_1.FileCreateNestedManyWithoutTaskInput, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", FileCreateNestedManyWithoutTaskInput_1.FileCreateNestedManyWithoutTaskInput)
-], TaskCreateInput.prototype, "files", void 0);
-tslib_1.__decorate([
     TypeGraphQL.Field(_type => WorkspaceCreateNestedOneWithoutTaskInput_1.WorkspaceCreateNestedOneWithoutTaskInput, {
         nullable: true
     }),
     tslib_1.__metadata("design:type", WorkspaceCreateNestedOneWithoutTaskInput_1.WorkspaceCreateNestedOneWithoutTaskInput)
 ], TaskCreateInput.prototype, "workspace", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => FileCreateNestedManyWithoutTaskInput_1.FileCreateNestedManyWithoutTaskInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", FileCreateNestedManyWithoutTaskInput_1.FileCreateNestedManyWithoutTaskInput)
+], TaskCreateInput.prototype, "files", void 0);
 exports.TaskCreateInput = TaskCreateInput = tslib_1.__decorate([
     TypeGraphQL.InputType("TaskCreateInput", {})
 ], TaskCreateInput);

@@ -14,7 +14,10 @@ query Workspace($where: WorkspaceWhereUniqueInput!) {
       note
       dueDate
       files {
-        id
+        id 
+        url
+        name
+        fileId
       }
       status {
         id

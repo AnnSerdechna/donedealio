@@ -1,0 +1,8 @@
+mutation createFile($data: FileCreateInput!) {
+  createOneFile(data: $data) {
+    url
+    name
+    fileId
+    taskId
+  }
+}

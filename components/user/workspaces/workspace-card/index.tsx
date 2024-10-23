@@ -6,7 +6,6 @@ import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
 
 import { Button, Text } from '@/components/ui';
-import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { WorkspaceValuesProps } from '@/schemas/types';
 
 type WorkspaceCardProps = WorkspaceValuesProps & {

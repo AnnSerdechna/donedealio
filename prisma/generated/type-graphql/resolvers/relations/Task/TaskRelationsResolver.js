@@ -36,17 +36,6 @@ let TaskRelationsResolver = class TaskRelationsResolver {
             ...(_count && (0, helpers_1.transformCountFieldIntoSelectRelationsCount)(_count)),
         });
     }
-    async files(task, ctx, info, args) {
-        const { _count } = (0, helpers_1.transformInfoIntoPrismaArgs)(info);
-        return (0, helpers_1.getPrismaFromContext)(ctx).task.findUniqueOrThrow({
-            where: {
-                id: task.id,
-            },
-        }).files({
-            ...args,
-            ...(_count && (0, helpers_1.transformCountFieldIntoSelectRelationsCount)(_count)),
-        });
-    }
     async workspace(task, ctx, info, args) {
         const { _count } = (0, helpers_1.transformInfoIntoPrismaArgs)(info);
         return (0, helpers_1.getPrismaFromContext)(ctx).task.findUniqueOrThrow({
@@ -54,6 +43,17 @@ let TaskRelationsResolver = class TaskRelationsResolver {
                 id: task.id,
             },
         }).workspace({
+            ...args,
+            ...(_count && (0, helpers_1.transformCountFieldIntoSelectRelationsCount)(_count)),
+        });
+    }
+    async files(task, ctx, info, args) {
+        const { _count } = (0, helpers_1.transformInfoIntoPrismaArgs)(info);
+        return (0, helpers_1.getPrismaFromContext)(ctx).task.findUniqueOrThrow({
+            where: {
+                id: task.id,
+            },
+        }).files({
             ...args,
             ...(_count && (0, helpers_1.transformCountFieldIntoSelectRelationsCount)(_count)),
         });
@@ -85,18 +85,6 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:returntype", Promise)
 ], TaskRelationsResolver.prototype, "priority", null);
 tslib_1.__decorate([
-    TypeGraphQL.FieldResolver(_type => [File_1.File], {
-        nullable: false
-    }),
-    tslib_1.__param(0, TypeGraphQL.Root()),
-    tslib_1.__param(1, TypeGraphQL.Ctx()),
-    tslib_1.__param(2, TypeGraphQL.Info()),
-    tslib_1.__param(3, TypeGraphQL.Args()),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Task_1.Task, Object, Object, TaskFilesArgs_1.TaskFilesArgs]),
-    tslib_1.__metadata("design:returntype", Promise)
-], TaskRelationsResolver.prototype, "files", null);
-tslib_1.__decorate([
     TypeGraphQL.FieldResolver(_type => Workspace_1.Workspace, {
         nullable: true
     }),
@@ -108,6 +96,18 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Task_1.Task, Object, Object, TaskWorkspaceArgs_1.TaskWorkspaceArgs]),
     tslib_1.__metadata("design:returntype", Promise)
 ], TaskRelationsResolver.prototype, "workspace", null);
+tslib_1.__decorate([
+    TypeGraphQL.FieldResolver(_type => [File_1.File], {
+        nullable: false
+    }),
+    tslib_1.__param(0, TypeGraphQL.Root()),
+    tslib_1.__param(1, TypeGraphQL.Ctx()),
+    tslib_1.__param(2, TypeGraphQL.Info()),
+    tslib_1.__param(3, TypeGraphQL.Args()),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Task_1.Task, Object, Object, TaskFilesArgs_1.TaskFilesArgs]),
+    tslib_1.__metadata("design:returntype", Promise)
+], TaskRelationsResolver.prototype, "files", null);
 exports.TaskRelationsResolver = TaskRelationsResolver = tslib_1.__decorate([
     TypeGraphQL.Resolver(_of => Task_1.Task)
 ], TaskRelationsResolver);

@@ -12,7 +12,19 @@ tslib_1.__decorate([
         nullable: true
     }),
     tslib_1.__metadata("design:type", StringFieldUpdateOperationsInput_1.StringFieldUpdateOperationsInput)
-], FileUpdateWithoutTaskInput.prototype, "file", void 0);
+], FileUpdateWithoutTaskInput.prototype, "url", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput_1.StringFieldUpdateOperationsInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StringFieldUpdateOperationsInput_1.StringFieldUpdateOperationsInput)
+], FileUpdateWithoutTaskInput.prototype, "fileId", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput_1.StringFieldUpdateOperationsInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StringFieldUpdateOperationsInput_1.StringFieldUpdateOperationsInput)
+], FileUpdateWithoutTaskInput.prototype, "name", void 0);
 exports.FileUpdateWithoutTaskInput = FileUpdateWithoutTaskInput = tslib_1.__decorate([
     TypeGraphQL.InputType("FileUpdateWithoutTaskInput", {})
 ], FileUpdateWithoutTaskInput);

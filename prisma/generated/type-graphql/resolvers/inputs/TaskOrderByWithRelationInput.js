@@ -85,17 +85,17 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", PriorityOrderByWithRelationInput_1.PriorityOrderByWithRelationInput)
 ], TaskOrderByWithRelationInput.prototype, "priority", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => FileOrderByRelationAggregateInput_1.FileOrderByRelationAggregateInput, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", FileOrderByRelationAggregateInput_1.FileOrderByRelationAggregateInput)
-], TaskOrderByWithRelationInput.prototype, "files", void 0);
-tslib_1.__decorate([
     TypeGraphQL.Field(_type => WorkspaceOrderByWithRelationInput_1.WorkspaceOrderByWithRelationInput, {
         nullable: true
     }),
     tslib_1.__metadata("design:type", WorkspaceOrderByWithRelationInput_1.WorkspaceOrderByWithRelationInput)
 ], TaskOrderByWithRelationInput.prototype, "workspace", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => FileOrderByRelationAggregateInput_1.FileOrderByRelationAggregateInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", FileOrderByRelationAggregateInput_1.FileOrderByRelationAggregateInput)
+], TaskOrderByWithRelationInput.prototype, "files", void 0);
 exports.TaskOrderByWithRelationInput = TaskOrderByWithRelationInput = tslib_1.__decorate([
     TypeGraphQL.InputType("TaskOrderByWithRelationInput", {})
 ], TaskOrderByWithRelationInput);

@@ -1,5 +1,7 @@
 export declare class FileCreateManyInput {
     id?: number | undefined;
-    file: string;
+    url: string;
+    fileId: string;
+    name: string;
     taskId?: string | undefined;
 }

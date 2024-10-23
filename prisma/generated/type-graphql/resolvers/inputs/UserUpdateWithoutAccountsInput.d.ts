@@ -14,6 +14,7 @@ export declare class UserUpdateWithoutAccountsInput {
     password?: NullableStringFieldUpdateOperationsInput | undefined;
     role?: EnumRoleFieldUpdateOperationsInput | undefined;
     image?: NullableStringFieldUpdateOperationsInput | undefined;
+    imageId?: NullableStringFieldUpdateOperationsInput | undefined;
     createdAt?: DateTimeFieldUpdateOperationsInput | undefined;
     updatedAt?: DateTimeFieldUpdateOperationsInput | undefined;
     isTwoFactorEnable?: BoolFieldUpdateOperationsInput | undefined;

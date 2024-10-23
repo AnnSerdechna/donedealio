@@ -6,7 +6,9 @@ const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
 var FileScalarFieldEnum;
 (function (FileScalarFieldEnum) {
     FileScalarFieldEnum["id"] = "id";
-    FileScalarFieldEnum["file"] = "file";
+    FileScalarFieldEnum["url"] = "url";
+    FileScalarFieldEnum["fileId"] = "fileId";
+    FileScalarFieldEnum["name"] = "name";
     FileScalarFieldEnum["taskId"] = "taskId";
 })(FileScalarFieldEnum || (exports.FileScalarFieldEnum = FileScalarFieldEnum = {}));
 TypeGraphQL.registerEnumType(FileScalarFieldEnum, {

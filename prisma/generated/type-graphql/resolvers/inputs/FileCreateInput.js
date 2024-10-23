@@ -12,7 +12,19 @@ tslib_1.__decorate([
         nullable: false
     }),
     tslib_1.__metadata("design:type", String)
-], FileCreateInput.prototype, "file", void 0);
+], FileCreateInput.prototype, "url", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", String)
+], FileCreateInput.prototype, "fileId", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", String)
+], FileCreateInput.prototype, "name", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => TaskCreateNestedOneWithoutFilesInput_1.TaskCreateNestedOneWithoutFilesInput, {
         nullable: true

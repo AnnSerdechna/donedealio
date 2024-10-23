@@ -23,6 +23,7 @@ model User {
   password                String?
   role                    Role      @default(USER)
   image                   String?
+  imageId                 String?
   createdAt               DateTime  @default(now())
   updatedAt               DateTime  @updatedAt
   isTwoFactorEnable       Boolean @default(false)
@@ -95,7 +96,7 @@ model Workspace {
   description   String?   
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  task Task[] 
+  task          Task[] 
 
   user    User?    @relation(fields: [userId], references: [id])
   userId  String?
@@ -103,7 +104,9 @@ model Workspace {
 
 model File {
   id  Int @id @default(autoincrement())
-  file String
+  url String
+  fileId String @unique
+  name String
 
   task Task? @relation(fields: [taskId], references: [id])
   taskId  String?
@@ -124,10 +127,10 @@ model Task  {
   priority Priority?  @relation(fields: [priorityId], references: [id])
   priorityId Int?
 
-  files File[]
-
-  workspace Workspace @relation(fields: [workspaceId], references: [id])
+  workspace Workspace? @relation(fields: [workspaceId], references: [id])
   workspaceId String
+
+  files File[]
 }
 
 model Status {

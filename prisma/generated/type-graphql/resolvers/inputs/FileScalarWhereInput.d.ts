@@ -6,6 +6,8 @@ export declare class FileScalarWhereInput {
     OR?: FileScalarWhereInput[] | undefined;
     NOT?: FileScalarWhereInput[] | undefined;
     id?: IntFilter | undefined;
-    file?: StringFilter | undefined;
+    url?: StringFilter | undefined;
+    fileId?: StringFilter | undefined;
+    name?: StringFilter | undefined;
     taskId?: StringNullableFilter | undefined;
 }

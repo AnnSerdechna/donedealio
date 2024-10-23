@@ -11,7 +11,19 @@ tslib_1.__decorate([
         nullable: false
     }),
     tslib_1.__metadata("design:type", String)
-], FileCreateWithoutTaskInput.prototype, "file", void 0);
+], FileCreateWithoutTaskInput.prototype, "url", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", String)
+], FileCreateWithoutTaskInput.prototype, "fileId", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", String)
+], FileCreateWithoutTaskInput.prototype, "name", void 0);
 exports.FileCreateWithoutTaskInput = FileCreateWithoutTaskInput = tslib_1.__decorate([
     TypeGraphQL.InputType("FileCreateWithoutTaskInput", {})
 ], FileCreateWithoutTaskInput);

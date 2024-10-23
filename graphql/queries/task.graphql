@@ -1,0 +1,28 @@
+query task($where: TaskWhereUniqueInput!) {
+  task(where: $where) {
+     id
+    name
+    message
+    note
+    dueDate
+    files {
+      id
+      url
+      name
+      fileId
+    }
+    status {
+      id
+      name
+      color
+    }
+     priority {
+      id
+      name
+      color
+    }
+    workspace {
+      id
+    }
+  }
+}

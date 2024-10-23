@@ -9,7 +9,7 @@ const NullableDateTimeFieldUpdateOperationsInput_1 = require("../inputs/Nullable
 const NullableStringFieldUpdateOperationsInput_1 = require("../inputs/NullableStringFieldUpdateOperationsInput");
 const PriorityUpdateOneWithoutTaskNestedInput_1 = require("../inputs/PriorityUpdateOneWithoutTaskNestedInput");
 const StringFieldUpdateOperationsInput_1 = require("../inputs/StringFieldUpdateOperationsInput");
-const WorkspaceUpdateOneRequiredWithoutTaskNestedInput_1 = require("../inputs/WorkspaceUpdateOneRequiredWithoutTaskNestedInput");
+const WorkspaceUpdateOneWithoutTaskNestedInput_1 = require("../inputs/WorkspaceUpdateOneWithoutTaskNestedInput");
 let TaskUpdateWithoutStatusInput = class TaskUpdateWithoutStatusInput {
 };
 exports.TaskUpdateWithoutStatusInput = TaskUpdateWithoutStatusInput;
@@ -62,17 +62,17 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", PriorityUpdateOneWithoutTaskNestedInput_1.PriorityUpdateOneWithoutTaskNestedInput)
 ], TaskUpdateWithoutStatusInput.prototype, "priority", void 0);
 tslib_1.__decorate([
+    TypeGraphQL.Field(_type => WorkspaceUpdateOneWithoutTaskNestedInput_1.WorkspaceUpdateOneWithoutTaskNestedInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", WorkspaceUpdateOneWithoutTaskNestedInput_1.WorkspaceUpdateOneWithoutTaskNestedInput)
+], TaskUpdateWithoutStatusInput.prototype, "workspace", void 0);
+tslib_1.__decorate([
     TypeGraphQL.Field(_type => FileUpdateManyWithoutTaskNestedInput_1.FileUpdateManyWithoutTaskNestedInput, {
         nullable: true
     }),
     tslib_1.__metadata("design:type", FileUpdateManyWithoutTaskNestedInput_1.FileUpdateManyWithoutTaskNestedInput)
 ], TaskUpdateWithoutStatusInput.prototype, "files", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => WorkspaceUpdateOneRequiredWithoutTaskNestedInput_1.WorkspaceUpdateOneRequiredWithoutTaskNestedInput, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", WorkspaceUpdateOneRequiredWithoutTaskNestedInput_1.WorkspaceUpdateOneRequiredWithoutTaskNestedInput)
-], TaskUpdateWithoutStatusInput.prototype, "workspace", void 0);
 exports.TaskUpdateWithoutStatusInput = TaskUpdateWithoutStatusInput = tslib_1.__decorate([
     TypeGraphQL.InputType("TaskUpdateWithoutStatusInput", {})
 ], TaskUpdateWithoutStatusInput);

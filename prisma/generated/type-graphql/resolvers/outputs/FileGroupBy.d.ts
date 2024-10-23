@@ -5,7 +5,9 @@ import { FileMinAggregate } from "../outputs/FileMinAggregate";
 import { FileSumAggregate } from "../outputs/FileSumAggregate";
 export declare class FileGroupBy {
     id: number;
-    file: string;
+    url: string;
+    fileId: string;
+    name: string;
     taskId: string | null;
     _count: FileCountAggregate | null;
     _avg: FileAvgAggregate | null;

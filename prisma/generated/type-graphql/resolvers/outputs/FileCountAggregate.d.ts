@@ -1,6 +1,8 @@
 export declare class FileCountAggregate {
     id: number;
-    file: number;
+    url: number;
+    fileId: number;
+    name: number;
     taskId: number;
     _all: number;
 }

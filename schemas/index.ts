@@ -11,6 +11,8 @@ export const ProfileSchema = z.object({
     .string()
     .email({ message: 'Email isn\'t valid!' }
   )),
+  image: z.string().or(z.null()),
+  imageId: z.string().or(z.null()),
   password: z.optional(z.string()),
   newPassword: z.optional(z.string()),
   confirmPassword: z.optional(z.string())
@@ -98,4 +100,9 @@ export const RegisterSchema = z.object({
   {
     message: "Passwords don't match",
     path: ['confirmPassword'],
+});
+
+export const WorkspaceSchema = z.object({
+  name: z.string(),
+  description: z.optional(z.string()).or(z.null()),
 });

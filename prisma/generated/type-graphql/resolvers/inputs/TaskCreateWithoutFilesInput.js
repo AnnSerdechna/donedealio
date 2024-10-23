@@ -65,7 +65,7 @@ tslib_1.__decorate([
 ], TaskCreateWithoutFilesInput.prototype, "priority", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => WorkspaceCreateNestedOneWithoutTaskInput_1.WorkspaceCreateNestedOneWithoutTaskInput, {
-        nullable: false
+        nullable: true
     }),
     tslib_1.__metadata("design:type", WorkspaceCreateNestedOneWithoutTaskInput_1.WorkspaceCreateNestedOneWithoutTaskInput)
 ], TaskCreateWithoutFilesInput.prototype, "workspace", void 0);

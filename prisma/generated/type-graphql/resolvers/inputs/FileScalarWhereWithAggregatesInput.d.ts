@@ -6,6 +6,8 @@ export declare class FileScalarWhereWithAggregatesInput {
     OR?: FileScalarWhereWithAggregatesInput[] | undefined;
     NOT?: FileScalarWhereWithAggregatesInput[] | undefined;
     id?: IntWithAggregatesFilter | undefined;
-    file?: StringWithAggregatesFilter | undefined;
+    url?: StringWithAggregatesFilter | undefined;
+    fileId?: StringWithAggregatesFilter | undefined;
+    name?: StringWithAggregatesFilter | undefined;
     taskId?: StringNullableWithAggregatesFilter | undefined;
 }

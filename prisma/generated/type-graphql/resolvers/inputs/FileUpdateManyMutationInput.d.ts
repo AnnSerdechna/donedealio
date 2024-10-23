@@ -1,4 +1,6 @@
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 export declare class FileUpdateManyMutationInput {
-    file?: StringFieldUpdateOperationsInput | undefined;
+    url?: StringFieldUpdateOperationsInput | undefined;
+    fileId?: StringFieldUpdateOperationsInput | undefined;
+    name?: StringFieldUpdateOperationsInput | undefined;
 }

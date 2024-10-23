@@ -7,7 +7,7 @@ import { StatusNullableRelationFilter } from "../inputs/StatusNullableRelationFi
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { TaskWhereInput } from "../inputs/TaskWhereInput";
-import { WorkspaceRelationFilter } from "../inputs/WorkspaceRelationFilter";
+import { WorkspaceNullableRelationFilter } from "../inputs/WorkspaceNullableRelationFilter";
 export declare class TaskWhereUniqueInput {
     id?: string | undefined;
     AND?: TaskWhereInput[] | undefined;
@@ -24,6 +24,6 @@ export declare class TaskWhereUniqueInput {
     workspaceId?: StringFilter | undefined;
     status?: StatusNullableRelationFilter | undefined;
     priority?: PriorityNullableRelationFilter | undefined;
+    workspace?: WorkspaceNullableRelationFilter | undefined;
     files?: FileListRelationFilter | undefined;
-    workspace?: WorkspaceRelationFilter | undefined;
 }

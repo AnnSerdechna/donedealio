@@ -7,7 +7,9 @@ export declare class FileWhereInput {
     OR?: FileWhereInput[] | undefined;
     NOT?: FileWhereInput[] | undefined;
     id?: IntFilter | undefined;
-    file?: StringFilter | undefined;
+    url?: StringFilter | undefined;
+    fileId?: StringFilter | undefined;
+    name?: StringFilter | undefined;
     taskId?: StringNullableFilter | undefined;
     task?: TaskNullableRelationFilter | undefined;
 }

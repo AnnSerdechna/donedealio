@@ -17,7 +17,19 @@ tslib_1.__decorate([
         nullable: false
     }),
     tslib_1.__metadata("design:type", String)
-], File.prototype, "file", void 0);
+], File.prototype, "url", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", String)
+], File.prototype, "fileId", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", String)
+], File.prototype, "name", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
         nullable: true

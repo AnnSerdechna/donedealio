@@ -9,6 +9,7 @@ export declare class UserGroupBy {
     password: string | null;
     role: "ADMIN" | "MEMBER" | "USER";
     image: string | null;
+    imageId: string | null;
     createdAt: Date;
     updatedAt: Date;
     isTwoFactorEnable: boolean;

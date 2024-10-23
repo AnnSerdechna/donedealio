@@ -53,12 +53,17 @@ export const AvaratBtn: FC<AvaratBtnProps> = ({ onLogout }) => {
   
   return (
     <Dropdown menu={{ items }}>
-      <Avatar
-        size={'large'}
-        src={user?.image}
-      >
-        {!!user?.name ? getAvatarLabel(user?.name) : ''}
-      </Avatar>
+      {!!user?.image ? (
+        <Avatar
+          size={'large'}
+          src={!!user?.image ? user?.image : null}
+          style={{objectFit: 'contain', objectPosition: 'center'}}
+        />
+      ) : (
+        <Avatar size={'large'}>
+          {!!user?.name ? getAvatarLabel(user?.name) : ''}
+        </Avatar>
+      )}
     </Dropdown>
   )
 }

@@ -16,6 +16,6 @@ export declare class TaskOrderByWithRelationInput {
     workspaceId?: "asc" | "desc" | undefined;
     status?: StatusOrderByWithRelationInput | undefined;
     priority?: PriorityOrderByWithRelationInput | undefined;
-    files?: FileOrderByRelationAggregateInput | undefined;
     workspace?: WorkspaceOrderByWithRelationInput | undefined;
+    files?: FileOrderByRelationAggregateInput | undefined;
 }

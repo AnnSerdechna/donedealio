@@ -64,7 +64,7 @@ export const profile = async (values: ProfileValuesProps): Promise<MessageProps>
     values.confirmPassword = undefined;
   }
 
-  const updatedUser = await prisma.user.update({
+  await prisma.user.update({
     where: {id: dbUser.id },
     data: {
       ...values

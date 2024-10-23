@@ -1,4 +1,6 @@
 export declare class FileCreateManyTaskInput {
     id?: number | undefined;
-    file: string;
+    url: string;
+    fileId: string;
+    name: string;
 }

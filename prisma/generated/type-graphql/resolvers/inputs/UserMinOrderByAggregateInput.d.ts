@@ -6,6 +6,7 @@ export declare class UserMinOrderByAggregateInput {
     password?: "asc" | "desc" | undefined;
     role?: "asc" | "desc" | undefined;
     image?: "asc" | "desc" | undefined;
+    imageId?: "asc" | "desc" | undefined;
     createdAt?: "asc" | "desc" | undefined;
     updatedAt?: "asc" | "desc" | undefined;
     isTwoFactorEnable?: "asc" | "desc" | undefined;

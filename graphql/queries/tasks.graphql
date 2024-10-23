@@ -7,6 +7,9 @@ query Tasks($workspaceId: String!) {
     dueDate
     files {
       id
+      url
+      name
+      fileId
     }
     status {
       id

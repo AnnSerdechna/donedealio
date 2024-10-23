@@ -2,8 +2,7 @@ mutation CreateOneUser($data: UserCreateInput!) {
   createOneUser(data: $data) {
     id
     email
-    firstName
-    lastName
+    name
     password
     role
   }

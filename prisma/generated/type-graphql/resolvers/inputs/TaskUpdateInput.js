@@ -10,7 +10,7 @@ const NullableStringFieldUpdateOperationsInput_1 = require("../inputs/NullableSt
 const PriorityUpdateOneWithoutTaskNestedInput_1 = require("../inputs/PriorityUpdateOneWithoutTaskNestedInput");
 const StatusUpdateOneWithoutTaskNestedInput_1 = require("../inputs/StatusUpdateOneWithoutTaskNestedInput");
 const StringFieldUpdateOperationsInput_1 = require("../inputs/StringFieldUpdateOperationsInput");
-const WorkspaceUpdateOneRequiredWithoutTaskNestedInput_1 = require("../inputs/WorkspaceUpdateOneRequiredWithoutTaskNestedInput");
+const WorkspaceUpdateOneWithoutTaskNestedInput_1 = require("../inputs/WorkspaceUpdateOneWithoutTaskNestedInput");
 let TaskUpdateInput = class TaskUpdateInput {
 };
 exports.TaskUpdateInput = TaskUpdateInput;
@@ -69,17 +69,17 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", PriorityUpdateOneWithoutTaskNestedInput_1.PriorityUpdateOneWithoutTaskNestedInput)
 ], TaskUpdateInput.prototype, "priority", void 0);
 tslib_1.__decorate([
+    TypeGraphQL.Field(_type => WorkspaceUpdateOneWithoutTaskNestedInput_1.WorkspaceUpdateOneWithoutTaskNestedInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", WorkspaceUpdateOneWithoutTaskNestedInput_1.WorkspaceUpdateOneWithoutTaskNestedInput)
+], TaskUpdateInput.prototype, "workspace", void 0);
+tslib_1.__decorate([
     TypeGraphQL.Field(_type => FileUpdateManyWithoutTaskNestedInput_1.FileUpdateManyWithoutTaskNestedInput, {
         nullable: true
     }),
     tslib_1.__metadata("design:type", FileUpdateManyWithoutTaskNestedInput_1.FileUpdateManyWithoutTaskNestedInput)
 ], TaskUpdateInput.prototype, "files", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => WorkspaceUpdateOneRequiredWithoutTaskNestedInput_1.WorkspaceUpdateOneRequiredWithoutTaskNestedInput, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", WorkspaceUpdateOneRequiredWithoutTaskNestedInput_1.WorkspaceUpdateOneRequiredWithoutTaskNestedInput)
-], TaskUpdateInput.prototype, "workspace", void 0);
 exports.TaskUpdateInput = TaskUpdateInput = tslib_1.__decorate([
     TypeGraphQL.InputType("TaskUpdateInput", {})
 ], TaskUpdateInput);

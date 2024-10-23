@@ -5,7 +5,8 @@
  */
 export const publicRoutes: string[] = [
   '/',
-  '/auth/verification'
+  '/api/graphql',
+  '/auth/verification',
 ];
 
 /**

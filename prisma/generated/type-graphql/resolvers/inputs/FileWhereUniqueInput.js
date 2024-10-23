@@ -17,6 +17,12 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", Number)
 ], FileWhereUniqueInput.prototype, "id", void 0);
 tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], FileWhereUniqueInput.prototype, "fileId", void 0);
+tslib_1.__decorate([
     TypeGraphQL.Field(_type => [FileWhereInput_1.FileWhereInput], {
         nullable: true
     }),
@@ -39,7 +45,13 @@ tslib_1.__decorate([
         nullable: true
     }),
     tslib_1.__metadata("design:type", StringFilter_1.StringFilter)
-], FileWhereUniqueInput.prototype, "file", void 0);
+], FileWhereUniqueInput.prototype, "url", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StringFilter_1.StringFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StringFilter_1.StringFilter)
+], FileWhereUniqueInput.prototype, "name", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => StringNullableFilter_1.StringNullableFilter, {
         nullable: true

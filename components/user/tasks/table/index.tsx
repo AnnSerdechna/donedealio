@@ -15,10 +15,10 @@ import {
   Status,
   StatusType,
   Task,
-  useDeleteManyTaskMutation,
+  useDeleteTasksMutation,
   useStatusesQuery,
   useTasksQuery,
-  useUpdateOneTaskMutation,
+  useUpdateTaskMutation,
 } from '@/graphql/types';
 
 import { DueDateField, StatusField, EditableText, OwnerField, AddTaskForm } from '@/components/user';
@@ -60,8 +60,8 @@ export const TableView: FC = () => {
       workspaceId: workspaceId as string
     }
   });
-  const [deleteTasks, { loading: deleteTasksLoading }] = useDeleteManyTaskMutation();
-  const [updateTask] = useUpdateOneTaskMutation();
+  const [deleteTasks, { loading: deleteTasksLoading }] = useDeleteTasksMutation();
+  const [updateTask] = useUpdateTaskMutation();
 
   const handleUpdateTask = async (data: UpdatedDataType, taskId: string, updatedField: string) => {
     try {

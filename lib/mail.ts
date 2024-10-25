@@ -1,6 +1,6 @@
-import { domain } from '@/variables';
-import { Role } from '@prisma/client';
 import { Resend } from 'resend';
+
+import { domain } from '@/variables';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

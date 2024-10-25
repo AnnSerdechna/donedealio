@@ -3,7 +3,7 @@ import { EditOutlined } from '@ant-design/icons';
 import { FC } from 'react';
 
 import { Button } from '@/components/ui';
-import { Maybe, Status, useUpdateOneTaskMutation } from '@/graphql/types';
+import { Maybe, Status, useUpdateTaskMutation } from '@/graphql/types';
 import { AggregationColor } from 'antd/es/color-picker/color';
 import { StatusBtn } from '../status-btn';
 
@@ -32,7 +32,7 @@ export const StatusChange: FC<StatusChangeProps> = ({
   ...props 
 }) => {
   const { message } = App.useApp();
-  const [updateTask] = useUpdateOneTaskMutation();
+  const [updateTask] = useUpdateTaskMutation();
 
   const handleUpdateTaskStatus = async (status: StatusFormData) => {
     if (!!taskId) {
@@ -54,7 +54,7 @@ export const StatusChange: FC<StatusChangeProps> = ({
           refetchTask()
         };
         message.success('Status was updated success!')
-      } catch (error) {
+      } catch {
         message.success('Update status error!')
       }
     } else {

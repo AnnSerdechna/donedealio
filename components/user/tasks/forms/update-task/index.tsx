@@ -1,9 +1,9 @@
 import { App } from 'antd';
 import { FC } from 'react';
 
-import { useUpdateOneTaskMutation } from '@/graphql/types';
 import { getFormattedDate } from '@/functions/getFormattedDate';
 import { FormData, TaskForm, TaskFormProps } from '../task-form';
+import { useUpdateTaskMutation } from '@/graphql/types';
 
 export const UpdateTaskForm: FC<Omit<TaskFormProps, 'action' | 'submitLoading'>> = ({ 
   form, 
@@ -14,7 +14,7 @@ export const UpdateTaskForm: FC<Omit<TaskFormProps, 'action' | 'submitLoading'>>
   ...props
 }) => {
   const { message } = App.useApp();
-  const [updateTask, { loading }] = useUpdateOneTaskMutation();
+  const [updateTask, { loading }] = useUpdateTaskMutation();
 
   const handleCloseForm = () => {
     form.resetFields();

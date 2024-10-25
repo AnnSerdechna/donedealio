@@ -6,9 +6,9 @@ import { PlusOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
 
 import {
-  useCreateOneWorkspaceMutation,
-  useDeleteOneWorkspaceMutation,
-  useUpdateOneWorkspaceMutation,
+  useCreateWorkspaceMutation,
+  useDeleteWorkspaceMutation,
+  useUpdateWorkspaceMutation,
   useWorkspacesQuery,
   WorkspaceCreateInput,
   WorkspaceUpdateInput,
@@ -26,9 +26,9 @@ export const Workspaces: FC = () => {
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
   const [isValueChange, setIsValueChange] = useState(false);
   const [selectedWorkspaceId, setSelectedWorkspaceId] = useState('');
-  const [createWorkspace, { loading: createLoading }] = useCreateOneWorkspaceMutation();
-  const [updateWorkspace, { loading: updateLoading }] = useUpdateOneWorkspaceMutation();
-  const [deleteWorkspase] = useDeleteOneWorkspaceMutation();
+  const [createWorkspace, { loading: createLoading }] = useCreateWorkspaceMutation();
+  const [updateWorkspace, { loading: updateLoading }] = useUpdateWorkspaceMutation();
+  const [deleteWorkspase] = useDeleteWorkspaceMutation();
   const { data: workspacesData, refetch } = useWorkspacesQuery({
     variables: {
       where: {

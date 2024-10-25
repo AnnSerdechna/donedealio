@@ -4,7 +4,7 @@ import { App, UploadFile } from 'antd';
 import { FC, useState } from 'react';
 import { useParams } from 'next/navigation';
 
-import { useCreateFileMutation, useCreateOneTaskMutation } from '@/graphql/types';
+import { useCreateFileMutation, useCreateTaskMutation } from '@/graphql/types';
 import { getFormattedDate } from '@/functions/getFormattedDate';
 import { FormData, TaskForm, TaskFormProps } from '../task-form';
 
@@ -18,7 +18,7 @@ export const CreateTaskForm: FC<Omit<TaskFormProps, 'action' | 'submitLoading'>>
   }) => {
   const { message } = App.useApp();
   const { workspaceId } = useParams();
-  const [createTask, { loading }] = useCreateOneTaskMutation();
+  const [createTask, { loading }] = useCreateTaskMutation();
   const [createFile] = useCreateFileMutation();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 

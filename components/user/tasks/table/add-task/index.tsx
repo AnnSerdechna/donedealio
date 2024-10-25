@@ -1,14 +1,14 @@
 import { App, Form, Input } from 'antd';
 import { FC, Fragment } from 'react';
 
-import { useCreateOneTaskMutation } from '@/graphql/types';
 import { Button, FormItem } from '@/components/ui';
 import { PlusOutlined } from '@ant-design/icons';
+import { useCreateTaskMutation } from '@/graphql/types';
 
 export const AddTaskForm: FC<{ workspaceId: string, refetchTasks: VoidFunction }> = ({ workspaceId, refetchTasks  }) => {
   const [form] = Form.useForm();
   const { message } = App.useApp();
-  const [createTask, { loading: createTaskLoading }] = useCreateOneTaskMutation();
+  const [createTask, { loading: createTaskLoading }] = useCreateTaskMutation();
 
   const handleCreateTask = async ({ task }: { task: string }) => {
     try {

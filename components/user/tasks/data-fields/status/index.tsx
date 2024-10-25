@@ -5,7 +5,7 @@ import { FC, Fragment, useState } from 'react';
 import { StatusPopover } from './status-popover';
 import { StatusChange, StatusChangeProps } from './status-change';
 import { StatusEdit } from './status-edit';
-import { Priority, Status, StatusType } from '@/graphql/types';
+import { Status, StatusType } from '@/graphql/types';
 import { StatusBtnProps } from './status-btn';
 
 type StatusFieldProps = Omit<StatusChangeProps, 'onEdit'> & Pick<StatusBtnProps, 'size'> & { 

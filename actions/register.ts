@@ -9,6 +9,7 @@ import { generateVerificationToken } from '@/lib/tokens';
 import { sendVerificationEmail } from '@/lib/mail';
 import { RegisterValuesProps } from '@/schemas/types';
 import { MessageProps } from '@/types';
+import { defaultStatuses } from '@/data/defautlStatuses';
 
 export const register = async (values: RegisterValuesProps): Promise<MessageProps> => {
   const validateFields = RegisterSchema.safeParse(values);
@@ -26,20 +27,34 @@ export const register = async (values: RegisterValuesProps): Promise<MessageProp
     return { status: 'error', content: 'Email already in use!' };
   };
 
-  await prisma.user.create({
+  const newUser = await prisma.user.create({
     data: {
       name,
       email,
-      password: hashPassword
-    }
+      password: hashPassword,
+    },
   });
 
+  for (const status of defaultStatuses) {
+    await prisma.status.create({
+      data: {
+        name: status.name,
+        color: status.color,
+        type: status.type,
+        user: {
+          connect: { id: newUser.id },
+        },
+      },
+    });
+  };
+  
   const verificationToken = await generateVerificationToken(email);
 
   await sendVerificationEmail(
     verificationToken.email,
-    verificationToken.token
+    verificationToken.token,
   );
 
   return { status: 'success', content: 'Confirmation email sent!' };
 };
+

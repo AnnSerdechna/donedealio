@@ -4,6 +4,7 @@ import { DateTimeFieldUpdateOperationsInput } from "../inputs/DateTimeFieldUpdat
 import { EnumRoleFieldUpdateOperationsInput } from "../inputs/EnumRoleFieldUpdateOperationsInput";
 import { NullableDateTimeFieldUpdateOperationsInput } from "../inputs/NullableDateTimeFieldUpdateOperationsInput";
 import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
+import { StatusUpdateManyWithoutUserNestedInput } from "../inputs/StatusUpdateManyWithoutUserNestedInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 import { TwoFactorConfirnationUpdateOneWithoutUserNestedInput } from "../inputs/TwoFactorConfirnationUpdateOneWithoutUserNestedInput";
 export declare class UserUpdateWithoutWorkspacesInput {
@@ -20,4 +21,5 @@ export declare class UserUpdateWithoutWorkspacesInput {
     isTwoFactorEnable?: BoolFieldUpdateOperationsInput | undefined;
     twoFactorConfirnation?: TwoFactorConfirnationUpdateOneWithoutUserNestedInput | undefined;
     accounts?: AccountUpdateManyWithoutUserNestedInput | undefined;
+    status?: StatusUpdateManyWithoutUserNestedInput | undefined;
 }

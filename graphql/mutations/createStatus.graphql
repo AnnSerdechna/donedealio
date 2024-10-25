@@ -1,7 +1,5 @@
-mutation CreateOneStatus($data: StatusCreateInput!) {
+mutation createStatus($data: StatusCreateInput!) {
   createOneStatus(data: $data) {
-    id
-    name
-    color
+    ...Status
   }
 }

@@ -1,0 +1,9 @@
+fragment Status on Status {
+  id
+  name
+  color
+  type
+  user {
+    id
+  }
+}

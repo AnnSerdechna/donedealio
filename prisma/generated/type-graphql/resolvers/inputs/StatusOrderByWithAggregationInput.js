@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StatusOrderByWithAggregationInput = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
+const SortOrderInput_1 = require("../inputs/SortOrderInput");
 const StatusAvgOrderByAggregateInput_1 = require("../inputs/StatusAvgOrderByAggregateInput");
 const StatusCountOrderByAggregateInput_1 = require("../inputs/StatusCountOrderByAggregateInput");
 const StatusMaxOrderByAggregateInput_1 = require("../inputs/StatusMaxOrderByAggregateInput");
@@ -19,10 +20,10 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", String)
 ], StatusOrderByWithAggregationInput.prototype, "id", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+    TypeGraphQL.Field(_type => SortOrderInput_1.SortOrderInput, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", String)
+    tslib_1.__metadata("design:type", SortOrderInput_1.SortOrderInput)
 ], StatusOrderByWithAggregationInput.prototype, "name", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
@@ -30,6 +31,18 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", String)
 ], StatusOrderByWithAggregationInput.prototype, "color", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], StatusOrderByWithAggregationInput.prototype, "type", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], StatusOrderByWithAggregationInput.prototype, "userId", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => StatusCountOrderByAggregateInput_1.StatusCountOrderByAggregateInput, {
         nullable: true

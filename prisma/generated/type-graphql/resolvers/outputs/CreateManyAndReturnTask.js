@@ -6,7 +6,6 @@ const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
 const CreateManyAndReturnTaskPriorityArgs_1 = require("./args/CreateManyAndReturnTaskPriorityArgs");
 const CreateManyAndReturnTaskStatusArgs_1 = require("./args/CreateManyAndReturnTaskStatusArgs");
 const CreateManyAndReturnTaskWorkspaceArgs_1 = require("./args/CreateManyAndReturnTaskWorkspaceArgs");
-const Priority_1 = require("../../models/Priority");
 const Status_1 = require("../../models/Status");
 const Workspace_1 = require("../../models/Workspace");
 let CreateManyAndReturnTask = class CreateManyAndReturnTask {
@@ -93,7 +92,7 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:returntype", Status_1.Status)
 ], CreateManyAndReturnTask.prototype, "getStatus", null);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => Priority_1.Priority, {
+    TypeGraphQL.Field(_type => Status_1.Status, {
         name: "priority",
         nullable: true
     }),
@@ -101,7 +100,7 @@ tslib_1.__decorate([
     tslib_1.__param(1, TypeGraphQL.Args()),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [CreateManyAndReturnTask, CreateManyAndReturnTaskPriorityArgs_1.CreateManyAndReturnTaskPriorityArgs]),
-    tslib_1.__metadata("design:returntype", Priority_1.Priority)
+    tslib_1.__metadata("design:returntype", Status_1.Status)
 ], CreateManyAndReturnTask.prototype, "getPriority", null);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => Workspace_1.Workspace, {

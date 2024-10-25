@@ -4,6 +4,7 @@ exports.UserCreateWithoutWorkspacesInput = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
 const AccountCreateNestedManyWithoutUserInput_1 = require("../inputs/AccountCreateNestedManyWithoutUserInput");
+const StatusCreateNestedManyWithoutUserInput_1 = require("../inputs/StatusCreateNestedManyWithoutUserInput");
 const TwoFactorConfirnationCreateNestedOneWithoutUserInput_1 = require("../inputs/TwoFactorConfirnationCreateNestedOneWithoutUserInput");
 const Role_1 = require("../../enums/Role");
 let UserCreateWithoutWorkspacesInput = class UserCreateWithoutWorkspacesInput {
@@ -87,6 +88,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", AccountCreateNestedManyWithoutUserInput_1.AccountCreateNestedManyWithoutUserInput)
 ], UserCreateWithoutWorkspacesInput.prototype, "accounts", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StatusCreateNestedManyWithoutUserInput_1.StatusCreateNestedManyWithoutUserInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StatusCreateNestedManyWithoutUserInput_1.StatusCreateNestedManyWithoutUserInput)
+], UserCreateWithoutWorkspacesInput.prototype, "status", void 0);
 exports.UserCreateWithoutWorkspacesInput = UserCreateWithoutWorkspacesInput = tslib_1.__decorate([
     TypeGraphQL.InputType("UserCreateWithoutWorkspacesInput", {})
 ], UserCreateWithoutWorkspacesInput);

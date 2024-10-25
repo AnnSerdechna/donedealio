@@ -3,6 +3,7 @@ import { BoolFilter } from "../inputs/BoolFilter";
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { EnumRoleFilter } from "../inputs/EnumRoleFilter";
+import { StatusListRelationFilter } from "../inputs/StatusListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { TwoFactorConfirnationNullableRelationFilter } from "../inputs/TwoFactorConfirnationNullableRelationFilter";
@@ -26,4 +27,5 @@ export declare class UserWhereUniqueInput {
     twoFactorConfirnation?: TwoFactorConfirnationNullableRelationFilter | undefined;
     accounts?: AccountListRelationFilter | undefined;
     workspaces?: WorkspaceListRelationFilter | undefined;
+    status?: StatusListRelationFilter | undefined;
 }

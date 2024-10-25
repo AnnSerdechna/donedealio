@@ -1,12 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkspaceRelationsResolver = exports.UserRelationsResolver = exports.TwoFactorConfirnationRelationsResolver = exports.TaskRelationsResolver = exports.StatusRelationsResolver = exports.PriorityRelationsResolver = exports.FileRelationsResolver = exports.AccountRelationsResolver = void 0;
+exports.WorkspaceRelationsResolver = exports.UserRelationsResolver = exports.TwoFactorConfirnationRelationsResolver = exports.TaskRelationsResolver = exports.StatusRelationsResolver = exports.FileRelationsResolver = exports.AccountRelationsResolver = void 0;
 var AccountRelationsResolver_1 = require("./Account/AccountRelationsResolver");
 Object.defineProperty(exports, "AccountRelationsResolver", { enumerable: true, get: function () { return AccountRelationsResolver_1.AccountRelationsResolver; } });
 var FileRelationsResolver_1 = require("./File/FileRelationsResolver");
 Object.defineProperty(exports, "FileRelationsResolver", { enumerable: true, get: function () { return FileRelationsResolver_1.FileRelationsResolver; } });
-var PriorityRelationsResolver_1 = require("./Priority/PriorityRelationsResolver");
-Object.defineProperty(exports, "PriorityRelationsResolver", { enumerable: true, get: function () { return PriorityRelationsResolver_1.PriorityRelationsResolver; } });
 var StatusRelationsResolver_1 = require("./Status/StatusRelationsResolver");
 Object.defineProperty(exports, "StatusRelationsResolver", { enumerable: true, get: function () { return StatusRelationsResolver_1.StatusRelationsResolver; } });
 var TaskRelationsResolver_1 = require("./Task/TaskRelationsResolver");

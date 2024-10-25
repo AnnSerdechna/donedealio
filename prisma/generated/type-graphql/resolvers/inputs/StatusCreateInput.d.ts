@@ -1,6 +1,11 @@
+import { TaskCreateNestedManyWithoutPriorityInput } from "../inputs/TaskCreateNestedManyWithoutPriorityInput";
 import { TaskCreateNestedManyWithoutStatusInput } from "../inputs/TaskCreateNestedManyWithoutStatusInput";
+import { UserCreateNestedOneWithoutStatusInput } from "../inputs/UserCreateNestedOneWithoutStatusInput";
 export declare class StatusCreateInput {
-    name: string;
+    name?: string | undefined;
     color: string;
-    task?: TaskCreateNestedManyWithoutStatusInput | undefined;
+    type?: "STATUS" | "PRIORITY" | undefined;
+    user: UserCreateNestedOneWithoutStatusInput;
+    priorityTasks?: TaskCreateNestedManyWithoutPriorityInput | undefined;
+    statusTasks?: TaskCreateNestedManyWithoutStatusInput | undefined;
 }

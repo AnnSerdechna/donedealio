@@ -1,4 +1,5 @@
 import { domain } from '@/variables';
+import { Role } from '@prisma/client';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -17,7 +18,7 @@ export const sendTwoFactorTokenEmail = async (
 
 export const sendVerificationEmail = async (
   email: string, 
-  token: string
+  token: string,
 ) => {
   const confirmLink = `${domain}/auth/verification?token=${token}`;
 

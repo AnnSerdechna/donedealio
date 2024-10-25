@@ -38,7 +38,6 @@ export { PasswordResetTokenGroupBy } from "./PasswordResetTokenGroupBy";
 export { PasswordResetTokenMaxAggregate } from "./PasswordResetTokenMaxAggregate";
 export { PasswordResetTokenMinAggregate } from "./PasswordResetTokenMinAggregate";
 export { PriorityAvgAggregate } from "./PriorityAvgAggregate";
-export { PriorityCount } from "./PriorityCount";
 export { PriorityCountAggregate } from "./PriorityCountAggregate";
 export { PriorityGroupBy } from "./PriorityGroupBy";
 export { PriorityMaxAggregate } from "./PriorityMaxAggregate";

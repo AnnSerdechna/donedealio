@@ -7,7 +7,6 @@ const DateTimeFilter_1 = require("../inputs/DateTimeFilter");
 const DateTimeNullableFilter_1 = require("../inputs/DateTimeNullableFilter");
 const FileListRelationFilter_1 = require("../inputs/FileListRelationFilter");
 const IntNullableFilter_1 = require("../inputs/IntNullableFilter");
-const PriorityNullableRelationFilter_1 = require("../inputs/PriorityNullableRelationFilter");
 const StatusNullableRelationFilter_1 = require("../inputs/StatusNullableRelationFilter");
 const StringFilter_1 = require("../inputs/StringFilter");
 const StringNullableFilter_1 = require("../inputs/StringNullableFilter");
@@ -100,10 +99,10 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", StatusNullableRelationFilter_1.StatusNullableRelationFilter)
 ], TaskWhereInput.prototype, "status", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => PriorityNullableRelationFilter_1.PriorityNullableRelationFilter, {
+    TypeGraphQL.Field(_type => StatusNullableRelationFilter_1.StatusNullableRelationFilter, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", PriorityNullableRelationFilter_1.PriorityNullableRelationFilter)
+    tslib_1.__metadata("design:type", StatusNullableRelationFilter_1.StatusNullableRelationFilter)
 ], TaskWhereInput.prototype, "priority", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => WorkspaceNullableRelationFilter_1.WorkspaceNullableRelationFilter, {

@@ -1,4 +1,5 @@
 import { AccountCreateNestedManyWithoutUserInput } from "../inputs/AccountCreateNestedManyWithoutUserInput";
+import { StatusCreateNestedManyWithoutUserInput } from "../inputs/StatusCreateNestedManyWithoutUserInput";
 import { TwoFactorConfirnationCreateNestedOneWithoutUserInput } from "../inputs/TwoFactorConfirnationCreateNestedOneWithoutUserInput";
 import { WorkspaceCreateNestedManyWithoutUserInput } from "../inputs/WorkspaceCreateNestedManyWithoutUserInput";
 export declare class UserCreateInput {
@@ -16,4 +17,5 @@ export declare class UserCreateInput {
     twoFactorConfirnation?: TwoFactorConfirnationCreateNestedOneWithoutUserInput | undefined;
     accounts?: AccountCreateNestedManyWithoutUserInput | undefined;
     workspaces?: WorkspaceCreateNestedManyWithoutUserInput | undefined;
+    status?: StatusCreateNestedManyWithoutUserInput | undefined;
 }

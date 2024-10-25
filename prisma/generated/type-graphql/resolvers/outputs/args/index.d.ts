@@ -3,9 +3,10 @@ export { CreateManyAndReturnTaskPriorityArgs } from "./CreateManyAndReturnTaskPr
 export { CreateManyAndReturnTaskStatusArgs } from "./CreateManyAndReturnTaskStatusArgs";
 export { CreateManyAndReturnTaskWorkspaceArgs } from "./CreateManyAndReturnTaskWorkspaceArgs";
 export { CreateManyAndReturnWorkspaceUserArgs } from "./CreateManyAndReturnWorkspaceUserArgs";
-export { PriorityCountTaskArgs } from "./PriorityCountTaskArgs";
-export { StatusCountTaskArgs } from "./StatusCountTaskArgs";
+export { StatusCountPriorityTasksArgs } from "./StatusCountPriorityTasksArgs";
+export { StatusCountStatusTasksArgs } from "./StatusCountStatusTasksArgs";
 export { TaskCountFilesArgs } from "./TaskCountFilesArgs";
 export { UserCountAccountsArgs } from "./UserCountAccountsArgs";
+export { UserCountStatusArgs } from "./UserCountStatusArgs";
 export { UserCountWorkspacesArgs } from "./UserCountWorkspacesArgs";
 export { WorkspaceCountTaskArgs } from "./WorkspaceCountTaskArgs";

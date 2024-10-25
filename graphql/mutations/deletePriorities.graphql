@@ -1,5 +1,0 @@
-mutation deleteManyPriority($where: PriorityWhereInput) {
-  deleteManyPriority(where: $where) {
-    count
-  }
-}

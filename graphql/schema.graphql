@@ -596,7 +596,10 @@ type CreateManyAndReturnPriority {
 type CreateManyAndReturnStatus {
   color: String!
   id: Int!
-  name: String!
+  name: String
+  type: StatusType!
+  user: User!
+  userId: String!
 }
 
 type CreateManyAndReturnTask {
@@ -606,7 +609,7 @@ type CreateManyAndReturnTask {
   message: String
   name: String!
   note: String
-  priority(where: PriorityWhereInput): Priority
+  priority(where: StatusWhereInput): Status
   priorityId: Int
   status(where: StatusWhereInput): Status
   statusId: Int
@@ -737,6 +740,27 @@ input EnumRoleWithAggregatesFilter {
   in: [Role!]
   not: NestedEnumRoleWithAggregatesFilter
   notIn: [Role!]
+}
+
+input EnumStatusTypeFieldUpdateOperationsInput {
+  set: StatusType
+}
+
+input EnumStatusTypeFilter {
+  equals: StatusType
+  in: [StatusType!]
+  not: NestedEnumStatusTypeFilter
+  notIn: [StatusType!]
+}
+
+input EnumStatusTypeWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumStatusTypeFilter
+  _min: NestedEnumStatusTypeFilter
+  equals: StatusType
+  in: [StatusType!]
+  not: NestedEnumStatusTypeWithAggregatesFilter
+  notIn: [StatusType!]
 }
 
 type File {
@@ -1231,6 +1255,23 @@ input NestedEnumRoleWithAggregatesFilter {
   notIn: [Role!]
 }
 
+input NestedEnumStatusTypeFilter {
+  equals: StatusType
+  in: [StatusType!]
+  not: NestedEnumStatusTypeFilter
+  notIn: [StatusType!]
+}
+
+input NestedEnumStatusTypeWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumStatusTypeFilter
+  _min: NestedEnumStatusTypeFilter
+  equals: StatusType
+  in: [StatusType!]
+  not: NestedEnumStatusTypeWithAggregatesFilter
+  notIn: [StatusType!]
+}
+
 input NestedFloatFilter {
   equals: Float
   gt: Float
@@ -1539,11 +1580,9 @@ input PasswordResetTokenWhereUniqueInput {
 }
 
 type Priority {
-  _count: PriorityCount
   color: String!
   id: Int!
   name: String!
-  task(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
 }
 
 type PriorityAvgAggregate {
@@ -1552,10 +1591,6 @@ type PriorityAvgAggregate {
 
 input PriorityAvgOrderByAggregateInput {
   id: SortOrder
-}
-
-type PriorityCount {
-  task(where: TaskWhereInput): Int!
 }
 
 type PriorityCountAggregate {
@@ -1574,28 +1609,11 @@ input PriorityCountOrderByAggregateInput {
 input PriorityCreateInput {
   color: String!
   name: String!
-  task: TaskCreateNestedManyWithoutPriorityInput
 }
 
 input PriorityCreateManyInput {
   color: String!
   id: Int
-  name: String!
-}
-
-input PriorityCreateNestedOneWithoutTaskInput {
-  connect: PriorityWhereUniqueInput
-  connectOrCreate: PriorityCreateOrConnectWithoutTaskInput
-  create: PriorityCreateWithoutTaskInput
-}
-
-input PriorityCreateOrConnectWithoutTaskInput {
-  create: PriorityCreateWithoutTaskInput!
-  where: PriorityWhereUniqueInput!
-}
-
-input PriorityCreateWithoutTaskInput {
-  color: String!
   name: String!
 }
 
@@ -1634,11 +1652,6 @@ input PriorityMinOrderByAggregateInput {
   name: SortOrder
 }
 
-input PriorityNullableRelationFilter {
-  is: PriorityWhereInput
-  isNot: PriorityWhereInput
-}
-
 input PriorityOrderByWithAggregationInput {
   _avg: PriorityAvgOrderByAggregateInput
   _count: PriorityCountOrderByAggregateInput
@@ -1654,7 +1667,6 @@ input PriorityOrderByWithRelationInput {
   color: SortOrder
   id: SortOrder
   name: SortOrder
-  task: TaskOrderByRelationAggregateInput
 }
 
 enum PriorityScalarFieldEnum {
@@ -1683,38 +1695,11 @@ input PrioritySumOrderByAggregateInput {
 input PriorityUpdateInput {
   color: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  task: TaskUpdateManyWithoutPriorityNestedInput
 }
 
 input PriorityUpdateManyMutationInput {
   color: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-}
-
-input PriorityUpdateOneWithoutTaskNestedInput {
-  connect: PriorityWhereUniqueInput
-  connectOrCreate: PriorityCreateOrConnectWithoutTaskInput
-  create: PriorityCreateWithoutTaskInput
-  delete: PriorityWhereInput
-  disconnect: PriorityWhereInput
-  update: PriorityUpdateToOneWithWhereWithoutTaskInput
-  upsert: PriorityUpsertWithoutTaskInput
-}
-
-input PriorityUpdateToOneWithWhereWithoutTaskInput {
-  data: PriorityUpdateWithoutTaskInput!
-  where: PriorityWhereInput
-}
-
-input PriorityUpdateWithoutTaskInput {
-  color: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-}
-
-input PriorityUpsertWithoutTaskInput {
-  create: PriorityCreateWithoutTaskInput!
-  update: PriorityUpdateWithoutTaskInput!
-  where: PriorityWhereInput
 }
 
 input PriorityWhereInput {
@@ -1724,7 +1709,6 @@ input PriorityWhereInput {
   color: StringFilter
   id: IntFilter
   name: StringFilter
-  task: TaskListRelationFilter
 }
 
 input PriorityWhereUniqueInput {
@@ -1733,8 +1717,7 @@ input PriorityWhereUniqueInput {
   OR: [PriorityWhereInput!]
   color: StringFilter
   id: Int
-  name: String
-  task: TaskListRelationFilter
+  name: StringFilter
 }
 
 type Query {
@@ -1842,8 +1825,12 @@ type Status {
   _count: StatusCount
   color: String!
   id: Int!
-  name: String!
-  task(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
+  name: String
+  priorityTasks(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
+  statusTasks(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
+  type: StatusType!
+  user: User!
+  userId: String!
 }
 
 type StatusAvgAggregate {
@@ -1855,7 +1842,8 @@ input StatusAvgOrderByAggregateInput {
 }
 
 type StatusCount {
-  task(where: TaskWhereInput): Int!
+  priorityTasks(where: TaskWhereInput): Int!
+  statusTasks(where: TaskWhereInput): Int!
 }
 
 type StatusCountAggregate {
@@ -1863,40 +1851,103 @@ type StatusCountAggregate {
   color: Int!
   id: Int!
   name: Int!
+  type: Int!
+  userId: Int!
 }
 
 input StatusCountOrderByAggregateInput {
   color: SortOrder
   id: SortOrder
   name: SortOrder
+  type: SortOrder
+  userId: SortOrder
 }
 
 input StatusCreateInput {
   color: String!
-  name: String!
-  task: TaskCreateNestedManyWithoutStatusInput
+  name: String
+  priorityTasks: TaskCreateNestedManyWithoutPriorityInput
+  statusTasks: TaskCreateNestedManyWithoutStatusInput
+  type: StatusType
+  user: UserCreateNestedOneWithoutStatusInput!
 }
 
 input StatusCreateManyInput {
   color: String!
   id: Int
-  name: String!
+  name: String
+  type: StatusType
+  userId: String!
 }
 
-input StatusCreateNestedOneWithoutTaskInput {
+input StatusCreateManyUserInput {
+  color: String!
+  id: Int
+  name: String
+  type: StatusType
+}
+
+input StatusCreateManyUserInputEnvelope {
+  data: [StatusCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input StatusCreateNestedManyWithoutUserInput {
+  connect: [StatusWhereUniqueInput!]
+  connectOrCreate: [StatusCreateOrConnectWithoutUserInput!]
+  create: [StatusCreateWithoutUserInput!]
+  createMany: StatusCreateManyUserInputEnvelope
+}
+
+input StatusCreateNestedOneWithoutPriorityTasksInput {
   connect: StatusWhereUniqueInput
-  connectOrCreate: StatusCreateOrConnectWithoutTaskInput
-  create: StatusCreateWithoutTaskInput
+  connectOrCreate: StatusCreateOrConnectWithoutPriorityTasksInput
+  create: StatusCreateWithoutPriorityTasksInput
 }
 
-input StatusCreateOrConnectWithoutTaskInput {
-  create: StatusCreateWithoutTaskInput!
+input StatusCreateNestedOneWithoutStatusTasksInput {
+  connect: StatusWhereUniqueInput
+  connectOrCreate: StatusCreateOrConnectWithoutStatusTasksInput
+  create: StatusCreateWithoutStatusTasksInput
+}
+
+input StatusCreateOrConnectWithoutPriorityTasksInput {
+  create: StatusCreateWithoutPriorityTasksInput!
   where: StatusWhereUniqueInput!
 }
 
-input StatusCreateWithoutTaskInput {
+input StatusCreateOrConnectWithoutStatusTasksInput {
+  create: StatusCreateWithoutStatusTasksInput!
+  where: StatusWhereUniqueInput!
+}
+
+input StatusCreateOrConnectWithoutUserInput {
+  create: StatusCreateWithoutUserInput!
+  where: StatusWhereUniqueInput!
+}
+
+input StatusCreateWithoutPriorityTasksInput {
   color: String!
-  name: String!
+  name: String
+  statusTasks: TaskCreateNestedManyWithoutStatusInput
+  type: StatusType
+  user: UserCreateNestedOneWithoutStatusInput!
+}
+
+input StatusCreateWithoutStatusTasksInput {
+  color: String!
+  name: String
+  priorityTasks: TaskCreateNestedManyWithoutPriorityInput
+  type: StatusType
+  user: UserCreateNestedOneWithoutStatusInput!
+}
+
+input StatusCreateWithoutUserInput {
+  color: String!
+  name: String
+  priorityTasks: TaskCreateNestedManyWithoutPriorityInput
+  statusTasks: TaskCreateNestedManyWithoutStatusInput
+  type: StatusType
 }
 
 type StatusGroupBy {
@@ -1907,36 +1958,56 @@ type StatusGroupBy {
   _sum: StatusSumAggregate
   color: String!
   id: Int!
-  name: String!
+  name: String
+  type: StatusType!
+  userId: String!
+}
+
+input StatusListRelationFilter {
+  every: StatusWhereInput
+  none: StatusWhereInput
+  some: StatusWhereInput
 }
 
 type StatusMaxAggregate {
   color: String
   id: Int
   name: String
+  type: StatusType
+  userId: String
 }
 
 input StatusMaxOrderByAggregateInput {
   color: SortOrder
   id: SortOrder
   name: SortOrder
+  type: SortOrder
+  userId: SortOrder
 }
 
 type StatusMinAggregate {
   color: String
   id: Int
   name: String
+  type: StatusType
+  userId: String
 }
 
 input StatusMinOrderByAggregateInput {
   color: SortOrder
   id: SortOrder
   name: SortOrder
+  type: SortOrder
+  userId: SortOrder
 }
 
 input StatusNullableRelationFilter {
   is: StatusWhereInput
   isNot: StatusWhereInput
+}
+
+input StatusOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input StatusOrderByWithAggregationInput {
@@ -1947,20 +2018,39 @@ input StatusOrderByWithAggregationInput {
   _sum: StatusSumOrderByAggregateInput
   color: SortOrder
   id: SortOrder
-  name: SortOrder
+  name: SortOrderInput
+  type: SortOrder
+  userId: SortOrder
 }
 
 input StatusOrderByWithRelationInput {
   color: SortOrder
   id: SortOrder
-  name: SortOrder
-  task: TaskOrderByRelationAggregateInput
+  name: SortOrderInput
+  priorityTasks: TaskOrderByRelationAggregateInput
+  statusTasks: TaskOrderByRelationAggregateInput
+  type: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrder
 }
 
 enum StatusScalarFieldEnum {
   color
   id
   name
+  type
+  userId
+}
+
+input StatusScalarWhereInput {
+  AND: [StatusScalarWhereInput!]
+  NOT: [StatusScalarWhereInput!]
+  OR: [StatusScalarWhereInput!]
+  color: StringFilter
+  id: IntFilter
+  name: StringNullableFilter
+  type: EnumStatusTypeFilter
+  userId: StringFilter
 }
 
 input StatusScalarWhereWithAggregatesInput {
@@ -1969,7 +2059,9 @@ input StatusScalarWhereWithAggregatesInput {
   OR: [StatusScalarWhereWithAggregatesInput!]
   color: StringWithAggregatesFilter
   id: IntWithAggregatesFilter
-  name: StringWithAggregatesFilter
+  name: StringNullableWithAggregatesFilter
+  type: EnumStatusTypeWithAggregatesFilter
+  userId: StringWithAggregatesFilter
 }
 
 type StatusSumAggregate {
@@ -1980,40 +2072,119 @@ input StatusSumOrderByAggregateInput {
   id: SortOrder
 }
 
+enum StatusType {
+  PRIORITY
+  STATUS
+}
+
 input StatusUpdateInput {
   color: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  task: TaskUpdateManyWithoutStatusNestedInput
+  name: NullableStringFieldUpdateOperationsInput
+  priorityTasks: TaskUpdateManyWithoutPriorityNestedInput
+  statusTasks: TaskUpdateManyWithoutStatusNestedInput
+  type: EnumStatusTypeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutStatusNestedInput
 }
 
 input StatusUpdateManyMutationInput {
   color: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  type: EnumStatusTypeFieldUpdateOperationsInput
 }
 
-input StatusUpdateOneWithoutTaskNestedInput {
+input StatusUpdateManyWithWhereWithoutUserInput {
+  data: StatusUpdateManyMutationInput!
+  where: StatusScalarWhereInput!
+}
+
+input StatusUpdateManyWithoutUserNestedInput {
+  connect: [StatusWhereUniqueInput!]
+  connectOrCreate: [StatusCreateOrConnectWithoutUserInput!]
+  create: [StatusCreateWithoutUserInput!]
+  createMany: StatusCreateManyUserInputEnvelope
+  delete: [StatusWhereUniqueInput!]
+  deleteMany: [StatusScalarWhereInput!]
+  disconnect: [StatusWhereUniqueInput!]
+  set: [StatusWhereUniqueInput!]
+  update: [StatusUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [StatusUpdateManyWithWhereWithoutUserInput!]
+  upsert: [StatusUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input StatusUpdateOneWithoutPriorityTasksNestedInput {
   connect: StatusWhereUniqueInput
-  connectOrCreate: StatusCreateOrConnectWithoutTaskInput
-  create: StatusCreateWithoutTaskInput
+  connectOrCreate: StatusCreateOrConnectWithoutPriorityTasksInput
+  create: StatusCreateWithoutPriorityTasksInput
   delete: StatusWhereInput
   disconnect: StatusWhereInput
-  update: StatusUpdateToOneWithWhereWithoutTaskInput
-  upsert: StatusUpsertWithoutTaskInput
+  update: StatusUpdateToOneWithWhereWithoutPriorityTasksInput
+  upsert: StatusUpsertWithoutPriorityTasksInput
 }
 
-input StatusUpdateToOneWithWhereWithoutTaskInput {
-  data: StatusUpdateWithoutTaskInput!
+input StatusUpdateOneWithoutStatusTasksNestedInput {
+  connect: StatusWhereUniqueInput
+  connectOrCreate: StatusCreateOrConnectWithoutStatusTasksInput
+  create: StatusCreateWithoutStatusTasksInput
+  delete: StatusWhereInput
+  disconnect: StatusWhereInput
+  update: StatusUpdateToOneWithWhereWithoutStatusTasksInput
+  upsert: StatusUpsertWithoutStatusTasksInput
+}
+
+input StatusUpdateToOneWithWhereWithoutPriorityTasksInput {
+  data: StatusUpdateWithoutPriorityTasksInput!
   where: StatusWhereInput
 }
 
-input StatusUpdateWithoutTaskInput {
-  color: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+input StatusUpdateToOneWithWhereWithoutStatusTasksInput {
+  data: StatusUpdateWithoutStatusTasksInput!
+  where: StatusWhereInput
 }
 
-input StatusUpsertWithoutTaskInput {
-  create: StatusCreateWithoutTaskInput!
-  update: StatusUpdateWithoutTaskInput!
+input StatusUpdateWithWhereUniqueWithoutUserInput {
+  data: StatusUpdateWithoutUserInput!
+  where: StatusWhereUniqueInput!
+}
+
+input StatusUpdateWithoutPriorityTasksInput {
+  color: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  statusTasks: TaskUpdateManyWithoutStatusNestedInput
+  type: EnumStatusTypeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutStatusNestedInput
+}
+
+input StatusUpdateWithoutStatusTasksInput {
+  color: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  priorityTasks: TaskUpdateManyWithoutPriorityNestedInput
+  type: EnumStatusTypeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutStatusNestedInput
+}
+
+input StatusUpdateWithoutUserInput {
+  color: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  priorityTasks: TaskUpdateManyWithoutPriorityNestedInput
+  statusTasks: TaskUpdateManyWithoutStatusNestedInput
+  type: EnumStatusTypeFieldUpdateOperationsInput
+}
+
+input StatusUpsertWithWhereUniqueWithoutUserInput {
+  create: StatusCreateWithoutUserInput!
+  update: StatusUpdateWithoutUserInput!
+  where: StatusWhereUniqueInput!
+}
+
+input StatusUpsertWithoutPriorityTasksInput {
+  create: StatusCreateWithoutPriorityTasksInput!
+  update: StatusUpdateWithoutPriorityTasksInput!
+  where: StatusWhereInput
+}
+
+input StatusUpsertWithoutStatusTasksInput {
+  create: StatusCreateWithoutStatusTasksInput!
+  update: StatusUpdateWithoutStatusTasksInput!
   where: StatusWhereInput
 }
 
@@ -2023,8 +2194,12 @@ input StatusWhereInput {
   OR: [StatusWhereInput!]
   color: StringFilter
   id: IntFilter
-  name: StringFilter
-  task: TaskListRelationFilter
+  name: StringNullableFilter
+  priorityTasks: TaskListRelationFilter
+  statusTasks: TaskListRelationFilter
+  type: EnumStatusTypeFilter
+  user: UserRelationFilter
+  userId: StringFilter
 }
 
 input StatusWhereUniqueInput {
@@ -2033,8 +2208,12 @@ input StatusWhereUniqueInput {
   OR: [StatusWhereInput!]
   color: StringFilter
   id: Int
-  name: String
-  task: TaskListRelationFilter
+  name: StringNullableFilter
+  priorityTasks: TaskListRelationFilter
+  statusTasks: TaskListRelationFilter
+  type: EnumStatusTypeFilter
+  user: UserRelationFilter
+  userId: StringFilter
 }
 
 input StringFieldUpdateOperationsInput {
@@ -2116,7 +2295,7 @@ type Task {
   message: String
   name: String!
   note: String
-  priority(where: PriorityWhereInput): Priority
+  priority(where: StatusWhereInput): Status
   priorityId: Int
   status(where: StatusWhereInput): Status
   statusId: Int
@@ -2174,8 +2353,8 @@ input TaskCreateInput {
   message: String
   name: String!
   note: String
-  priority: PriorityCreateNestedOneWithoutTaskInput
-  status: StatusCreateNestedOneWithoutTaskInput
+  priority: StatusCreateNestedOneWithoutPriorityTasksInput
+  status: StatusCreateNestedOneWithoutStatusTasksInput
   updatedAt: DateTimeISO
   workspace: WorkspaceCreateNestedOneWithoutTaskInput
 }
@@ -2298,8 +2477,8 @@ input TaskCreateWithoutFilesInput {
   message: String
   name: String!
   note: String
-  priority: PriorityCreateNestedOneWithoutTaskInput
-  status: StatusCreateNestedOneWithoutTaskInput
+  priority: StatusCreateNestedOneWithoutPriorityTasksInput
+  status: StatusCreateNestedOneWithoutStatusTasksInput
   updatedAt: DateTimeISO
   workspace: WorkspaceCreateNestedOneWithoutTaskInput
 }
@@ -2312,7 +2491,7 @@ input TaskCreateWithoutPriorityInput {
   message: String
   name: String!
   note: String
-  status: StatusCreateNestedOneWithoutTaskInput
+  status: StatusCreateNestedOneWithoutStatusTasksInput
   updatedAt: DateTimeISO
   workspace: WorkspaceCreateNestedOneWithoutTaskInput
 }
@@ -2325,7 +2504,7 @@ input TaskCreateWithoutStatusInput {
   message: String
   name: String!
   note: String
-  priority: PriorityCreateNestedOneWithoutTaskInput
+  priority: StatusCreateNestedOneWithoutPriorityTasksInput
   updatedAt: DateTimeISO
   workspace: WorkspaceCreateNestedOneWithoutTaskInput
 }
@@ -2338,8 +2517,8 @@ input TaskCreateWithoutWorkspaceInput {
   message: String
   name: String!
   note: String
-  priority: PriorityCreateNestedOneWithoutTaskInput
-  status: StatusCreateNestedOneWithoutTaskInput
+  priority: StatusCreateNestedOneWithoutPriorityTasksInput
+  status: StatusCreateNestedOneWithoutStatusTasksInput
   updatedAt: DateTimeISO
 }
 
@@ -2454,7 +2633,7 @@ input TaskOrderByWithRelationInput {
   message: SortOrderInput
   name: SortOrder
   note: SortOrderInput
-  priority: PriorityOrderByWithRelationInput
+  priority: StatusOrderByWithRelationInput
   priorityId: SortOrderInput
   status: StatusOrderByWithRelationInput
   statusId: SortOrderInput
@@ -2526,8 +2705,8 @@ input TaskUpdateInput {
   message: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   note: NullableStringFieldUpdateOperationsInput
-  priority: PriorityUpdateOneWithoutTaskNestedInput
-  status: StatusUpdateOneWithoutTaskNestedInput
+  priority: StatusUpdateOneWithoutPriorityTasksNestedInput
+  status: StatusUpdateOneWithoutStatusTasksNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   workspace: WorkspaceUpdateOneWithoutTaskNestedInput
 }
@@ -2636,8 +2815,8 @@ input TaskUpdateWithoutFilesInput {
   message: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   note: NullableStringFieldUpdateOperationsInput
-  priority: PriorityUpdateOneWithoutTaskNestedInput
-  status: StatusUpdateOneWithoutTaskNestedInput
+  priority: StatusUpdateOneWithoutPriorityTasksNestedInput
+  status: StatusUpdateOneWithoutStatusTasksNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   workspace: WorkspaceUpdateOneWithoutTaskNestedInput
 }
@@ -2650,7 +2829,7 @@ input TaskUpdateWithoutPriorityInput {
   message: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   note: NullableStringFieldUpdateOperationsInput
-  status: StatusUpdateOneWithoutTaskNestedInput
+  status: StatusUpdateOneWithoutStatusTasksNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   workspace: WorkspaceUpdateOneWithoutTaskNestedInput
 }
@@ -2663,7 +2842,7 @@ input TaskUpdateWithoutStatusInput {
   message: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   note: NullableStringFieldUpdateOperationsInput
-  priority: PriorityUpdateOneWithoutTaskNestedInput
+  priority: StatusUpdateOneWithoutPriorityTasksNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   workspace: WorkspaceUpdateOneWithoutTaskNestedInput
 }
@@ -2676,8 +2855,8 @@ input TaskUpdateWithoutWorkspaceInput {
   message: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   note: NullableStringFieldUpdateOperationsInput
-  priority: PriorityUpdateOneWithoutTaskNestedInput
-  status: StatusUpdateOneWithoutTaskNestedInput
+  priority: StatusUpdateOneWithoutPriorityTasksNestedInput
+  status: StatusUpdateOneWithoutStatusTasksNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2716,7 +2895,7 @@ input TaskWhereInput {
   message: StringNullableFilter
   name: StringFilter
   note: StringNullableFilter
-  priority: PriorityNullableRelationFilter
+  priority: StatusNullableRelationFilter
   priorityId: IntNullableFilter
   status: StatusNullableRelationFilter
   statusId: IntNullableFilter
@@ -2736,7 +2915,7 @@ input TaskWhereUniqueInput {
   message: StringNullableFilter
   name: StringFilter
   note: StringNullableFilter
-  priority: PriorityNullableRelationFilter
+  priority: StatusNullableRelationFilter
   priorityId: IntNullableFilter
   status: StatusNullableRelationFilter
   statusId: IntNullableFilter
@@ -3060,6 +3239,7 @@ type User {
   name: String!
   password: String
   role: Role!
+  status(cursor: StatusWhereUniqueInput, distinct: [StatusScalarFieldEnum!], orderBy: [StatusOrderByWithRelationInput!], skip: Int, take: Int, where: StatusWhereInput): [Status!]!
   twoFactorConfirnation(where: TwoFactorConfirnationWhereInput): TwoFactorConfirnation
   updatedAt: DateTimeISO!
   workspaces(cursor: WorkspaceWhereUniqueInput, distinct: [WorkspaceScalarFieldEnum!], orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): [Workspace!]!
@@ -3067,6 +3247,7 @@ type User {
 
 type UserCount {
   accounts(where: AccountWhereInput): Int!
+  status(where: StatusWhereInput): Int!
   workspaces(where: WorkspaceWhereInput): Int!
 }
 
@@ -3111,6 +3292,7 @@ input UserCreateInput {
   name: String!
   password: String
   role: Role
+  status: StatusCreateNestedManyWithoutUserInput
   twoFactorConfirnation: TwoFactorConfirnationCreateNestedOneWithoutUserInput
   updatedAt: DateTimeISO
   workspaces: WorkspaceCreateNestedManyWithoutUserInput
@@ -3136,6 +3318,12 @@ input UserCreateNestedOneWithoutAccountsInput {
   create: UserCreateWithoutAccountsInput
 }
 
+input UserCreateNestedOneWithoutStatusInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutStatusInput
+  create: UserCreateWithoutStatusInput
+}
+
 input UserCreateNestedOneWithoutTwoFactorConfirnationInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutTwoFactorConfirnationInput
@@ -3153,6 +3341,11 @@ input UserCreateOrConnectWithoutAccountsInput {
   where: UserWhereUniqueInput!
 }
 
+input UserCreateOrConnectWithoutStatusInput {
+  create: UserCreateWithoutStatusInput!
+  where: UserWhereUniqueInput!
+}
+
 input UserCreateOrConnectWithoutTwoFactorConfirnationInput {
   create: UserCreateWithoutTwoFactorConfirnationInput!
   where: UserWhereUniqueInput!
@@ -3164,6 +3357,24 @@ input UserCreateOrConnectWithoutWorkspacesInput {
 }
 
 input UserCreateWithoutAccountsInput {
+  createdAt: DateTimeISO
+  email: String!
+  emailVerified: DateTimeISO
+  id: String
+  image: String
+  imageId: String
+  isTwoFactorEnable: Boolean
+  name: String!
+  password: String
+  role: Role
+  status: StatusCreateNestedManyWithoutUserInput
+  twoFactorConfirnation: TwoFactorConfirnationCreateNestedOneWithoutUserInput
+  updatedAt: DateTimeISO
+  workspaces: WorkspaceCreateNestedManyWithoutUserInput
+}
+
+input UserCreateWithoutStatusInput {
+  accounts: AccountCreateNestedManyWithoutUserInput
   createdAt: DateTimeISO
   email: String!
   emailVerified: DateTimeISO
@@ -3191,6 +3402,7 @@ input UserCreateWithoutTwoFactorConfirnationInput {
   name: String!
   password: String
   role: Role
+  status: StatusCreateNestedManyWithoutUserInput
   updatedAt: DateTimeISO
   workspaces: WorkspaceCreateNestedManyWithoutUserInput
 }
@@ -3207,6 +3419,7 @@ input UserCreateWithoutWorkspacesInput {
   name: String!
   password: String
   role: Role
+  status: StatusCreateNestedManyWithoutUserInput
   twoFactorConfirnation: TwoFactorConfirnationCreateNestedOneWithoutUserInput
   updatedAt: DateTimeISO
 }
@@ -3318,6 +3531,7 @@ input UserOrderByWithRelationInput {
   name: SortOrder
   password: SortOrderInput
   role: SortOrder
+  status: StatusOrderByRelationAggregateInput
   twoFactorConfirnation: TwoFactorConfirnationOrderByWithRelationInput
   updatedAt: SortOrder
   workspaces: WorkspaceOrderByRelationAggregateInput
@@ -3371,6 +3585,7 @@ input UserUpdateInput {
   name: StringFieldUpdateOperationsInput
   password: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
+  status: StatusUpdateManyWithoutUserNestedInput
   twoFactorConfirnation: TwoFactorConfirnationUpdateOneWithoutUserNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   workspaces: WorkspaceUpdateManyWithoutUserNestedInput
@@ -3398,6 +3613,14 @@ input UserUpdateOneRequiredWithoutAccountsNestedInput {
   upsert: UserUpsertWithoutAccountsInput
 }
 
+input UserUpdateOneRequiredWithoutStatusNestedInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutStatusInput
+  create: UserCreateWithoutStatusInput
+  update: UserUpdateToOneWithWhereWithoutStatusInput
+  upsert: UserUpsertWithoutStatusInput
+}
+
 input UserUpdateOneRequiredWithoutTwoFactorConfirnationNestedInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutTwoFactorConfirnationInput
@@ -3421,6 +3644,11 @@ input UserUpdateToOneWithWhereWithoutAccountsInput {
   where: UserWhereInput
 }
 
+input UserUpdateToOneWithWhereWithoutStatusInput {
+  data: UserUpdateWithoutStatusInput!
+  where: UserWhereInput
+}
+
 input UserUpdateToOneWithWhereWithoutTwoFactorConfirnationInput {
   data: UserUpdateWithoutTwoFactorConfirnationInput!
   where: UserWhereInput
@@ -3432,6 +3660,24 @@ input UserUpdateToOneWithWhereWithoutWorkspacesInput {
 }
 
 input UserUpdateWithoutAccountsInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
+  imageId: NullableStringFieldUpdateOperationsInput
+  isTwoFactorEnable: BoolFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
+  status: StatusUpdateManyWithoutUserNestedInput
+  twoFactorConfirnation: TwoFactorConfirnationUpdateOneWithoutUserNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  workspaces: WorkspaceUpdateManyWithoutUserNestedInput
+}
+
+input UserUpdateWithoutStatusInput {
+  accounts: AccountUpdateManyWithoutUserNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
@@ -3459,6 +3705,7 @@ input UserUpdateWithoutTwoFactorConfirnationInput {
   name: StringFieldUpdateOperationsInput
   password: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
+  status: StatusUpdateManyWithoutUserNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   workspaces: WorkspaceUpdateManyWithoutUserNestedInput
 }
@@ -3475,6 +3722,7 @@ input UserUpdateWithoutWorkspacesInput {
   name: StringFieldUpdateOperationsInput
   password: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
+  status: StatusUpdateManyWithoutUserNestedInput
   twoFactorConfirnation: TwoFactorConfirnationUpdateOneWithoutUserNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -3482,6 +3730,12 @@ input UserUpdateWithoutWorkspacesInput {
 input UserUpsertWithoutAccountsInput {
   create: UserCreateWithoutAccountsInput!
   update: UserUpdateWithoutAccountsInput!
+  where: UserWhereInput
+}
+
+input UserUpsertWithoutStatusInput {
+  create: UserCreateWithoutStatusInput!
+  update: UserUpdateWithoutStatusInput!
   where: UserWhereInput
 }
 
@@ -3512,6 +3766,7 @@ input UserWhereInput {
   name: StringFilter
   password: StringNullableFilter
   role: EnumRoleFilter
+  status: StatusListRelationFilter
   twoFactorConfirnation: TwoFactorConfirnationNullableRelationFilter
   updatedAt: DateTimeFilter
   workspaces: WorkspaceListRelationFilter
@@ -3532,6 +3787,7 @@ input UserWhereUniqueInput {
   name: StringFilter
   password: StringNullableFilter
   role: EnumRoleFilter
+  status: StatusListRelationFilter
   twoFactorConfirnation: TwoFactorConfirnationNullableRelationFilter
   updatedAt: DateTimeFilter
   workspaces: WorkspaceListRelationFilter

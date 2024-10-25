@@ -2,7 +2,6 @@ import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
 import { FileListRelationFilter } from "../inputs/FileListRelationFilter";
 import { IntNullableFilter } from "../inputs/IntNullableFilter";
-import { PriorityNullableRelationFilter } from "../inputs/PriorityNullableRelationFilter";
 import { StatusNullableRelationFilter } from "../inputs/StatusNullableRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
@@ -22,7 +21,7 @@ export declare class TaskWhereInput {
     priorityId?: IntNullableFilter | undefined;
     workspaceId?: StringFilter | undefined;
     status?: StatusNullableRelationFilter | undefined;
-    priority?: PriorityNullableRelationFilter | undefined;
+    priority?: StatusNullableRelationFilter | undefined;
     workspace?: WorkspaceNullableRelationFilter | undefined;
     files?: FileListRelationFilter | undefined;
 }

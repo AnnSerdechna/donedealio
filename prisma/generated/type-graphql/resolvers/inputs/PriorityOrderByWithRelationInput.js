@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PriorityOrderByWithRelationInput = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
-const TaskOrderByRelationAggregateInput_1 = require("../inputs/TaskOrderByRelationAggregateInput");
 const SortOrder_1 = require("../../enums/SortOrder");
 let PriorityOrderByWithRelationInput = class PriorityOrderByWithRelationInput {
 };
@@ -26,12 +25,6 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", String)
 ], PriorityOrderByWithRelationInput.prototype, "color", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => TaskOrderByRelationAggregateInput_1.TaskOrderByRelationAggregateInput, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", TaskOrderByRelationAggregateInput_1.TaskOrderByRelationAggregateInput)
-], PriorityOrderByWithRelationInput.prototype, "task", void 0);
 exports.PriorityOrderByWithRelationInput = PriorityOrderByWithRelationInput = tslib_1.__decorate([
     TypeGraphQL.InputType("PriorityOrderByWithRelationInput", {})
 ], PriorityOrderByWithRelationInput);

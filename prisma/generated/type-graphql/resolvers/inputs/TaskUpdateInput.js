@@ -7,8 +7,8 @@ const DateTimeFieldUpdateOperationsInput_1 = require("../inputs/DateTimeFieldUpd
 const FileUpdateManyWithoutTaskNestedInput_1 = require("../inputs/FileUpdateManyWithoutTaskNestedInput");
 const NullableDateTimeFieldUpdateOperationsInput_1 = require("../inputs/NullableDateTimeFieldUpdateOperationsInput");
 const NullableStringFieldUpdateOperationsInput_1 = require("../inputs/NullableStringFieldUpdateOperationsInput");
-const PriorityUpdateOneWithoutTaskNestedInput_1 = require("../inputs/PriorityUpdateOneWithoutTaskNestedInput");
-const StatusUpdateOneWithoutTaskNestedInput_1 = require("../inputs/StatusUpdateOneWithoutTaskNestedInput");
+const StatusUpdateOneWithoutPriorityTasksNestedInput_1 = require("../inputs/StatusUpdateOneWithoutPriorityTasksNestedInput");
+const StatusUpdateOneWithoutStatusTasksNestedInput_1 = require("../inputs/StatusUpdateOneWithoutStatusTasksNestedInput");
 const StringFieldUpdateOperationsInput_1 = require("../inputs/StringFieldUpdateOperationsInput");
 const WorkspaceUpdateOneWithoutTaskNestedInput_1 = require("../inputs/WorkspaceUpdateOneWithoutTaskNestedInput");
 let TaskUpdateInput = class TaskUpdateInput {
@@ -57,16 +57,16 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", DateTimeFieldUpdateOperationsInput_1.DateTimeFieldUpdateOperationsInput)
 ], TaskUpdateInput.prototype, "updatedAt", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => StatusUpdateOneWithoutTaskNestedInput_1.StatusUpdateOneWithoutTaskNestedInput, {
+    TypeGraphQL.Field(_type => StatusUpdateOneWithoutStatusTasksNestedInput_1.StatusUpdateOneWithoutStatusTasksNestedInput, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", StatusUpdateOneWithoutTaskNestedInput_1.StatusUpdateOneWithoutTaskNestedInput)
+    tslib_1.__metadata("design:type", StatusUpdateOneWithoutStatusTasksNestedInput_1.StatusUpdateOneWithoutStatusTasksNestedInput)
 ], TaskUpdateInput.prototype, "status", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => PriorityUpdateOneWithoutTaskNestedInput_1.PriorityUpdateOneWithoutTaskNestedInput, {
+    TypeGraphQL.Field(_type => StatusUpdateOneWithoutPriorityTasksNestedInput_1.StatusUpdateOneWithoutPriorityTasksNestedInput, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", PriorityUpdateOneWithoutTaskNestedInput_1.PriorityUpdateOneWithoutTaskNestedInput)
+    tslib_1.__metadata("design:type", StatusUpdateOneWithoutPriorityTasksNestedInput_1.StatusUpdateOneWithoutPriorityTasksNestedInput)
 ], TaskUpdateInput.prototype, "priority", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => WorkspaceUpdateOneWithoutTaskNestedInput_1.WorkspaceUpdateOneWithoutTaskNestedInput, {

@@ -8,27 +8,7 @@ query Workspace($where: WorkspaceWhereUniqueInput!) {
       role
     }
     task {
-      id
-      name
-      message
-      note
-      dueDate
-      files {
-        id 
-        url
-        name
-        fileId
-      }
-      status {
-        id
-        name
-        color
-      }
-      priority {
-        id
-        name
-        color
-      }
+      ...Task
     }
   }
 }

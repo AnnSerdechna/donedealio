@@ -4,7 +4,6 @@ exports.TaskRelationsResolver = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
 const File_1 = require("../../../models/File");
-const Priority_1 = require("../../../models/Priority");
 const Status_1 = require("../../../models/Status");
 const Task_1 = require("../../../models/Task");
 const Workspace_1 = require("../../../models/Workspace");
@@ -73,7 +72,7 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:returntype", Promise)
 ], TaskRelationsResolver.prototype, "status", null);
 tslib_1.__decorate([
-    TypeGraphQL.FieldResolver(_type => Priority_1.Priority, {
+    TypeGraphQL.FieldResolver(_type => Status_1.Status, {
         nullable: true
     }),
     tslib_1.__param(0, TypeGraphQL.Root()),

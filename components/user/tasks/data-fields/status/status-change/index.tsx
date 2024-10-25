@@ -3,24 +3,30 @@ import { EditOutlined } from '@ant-design/icons';
 import { FC } from 'react';
 
 import { Button } from '@/components/ui';
-import { Priority, Status, useUpdateOneTaskMutation } from '@/graphql/types';
+import { Maybe, Status, useUpdateOneTaskMutation } from '@/graphql/types';
 import { AggregationColor } from 'antd/es/color-picker/color';
 import { StatusBtn } from '../status-btn';
 
 export type StatusChangeProps = RadioGroupProps & {
-  data: Status[] | Priority[]
+  data: Status[]
   taskId?: string
-  form?: FormInstance
   updatedField: 'status' | 'priority'
+  form?: FormInstance
   onEdit: VoidFunction
   refetchTask?: VoidFunction
 };
 
+type StatusFormData = {
+  id: number, 
+  name?: Maybe<string>;
+  color: string | AggregationColor
+};
+
 export const StatusChange: FC<StatusChangeProps> = ({ 
   form, 
-  updatedField, 
   data, 
   taskId, 
+  updatedField,
   refetchTask, 
   onEdit, 
   ...props 
@@ -28,7 +34,7 @@ export const StatusChange: FC<StatusChangeProps> = ({
   const { message } = App.useApp();
   const [updateTask] = useUpdateOneTaskMutation();
 
-  const handleUpdateTaskStatus = async (status: { id: number, name: string, color: string | AggregationColor }) => {
+  const handleUpdateTaskStatus = async (status: StatusFormData) => {
     if (!!taskId) {
       try {
         await updateTask({
@@ -36,7 +42,7 @@ export const StatusChange: FC<StatusChangeProps> = ({
             data: {
               [updatedField]: {
                 connect: { id: status?.id }
-              }
+              },
             },
             where: {
               id: taskId
@@ -49,7 +55,7 @@ export const StatusChange: FC<StatusChangeProps> = ({
         };
         message.success('Status was updated success!')
       } catch (error) {
-        console.log(error, 'Update status error!')
+        message.success('Update status error!')
       }
     } else {
       form?.setFieldValue(updatedField, status)
@@ -69,7 +75,7 @@ export const StatusChange: FC<StatusChangeProps> = ({
           <StatusBtn
             key={status?.id}
             value={status}
-            label={status?.name}
+            label={status?.name ?? ''}
             backgroundColor={status?.color}
             size={'large'}
             onChange={() => handleUpdateTaskStatus(status)}
@@ -81,7 +87,6 @@ export const StatusChange: FC<StatusChangeProps> = ({
           icon={<EditOutlined />}
           type={'text'}
           size={'large'}
-          style={{ width: '100%' }}
           onClick={onEdit}
         />
       </Flex>

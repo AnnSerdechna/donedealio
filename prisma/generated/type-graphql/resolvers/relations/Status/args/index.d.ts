@@ -1,1 +1,2 @@
-export { StatusTaskArgs } from "./StatusTaskArgs";
+export { StatusPriorityTasksArgs } from "./StatusPriorityTasksArgs";
+export { StatusStatusTasksArgs } from "./StatusStatusTasksArgs";

@@ -1,5 +1,6 @@
 import { AccountOrderByRelationAggregateInput } from "../inputs/AccountOrderByRelationAggregateInput";
 import { SortOrderInput } from "../inputs/SortOrderInput";
+import { StatusOrderByRelationAggregateInput } from "../inputs/StatusOrderByRelationAggregateInput";
 import { TwoFactorConfirnationOrderByWithRelationInput } from "../inputs/TwoFactorConfirnationOrderByWithRelationInput";
 import { WorkspaceOrderByRelationAggregateInput } from "../inputs/WorkspaceOrderByRelationAggregateInput";
 export declare class UserOrderByWithRelationInput {
@@ -17,4 +18,5 @@ export declare class UserOrderByWithRelationInput {
     twoFactorConfirnation?: TwoFactorConfirnationOrderByWithRelationInput | undefined;
     accounts?: AccountOrderByRelationAggregateInput | undefined;
     workspaces?: WorkspaceOrderByRelationAggregateInput | undefined;
+    status?: StatusOrderByRelationAggregateInput | undefined;
 }

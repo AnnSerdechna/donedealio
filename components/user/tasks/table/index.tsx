@@ -13,9 +13,9 @@ import {
 } from '@ant-design/icons';
 import {
   Status,
+  StatusType,
   Task,
   useDeleteManyTaskMutation,
-  usePrioritiesQuery,
   useStatusesQuery,
   useTasksQuery,
   useUpdateOneTaskMutation,
@@ -24,16 +24,37 @@ import {
 import { DueDateField, StatusField, EditableText, OwnerField, AddTaskForm } from '@/components/user';
 import { getFormattedDate } from '@/functions/getFormattedDate';
 import { FilesUpload } from '../data-fields/files';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
 
 type UpdatedDataType = { [key: string]: { set: string | Date } } | { [key: string]: { connect: { id: number } } };
 
 export const TableView: FC = () => {
+  const user = useCurrentUser();
   const { message } = App.useApp();
   const { workspaceId } = useParams();
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
-  const { data: statusesData } = useStatusesQuery();
-  const { data: prioritiesData } = usePrioritiesQuery();
+  const { data: statusesData } = useStatusesQuery({
+    variables: {
+      where: {
+        userId: {
+          equals: user.id
+        },
+        type: { equals: StatusType.Status }
+      }
+    }
+  });
+  const { data: prioritiesData } = useStatusesQuery({
+    variables: {
+      where: {
+        userId: {
+          equals: user.id
+        },
+        type: { equals: StatusType.Priority }
+      }
+    }
+  });
+
   const { data: tasksData, refetch, loading: dataLoading } = useTasksQuery({
     variables: {
       workspaceId: workspaceId as string
@@ -178,15 +199,13 @@ export const TableView: FC = () => {
       key: 'priority',
       width: 150,
       align: 'center',
-      render: (_, data) => (
-        <StatusField
-          data={prioritiesData?.priorities as Status[]}
-          taskId={data?.id}
-          status={data?.priority as Status}
-          updatedField={'priority'}
-          refetchTask={refetch}
-        />
-      )
+      render: (_, data) => <StatusField
+        data={prioritiesData?.statuses as Status[]}
+        taskId={data?.id}
+        status={data?.priority as Status}
+        updatedField={'priority'}
+        refetchTask={refetch}
+      />
     },
     {
       title: 'Notes',

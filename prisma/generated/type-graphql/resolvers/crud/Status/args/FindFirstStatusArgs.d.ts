@@ -7,5 +7,5 @@ export declare class FindFirstStatusArgs {
     cursor?: StatusWhereUniqueInput | undefined;
     take?: number | undefined;
     skip?: number | undefined;
-    distinct?: Array<"id" | "name" | "color"> | undefined;
+    distinct?: Array<"id" | "name" | "color" | "type" | "userId"> | undefined;
 }

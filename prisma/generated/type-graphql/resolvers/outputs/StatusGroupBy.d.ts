@@ -5,8 +5,10 @@ import { StatusMinAggregate } from "../outputs/StatusMinAggregate";
 import { StatusSumAggregate } from "../outputs/StatusSumAggregate";
 export declare class StatusGroupBy {
     id: number;
-    name: string;
+    name: string | null;
     color: string;
+    type: "STATUS" | "PRIORITY";
+    userId: string;
     _count: StatusCountAggregate | null;
     _avg: StatusAvgAggregate | null;
     _sum: StatusSumAggregate | null;

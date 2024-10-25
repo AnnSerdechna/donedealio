@@ -56,7 +56,7 @@ export const SideMenu: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
   const user = useCurrentUser();
-  const { data: workspacesData } = useWorkspacesQuery({
+  const { data: workspacesData, loading } = useWorkspacesQuery({
     variables: {
       where: {
         userId: { equals: user.id ?? ''}
@@ -88,7 +88,7 @@ export const SideMenu: FC = () => {
         {menu(items)}
 
         <List
-          loading={!workspacesData?.workspaces?.length}
+          loading={loading}
           dataSource={workspacesData?.workspaces}
           rootClassName={styles.workspacesList}
           renderItem={(item) => (

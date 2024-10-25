@@ -10,7 +10,6 @@ export { StatusField } from '@/components/user/tasks/data-fields/status';
 export { DueDateField } from '@/components/user/tasks/data-fields/due-date';
 export { EditableText } from '@/components/user/tasks/data-fields/editable-text';
 export { OwnerField } from '@/components/user/tasks/data-fields/owner';
-export { InviteMember } from '@/components/user/tasks/invite-member';
 export { CreateTaskForm } from '@/components/user/tasks/forms/create-task';
 export { UpdateTaskForm } from '@/components/user/tasks/forms/update-task';
 export { ControlPanel } from '@/components/user/tasks/calendar/control-panel';

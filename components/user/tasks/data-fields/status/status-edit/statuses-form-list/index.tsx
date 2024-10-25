@@ -30,6 +30,7 @@ export const StatusFormList: FC<StatusesFormListProps> = ({ statusesData, submit
                   <Form.Item
                     {...restField}
                     name={[name, 'color']}
+                    rules={[{required: true }]}
                     noStyle
                   >
                     <ColorPicker />
@@ -50,7 +51,14 @@ export const StatusFormList: FC<StatusesFormListProps> = ({ statusesData, submit
               )
             })}
             <Form.Item noStyle>
-              <Button icon={<PlusOutlined />} size={'large'} style={{ width: '100%' }} onClick={add}>New Label</Button>
+              <Button 
+                icon={<PlusOutlined />} 
+                size={'large'} 
+                style={{ width: '100%' }} 
+                onClick={add}
+              >
+                New Label
+              </Button>
             </Form.Item>
           </Space>
         )}

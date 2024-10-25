@@ -1,4 +1,4 @@
-import { PriorityWhereInput } from "../../inputs/PriorityWhereInput";
+import { StatusWhereInput } from "../../inputs/StatusWhereInput";
 export declare class CreateManyAndReturnTaskPriorityArgs {
-    where?: PriorityWhereInput | undefined;
+    where?: StatusWhereInput | undefined;
 }

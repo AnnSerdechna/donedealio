@@ -8,6 +8,7 @@ const DateTimeFieldUpdateOperationsInput_1 = require("../inputs/DateTimeFieldUpd
 const EnumRoleFieldUpdateOperationsInput_1 = require("../inputs/EnumRoleFieldUpdateOperationsInput");
 const NullableDateTimeFieldUpdateOperationsInput_1 = require("../inputs/NullableDateTimeFieldUpdateOperationsInput");
 const NullableStringFieldUpdateOperationsInput_1 = require("../inputs/NullableStringFieldUpdateOperationsInput");
+const StatusUpdateManyWithoutUserNestedInput_1 = require("../inputs/StatusUpdateManyWithoutUserNestedInput");
 const StringFieldUpdateOperationsInput_1 = require("../inputs/StringFieldUpdateOperationsInput");
 const TwoFactorConfirnationUpdateOneWithoutUserNestedInput_1 = require("../inputs/TwoFactorConfirnationUpdateOneWithoutUserNestedInput");
 const WorkspaceUpdateManyWithoutUserNestedInput_1 = require("../inputs/WorkspaceUpdateManyWithoutUserNestedInput");
@@ -92,6 +93,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", WorkspaceUpdateManyWithoutUserNestedInput_1.WorkspaceUpdateManyWithoutUserNestedInput)
 ], UserUpdateWithoutAccountsInput.prototype, "workspaces", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StatusUpdateManyWithoutUserNestedInput_1.StatusUpdateManyWithoutUserNestedInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StatusUpdateManyWithoutUserNestedInput_1.StatusUpdateManyWithoutUserNestedInput)
+], UserUpdateWithoutAccountsInput.prototype, "status", void 0);
 exports.UserUpdateWithoutAccountsInput = UserUpdateWithoutAccountsInput = tslib_1.__decorate([
     TypeGraphQL.InputType("UserUpdateWithoutAccountsInput", {})
 ], UserUpdateWithoutAccountsInput);

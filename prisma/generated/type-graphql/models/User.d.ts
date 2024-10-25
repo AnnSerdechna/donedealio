@@ -1,4 +1,5 @@
 import { Account } from "../models/Account";
+import { Status } from "../models/Status";
 import { TwoFactorConfirnation } from "../models/TwoFactorConfirnation";
 import { Workspace } from "../models/Workspace";
 import { UserCount } from "../resolvers/outputs/UserCount";
@@ -17,5 +18,6 @@ export declare class User {
     twoFactorConfirnation?: TwoFactorConfirnation | null;
     accounts?: Account[];
     workspaces?: Workspace[];
+    status?: Status[];
     _count?: UserCount | null;
 }

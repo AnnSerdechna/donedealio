@@ -5,6 +5,7 @@ const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
 const AccountOrderByRelationAggregateInput_1 = require("../inputs/AccountOrderByRelationAggregateInput");
 const SortOrderInput_1 = require("../inputs/SortOrderInput");
+const StatusOrderByRelationAggregateInput_1 = require("../inputs/StatusOrderByRelationAggregateInput");
 const TwoFactorConfirnationOrderByWithRelationInput_1 = require("../inputs/TwoFactorConfirnationOrderByWithRelationInput");
 const WorkspaceOrderByRelationAggregateInput_1 = require("../inputs/WorkspaceOrderByRelationAggregateInput");
 const SortOrder_1 = require("../../enums/SortOrder");
@@ -95,6 +96,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", WorkspaceOrderByRelationAggregateInput_1.WorkspaceOrderByRelationAggregateInput)
 ], UserOrderByWithRelationInput.prototype, "workspaces", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StatusOrderByRelationAggregateInput_1.StatusOrderByRelationAggregateInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StatusOrderByRelationAggregateInput_1.StatusOrderByRelationAggregateInput)
+], UserOrderByWithRelationInput.prototype, "status", void 0);
 exports.UserOrderByWithRelationInput = UserOrderByWithRelationInput = tslib_1.__decorate([
     TypeGraphQL.InputType("UserOrderByWithRelationInput", {})
 ], UserOrderByWithRelationInput);

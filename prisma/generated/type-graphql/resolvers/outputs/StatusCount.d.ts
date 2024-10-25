@@ -1,5 +1,8 @@
-import { StatusCountTaskArgs } from "./args/StatusCountTaskArgs";
+import { StatusCountPriorityTasksArgs } from "./args/StatusCountPriorityTasksArgs";
+import { StatusCountStatusTasksArgs } from "./args/StatusCountStatusTasksArgs";
 export declare class StatusCount {
-    task: number;
-    getTask(root: StatusCount, args: StatusCountTaskArgs): number;
+    priorityTasks: number;
+    statusTasks: number;
+    getPriorityTasks(root: StatusCount, args: StatusCountPriorityTasksArgs): number;
+    getStatusTasks(root: StatusCount, args: StatusCountStatusTasksArgs): number;
 }

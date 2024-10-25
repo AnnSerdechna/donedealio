@@ -8,6 +8,7 @@ const BoolFilter_1 = require("../inputs/BoolFilter");
 const DateTimeFilter_1 = require("../inputs/DateTimeFilter");
 const DateTimeNullableFilter_1 = require("../inputs/DateTimeNullableFilter");
 const EnumRoleFilter_1 = require("../inputs/EnumRoleFilter");
+const StatusListRelationFilter_1 = require("../inputs/StatusListRelationFilter");
 const StringFilter_1 = require("../inputs/StringFilter");
 const StringNullableFilter_1 = require("../inputs/StringNullableFilter");
 const TwoFactorConfirnationNullableRelationFilter_1 = require("../inputs/TwoFactorConfirnationNullableRelationFilter");
@@ -117,6 +118,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", WorkspaceListRelationFilter_1.WorkspaceListRelationFilter)
 ], UserWhereInput.prototype, "workspaces", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StatusListRelationFilter_1.StatusListRelationFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StatusListRelationFilter_1.StatusListRelationFilter)
+], UserWhereInput.prototype, "status", void 0);
 exports.UserWhereInput = UserWhereInput = tslib_1.__decorate([
     TypeGraphQL.InputType("UserWhereInput", {})
 ], UserWhereInput);

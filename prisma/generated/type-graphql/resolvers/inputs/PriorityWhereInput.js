@@ -5,7 +5,6 @@ const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
 const IntFilter_1 = require("../inputs/IntFilter");
 const StringFilter_1 = require("../inputs/StringFilter");
-const TaskListRelationFilter_1 = require("../inputs/TaskListRelationFilter");
 let PriorityWhereInput = class PriorityWhereInput {
 };
 exports.PriorityWhereInput = PriorityWhereInput;
@@ -45,12 +44,6 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", StringFilter_1.StringFilter)
 ], PriorityWhereInput.prototype, "color", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => TaskListRelationFilter_1.TaskListRelationFilter, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", TaskListRelationFilter_1.TaskListRelationFilter)
-], PriorityWhereInput.prototype, "task", void 0);
 exports.PriorityWhereInput = PriorityWhereInput = tslib_1.__decorate([
     TypeGraphQL.InputType("PriorityWhereInput", {})
 ], PriorityWhereInput);

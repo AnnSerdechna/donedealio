@@ -48,7 +48,6 @@ declare const relationResolversMap: {
     File: typeof relationResolvers.FileRelationsResolver;
     Task: typeof relationResolvers.TaskRelationsResolver;
     Status: typeof relationResolvers.StatusRelationsResolver;
-    Priority: typeof relationResolvers.PriorityRelationsResolver;
 };
 type RelationResolverModelNames = keyof typeof relationResolversMap;
 type RelationResolverActionNames<TModel extends RelationResolverModelNames> = keyof typeof relationResolversMap[TModel]["prototype"];

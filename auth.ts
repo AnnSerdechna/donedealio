@@ -7,6 +7,7 @@ import { getUserById } from '@/data/user';
 import prisma from '@/lib/prisma';
 import { getTwoFactorConfirmationByUserId } from './data/two-factor-confirmation';
 import { getAccountByUserId } from './data/account';
+import { defaultStatuses } from './data/defautlStatuses';
 
 export const {
   handlers,
@@ -24,7 +25,19 @@ export const {
         where: {id: user.id},
         data: {emailVerified: new Date()}
       });
-    }
+    },
+    async createUser({ user }) {
+      const defaultStatusesData = defaultStatuses.map((status) => ({
+        name: status.name,
+        color: status.color,
+        type: status.type,
+        userId: user.id ?? '',
+      }));
+
+      await prisma.status.createMany({
+        data: defaultStatusesData,
+      });
+    },
   },
   callbacks: {
     async signIn({ user, account }) {

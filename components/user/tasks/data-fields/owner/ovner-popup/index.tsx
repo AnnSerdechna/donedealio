@@ -6,8 +6,10 @@ import { UserAddOutlined, SearchOutlined } from '@ant-design/icons'
 
 import { Button, Text } from '@/components/ui';
 import { InviteMemberForm } from '../../../forms/invite-member';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
 
 export const OwnerPopup: FC = () => {
+  const user = useCurrentUser();
   const [openInvite, setOpenInvite] = useState(false);
 
   const handleOpenInvite = () => setOpenInvite(true);
@@ -25,7 +27,7 @@ export const OwnerPopup: FC = () => {
             bordered
             onClose={() => { }}
           >
-            {' '}{'Anna Serdechna'}
+            {' '}{user.name}
           </Tag>
         </Flex>
 

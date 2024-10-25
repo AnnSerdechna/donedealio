@@ -1,4 +1,4 @@
-import { Workspaces } from '@/components/user';
+import { Workspaces } from '@/components/user/workspace';
 
 export default async function WorkspacesPage() {
 

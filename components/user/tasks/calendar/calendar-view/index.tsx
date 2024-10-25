@@ -10,7 +10,7 @@ import localeData from 'dayjs/plugin/localeData';
 import 'dayjs/locale/en'; 
 
 import { Task, useTaskQuery, useTasksQuery } from '@/graphql/types';
-import { CreateTaskForm, UpdateTaskForm, ControlPanel, TasksList } from '@/components/user';
+import { ControlPanel, TasksList, CreateTaskForm, UpdateTaskForm } from '@/components/user/tasks';
 import { Modal } from '@/components/ui';
 
 dayjs.extend(isSameOrAfter);
@@ -25,10 +25,13 @@ export const CalendarView: FC = () => {
   const [selectedDate, setDate] = useState<Dayjs | null>(null);
   const { data: tasksData, refetch } = useTasksQuery({
     variables: {
-      workspaceId: workspaceId as string
+      where: {
+        workspaceId: {
+          equals: workspaceId as string
+        }
+      }
     }
   });
-
   const { data: taskData } = useTaskQuery({
     variables: {
       where: {

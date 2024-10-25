@@ -6,62 +6,57 @@ import { useParams } from 'next/navigation';
 import { Badge, Button, Flex, Table, App } from 'antd';
 import type { TableProps } from 'antd';
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import {
   MessageOutlined,
   DeleteTwoTone,
   PlusCircleOutlined,
 } from '@ant-design/icons';
+
 import {
   Status,
-  StatusType,
   Task,
   useDeleteTasksMutation,
-  useStatusesQuery,
   useTasksQuery,
   useUpdateTaskMutation,
 } from '@/graphql/types';
-
-import { DueDateField, StatusField, EditableText, OwnerField, AddTaskForm } from '@/components/user';
+import {
+  AddTaskForm,
+  DueDateField,
+  StatusField,
+  EditableText,
+  OwnerField,
+  FilesUpload,
+} from '@/components/user/tasks';
 import { getFormattedDate } from '@/functions/getFormattedDate';
-import { FilesUpload } from '../data-fields/files';
-import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { Text } from '@/components/ui';
+import { useStatusData } from '@/hooks/useStatusData';
+import { TableSummary } from '../table-summary';
+
+dayjs.extend(relativeTime);
 
 type UpdatedDataType = { [key: string]: { set: string | Date } } | { [key: string]: { connect: { id: number } } };
 
 export const TableView: FC = () => {
-  const user = useCurrentUser();
   const { message } = App.useApp();
   const { workspaceId } = useParams();
+  const { statusesData, prioritiesData } = useStatusData();
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-
-  const { data: statusesData } = useStatusesQuery({
-    variables: {
-      where: {
-        userId: {
-          equals: user.id
-        },
-        type: { equals: StatusType.Status }
-      }
-    }
-  });
-  const { data: prioritiesData } = useStatusesQuery({
-    variables: {
-      where: {
-        userId: {
-          equals: user.id
-        },
-        type: { equals: StatusType.Priority }
-      }
-    }
-  });
-
+  
   const { data: tasksData, refetch, loading: dataLoading } = useTasksQuery({
     variables: {
-      workspaceId: workspaceId as string
+      where: {
+        workspaceId: {
+          equals: workspaceId as string
+        }
+      }
     }
-  });
+  });  
+
   const [deleteTasks, { loading: deleteTasksLoading }] = useDeleteTasksMutation();
   const [updateTask] = useUpdateTaskMutation();
+
+  const allTasks = tasksData?.tasks as Task[];
 
   const handleUpdateTask = async (data: UpdatedDataType, taskId: string, updatedField: string) => {
     try {
@@ -212,7 +207,7 @@ export const TableView: FC = () => {
       dataIndex: 'note',
       key: 'note',
       align: 'center',
-      width: 250,
+      width: 200,
       render: (note, data) => {
         return (
           <EditableText
@@ -231,6 +226,13 @@ export const TableView: FC = () => {
       align: 'center',
       width: 200,
       render: (_, data) => <FilesUpload files={data?.files} taskId={data?.id} refetch={refetch} />
+    },
+    {
+      title: 'Last updated ',
+      dataIndex: 'updatedAt',
+      key: 'updatedAt',
+      width: 150,
+      render: (record) => <Text>{dayjs().to(dayjs(record))}</Text>
     },
   ];
 
@@ -254,13 +256,24 @@ export const TableView: FC = () => {
         loading={dataLoading}
         size={'small'}
         pagination={false}
-        scroll={{ x: 1250 }}
+        scroll={{ x: 1350 }}
         rowSelection={{
           selectedRowKeys,
           onChange: setSelectedRowKeys,
         }}
         rowKey={(record) => record.id}
-        footer={() => <AddTaskForm workspaceId={workspaceId as string} refetchTasks={refetch} />}
+        footer={() => (
+          <AddTaskForm 
+            workspaceId={workspaceId as string} 
+            refetchTasks={refetch} 
+          />
+        )}
+        summary={() => (
+          <TableSummary
+            workspaceId={workspaceId as string}
+            tasksData={allTasks}
+          />
+        )}
       />
     </Flex>
   );

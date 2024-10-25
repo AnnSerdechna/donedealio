@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 
 import { useCreateFileMutation, useCreateTaskMutation } from '@/graphql/types';
 import { getFormattedDate } from '@/functions/getFormattedDate';
-import { FormData, TaskForm, TaskFormProps } from '../task-form';
+import { FormData, TaskForm, TaskFormProps } from '@/components/user/tasks';
 
 export const CreateTaskForm: FC<Omit<TaskFormProps, 'action' | 'submitLoading'>> = ({ 
   form, 

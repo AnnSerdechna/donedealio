@@ -1,4 +1,4 @@
-import { CalendarView } from '@/components/user';
+import { CalendarView } from '@/components/user/tasks';
 
 export default function Calendar() {
   return (

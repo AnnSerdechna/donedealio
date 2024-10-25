@@ -7,13 +7,13 @@ import {
 } from '@ant-design/icons';
 import { Flex, List, Menu, MenuProps } from 'antd';
 import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 import { MenuItemProps } from '@/types';
-import styles from './index.module.scss';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { useWorkspacesQuery } from '@/graphql/types';
 import { VSpace } from '@/components/ui';
-import Link from 'next/link';
+import styles from './index.module.scss';
 
 function getItem(
   label: ReactNode,
@@ -52,11 +52,11 @@ export const HomeMenu: FC = () => (
   <Menu items={items} mode={'horizontal'} />
 );
 
-export const SideMenu: FC = () => {
+export const SideMenu: FC<{ collapsed?: boolean }> = ({ collapsed = false  }) => {
   const router = useRouter();
   const pathname = usePathname();
   const user = useCurrentUser();
-  const { data: workspacesData, loading } = useWorkspacesQuery({
+  const { data: workspacesData } = useWorkspacesQuery({
     variables: {
       where: {
         userId: { equals: user.id ?? ''}
@@ -87,16 +87,17 @@ export const SideMenu: FC = () => {
       <VSpace size={8}>
         {menu(items)}
 
-        <List
-          loading={loading}
-          dataSource={workspacesData?.workspaces}
-          rootClassName={styles.workspacesList}
-          renderItem={(item) => (
-            <List.Item className={styles.workspacesListItem}>
-              <Link href={`/workspace/${item.id}/table`}>{item.name}</Link>
-            </List.Item>
-          )}
-        />
+        {!collapsed && (
+          <List
+            dataSource={workspacesData?.workspaces}
+            rootClassName={styles.workspacesList}
+            renderItem={(item) => (
+              <List.Item className={styles.workspacesListItem}>
+                <Link href={`/workspace/${item.id}/table`}>{item.name}</Link>
+              </List.Item>
+            )}
+          />
+        )}
       </VSpace>
 
       {menu(bottomItems)}

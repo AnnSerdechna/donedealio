@@ -1,8 +1,9 @@
 import { Input } from 'antd'
 
 import { Form, FormItem, VSpace } from '@/components/ui'
+import { FC } from 'react'
 
-export const InviteMemberForm = () => {
+export const InviteMemberForm: FC = () => {
   return (
     <Form>
       <VSpace>

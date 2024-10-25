@@ -1,11 +1,12 @@
 'use client';
 
 import { FC, Fragment, useState } from 'react';
-import { App, Flex, Modal } from 'antd';
+import { App, Col, Flex, Modal, Row } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
 
 import {
+  Task,
   useCreateWorkspaceMutation,
   useDeleteWorkspaceMutation,
   useUpdateWorkspaceMutation,
@@ -14,7 +15,8 @@ import {
   WorkspaceUpdateInput,
 } from '@/graphql/types';
 import { Button, Form } from '@/components/ui';
-import { ContentContainer, WorkspaceFormContent, WorkspaceCard } from '@/components/user';
+import { WorkspaceFormContent, WorkspaceCard } from '@/components/user/workspace';
+import { ContentContainer} from '@/components/user';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 
 export const Workspaces: FC = () => {
@@ -132,18 +134,21 @@ export const Workspaces: FC = () => {
           />
         )}
       >
-        <Flex gap={24} wrap>
+        <Row  gutter={[24, 24]} wrap>
           {workspacesData?.workspaces?.map(item => (
-            <WorkspaceCard
-              key={item?.id}
-              id={item?.id}
-              name={item?.name}
-              description={item?.description as string}
-              onEdit={() => onEditWorkspace(item?.id, item?.name, item?.description)}
-              onRemove={() => onRemoveWorkspace(item.id)}
-            />
+            <Col span={8} key={item?.id}>
+              <WorkspaceCard
+                id={item?.id}
+                name={item?.name}
+                tasks={item?.task as Task[]}
+                description={item?.description as string}
+                tasksCount={item?.task?.length}
+                onEdit={() => onEditWorkspace(item?.id, item?.name, item?.description)}
+                onRemove={() => onRemoveWorkspace(item.id)}
+              />
+            </Col>
           ))}
-        </Flex>
+        </Row>
       </ContentContainer>
 
       <Modal

@@ -5791,6 +5791,13 @@ export type UpdateTaskMutationVariables = Exact<{
 
 export type UpdateTaskMutation = { __typename?: 'Mutation', updateOneTask?: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> } | null };
 
+export type AggregateTaskByDateQueryVariables = Exact<{
+  where: TaskWhereInput;
+}>;
+
+
+export type AggregateTaskByDateQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', workspaceId: string, dueDate?: any | null }>, aggregateTask: { __typename?: 'AggregateTask', _min?: { __typename?: 'TaskMinAggregate', dueDate?: any | null } | null, _max?: { __typename?: 'TaskMaxAggregate', dueDate?: any | null } | null } };
+
 export type StatusesQueryVariables = Exact<{
   where?: InputMaybe<StatusWhereInput>;
 }>;
@@ -5806,7 +5813,7 @@ export type TaskQueryVariables = Exact<{
 export type TaskQuery = { __typename?: 'Query', task?: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> } | null };
 
 export type TasksQueryVariables = Exact<{
-  workspaceId: Scalars['String']['input'];
+  where: TaskWhereInput;
 }>;
 
 
@@ -6247,6 +6254,55 @@ export function useUpdateTaskMutation(baseOptions?: Apollo.MutationHookOptions<U
 export type UpdateTaskMutationHookResult = ReturnType<typeof useUpdateTaskMutation>;
 export type UpdateTaskMutationResult = Apollo.MutationResult<UpdateTaskMutation>;
 export type UpdateTaskMutationOptions = Apollo.BaseMutationOptions<UpdateTaskMutation, UpdateTaskMutationVariables>;
+export const AggregateTaskByDateDocument = gql`
+    query aggregateTaskByDate($where: TaskWhereInput!) {
+  tasks(where: $where) {
+    workspaceId
+    dueDate
+  }
+  aggregateTask {
+    _min {
+      dueDate
+    }
+    _max {
+      dueDate
+    }
+  }
+}
+    `;
+
+/**
+ * __useAggregateTaskByDateQuery__
+ *
+ * To run a query within a React component, call `useAggregateTaskByDateQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAggregateTaskByDateQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAggregateTaskByDateQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useAggregateTaskByDateQuery(baseOptions: Apollo.QueryHookOptions<AggregateTaskByDateQuery, AggregateTaskByDateQueryVariables> & ({ variables: AggregateTaskByDateQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AggregateTaskByDateQuery, AggregateTaskByDateQueryVariables>(AggregateTaskByDateDocument, options);
+      }
+export function useAggregateTaskByDateLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AggregateTaskByDateQuery, AggregateTaskByDateQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AggregateTaskByDateQuery, AggregateTaskByDateQueryVariables>(AggregateTaskByDateDocument, options);
+        }
+export function useAggregateTaskByDateSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<AggregateTaskByDateQuery, AggregateTaskByDateQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AggregateTaskByDateQuery, AggregateTaskByDateQueryVariables>(AggregateTaskByDateDocument, options);
+        }
+export type AggregateTaskByDateQueryHookResult = ReturnType<typeof useAggregateTaskByDateQuery>;
+export type AggregateTaskByDateLazyQueryHookResult = ReturnType<typeof useAggregateTaskByDateLazyQuery>;
+export type AggregateTaskByDateSuspenseQueryHookResult = ReturnType<typeof useAggregateTaskByDateSuspenseQuery>;
+export type AggregateTaskByDateQueryResult = Apollo.QueryResult<AggregateTaskByDateQuery, AggregateTaskByDateQueryVariables>;
 export const StatusesDocument = gql`
     query statuses($where: StatusWhereInput) {
   statuses(where: $where) {
@@ -6328,8 +6384,8 @@ export type TaskLazyQueryHookResult = ReturnType<typeof useTaskLazyQuery>;
 export type TaskSuspenseQueryHookResult = ReturnType<typeof useTaskSuspenseQuery>;
 export type TaskQueryResult = Apollo.QueryResult<TaskQuery, TaskQueryVariables>;
 export const TasksDocument = gql`
-    query tasks($workspaceId: String!) {
-  tasks(where: {workspaceId: {equals: $workspaceId}}, orderBy: {createdAt: asc}) {
+    query tasks($where: TaskWhereInput!) {
+  tasks(where: $where) {
     ...Task
   }
 }
@@ -6347,7 +6403,7 @@ export const TasksDocument = gql`
  * @example
  * const { data, loading, error } = useTasksQuery({
  *   variables: {
- *      workspaceId: // value for 'workspaceId'
+ *      where: // value for 'where'
  *   },
  * });
  */

@@ -2,11 +2,10 @@ import { DatePicker, Flex, Form, FormInstance, FormProps, Input } from 'antd';
 import { FC } from 'react';
 import { Dayjs } from 'dayjs';
 
-import { Priority, Status, StatusType, useStatusesQuery } from '@/graphql/types';
+import { Priority, Status } from '@/graphql/types';
 import { Button, FormItem } from '@/components/ui';
-import { FilesUpload, FilesUploadProps } from '../../data-fields/files';
-import { StatusField } from '../../data-fields/status';
-import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { StatusField, FilesUpload, FilesUploadProps } from '@/components/user/tasks';
+import { useStatusData } from '@/hooks/useStatusData';
 
 export type TaskFormProps = FormProps & FilesUploadProps & {
   form: FormInstance
@@ -36,27 +35,7 @@ export const TaskForm: FC<TaskFormProps> = ({
   onCancel ,
   ...props
 }) => {
-  const user = useCurrentUser();
-  const { data: statusesData } = useStatusesQuery({
-    variables: {
-      where: {
-        userId: {
-          equals: user.id
-        },
-        type: { equals: StatusType.Status }
-      }
-    }
-  });
-  const { data: prioritiesData } = useStatusesQuery({
-    variables: {
-      where: {
-        userId: {
-          equals: user.id
-        },
-        type: { equals: StatusType.Priority }
-      }
-    }
-  });
+  const { statusesData, prioritiesData } = useStatusData();
 
   const statusValue = Form.useWatch('status', form);
   const priorityValue = Form.useWatch('priority', form);

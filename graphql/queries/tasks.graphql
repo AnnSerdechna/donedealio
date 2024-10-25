@@ -1,5 +1,5 @@
-query tasks($workspaceId: String!) {
-  tasks(where: { workspaceId: { equals: $workspaceId } }, orderBy: {createdAt: asc}) {
+query tasks($where: TaskWhereInput!) {
+  tasks(where: $where) {
     ...Task
   }
 }

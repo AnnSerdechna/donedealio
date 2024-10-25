@@ -2,7 +2,7 @@ import { App } from 'antd';
 import { FC } from 'react';
 
 import { getFormattedDate } from '@/functions/getFormattedDate';
-import { FormData, TaskForm, TaskFormProps } from '../task-form';
+import { FormData, TaskForm, TaskFormProps } from '@/components/user/tasks';
 import { useUpdateTaskMutation } from '@/graphql/types';
 
 export const UpdateTaskForm: FC<Omit<TaskFormProps, 'action' | 'submitLoading'>> = ({ 

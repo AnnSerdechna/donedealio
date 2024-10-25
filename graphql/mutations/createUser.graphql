@@ -1,9 +1,0 @@
-mutation CreateOneUser($data: UserCreateInput!) {
-  createOneUser(data: $data) {
-    id
-    email
-    name
-    password
-    role
-  }
-}

@@ -1,21 +1,5 @@
-mutation CreateOneTask($data: TaskCreateInput!) {
+mutation createTask($data: TaskCreateInput!) {
   createOneTask(data: $data) {
-    id
-    name
-    message
-    note
-    dueDate
-    status {
-      id
-    }
-    files {
-      id
-      url
-      fileId
-    }
-    workspace {
-      id
-    }
-    workspaceId
-  }
+    ...Task
+}
 }

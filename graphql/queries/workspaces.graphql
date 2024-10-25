@@ -1,7 +1,5 @@
-query Workspaces($where: WorkspaceWhereInput) {
+query workspaces($where: WorkspaceWhereInput) {
   workspaces(where: $where) {
-    id
-    name
-    description
+    ...Workspace
   }
 }

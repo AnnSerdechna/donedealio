@@ -1,14 +1,5 @@
-query Workspace($where: WorkspaceWhereUniqueInput!) {
+query workspace($where: WorkspaceWhereUniqueInput!) {
   workspace(where: $where) {
-    id
-    name
-    user {
-      id
-      name
-      role
-    }
-    task {
-      ...Task
-    }
+    ...Workspace
   }
 }

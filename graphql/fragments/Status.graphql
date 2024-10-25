@@ -2,7 +2,7 @@ fragment Status on Status {
   id
   name
   color
-  type
+  type 
   user {
     id
   }

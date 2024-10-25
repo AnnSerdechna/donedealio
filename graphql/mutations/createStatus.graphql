@@ -1,5 +1,5 @@
 mutation createStatus($data: StatusCreateInput!) {
   createOneStatus(data: $data) {
-    ...Status
+   ...Status
   }
 }

@@ -5703,16 +5703,20 @@ export type WorkspaceWhereUniqueInput = {
   userId?: InputMaybe<StringNullableFilter>;
 };
 
+export type FileFragment = { __typename?: 'File', id: number, url: string, fileId: string, name: string };
+
 export type StatusFragment = { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } };
 
-export type TaskFragment = { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number, url: string, name: string, fileId: string }>, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType } | null, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType } | null, workspace?: { __typename?: 'Workspace', id: string } | null };
+export type TaskFragment = { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> };
+
+export type WorkspaceFragment = { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null };
 
 export type CreateFileMutationVariables = Exact<{
   data: FileCreateInput;
 }>;
 
 
-export type CreateFileMutation = { __typename?: 'Mutation', createOneFile: { __typename?: 'File', url: string, name: string, fileId: string, taskId?: string | null } };
+export type CreateFileMutation = { __typename?: 'Mutation', createOneFile: { __typename?: 'File', id: number, url: string, fileId: string, name: string } };
 
 export type CreateStatusMutationVariables = Exact<{
   data: StatusCreateInput;
@@ -5721,33 +5725,26 @@ export type CreateStatusMutationVariables = Exact<{
 
 export type CreateStatusMutation = { __typename?: 'Mutation', createOneStatus: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } };
 
-export type CreateOneTaskMutationVariables = Exact<{
+export type CreateTaskMutationVariables = Exact<{
   data: TaskCreateInput;
 }>;
 
 
-export type CreateOneTaskMutation = { __typename?: 'Mutation', createOneTask: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, workspaceId: string, status?: { __typename?: 'Status', id: number } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string }>, workspace?: { __typename?: 'Workspace', id: string } | null } };
+export type CreateTaskMutation = { __typename?: 'Mutation', createOneTask: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> } };
 
-export type CreateOneUserMutationVariables = Exact<{
-  data: UserCreateInput;
-}>;
-
-
-export type CreateOneUserMutation = { __typename?: 'Mutation', createOneUser: { __typename?: 'User', id: string, email: string, name: string, password?: string | null, role: Role } };
-
-export type CreateOneWorkspaceMutationVariables = Exact<{
+export type CreateWorkspaceMutationVariables = Exact<{
   data: WorkspaceCreateInput;
 }>;
 
 
-export type CreateOneWorkspaceMutation = { __typename?: 'Mutation', createOneWorkspace: { __typename?: 'Workspace', id: string, name: string, description?: string | null, user?: { __typename?: 'User', id: string } | null } };
+export type CreateWorkspaceMutation = { __typename?: 'Mutation', createOneWorkspace: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } };
 
 export type DeleteFileMutationVariables = Exact<{
   where: FileWhereUniqueInput;
 }>;
 
 
-export type DeleteFileMutation = { __typename?: 'Mutation', deleteOneFile?: { __typename?: 'File', id: number, fileId: string } | null };
+export type DeleteFileMutation = { __typename?: 'Mutation', deleteOneFile?: { __typename?: 'File', id: number, url: string, fileId: string, name: string } | null };
 
 export type DeleteStatusesMutationVariables = Exact<{
   where?: InputMaybe<StatusWhereInput>;
@@ -5756,27 +5753,27 @@ export type DeleteStatusesMutationVariables = Exact<{
 
 export type DeleteStatusesMutation = { __typename?: 'Mutation', deleteManyStatus: { __typename?: 'AffectedRowsOutput', count: number } };
 
-export type DeleteManyTaskMutationVariables = Exact<{
+export type DeleteTasksMutationVariables = Exact<{
   where?: InputMaybe<TaskWhereInput>;
 }>;
 
 
-export type DeleteManyTaskMutation = { __typename?: 'Mutation', deleteManyTask: { __typename?: 'AffectedRowsOutput', count: number } };
+export type DeleteTasksMutation = { __typename?: 'Mutation', deleteManyTask: { __typename?: 'AffectedRowsOutput', count: number } };
 
-export type DeleteOneWorkspaceMutationVariables = Exact<{
+export type DeleteWorkspaceMutationVariables = Exact<{
   where: WorkspaceWhereUniqueInput;
 }>;
 
 
-export type DeleteOneWorkspaceMutation = { __typename?: 'Mutation', deleteOneWorkspace?: { __typename?: 'Workspace', id: string } | null };
+export type DeleteWorkspaceMutation = { __typename?: 'Mutation', deleteOneWorkspace?: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } | null };
 
-export type UpdateOneWorkspaceMutationVariables = Exact<{
+export type UpdateWorkspaceMutationVariables = Exact<{
   data: WorkspaceUpdateInput;
   where: WorkspaceWhereUniqueInput;
 }>;
 
 
-export type UpdateOneWorkspaceMutation = { __typename?: 'Mutation', updateOneWorkspace?: { __typename?: 'Workspace', id: string, name: string, description?: string | null } | null };
+export type UpdateWorkspaceMutation = { __typename?: 'Mutation', updateOneWorkspace?: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } | null };
 
 export type UpdateStatusMutationVariables = Exact<{
   data: StatusUpdateInput;
@@ -5786,13 +5783,13 @@ export type UpdateStatusMutationVariables = Exact<{
 
 export type UpdateStatusMutation = { __typename?: 'Mutation', updateOneStatus?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null };
 
-export type UpdateOneTaskMutationVariables = Exact<{
+export type UpdateTaskMutationVariables = Exact<{
   data: TaskUpdateInput;
   where: TaskWhereUniqueInput;
 }>;
 
 
-export type UpdateOneTaskMutation = { __typename?: 'Mutation', updateOneTask?: { __typename?: 'Task', id: string } | null };
+export type UpdateTaskMutation = { __typename?: 'Mutation', updateOneTask?: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> } | null };
 
 export type StatusesQueryVariables = Exact<{
   where?: InputMaybe<StatusWhereInput>;
@@ -5806,35 +5803,28 @@ export type TaskQueryVariables = Exact<{
 }>;
 
 
-export type TaskQuery = { __typename?: 'Query', task?: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number, url: string, name: string, fileId: string }>, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType } | null, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType } | null, workspace?: { __typename?: 'Workspace', id: string } | null } | null };
+export type TaskQuery = { __typename?: 'Query', task?: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> } | null };
 
 export type TasksQueryVariables = Exact<{
   workspaceId: Scalars['String']['input'];
 }>;
 
 
-export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number, url: string, name: string, fileId: string }>, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType } | null, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType } | null, workspace?: { __typename?: 'Workspace', id: string } | null }> };
-
-export type UserQueryVariables = Exact<{
-  where: UserWhereUniqueInput;
-}>;
-
-
-export type UserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, email: string, name: string, role: Role, image?: string | null, workspaces: Array<{ __typename?: 'Workspace', description?: string | null, name: string, id: string }> } | null };
+export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }> };
 
 export type WorkspaceQueryVariables = Exact<{
   where: WorkspaceWhereUniqueInput;
 }>;
 
 
-export type WorkspaceQuery = { __typename?: 'Query', workspace?: { __typename?: 'Workspace', id: string, name: string, user?: { __typename?: 'User', id: string, name: string, role: Role } | null, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, files: Array<{ __typename?: 'File', id: number, url: string, name: string, fileId: string }>, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType } | null, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType } | null, workspace?: { __typename?: 'Workspace', id: string } | null }> } | null };
+export type WorkspaceQuery = { __typename?: 'Query', workspace?: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } | null };
 
 export type WorkspacesQueryVariables = Exact<{
   where?: InputMaybe<WorkspaceWhereInput>;
 }>;
 
 
-export type WorkspacesQuery = { __typename?: 'Query', workspaces: Array<{ __typename?: 'Workspace', id: string, name: string, description?: string | null }> };
+export type WorkspacesQuery = { __typename?: 'Query', workspaces: Array<{ __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null }> };
 
 export const StatusFragmentDoc = gql`
     fragment Status on Status {
@@ -5847,6 +5837,14 @@ export const StatusFragmentDoc = gql`
   }
 }
     `;
+export const FileFragmentDoc = gql`
+    fragment File on File {
+  id
+  url
+  fileId
+  name
+}
+    `;
 export const TaskFragmentDoc = gql`
     fragment Task on Task {
   id
@@ -5854,39 +5852,42 @@ export const TaskFragmentDoc = gql`
   message
   note
   dueDate
-  files {
-    id
-    url
-    name
-    fileId
+  createdAt
+  updatedAt
+  status {
+    ...Status
   }
   priority {
-    id
-    name
-    color
-    type
+    ...Status
   }
-  status {
-    id
-    name
-    color
-    type
+  files {
+    ...File
   }
-  workspace {
+}
+    ${StatusFragmentDoc}
+${FileFragmentDoc}`;
+export const WorkspaceFragmentDoc = gql`
+    fragment Workspace on Workspace {
+  id
+  name
+  description
+  createdAt
+  updatedAt
+  task {
+    ...Task
+  }
+  user {
     id
   }
 }
-    `;
+    ${TaskFragmentDoc}`;
 export const CreateFileDocument = gql`
     mutation createFile($data: FileCreateInput!) {
   createOneFile(data: $data) {
-    url
-    name
-    fileId
-    taskId
+    ...File
   }
 }
-    `;
+    ${FileFragmentDoc}`;
 export type CreateFileMutationFn = Apollo.MutationFunction<CreateFileMutation, CreateFileMutationVariables>;
 
 /**
@@ -5946,138 +5947,79 @@ export function useCreateStatusMutation(baseOptions?: Apollo.MutationHookOptions
 export type CreateStatusMutationHookResult = ReturnType<typeof useCreateStatusMutation>;
 export type CreateStatusMutationResult = Apollo.MutationResult<CreateStatusMutation>;
 export type CreateStatusMutationOptions = Apollo.BaseMutationOptions<CreateStatusMutation, CreateStatusMutationVariables>;
-export const CreateOneTaskDocument = gql`
-    mutation CreateOneTask($data: TaskCreateInput!) {
+export const CreateTaskDocument = gql`
+    mutation createTask($data: TaskCreateInput!) {
   createOneTask(data: $data) {
-    id
-    name
-    message
-    note
-    dueDate
-    status {
-      id
-    }
-    files {
-      id
-      url
-      fileId
-    }
-    workspace {
-      id
-    }
-    workspaceId
+    ...Task
   }
 }
-    `;
-export type CreateOneTaskMutationFn = Apollo.MutationFunction<CreateOneTaskMutation, CreateOneTaskMutationVariables>;
+    ${TaskFragmentDoc}`;
+export type CreateTaskMutationFn = Apollo.MutationFunction<CreateTaskMutation, CreateTaskMutationVariables>;
 
 /**
- * __useCreateOneTaskMutation__
+ * __useCreateTaskMutation__
  *
- * To run a mutation, you first call `useCreateOneTaskMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateOneTaskMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreateTaskMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateTaskMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [createOneTaskMutation, { data, loading, error }] = useCreateOneTaskMutation({
+ * const [createTaskMutation, { data, loading, error }] = useCreateTaskMutation({
  *   variables: {
  *      data: // value for 'data'
  *   },
  * });
  */
-export function useCreateOneTaskMutation(baseOptions?: Apollo.MutationHookOptions<CreateOneTaskMutation, CreateOneTaskMutationVariables>) {
+export function useCreateTaskMutation(baseOptions?: Apollo.MutationHookOptions<CreateTaskMutation, CreateTaskMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateOneTaskMutation, CreateOneTaskMutationVariables>(CreateOneTaskDocument, options);
+        return Apollo.useMutation<CreateTaskMutation, CreateTaskMutationVariables>(CreateTaskDocument, options);
       }
-export type CreateOneTaskMutationHookResult = ReturnType<typeof useCreateOneTaskMutation>;
-export type CreateOneTaskMutationResult = Apollo.MutationResult<CreateOneTaskMutation>;
-export type CreateOneTaskMutationOptions = Apollo.BaseMutationOptions<CreateOneTaskMutation, CreateOneTaskMutationVariables>;
-export const CreateOneUserDocument = gql`
-    mutation CreateOneUser($data: UserCreateInput!) {
-  createOneUser(data: $data) {
-    id
-    email
-    name
-    password
-    role
-  }
-}
-    `;
-export type CreateOneUserMutationFn = Apollo.MutationFunction<CreateOneUserMutation, CreateOneUserMutationVariables>;
-
-/**
- * __useCreateOneUserMutation__
- *
- * To run a mutation, you first call `useCreateOneUserMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateOneUserMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createOneUserMutation, { data, loading, error }] = useCreateOneUserMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateOneUserMutation(baseOptions?: Apollo.MutationHookOptions<CreateOneUserMutation, CreateOneUserMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateOneUserMutation, CreateOneUserMutationVariables>(CreateOneUserDocument, options);
-      }
-export type CreateOneUserMutationHookResult = ReturnType<typeof useCreateOneUserMutation>;
-export type CreateOneUserMutationResult = Apollo.MutationResult<CreateOneUserMutation>;
-export type CreateOneUserMutationOptions = Apollo.BaseMutationOptions<CreateOneUserMutation, CreateOneUserMutationVariables>;
-export const CreateOneWorkspaceDocument = gql`
-    mutation createOneWorkspace($data: WorkspaceCreateInput!) {
+export type CreateTaskMutationHookResult = ReturnType<typeof useCreateTaskMutation>;
+export type CreateTaskMutationResult = Apollo.MutationResult<CreateTaskMutation>;
+export type CreateTaskMutationOptions = Apollo.BaseMutationOptions<CreateTaskMutation, CreateTaskMutationVariables>;
+export const CreateWorkspaceDocument = gql`
+    mutation createWorkspace($data: WorkspaceCreateInput!) {
   createOneWorkspace(data: $data) {
-    id
-    name
-    description
-    user {
-      id
-    }
+    ...Workspace
   }
 }
-    `;
-export type CreateOneWorkspaceMutationFn = Apollo.MutationFunction<CreateOneWorkspaceMutation, CreateOneWorkspaceMutationVariables>;
+    ${WorkspaceFragmentDoc}`;
+export type CreateWorkspaceMutationFn = Apollo.MutationFunction<CreateWorkspaceMutation, CreateWorkspaceMutationVariables>;
 
 /**
- * __useCreateOneWorkspaceMutation__
+ * __useCreateWorkspaceMutation__
  *
- * To run a mutation, you first call `useCreateOneWorkspaceMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateOneWorkspaceMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreateWorkspaceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateWorkspaceMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [createOneWorkspaceMutation, { data, loading, error }] = useCreateOneWorkspaceMutation({
+ * const [createWorkspaceMutation, { data, loading, error }] = useCreateWorkspaceMutation({
  *   variables: {
  *      data: // value for 'data'
  *   },
  * });
  */
-export function useCreateOneWorkspaceMutation(baseOptions?: Apollo.MutationHookOptions<CreateOneWorkspaceMutation, CreateOneWorkspaceMutationVariables>) {
+export function useCreateWorkspaceMutation(baseOptions?: Apollo.MutationHookOptions<CreateWorkspaceMutation, CreateWorkspaceMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateOneWorkspaceMutation, CreateOneWorkspaceMutationVariables>(CreateOneWorkspaceDocument, options);
+        return Apollo.useMutation<CreateWorkspaceMutation, CreateWorkspaceMutationVariables>(CreateWorkspaceDocument, options);
       }
-export type CreateOneWorkspaceMutationHookResult = ReturnType<typeof useCreateOneWorkspaceMutation>;
-export type CreateOneWorkspaceMutationResult = Apollo.MutationResult<CreateOneWorkspaceMutation>;
-export type CreateOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<CreateOneWorkspaceMutation, CreateOneWorkspaceMutationVariables>;
+export type CreateWorkspaceMutationHookResult = ReturnType<typeof useCreateWorkspaceMutation>;
+export type CreateWorkspaceMutationResult = Apollo.MutationResult<CreateWorkspaceMutation>;
+export type CreateWorkspaceMutationOptions = Apollo.BaseMutationOptions<CreateWorkspaceMutation, CreateWorkspaceMutationVariables>;
 export const DeleteFileDocument = gql`
     mutation deleteFile($where: FileWhereUniqueInput!) {
   deleteOneFile(where: $where) {
-    id
-    fileId
+    ...File
   }
 }
-    `;
+    ${FileFragmentDoc}`;
 export type DeleteFileMutationFn = Apollo.MutationFunction<DeleteFileMutation, DeleteFileMutationVariables>;
 
 /**
@@ -6137,108 +6079,106 @@ export function useDeleteStatusesMutation(baseOptions?: Apollo.MutationHookOptio
 export type DeleteStatusesMutationHookResult = ReturnType<typeof useDeleteStatusesMutation>;
 export type DeleteStatusesMutationResult = Apollo.MutationResult<DeleteStatusesMutation>;
 export type DeleteStatusesMutationOptions = Apollo.BaseMutationOptions<DeleteStatusesMutation, DeleteStatusesMutationVariables>;
-export const DeleteManyTaskDocument = gql`
-    mutation DeleteManyTask($where: TaskWhereInput) {
+export const DeleteTasksDocument = gql`
+    mutation deleteTasks($where: TaskWhereInput) {
   deleteManyTask(where: $where) {
     count
   }
 }
     `;
-export type DeleteManyTaskMutationFn = Apollo.MutationFunction<DeleteManyTaskMutation, DeleteManyTaskMutationVariables>;
+export type DeleteTasksMutationFn = Apollo.MutationFunction<DeleteTasksMutation, DeleteTasksMutationVariables>;
 
 /**
- * __useDeleteManyTaskMutation__
+ * __useDeleteTasksMutation__
  *
- * To run a mutation, you first call `useDeleteManyTaskMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteManyTaskMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useDeleteTasksMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteTasksMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [deleteManyTaskMutation, { data, loading, error }] = useDeleteManyTaskMutation({
+ * const [deleteTasksMutation, { data, loading, error }] = useDeleteTasksMutation({
  *   variables: {
  *      where: // value for 'where'
  *   },
  * });
  */
-export function useDeleteManyTaskMutation(baseOptions?: Apollo.MutationHookOptions<DeleteManyTaskMutation, DeleteManyTaskMutationVariables>) {
+export function useDeleteTasksMutation(baseOptions?: Apollo.MutationHookOptions<DeleteTasksMutation, DeleteTasksMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteManyTaskMutation, DeleteManyTaskMutationVariables>(DeleteManyTaskDocument, options);
+        return Apollo.useMutation<DeleteTasksMutation, DeleteTasksMutationVariables>(DeleteTasksDocument, options);
       }
-export type DeleteManyTaskMutationHookResult = ReturnType<typeof useDeleteManyTaskMutation>;
-export type DeleteManyTaskMutationResult = Apollo.MutationResult<DeleteManyTaskMutation>;
-export type DeleteManyTaskMutationOptions = Apollo.BaseMutationOptions<DeleteManyTaskMutation, DeleteManyTaskMutationVariables>;
-export const DeleteOneWorkspaceDocument = gql`
-    mutation DeleteOneWorkspace($where: WorkspaceWhereUniqueInput!) {
+export type DeleteTasksMutationHookResult = ReturnType<typeof useDeleteTasksMutation>;
+export type DeleteTasksMutationResult = Apollo.MutationResult<DeleteTasksMutation>;
+export type DeleteTasksMutationOptions = Apollo.BaseMutationOptions<DeleteTasksMutation, DeleteTasksMutationVariables>;
+export const DeleteWorkspaceDocument = gql`
+    mutation deleteWorkspace($where: WorkspaceWhereUniqueInput!) {
   deleteOneWorkspace(where: $where) {
-    id
+    ...Workspace
   }
 }
-    `;
-export type DeleteOneWorkspaceMutationFn = Apollo.MutationFunction<DeleteOneWorkspaceMutation, DeleteOneWorkspaceMutationVariables>;
+    ${WorkspaceFragmentDoc}`;
+export type DeleteWorkspaceMutationFn = Apollo.MutationFunction<DeleteWorkspaceMutation, DeleteWorkspaceMutationVariables>;
 
 /**
- * __useDeleteOneWorkspaceMutation__
+ * __useDeleteWorkspaceMutation__
  *
- * To run a mutation, you first call `useDeleteOneWorkspaceMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteOneWorkspaceMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useDeleteWorkspaceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteWorkspaceMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [deleteOneWorkspaceMutation, { data, loading, error }] = useDeleteOneWorkspaceMutation({
+ * const [deleteWorkspaceMutation, { data, loading, error }] = useDeleteWorkspaceMutation({
  *   variables: {
  *      where: // value for 'where'
  *   },
  * });
  */
-export function useDeleteOneWorkspaceMutation(baseOptions?: Apollo.MutationHookOptions<DeleteOneWorkspaceMutation, DeleteOneWorkspaceMutationVariables>) {
+export function useDeleteWorkspaceMutation(baseOptions?: Apollo.MutationHookOptions<DeleteWorkspaceMutation, DeleteWorkspaceMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteOneWorkspaceMutation, DeleteOneWorkspaceMutationVariables>(DeleteOneWorkspaceDocument, options);
+        return Apollo.useMutation<DeleteWorkspaceMutation, DeleteWorkspaceMutationVariables>(DeleteWorkspaceDocument, options);
       }
-export type DeleteOneWorkspaceMutationHookResult = ReturnType<typeof useDeleteOneWorkspaceMutation>;
-export type DeleteOneWorkspaceMutationResult = Apollo.MutationResult<DeleteOneWorkspaceMutation>;
-export type DeleteOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<DeleteOneWorkspaceMutation, DeleteOneWorkspaceMutationVariables>;
-export const UpdateOneWorkspaceDocument = gql`
-    mutation UpdateOneWorkspace($data: WorkspaceUpdateInput!, $where: WorkspaceWhereUniqueInput!) {
+export type DeleteWorkspaceMutationHookResult = ReturnType<typeof useDeleteWorkspaceMutation>;
+export type DeleteWorkspaceMutationResult = Apollo.MutationResult<DeleteWorkspaceMutation>;
+export type DeleteWorkspaceMutationOptions = Apollo.BaseMutationOptions<DeleteWorkspaceMutation, DeleteWorkspaceMutationVariables>;
+export const UpdateWorkspaceDocument = gql`
+    mutation updateWorkspace($data: WorkspaceUpdateInput!, $where: WorkspaceWhereUniqueInput!) {
   updateOneWorkspace(data: $data, where: $where) {
-    id
-    name
-    description
+    ...Workspace
   }
 }
-    `;
-export type UpdateOneWorkspaceMutationFn = Apollo.MutationFunction<UpdateOneWorkspaceMutation, UpdateOneWorkspaceMutationVariables>;
+    ${WorkspaceFragmentDoc}`;
+export type UpdateWorkspaceMutationFn = Apollo.MutationFunction<UpdateWorkspaceMutation, UpdateWorkspaceMutationVariables>;
 
 /**
- * __useUpdateOneWorkspaceMutation__
+ * __useUpdateWorkspaceMutation__
  *
- * To run a mutation, you first call `useUpdateOneWorkspaceMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateOneWorkspaceMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useUpdateWorkspaceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateWorkspaceMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [updateOneWorkspaceMutation, { data, loading, error }] = useUpdateOneWorkspaceMutation({
+ * const [updateWorkspaceMutation, { data, loading, error }] = useUpdateWorkspaceMutation({
  *   variables: {
  *      data: // value for 'data'
  *      where: // value for 'where'
  *   },
  * });
  */
-export function useUpdateOneWorkspaceMutation(baseOptions?: Apollo.MutationHookOptions<UpdateOneWorkspaceMutation, UpdateOneWorkspaceMutationVariables>) {
+export function useUpdateWorkspaceMutation(baseOptions?: Apollo.MutationHookOptions<UpdateWorkspaceMutation, UpdateWorkspaceMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateOneWorkspaceMutation, UpdateOneWorkspaceMutationVariables>(UpdateOneWorkspaceDocument, options);
+        return Apollo.useMutation<UpdateWorkspaceMutation, UpdateWorkspaceMutationVariables>(UpdateWorkspaceDocument, options);
       }
-export type UpdateOneWorkspaceMutationHookResult = ReturnType<typeof useUpdateOneWorkspaceMutation>;
-export type UpdateOneWorkspaceMutationResult = Apollo.MutationResult<UpdateOneWorkspaceMutation>;
-export type UpdateOneWorkspaceMutationOptions = Apollo.BaseMutationOptions<UpdateOneWorkspaceMutation, UpdateOneWorkspaceMutationVariables>;
+export type UpdateWorkspaceMutationHookResult = ReturnType<typeof useUpdateWorkspaceMutation>;
+export type UpdateWorkspaceMutationResult = Apollo.MutationResult<UpdateWorkspaceMutation>;
+export type UpdateWorkspaceMutationOptions = Apollo.BaseMutationOptions<UpdateWorkspaceMutation, UpdateWorkspaceMutationVariables>;
 export const UpdateStatusDocument = gql`
     mutation updateStatus($data: StatusUpdateInput!, $where: StatusWhereUniqueInput!) {
   updateOneStatus(data: $data, where: $where) {
@@ -6273,40 +6213,40 @@ export function useUpdateStatusMutation(baseOptions?: Apollo.MutationHookOptions
 export type UpdateStatusMutationHookResult = ReturnType<typeof useUpdateStatusMutation>;
 export type UpdateStatusMutationResult = Apollo.MutationResult<UpdateStatusMutation>;
 export type UpdateStatusMutationOptions = Apollo.BaseMutationOptions<UpdateStatusMutation, UpdateStatusMutationVariables>;
-export const UpdateOneTaskDocument = gql`
-    mutation UpdateOneTask($data: TaskUpdateInput!, $where: TaskWhereUniqueInput!) {
+export const UpdateTaskDocument = gql`
+    mutation updateTask($data: TaskUpdateInput!, $where: TaskWhereUniqueInput!) {
   updateOneTask(data: $data, where: $where) {
-    id
+    ...Task
   }
 }
-    `;
-export type UpdateOneTaskMutationFn = Apollo.MutationFunction<UpdateOneTaskMutation, UpdateOneTaskMutationVariables>;
+    ${TaskFragmentDoc}`;
+export type UpdateTaskMutationFn = Apollo.MutationFunction<UpdateTaskMutation, UpdateTaskMutationVariables>;
 
 /**
- * __useUpdateOneTaskMutation__
+ * __useUpdateTaskMutation__
  *
- * To run a mutation, you first call `useUpdateOneTaskMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateOneTaskMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useUpdateTaskMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateTaskMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [updateOneTaskMutation, { data, loading, error }] = useUpdateOneTaskMutation({
+ * const [updateTaskMutation, { data, loading, error }] = useUpdateTaskMutation({
  *   variables: {
  *      data: // value for 'data'
  *      where: // value for 'where'
  *   },
  * });
  */
-export function useUpdateOneTaskMutation(baseOptions?: Apollo.MutationHookOptions<UpdateOneTaskMutation, UpdateOneTaskMutationVariables>) {
+export function useUpdateTaskMutation(baseOptions?: Apollo.MutationHookOptions<UpdateTaskMutation, UpdateTaskMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateOneTaskMutation, UpdateOneTaskMutationVariables>(UpdateOneTaskDocument, options);
+        return Apollo.useMutation<UpdateTaskMutation, UpdateTaskMutationVariables>(UpdateTaskDocument, options);
       }
-export type UpdateOneTaskMutationHookResult = ReturnType<typeof useUpdateOneTaskMutation>;
-export type UpdateOneTaskMutationResult = Apollo.MutationResult<UpdateOneTaskMutation>;
-export type UpdateOneTaskMutationOptions = Apollo.BaseMutationOptions<UpdateOneTaskMutation, UpdateOneTaskMutationVariables>;
+export type UpdateTaskMutationHookResult = ReturnType<typeof useUpdateTaskMutation>;
+export type UpdateTaskMutationResult = Apollo.MutationResult<UpdateTaskMutation>;
+export type UpdateTaskMutationOptions = Apollo.BaseMutationOptions<UpdateTaskMutation, UpdateTaskMutationVariables>;
 export const StatusesDocument = gql`
     query statuses($where: StatusWhereInput) {
   statuses(where: $where) {
@@ -6427,71 +6367,13 @@ export type TasksQueryHookResult = ReturnType<typeof useTasksQuery>;
 export type TasksLazyQueryHookResult = ReturnType<typeof useTasksLazyQuery>;
 export type TasksSuspenseQueryHookResult = ReturnType<typeof useTasksSuspenseQuery>;
 export type TasksQueryResult = Apollo.QueryResult<TasksQuery, TasksQueryVariables>;
-export const UserDocument = gql`
-    query user($where: UserWhereUniqueInput!) {
-  user(where: $where) {
-    id
-    email
-    name
-    role
-    image
-    workspaces {
-      description
-      name
-      id
-    }
-  }
-}
-    `;
-
-/**
- * __useUserQuery__
- *
- * To run a query within a React component, call `useUserQuery` and pass it any options that fit your needs.
- * When your component renders, `useUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUserQuery({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useUserQuery(baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables> & ({ variables: UserQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
-      }
-export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
-        }
-export function useUserSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<UserQuery, UserQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<UserQuery, UserQueryVariables>(UserDocument, options);
-        }
-export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
-export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
-export type UserSuspenseQueryHookResult = ReturnType<typeof useUserSuspenseQuery>;
-export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
 export const WorkspaceDocument = gql`
-    query Workspace($where: WorkspaceWhereUniqueInput!) {
+    query workspace($where: WorkspaceWhereUniqueInput!) {
   workspace(where: $where) {
-    id
-    name
-    user {
-      id
-      name
-      role
-    }
-    task {
-      ...Task
-    }
+    ...Workspace
   }
 }
-    ${TaskFragmentDoc}`;
+    ${WorkspaceFragmentDoc}`;
 
 /**
  * __useWorkspaceQuery__
@@ -6526,14 +6408,12 @@ export type WorkspaceLazyQueryHookResult = ReturnType<typeof useWorkspaceLazyQue
 export type WorkspaceSuspenseQueryHookResult = ReturnType<typeof useWorkspaceSuspenseQuery>;
 export type WorkspaceQueryResult = Apollo.QueryResult<WorkspaceQuery, WorkspaceQueryVariables>;
 export const WorkspacesDocument = gql`
-    query Workspaces($where: WorkspaceWhereInput) {
+    query workspaces($where: WorkspaceWhereInput) {
   workspaces(where: $where) {
-    id
-    name
-    description
+    ...Workspace
   }
 }
-    `;
+    ${WorkspaceFragmentDoc}`;
 
 /**
  * __useWorkspacesQuery__

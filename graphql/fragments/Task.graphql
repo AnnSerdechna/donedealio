@@ -1,28 +1,18 @@
- fragment Task on Task {
+fragment Task on Task {
   id
   name
   message
   note
   dueDate
-  files {
-    id
-    url
-    name
-    fileId
+  createdAt
+  updatedAt
+  status {
+    ...Status
   }
   priority {
-    id
-    name
-    color
-    type
+    ...Status
   }
-  status {
-    id
-    name
-    color
-    type
-  }
-  workspace {
-    id
+  files {
+    ...File
   }
 }

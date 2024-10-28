@@ -17,27 +17,27 @@ const priorities = [
 
 
 async function main() {
-  for (const status of statuses) {
-    await prisma.status.upsert({
-      where: { name: status.name },
-      update: {},
-      create: {
-        name: status.name,
-        color: status.color,
-      },
-    });
-  }
+  // for (const status of statuses) {
+  //   await prisma.status.upsert({
+  //     where: { name: status.name },
+  //     update: {},
+  //     create: {
+  //       name: status.name,
+  //       color: status.color,
+  //     },
+  //   });
+  // }
 
-  for (const priority of priorities) {
-    await prisma.priority.upsert({
-      where: { name: priority.name },
-      update: {},
-      create: {
-        name: priority.name,
-        color: priority.color,
-      },
-    });
-  }
+  // for (const priority of priorities) {
+  //   await prisma.priority.upsert({
+  //     where: { name: priority.name },
+  //     update: {},
+  //     create: {
+  //       name: priority.name,
+  //       color: priority.color,
+  //     },
+  //   });
+  // }
 };
 
 main()

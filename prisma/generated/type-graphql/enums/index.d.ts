@@ -1,6 +1,7 @@
 export { AccountScalarFieldEnum } from "./AccountScalarFieldEnum";
 export { FileScalarFieldEnum } from "./FileScalarFieldEnum";
 export { NullsOrder } from "./NullsOrder";
+export { PasswordResetTokenScalarFieldEnum } from "./PasswordResetTokenScalarFieldEnum";
 export { PriorityScalarFieldEnum } from "./PriorityScalarFieldEnum";
 export { QueryMode } from "./QueryMode";
 export { Role } from "./Role";
@@ -9,6 +10,8 @@ export { StatusScalarFieldEnum } from "./StatusScalarFieldEnum";
 export { StatusType } from "./StatusType";
 export { TaskScalarFieldEnum } from "./TaskScalarFieldEnum";
 export { TransactionIsolationLevel } from "./TransactionIsolationLevel";
+export { TwoFactorConfirnationScalarFieldEnum } from "./TwoFactorConfirnationScalarFieldEnum";
+export { TwoFactorTokenScalarFieldEnum } from "./TwoFactorTokenScalarFieldEnum";
 export { UserScalarFieldEnum } from "./UserScalarFieldEnum";
 export { VerificationTokenScalarFieldEnum } from "./VerificationTokenScalarFieldEnum";
 export { WorkspaceScalarFieldEnum } from "./WorkspaceScalarFieldEnum";

@@ -1,5 +1,12 @@
-import { ForgotPasswordForm } from '@/components/elements';
+import { AuthCard, ForgotPasswordForm } from '@/components/auth';
 
 export default function ForgotPassword ()  {
-  return <ForgotPasswordForm />
+  return (
+    <AuthCard
+      title={'Forgot password?'}
+      description={"We'll send new password link to email"}
+    >
+      <ForgotPasswordForm />
+    </AuthCard>
+  )
 }

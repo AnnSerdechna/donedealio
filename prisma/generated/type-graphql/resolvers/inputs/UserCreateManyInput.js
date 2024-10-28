@@ -61,6 +61,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", Date)
 ], UserCreateManyInput.prototype, "updatedAt", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => Boolean, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", Boolean)
+], UserCreateManyInput.prototype, "isTwoFactorEnable", void 0);
 exports.UserCreateManyInput = UserCreateManyInput = tslib_1.__decorate([
     TypeGraphQL.InputType("UserCreateManyInput", {})
 ], UserCreateManyInput);

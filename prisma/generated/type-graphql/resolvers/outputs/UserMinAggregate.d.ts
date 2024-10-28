@@ -8,4 +8,5 @@ export declare class UserMinAggregate {
     image: string | null;
     createdAt: Date | null;
     updatedAt: Date | null;
+    isTwoFactorEnable: boolean | null;
 }

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { AuthLayout } from '@/components/layout';
+import styles from './layout.module.scss';
 
 export default async function Layout({
   children,
@@ -8,8 +8,8 @@ export default async function Layout({
   children: ReactNode;
 }>) {
   return (
-    <AuthLayout>
-      {children}
-    </AuthLayout>
+  <section className={styles.authLayout}>
+    {children}
+  </section>
   );
 }

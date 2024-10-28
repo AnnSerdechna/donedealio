@@ -12,6 +12,7 @@ export declare class UserOrderByWithAggregationInput {
     image?: SortOrderInput | undefined;
     createdAt?: "asc" | "desc" | undefined;
     updatedAt?: "asc" | "desc" | undefined;
+    isTwoFactorEnable?: "asc" | "desc" | undefined;
     _count?: UserCountOrderByAggregateInput | undefined;
     _max?: UserMaxOrderByAggregateInput | undefined;
     _min?: UserMinOrderByAggregateInput | undefined;

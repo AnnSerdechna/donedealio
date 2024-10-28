@@ -63,6 +63,12 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", Date)
 ], User.prototype, "updatedAt", void 0);
 tslib_1.__decorate([
+    TypeGraphQL.Field(_type => Boolean, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", Boolean)
+], User.prototype, "isTwoFactorEnable", void 0);
+tslib_1.__decorate([
     TypeGraphQL.Field(_type => UserCount_1.UserCount, {
         nullable: true
     }),

@@ -8,4 +8,5 @@ export declare class CreateManyAndReturnUser {
     image: string | null;
     createdAt: Date;
     updatedAt: Date;
+    isTwoFactorEnable: boolean;
 }

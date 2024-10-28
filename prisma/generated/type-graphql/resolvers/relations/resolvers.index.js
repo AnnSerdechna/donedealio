@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkspaceRelationsResolver = exports.UserRelationsResolver = exports.TaskRelationsResolver = exports.StatusRelationsResolver = exports.PriorityRelationsResolver = exports.FileRelationsResolver = exports.AccountRelationsResolver = void 0;
+exports.WorkspaceRelationsResolver = exports.UserRelationsResolver = exports.TwoFactorConfirnationRelationsResolver = exports.TaskRelationsResolver = exports.StatusRelationsResolver = exports.PriorityRelationsResolver = exports.FileRelationsResolver = exports.AccountRelationsResolver = void 0;
 var AccountRelationsResolver_1 = require("./Account/AccountRelationsResolver");
 Object.defineProperty(exports, "AccountRelationsResolver", { enumerable: true, get: function () { return AccountRelationsResolver_1.AccountRelationsResolver; } });
 var FileRelationsResolver_1 = require("./File/FileRelationsResolver");
@@ -11,6 +11,8 @@ var StatusRelationsResolver_1 = require("./Status/StatusRelationsResolver");
 Object.defineProperty(exports, "StatusRelationsResolver", { enumerable: true, get: function () { return StatusRelationsResolver_1.StatusRelationsResolver; } });
 var TaskRelationsResolver_1 = require("./Task/TaskRelationsResolver");
 Object.defineProperty(exports, "TaskRelationsResolver", { enumerable: true, get: function () { return TaskRelationsResolver_1.TaskRelationsResolver; } });
+var TwoFactorConfirnationRelationsResolver_1 = require("./TwoFactorConfirnation/TwoFactorConfirnationRelationsResolver");
+Object.defineProperty(exports, "TwoFactorConfirnationRelationsResolver", { enumerable: true, get: function () { return TwoFactorConfirnationRelationsResolver_1.TwoFactorConfirnationRelationsResolver; } });
 var UserRelationsResolver_1 = require("./User/UserRelationsResolver");
 Object.defineProperty(exports, "UserRelationsResolver", { enumerable: true, get: function () { return UserRelationsResolver_1.UserRelationsResolver; } });
 var WorkspaceRelationsResolver_1 = require("./Workspace/WorkspaceRelationsResolver");

@@ -4,6 +4,7 @@ exports.UserCreateInput = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
 const AccountCreateNestedManyWithoutUserInput_1 = require("../inputs/AccountCreateNestedManyWithoutUserInput");
+const TwoFactorConfirnationCreateNestedOneWithoutUserInput_1 = require("../inputs/TwoFactorConfirnationCreateNestedOneWithoutUserInput");
 const WorkspaceCreateNestedManyWithoutUserInput_1 = require("../inputs/WorkspaceCreateNestedManyWithoutUserInput");
 const Role_1 = require("../../enums/Role");
 let UserCreateInput = class UserCreateInput {
@@ -63,6 +64,18 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", Date)
 ], UserCreateInput.prototype, "updatedAt", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => Boolean, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", Boolean)
+], UserCreateInput.prototype, "isTwoFactorEnable", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => TwoFactorConfirnationCreateNestedOneWithoutUserInput_1.TwoFactorConfirnationCreateNestedOneWithoutUserInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", TwoFactorConfirnationCreateNestedOneWithoutUserInput_1.TwoFactorConfirnationCreateNestedOneWithoutUserInput)
+], UserCreateInput.prototype, "twoFactorConfirnation", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => AccountCreateNestedManyWithoutUserInput_1.AccountCreateNestedManyWithoutUserInput, {
         nullable: true

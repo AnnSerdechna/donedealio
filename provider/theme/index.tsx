@@ -38,17 +38,25 @@ export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
             triggerBg: variables.whiteColor,
           },
           Form: {
-            itemMarginBottom: 16,
+            verticalLabelMargin: 2,
+            verticalLabelPadding: 0,
           },
           Avatar: {
             colorTextPlaceholder: variables.primaryColor,
           },
           Button: {
             defaultBg: 'transparent',
-            defaultColor: variables.primaryColor,
-            defaultBorderColor: variables.primaryColor,
             colorLink: variables.primaryColor
           },
+          Input: {
+            sizeLG: 56
+          },
+          Modal: {
+            colorBgMask: variables.bgMask
+          },
+          Drawer: {
+            colorBgMask: variables.bgMask,
+          }
         },
       }}
     >

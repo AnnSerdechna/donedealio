@@ -2,11 +2,11 @@ import { FC } from 'react';
 import { ColorPicker, Button, Divider, Flex, Form, Input, Space } from 'antd'
 import { DeleteTwoTone, LeftOutlined, PlusOutlined } from '@ant-design/icons';
 
-import { Priority, Status } from '@/graphql/types';
+import { Status } from '@/graphql/types';
 import variables from '@/styles/variables.module.scss';
 
 type StatusesFormListProps = {
-  statusesData: Status[] | Priority[]
+  statusesData: Status[]
   submitLoading: boolean 
   onBack: VoidFunction
 }

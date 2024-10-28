@@ -3,12 +3,11 @@
 import { FC, useState } from "react";
 import { useParams } from 'next/navigation';
 
-import { Badge, Button, Flex, Table, App } from 'antd';
+import { Button, Flex, Table, App } from 'antd';
 import type { TableProps } from 'antd';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {
-  MessageOutlined,
   DeleteTwoTone,
   PlusCircleOutlined,
 } from '@ant-design/icons';
@@ -25,7 +24,6 @@ import {
   DueDateField,
   StatusField,
   EditableText,
-  OwnerField,
   FilesUpload,
 } from '@/components/user/tasks';
 import { getFormattedDate } from '@/functions/getFormattedDate';
@@ -121,32 +119,6 @@ export const TableView: FC = () => {
           />
         )
       }
-    },
-    {
-      title: '',
-      dataIndex: 'message',
-      key: 'message',
-      align: 'center',
-      fixed: 'left',
-      width: 60,
-      render: () => (
-        <Button
-          icon={(
-            <Badge count={0} size="small">
-              <MessageOutlined style={{ fontSize: 20 }} />
-            </Badge>
-          )}
-          type={'link'}
-        />
-      )
-    },
-    {
-      title: 'Owner',
-      dataIndex: 'user',
-      key: 'user',
-      align: 'center',
-      width: 100,
-      render: () => <OwnerField />
     },
     {
       title: 'Status',

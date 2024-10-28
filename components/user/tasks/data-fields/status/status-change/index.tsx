@@ -17,7 +17,7 @@ export type StatusChangeProps = RadioGroupProps & {
 };
 
 type StatusFormData = {
-  id: number, 
+  id: string, 
   name?: Maybe<string>;
   color: string | AggregationColor
 };

@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, Fragment, useState } from 'react';
-import { App, Col, Flex, Modal, Row } from 'antd';
+import { App, Col, Modal, Row } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
 
@@ -38,6 +38,9 @@ export const Workspaces: FC = () => {
       }
     }
   });
+
+  console.log(workspacesData?.workspaces, 'workspacesData');
+  
 
   const handleCreateWorkspace = async (values: WorkspaceCreateInput) => {
     try {

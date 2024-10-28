@@ -1,7 +1,6 @@
 export { AccountCrudResolver } from "./Account/AccountCrudResolver";
 export { FileCrudResolver } from "./File/FileCrudResolver";
 export { PasswordResetTokenCrudResolver } from "./PasswordResetToken/PasswordResetTokenCrudResolver";
-export { PriorityCrudResolver } from "./Priority/PriorityCrudResolver";
 export { StatusCrudResolver } from "./Status/StatusCrudResolver";
 export { TaskCrudResolver } from "./Task/TaskCrudResolver";
 export { TwoFactorConfirnationCrudResolver } from "./TwoFactorConfirnation/TwoFactorConfirnationCrudResolver";

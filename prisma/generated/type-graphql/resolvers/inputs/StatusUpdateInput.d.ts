@@ -5,6 +5,7 @@ import { TaskUpdateManyWithoutPriorityNestedInput } from "../inputs/TaskUpdateMa
 import { TaskUpdateManyWithoutStatusNestedInput } from "../inputs/TaskUpdateManyWithoutStatusNestedInput";
 import { UserUpdateOneRequiredWithoutStatusNestedInput } from "../inputs/UserUpdateOneRequiredWithoutStatusNestedInput";
 export declare class StatusUpdateInput {
+    id?: StringFieldUpdateOperationsInput | undefined;
     name?: NullableStringFieldUpdateOperationsInput | undefined;
     color?: StringFieldUpdateOperationsInput | undefined;
     type?: EnumStatusTypeFieldUpdateOperationsInput | undefined;

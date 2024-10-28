@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkspaceScalarFieldEnum = exports.VerificationTokenScalarFieldEnum = exports.UserScalarFieldEnum = exports.TwoFactorTokenScalarFieldEnum = exports.TwoFactorConfirnationScalarFieldEnum = exports.TransactionIsolationLevel = exports.TaskScalarFieldEnum = exports.StatusType = exports.StatusScalarFieldEnum = exports.SortOrder = exports.Role = exports.QueryMode = exports.PriorityScalarFieldEnum = exports.PasswordResetTokenScalarFieldEnum = exports.NullsOrder = exports.FileScalarFieldEnum = exports.AccountScalarFieldEnum = void 0;
+exports.WorkspaceScalarFieldEnum = exports.VerificationTokenScalarFieldEnum = exports.UserScalarFieldEnum = exports.TwoFactorTokenScalarFieldEnum = exports.TwoFactorConfirnationScalarFieldEnum = exports.TransactionIsolationLevel = exports.TaskScalarFieldEnum = exports.StatusType = exports.StatusScalarFieldEnum = exports.SortOrder = exports.Role = exports.QueryMode = exports.PasswordResetTokenScalarFieldEnum = exports.NullsOrder = exports.FileScalarFieldEnum = exports.AccountScalarFieldEnum = void 0;
 var AccountScalarFieldEnum_1 = require("./AccountScalarFieldEnum");
 Object.defineProperty(exports, "AccountScalarFieldEnum", { enumerable: true, get: function () { return AccountScalarFieldEnum_1.AccountScalarFieldEnum; } });
 var FileScalarFieldEnum_1 = require("./FileScalarFieldEnum");
@@ -9,8 +9,6 @@ var NullsOrder_1 = require("./NullsOrder");
 Object.defineProperty(exports, "NullsOrder", { enumerable: true, get: function () { return NullsOrder_1.NullsOrder; } });
 var PasswordResetTokenScalarFieldEnum_1 = require("./PasswordResetTokenScalarFieldEnum");
 Object.defineProperty(exports, "PasswordResetTokenScalarFieldEnum", { enumerable: true, get: function () { return PasswordResetTokenScalarFieldEnum_1.PasswordResetTokenScalarFieldEnum; } });
-var PriorityScalarFieldEnum_1 = require("./PriorityScalarFieldEnum");
-Object.defineProperty(exports, "PriorityScalarFieldEnum", { enumerable: true, get: function () { return PriorityScalarFieldEnum_1.PriorityScalarFieldEnum; } });
 var QueryMode_1 = require("./QueryMode");
 Object.defineProperty(exports, "QueryMode", { enumerable: true, get: function () { return QueryMode_1.QueryMode; } });
 var Role_1 = require("./Role");

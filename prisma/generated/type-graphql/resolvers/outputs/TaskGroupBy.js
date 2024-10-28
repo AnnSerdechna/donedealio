@@ -3,11 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TaskGroupBy = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
-const TaskAvgAggregate_1 = require("../outputs/TaskAvgAggregate");
 const TaskCountAggregate_1 = require("../outputs/TaskCountAggregate");
 const TaskMaxAggregate_1 = require("../outputs/TaskMaxAggregate");
 const TaskMinAggregate_1 = require("../outputs/TaskMinAggregate");
-const TaskSumAggregate_1 = require("../outputs/TaskSumAggregate");
 let TaskGroupBy = class TaskGroupBy {
 };
 exports.TaskGroupBy = TaskGroupBy;
@@ -54,16 +52,16 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", Date)
 ], TaskGroupBy.prototype, "updatedAt", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    TypeGraphQL.Field(_type => String, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", Number)
+    tslib_1.__metadata("design:type", String)
 ], TaskGroupBy.prototype, "statusId", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    TypeGraphQL.Field(_type => String, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", Number)
+    tslib_1.__metadata("design:type", String)
 ], TaskGroupBy.prototype, "priorityId", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
@@ -77,18 +75,6 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", TaskCountAggregate_1.TaskCountAggregate)
 ], TaskGroupBy.prototype, "_count", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => TaskAvgAggregate_1.TaskAvgAggregate, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", TaskAvgAggregate_1.TaskAvgAggregate)
-], TaskGroupBy.prototype, "_avg", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => TaskSumAggregate_1.TaskSumAggregate, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", TaskSumAggregate_1.TaskSumAggregate)
-], TaskGroupBy.prototype, "_sum", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => TaskMinAggregate_1.TaskMinAggregate, {
         nullable: true

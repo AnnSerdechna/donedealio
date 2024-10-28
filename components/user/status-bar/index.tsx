@@ -1,5 +1,5 @@
 import { Tooltip } from 'antd';
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
 import _ from 'lodash';
 
 import { Task } from '@/graphql/types';
@@ -37,17 +37,25 @@ export const StatusBar: FC<StatusBarProps> = ({ tasks, statusType = 'status' }) 
     .value(); 
 
   return (
-    <div className={styles.statusBar}>
-      {statusData.map((status: any) => (
-        <Tooltip key={status.name} title={`${status.name}: ${status.count}`}>
-          <div
-            style={{
-              flexGrow: status.count,
-              backgroundColor: status.color,
-            }}
-          />
-        </Tooltip>
-      ))}
-    </div>
+    <Fragment>
+      {!!statusData?.length && (
+        <div className={styles.statusBar}>
+          {statusData.map((status: any) => (
+            status.name !== 'undefined'
+              ? (
+                <Tooltip key={status.name} title={`${status.name ?? ''}: ${status.count}`}>
+                  <div
+                    style={{
+                      flexGrow: status.count,
+                      backgroundColor: status.color,
+                    }}
+                  />
+                </Tooltip>
+              )
+              : null
+          ))}
+        </div>
+      )}
+    </Fragment>
   );
 };

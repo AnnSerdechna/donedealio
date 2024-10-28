@@ -13,6 +13,12 @@ let StatusUpdateInput = class StatusUpdateInput {
 };
 exports.StatusUpdateInput = StatusUpdateInput;
 tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput_1.StringFieldUpdateOperationsInput, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StringFieldUpdateOperationsInput_1.StringFieldUpdateOperationsInput)
+], StatusUpdateInput.prototype, "id", void 0);
+tslib_1.__decorate([
     TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput_1.NullableStringFieldUpdateOperationsInput, {
         nullable: true
     }),

@@ -1,11 +1,13 @@
-import { Input } from 'antd'
+'use client';
 
-import { Form, FormItem, VSpace } from '@/components/ui'
+import { FormInstance, Input } from 'antd'
 import { FC } from 'react'
 
-export const InviteMemberForm: FC = () => {
+import { Form, FormItem, VSpace } from '@/components/ui'
+
+export const InviteMemberForm: FC<{ form: FormInstance }> = ({ form }) => {
   return (
-    <Form>
+    <Form form={form}>
       <VSpace>
         <FormItem
           name={'email'}

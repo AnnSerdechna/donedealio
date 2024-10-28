@@ -13,10 +13,10 @@ let StatusWhereUniqueInput = class StatusWhereUniqueInput {
 };
 exports.StatusWhereUniqueInput = StatusWhereUniqueInput;
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    TypeGraphQL.Field(_type => String, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", Number)
+    tslib_1.__metadata("design:type", String)
 ], StatusWhereUniqueInput.prototype, "id", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => [StatusWhereInput_1.StatusWhereInput], {

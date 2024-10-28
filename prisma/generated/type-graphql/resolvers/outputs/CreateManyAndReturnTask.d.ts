@@ -11,8 +11,8 @@ export declare class CreateManyAndReturnTask {
     dueDate: Date | null;
     createdAt: Date;
     updatedAt: Date;
-    statusId: number | null;
-    priorityId: number | null;
+    statusId: string | null;
+    priorityId: string | null;
     workspaceId: string;
     status: Status | null;
     priority: Status | null;

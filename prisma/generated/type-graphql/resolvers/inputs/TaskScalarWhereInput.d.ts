@@ -1,6 +1,5 @@
 import { DateTimeFilter } from "../inputs/DateTimeFilter";
 import { DateTimeNullableFilter } from "../inputs/DateTimeNullableFilter";
-import { IntNullableFilter } from "../inputs/IntNullableFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 export declare class TaskScalarWhereInput {
@@ -14,7 +13,7 @@ export declare class TaskScalarWhereInput {
     dueDate?: DateTimeNullableFilter | undefined;
     createdAt?: DateTimeFilter | undefined;
     updatedAt?: DateTimeFilter | undefined;
-    statusId?: IntNullableFilter | undefined;
-    priorityId?: IntNullableFilter | undefined;
+    statusId?: StringNullableFilter | undefined;
+    priorityId?: StringNullableFilter | undefined;
     workspaceId?: StringFilter | undefined;
 }

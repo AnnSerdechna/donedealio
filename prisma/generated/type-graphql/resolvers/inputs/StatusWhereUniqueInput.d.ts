@@ -5,7 +5,7 @@ import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { TaskListRelationFilter } from "../inputs/TaskListRelationFilter";
 import { UserRelationFilter } from "../inputs/UserRelationFilter";
 export declare class StatusWhereUniqueInput {
-    id?: number | undefined;
+    id?: string | undefined;
     AND?: StatusWhereInput[] | undefined;
     OR?: StatusWhereInput[] | undefined;
     NOT?: StatusWhereInput[] | undefined;

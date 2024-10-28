@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, Fragment, useState } from 'react';
-import { Flex, Tag, Avatar, Input, Modal } from 'antd';
+import { Flex, Tag, Avatar, Input, Modal, Form } from 'antd';
 import { UserAddOutlined, SearchOutlined } from '@ant-design/icons'
 
 import { Button, Text } from '@/components/ui';
@@ -10,6 +10,7 @@ import { useCurrentUser } from '@/hooks/useCurrentUser';
 
 export const OwnerPopup: FC = () => {
   const user = useCurrentUser();
+  const [form] = Form.useForm();
   const [openInvite, setOpenInvite] = useState(false);
 
   const handleOpenInvite = () => setOpenInvite(true);
@@ -51,9 +52,10 @@ export const OwnerPopup: FC = () => {
       <Modal 
         title={'Invite member'}
         open={openInvite}
+        onOk={form.submit}
         onCancel={handleCloseInvite}
       >
-        <InviteMemberForm />
+        <InviteMemberForm form={form} />
       </Modal>
     </Fragment>
   )

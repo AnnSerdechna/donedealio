@@ -16,7 +16,6 @@ declare const crudResolversMap: {
     File: typeof crudResolvers.FileCrudResolver;
     Task: typeof crudResolvers.TaskCrudResolver;
     Status: typeof crudResolvers.StatusCrudResolver;
-    Priority: typeof crudResolvers.PriorityCrudResolver;
 };
 type ResolverModelNames = keyof typeof crudResolversMap;
 type ModelResolverActionNames<TModel extends ResolverModelNames> = keyof typeof crudResolversMap[TModel]["prototype"];

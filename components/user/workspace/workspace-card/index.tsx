@@ -1,10 +1,9 @@
 'use client';
 
-import { Card, Col, Dropdown, Flex, MenuProps, Tooltip } from 'antd';
+import { Card, Col, Dropdown, Flex, MenuProps } from 'antd';
 import { FC } from 'react';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
-import _ from 'lodash';
 
 import { Button, Text, VSpace } from '@/components/ui';
 import { WorkspaceValuesProps } from '@/schemas/types';

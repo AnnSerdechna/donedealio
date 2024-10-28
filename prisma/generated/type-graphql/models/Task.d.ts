@@ -11,9 +11,9 @@ export declare class Task {
     createdAt: Date;
     updatedAt: Date;
     status?: Status | null;
-    statusId?: number | null;
+    statusId?: string | null;
     priority?: Status | null;
-    priorityId?: number | null;
+    priorityId?: string | null;
     workspace?: Workspace | null;
     workspaceId: string;
     files?: File[];

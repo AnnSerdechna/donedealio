@@ -1,5 +1,5 @@
 export declare class StatusCreateManyInput {
-    id?: number | undefined;
+    id?: string | undefined;
     name?: string | undefined;
     color: string;
     type?: "STATUS" | "PRIORITY" | undefined;

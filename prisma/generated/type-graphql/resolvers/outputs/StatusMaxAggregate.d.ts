@@ -1,5 +1,5 @@
 export declare class StatusMaxAggregate {
-    id: number | null;
+    id: string | null;
     name: string | null;
     color: string | null;
     type: "STATUS" | "PRIORITY" | null;

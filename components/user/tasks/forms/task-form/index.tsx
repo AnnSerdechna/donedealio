@@ -2,7 +2,7 @@ import { DatePicker, Flex, Form, FormInstance, FormProps, Input } from 'antd';
 import { FC } from 'react';
 import { Dayjs } from 'dayjs';
 
-import { Priority, Status } from '@/graphql/types';
+import { Status } from '@/graphql/types';
 import { Button, FormItem } from '@/components/ui';
 import { StatusField, FilesUpload, FilesUploadProps } from '@/components/user/tasks';
 import { useStatusData } from '@/hooks/useStatusData';
@@ -18,7 +18,7 @@ export type TaskFormProps = FormProps & FilesUploadProps & {
 export type FormData = {
   task: string
   status: Status
-  priority: Priority
+  priority: Status
   dueDate: Dayjs
   notes: string
 };

@@ -2,7 +2,7 @@ import { Task } from "../models/Task";
 import { User } from "../models/User";
 import { StatusCount } from "../resolvers/outputs/StatusCount";
 export declare class Status {
-    id: number;
+    id: string;
     name?: string | null;
     color: string;
     type: "STATUS" | "PRIORITY";

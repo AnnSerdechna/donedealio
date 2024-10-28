@@ -1,6 +1,5 @@
 import { DateTimeNullableWithAggregatesFilter } from "../inputs/DateTimeNullableWithAggregatesFilter";
 import { DateTimeWithAggregatesFilter } from "../inputs/DateTimeWithAggregatesFilter";
-import { IntNullableWithAggregatesFilter } from "../inputs/IntNullableWithAggregatesFilter";
 import { StringNullableWithAggregatesFilter } from "../inputs/StringNullableWithAggregatesFilter";
 import { StringWithAggregatesFilter } from "../inputs/StringWithAggregatesFilter";
 export declare class TaskScalarWhereWithAggregatesInput {
@@ -14,7 +13,7 @@ export declare class TaskScalarWhereWithAggregatesInput {
     dueDate?: DateTimeNullableWithAggregatesFilter | undefined;
     createdAt?: DateTimeWithAggregatesFilter | undefined;
     updatedAt?: DateTimeWithAggregatesFilter | undefined;
-    statusId?: IntNullableWithAggregatesFilter | undefined;
-    priorityId?: IntNullableWithAggregatesFilter | undefined;
+    statusId?: StringNullableWithAggregatesFilter | undefined;
+    priorityId?: StringNullableWithAggregatesFilter | undefined;
     workspaceId?: StringWithAggregatesFilter | undefined;
 }

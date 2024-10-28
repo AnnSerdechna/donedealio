@@ -510,31 +510,18 @@ export type AggregatePasswordResetToken = {
   _min?: Maybe<PasswordResetTokenMinAggregate>;
 };
 
-export type AggregatePriority = {
-  __typename?: 'AggregatePriority';
-  _avg?: Maybe<PriorityAvgAggregate>;
-  _count?: Maybe<PriorityCountAggregate>;
-  _max?: Maybe<PriorityMaxAggregate>;
-  _min?: Maybe<PriorityMinAggregate>;
-  _sum?: Maybe<PrioritySumAggregate>;
-};
-
 export type AggregateStatus = {
   __typename?: 'AggregateStatus';
-  _avg?: Maybe<StatusAvgAggregate>;
   _count?: Maybe<StatusCountAggregate>;
   _max?: Maybe<StatusMaxAggregate>;
   _min?: Maybe<StatusMinAggregate>;
-  _sum?: Maybe<StatusSumAggregate>;
 };
 
 export type AggregateTask = {
   __typename?: 'AggregateTask';
-  _avg?: Maybe<TaskAvgAggregate>;
   _count?: Maybe<TaskCountAggregate>;
   _max?: Maybe<TaskMaxAggregate>;
   _min?: Maybe<TaskMinAggregate>;
-  _sum?: Maybe<TaskSumAggregate>;
 };
 
 export type AggregateTwoFactorConfirnation = {
@@ -630,17 +617,10 @@ export type CreateManyAndReturnPasswordResetToken = {
   token: Scalars['String']['output'];
 };
 
-export type CreateManyAndReturnPriority = {
-  __typename?: 'CreateManyAndReturnPriority';
-  color: Scalars['String']['output'];
-  id: Scalars['Int']['output'];
-  name: Scalars['String']['output'];
-};
-
 export type CreateManyAndReturnStatus = {
   __typename?: 'CreateManyAndReturnStatus';
   color: Scalars['String']['output'];
-  id: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
   name?: Maybe<Scalars['String']['output']>;
   type: StatusType;
   user: User;
@@ -656,9 +636,9 @@ export type CreateManyAndReturnTask = {
   name: Scalars['String']['output'];
   note?: Maybe<Scalars['String']['output']>;
   priority?: Maybe<Status>;
-  priorityId?: Maybe<Scalars['Int']['output']>;
+  priorityId?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Status>;
-  statusId?: Maybe<Scalars['Int']['output']>;
+  statusId?: Maybe<Scalars['String']['output']>;
   updatedAt: Scalars['DateTimeISO']['output'];
   workspace?: Maybe<Workspace>;
   workspaceId: Scalars['String']['output'];
@@ -1168,7 +1148,6 @@ export type Mutation = {
   createManyAndReturnAccount: Array<CreateManyAndReturnAccount>;
   createManyAndReturnFile: Array<CreateManyAndReturnFile>;
   createManyAndReturnPasswordResetToken: Array<CreateManyAndReturnPasswordResetToken>;
-  createManyAndReturnPriority: Array<CreateManyAndReturnPriority>;
   createManyAndReturnStatus: Array<CreateManyAndReturnStatus>;
   createManyAndReturnTask: Array<CreateManyAndReturnTask>;
   createManyAndReturnTwoFactorConfirnation: Array<CreateManyAndReturnTwoFactorConfirnation>;
@@ -1178,7 +1157,6 @@ export type Mutation = {
   createManyAndReturnWorkspace: Array<CreateManyAndReturnWorkspace>;
   createManyFile: AffectedRowsOutput;
   createManyPasswordResetToken: AffectedRowsOutput;
-  createManyPriority: AffectedRowsOutput;
   createManyStatus: AffectedRowsOutput;
   createManyTask: AffectedRowsOutput;
   createManyTwoFactorConfirnation: AffectedRowsOutput;
@@ -1189,7 +1167,6 @@ export type Mutation = {
   createOneAccount: Account;
   createOneFile: File;
   createOnePasswordResetToken: PasswordResetToken;
-  createOnePriority: Priority;
   createOneStatus: Status;
   createOneTask: Task;
   createOneTwoFactorConfirnation: TwoFactorConfirnation;
@@ -1200,7 +1177,6 @@ export type Mutation = {
   deleteManyAccount: AffectedRowsOutput;
   deleteManyFile: AffectedRowsOutput;
   deleteManyPasswordResetToken: AffectedRowsOutput;
-  deleteManyPriority: AffectedRowsOutput;
   deleteManyStatus: AffectedRowsOutput;
   deleteManyTask: AffectedRowsOutput;
   deleteManyTwoFactorConfirnation: AffectedRowsOutput;
@@ -1211,7 +1187,6 @@ export type Mutation = {
   deleteOneAccount?: Maybe<Account>;
   deleteOneFile?: Maybe<File>;
   deleteOnePasswordResetToken?: Maybe<PasswordResetToken>;
-  deleteOnePriority?: Maybe<Priority>;
   deleteOneStatus?: Maybe<Status>;
   deleteOneTask?: Maybe<Task>;
   deleteOneTwoFactorConfirnation?: Maybe<TwoFactorConfirnation>;
@@ -1222,7 +1197,6 @@ export type Mutation = {
   updateManyAccount: AffectedRowsOutput;
   updateManyFile: AffectedRowsOutput;
   updateManyPasswordResetToken: AffectedRowsOutput;
-  updateManyPriority: AffectedRowsOutput;
   updateManyStatus: AffectedRowsOutput;
   updateManyTask: AffectedRowsOutput;
   updateManyTwoFactorConfirnation: AffectedRowsOutput;
@@ -1233,7 +1207,6 @@ export type Mutation = {
   updateOneAccount?: Maybe<Account>;
   updateOneFile?: Maybe<File>;
   updateOnePasswordResetToken?: Maybe<PasswordResetToken>;
-  updateOnePriority?: Maybe<Priority>;
   updateOneStatus?: Maybe<Status>;
   updateOneTask?: Maybe<Task>;
   updateOneTwoFactorConfirnation?: Maybe<TwoFactorConfirnation>;
@@ -1244,7 +1217,6 @@ export type Mutation = {
   upsertOneAccount: Account;
   upsertOneFile: File;
   upsertOnePasswordResetToken: PasswordResetToken;
-  upsertOnePriority: Priority;
   upsertOneStatus: Status;
   upsertOneTask: Task;
   upsertOneTwoFactorConfirnation: TwoFactorConfirnation;
@@ -1275,12 +1247,6 @@ export type MutationCreateManyAndReturnFileArgs = {
 
 export type MutationCreateManyAndReturnPasswordResetTokenArgs = {
   data: Array<PasswordResetTokenCreateManyInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-export type MutationCreateManyAndReturnPriorityArgs = {
-  data: Array<PriorityCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -1335,12 +1301,6 @@ export type MutationCreateManyFileArgs = {
 
 export type MutationCreateManyPasswordResetTokenArgs = {
   data: Array<PasswordResetTokenCreateManyInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-export type MutationCreateManyPriorityArgs = {
-  data: Array<PriorityCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -1402,11 +1362,6 @@ export type MutationCreateOnePasswordResetTokenArgs = {
 };
 
 
-export type MutationCreateOnePriorityArgs = {
-  data: PriorityCreateInput;
-};
-
-
 export type MutationCreateOneStatusArgs = {
   data: StatusCreateInput;
 };
@@ -1454,11 +1409,6 @@ export type MutationDeleteManyFileArgs = {
 
 export type MutationDeleteManyPasswordResetTokenArgs = {
   where?: InputMaybe<PasswordResetTokenWhereInput>;
-};
-
-
-export type MutationDeleteManyPriorityArgs = {
-  where?: InputMaybe<PriorityWhereInput>;
 };
 
 
@@ -1512,11 +1462,6 @@ export type MutationDeleteOnePasswordResetTokenArgs = {
 };
 
 
-export type MutationDeleteOnePriorityArgs = {
-  where: PriorityWhereUniqueInput;
-};
-
-
 export type MutationDeleteOneStatusArgs = {
   where: StatusWhereUniqueInput;
 };
@@ -1567,12 +1512,6 @@ export type MutationUpdateManyFileArgs = {
 export type MutationUpdateManyPasswordResetTokenArgs = {
   data: PasswordResetTokenUpdateManyMutationInput;
   where?: InputMaybe<PasswordResetTokenWhereInput>;
-};
-
-
-export type MutationUpdateManyPriorityArgs = {
-  data: PriorityUpdateManyMutationInput;
-  where?: InputMaybe<PriorityWhereInput>;
 };
 
 
@@ -1636,12 +1575,6 @@ export type MutationUpdateOnePasswordResetTokenArgs = {
 };
 
 
-export type MutationUpdateOnePriorityArgs = {
-  data: PriorityUpdateInput;
-  where: PriorityWhereUniqueInput;
-};
-
-
 export type MutationUpdateOneStatusArgs = {
   data: StatusUpdateInput;
   where: StatusWhereUniqueInput;
@@ -1702,13 +1635,6 @@ export type MutationUpsertOnePasswordResetTokenArgs = {
   create: PasswordResetTokenCreateInput;
   update: PasswordResetTokenUpdateInput;
   where: PasswordResetTokenWhereUniqueInput;
-};
-
-
-export type MutationUpsertOnePriorityArgs = {
-  create: PriorityCreateInput;
-  update: PriorityUpdateInput;
-  where: PriorityWhereUniqueInput;
 };
 
 
@@ -2169,154 +2095,6 @@ export type PasswordResetTokenWhereUniqueInput = {
   token?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Priority = {
-  __typename?: 'Priority';
-  color: Scalars['String']['output'];
-  id: Scalars['Int']['output'];
-  name: Scalars['String']['output'];
-};
-
-export type PriorityAvgAggregate = {
-  __typename?: 'PriorityAvgAggregate';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type PriorityAvgOrderByAggregateInput = {
-  id?: InputMaybe<SortOrder>;
-};
-
-export type PriorityCountAggregate = {
-  __typename?: 'PriorityCountAggregate';
-  _all: Scalars['Int']['output'];
-  color: Scalars['Int']['output'];
-  id: Scalars['Int']['output'];
-  name: Scalars['Int']['output'];
-};
-
-export type PriorityCountOrderByAggregateInput = {
-  color?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-};
-
-export type PriorityCreateInput = {
-  color: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-};
-
-export type PriorityCreateManyInput = {
-  color: Scalars['String']['input'];
-  id?: InputMaybe<Scalars['Int']['input']>;
-  name: Scalars['String']['input'];
-};
-
-export type PriorityGroupBy = {
-  __typename?: 'PriorityGroupBy';
-  _avg?: Maybe<PriorityAvgAggregate>;
-  _count?: Maybe<PriorityCountAggregate>;
-  _max?: Maybe<PriorityMaxAggregate>;
-  _min?: Maybe<PriorityMinAggregate>;
-  _sum?: Maybe<PrioritySumAggregate>;
-  color: Scalars['String']['output'];
-  id: Scalars['Int']['output'];
-  name: Scalars['String']['output'];
-};
-
-export type PriorityMaxAggregate = {
-  __typename?: 'PriorityMaxAggregate';
-  color?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type PriorityMaxOrderByAggregateInput = {
-  color?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-};
-
-export type PriorityMinAggregate = {
-  __typename?: 'PriorityMinAggregate';
-  color?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type PriorityMinOrderByAggregateInput = {
-  color?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-};
-
-export type PriorityOrderByWithAggregationInput = {
-  _avg?: InputMaybe<PriorityAvgOrderByAggregateInput>;
-  _count?: InputMaybe<PriorityCountOrderByAggregateInput>;
-  _max?: InputMaybe<PriorityMaxOrderByAggregateInput>;
-  _min?: InputMaybe<PriorityMinOrderByAggregateInput>;
-  _sum?: InputMaybe<PrioritySumOrderByAggregateInput>;
-  color?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-};
-
-export type PriorityOrderByWithRelationInput = {
-  color?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-};
-
-export enum PriorityScalarFieldEnum {
-  Color = 'color',
-  Id = 'id',
-  Name = 'name'
-}
-
-export type PriorityScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<Array<PriorityScalarWhereWithAggregatesInput>>;
-  NOT?: InputMaybe<Array<PriorityScalarWhereWithAggregatesInput>>;
-  OR?: InputMaybe<Array<PriorityScalarWhereWithAggregatesInput>>;
-  color?: InputMaybe<StringWithAggregatesFilter>;
-  id?: InputMaybe<IntWithAggregatesFilter>;
-  name?: InputMaybe<StringWithAggregatesFilter>;
-};
-
-export type PrioritySumAggregate = {
-  __typename?: 'PrioritySumAggregate';
-  id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type PrioritySumOrderByAggregateInput = {
-  id?: InputMaybe<SortOrder>;
-};
-
-export type PriorityUpdateInput = {
-  color?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-};
-
-export type PriorityUpdateManyMutationInput = {
-  color?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-};
-
-export type PriorityWhereInput = {
-  AND?: InputMaybe<Array<PriorityWhereInput>>;
-  NOT?: InputMaybe<Array<PriorityWhereInput>>;
-  OR?: InputMaybe<Array<PriorityWhereInput>>;
-  color?: InputMaybe<StringFilter>;
-  id?: InputMaybe<IntFilter>;
-  name?: InputMaybe<StringFilter>;
-};
-
-export type PriorityWhereUniqueInput = {
-  AND?: InputMaybe<Array<PriorityWhereInput>>;
-  NOT?: InputMaybe<Array<PriorityWhereInput>>;
-  OR?: InputMaybe<Array<PriorityWhereInput>>;
-  color?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  name?: InputMaybe<StringFilter>;
-};
-
 export type Query = {
   __typename?: 'Query';
   account?: Maybe<Account>;
@@ -2324,7 +2102,6 @@ export type Query = {
   aggregateAccount: AggregateAccount;
   aggregateFile: AggregateFile;
   aggregatePasswordResetToken: AggregatePasswordResetToken;
-  aggregatePriority: AggregatePriority;
   aggregateStatus: AggregateStatus;
   aggregateTask: AggregateTask;
   aggregateTwoFactorConfirnation: AggregateTwoFactorConfirnation;
@@ -2340,8 +2117,6 @@ export type Query = {
   findFirstFileOrThrow?: Maybe<File>;
   findFirstPasswordResetToken?: Maybe<PasswordResetToken>;
   findFirstPasswordResetTokenOrThrow?: Maybe<PasswordResetToken>;
-  findFirstPriority?: Maybe<Priority>;
-  findFirstPriorityOrThrow?: Maybe<Priority>;
   findFirstStatus?: Maybe<Status>;
   findFirstStatusOrThrow?: Maybe<Status>;
   findFirstTask?: Maybe<Task>;
@@ -2359,7 +2134,6 @@ export type Query = {
   getAccount?: Maybe<Account>;
   getFile?: Maybe<File>;
   getPasswordResetToken?: Maybe<PasswordResetToken>;
-  getPriority?: Maybe<Priority>;
   getStatus?: Maybe<Status>;
   getTask?: Maybe<Task>;
   getTwoFactorConfirnation?: Maybe<TwoFactorConfirnation>;
@@ -2370,7 +2144,6 @@ export type Query = {
   groupByAccount: Array<AccountGroupBy>;
   groupByFile: Array<FileGroupBy>;
   groupByPasswordResetToken: Array<PasswordResetTokenGroupBy>;
-  groupByPriority: Array<PriorityGroupBy>;
   groupByStatus: Array<StatusGroupBy>;
   groupByTask: Array<TaskGroupBy>;
   groupByTwoFactorConfirnation: Array<TwoFactorConfirnationGroupBy>;
@@ -2380,8 +2153,6 @@ export type Query = {
   groupByWorkspace: Array<WorkspaceGroupBy>;
   passwordResetToken?: Maybe<PasswordResetToken>;
   passwordResetTokens: Array<PasswordResetToken>;
-  priorities: Array<Priority>;
-  priority?: Maybe<Priority>;
   status?: Maybe<Status>;
   statuses: Array<Status>;
   task?: Maybe<Task>;
@@ -2438,15 +2209,6 @@ export type QueryAggregatePasswordResetTokenArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PasswordResetTokenWhereInput>;
-};
-
-
-export type QueryAggregatePriorityArgs = {
-  cursor?: InputMaybe<PriorityWhereUniqueInput>;
-  orderBy?: InputMaybe<Array<PriorityOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<PriorityWhereInput>;
 };
 
 
@@ -2585,26 +2347,6 @@ export type QueryFindFirstPasswordResetTokenOrThrowArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PasswordResetTokenWhereInput>;
-};
-
-
-export type QueryFindFirstPriorityArgs = {
-  cursor?: InputMaybe<PriorityWhereUniqueInput>;
-  distinct?: InputMaybe<Array<PriorityScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<PriorityOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<PriorityWhereInput>;
-};
-
-
-export type QueryFindFirstPriorityOrThrowArgs = {
-  cursor?: InputMaybe<PriorityWhereUniqueInput>;
-  distinct?: InputMaybe<Array<PriorityScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<PriorityOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<PriorityWhereInput>;
 };
 
 
@@ -2763,11 +2505,6 @@ export type QueryGetPasswordResetTokenArgs = {
 };
 
 
-export type QueryGetPriorityArgs = {
-  where: PriorityWhereUniqueInput;
-};
-
-
 export type QueryGetStatusArgs = {
   where: StatusWhereUniqueInput;
 };
@@ -2830,16 +2567,6 @@ export type QueryGroupByPasswordResetTokenArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PasswordResetTokenWhereInput>;
-};
-
-
-export type QueryGroupByPriorityArgs = {
-  by: Array<PriorityScalarFieldEnum>;
-  having?: InputMaybe<PriorityScalarWhereWithAggregatesInput>;
-  orderBy?: InputMaybe<Array<PriorityOrderByWithAggregationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<PriorityWhereInput>;
 };
 
 
@@ -2925,21 +2652,6 @@ export type QueryPasswordResetTokensArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PasswordResetTokenWhereInput>;
-};
-
-
-export type QueryPrioritiesArgs = {
-  cursor?: InputMaybe<PriorityWhereUniqueInput>;
-  distinct?: InputMaybe<Array<PriorityScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<PriorityOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<PriorityWhereInput>;
-};
-
-
-export type QueryPriorityArgs = {
-  where: PriorityWhereUniqueInput;
 };
 
 
@@ -3072,7 +2784,7 @@ export type Status = {
   __typename?: 'Status';
   _count?: Maybe<StatusCount>;
   color: Scalars['String']['output'];
-  id: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
   name?: Maybe<Scalars['String']['output']>;
   priorityTasks: Array<Task>;
   statusTasks: Array<Task>;
@@ -3099,15 +2811,6 @@ export type StatusStatusTasksArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<TaskWhereInput>;
-};
-
-export type StatusAvgAggregate = {
-  __typename?: 'StatusAvgAggregate';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-export type StatusAvgOrderByAggregateInput = {
-  id?: InputMaybe<SortOrder>;
 };
 
 export type StatusCount = {
@@ -3146,6 +2849,7 @@ export type StatusCountOrderByAggregateInput = {
 
 export type StatusCreateInput = {
   color: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   priorityTasks?: InputMaybe<TaskCreateNestedManyWithoutPriorityInput>;
   statusTasks?: InputMaybe<TaskCreateNestedManyWithoutStatusInput>;
@@ -3155,7 +2859,7 @@ export type StatusCreateInput = {
 
 export type StatusCreateManyInput = {
   color: Scalars['String']['input'];
-  id?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<StatusType>;
   userId: Scalars['String']['input'];
@@ -3163,7 +2867,7 @@ export type StatusCreateManyInput = {
 
 export type StatusCreateManyUserInput = {
   color: Scalars['String']['input'];
-  id?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<StatusType>;
 };
@@ -3209,6 +2913,7 @@ export type StatusCreateOrConnectWithoutUserInput = {
 
 export type StatusCreateWithoutPriorityTasksInput = {
   color: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   statusTasks?: InputMaybe<TaskCreateNestedManyWithoutStatusInput>;
   type?: InputMaybe<StatusType>;
@@ -3217,6 +2922,7 @@ export type StatusCreateWithoutPriorityTasksInput = {
 
 export type StatusCreateWithoutStatusTasksInput = {
   color: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   priorityTasks?: InputMaybe<TaskCreateNestedManyWithoutPriorityInput>;
   type?: InputMaybe<StatusType>;
@@ -3225,6 +2931,7 @@ export type StatusCreateWithoutStatusTasksInput = {
 
 export type StatusCreateWithoutUserInput = {
   color: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   priorityTasks?: InputMaybe<TaskCreateNestedManyWithoutPriorityInput>;
   statusTasks?: InputMaybe<TaskCreateNestedManyWithoutStatusInput>;
@@ -3233,13 +2940,11 @@ export type StatusCreateWithoutUserInput = {
 
 export type StatusGroupBy = {
   __typename?: 'StatusGroupBy';
-  _avg?: Maybe<StatusAvgAggregate>;
   _count?: Maybe<StatusCountAggregate>;
   _max?: Maybe<StatusMaxAggregate>;
   _min?: Maybe<StatusMinAggregate>;
-  _sum?: Maybe<StatusSumAggregate>;
   color: Scalars['String']['output'];
-  id: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
   name?: Maybe<Scalars['String']['output']>;
   type: StatusType;
   userId: Scalars['String']['output'];
@@ -3254,7 +2959,7 @@ export type StatusListRelationFilter = {
 export type StatusMaxAggregate = {
   __typename?: 'StatusMaxAggregate';
   color?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   type?: Maybe<StatusType>;
   userId?: Maybe<Scalars['String']['output']>;
@@ -3271,7 +2976,7 @@ export type StatusMaxOrderByAggregateInput = {
 export type StatusMinAggregate = {
   __typename?: 'StatusMinAggregate';
   color?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   type?: Maybe<StatusType>;
   userId?: Maybe<Scalars['String']['output']>;
@@ -3295,11 +3000,9 @@ export type StatusOrderByRelationAggregateInput = {
 };
 
 export type StatusOrderByWithAggregationInput = {
-  _avg?: InputMaybe<StatusAvgOrderByAggregateInput>;
   _count?: InputMaybe<StatusCountOrderByAggregateInput>;
   _max?: InputMaybe<StatusMaxOrderByAggregateInput>;
   _min?: InputMaybe<StatusMinOrderByAggregateInput>;
-  _sum?: InputMaybe<StatusSumOrderByAggregateInput>;
   color?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrderInput>;
@@ -3331,7 +3034,7 @@ export type StatusScalarWhereInput = {
   NOT?: InputMaybe<Array<StatusScalarWhereInput>>;
   OR?: InputMaybe<Array<StatusScalarWhereInput>>;
   color?: InputMaybe<StringFilter>;
-  id?: InputMaybe<IntFilter>;
+  id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringNullableFilter>;
   type?: InputMaybe<EnumStatusTypeFilter>;
   userId?: InputMaybe<StringFilter>;
@@ -3342,19 +3045,10 @@ export type StatusScalarWhereWithAggregatesInput = {
   NOT?: InputMaybe<Array<StatusScalarWhereWithAggregatesInput>>;
   OR?: InputMaybe<Array<StatusScalarWhereWithAggregatesInput>>;
   color?: InputMaybe<StringWithAggregatesFilter>;
-  id?: InputMaybe<IntWithAggregatesFilter>;
+  id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringNullableWithAggregatesFilter>;
   type?: InputMaybe<EnumStatusTypeWithAggregatesFilter>;
   userId?: InputMaybe<StringWithAggregatesFilter>;
-};
-
-export type StatusSumAggregate = {
-  __typename?: 'StatusSumAggregate';
-  id?: Maybe<Scalars['Int']['output']>;
-};
-
-export type StatusSumOrderByAggregateInput = {
-  id?: InputMaybe<SortOrder>;
 };
 
 export enum StatusType {
@@ -3364,6 +3058,7 @@ export enum StatusType {
 
 export type StatusUpdateInput = {
   color?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   priorityTasks?: InputMaybe<TaskUpdateManyWithoutPriorityNestedInput>;
   statusTasks?: InputMaybe<TaskUpdateManyWithoutStatusNestedInput>;
@@ -3373,6 +3068,7 @@ export type StatusUpdateInput = {
 
 export type StatusUpdateManyMutationInput = {
   color?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   type?: InputMaybe<EnumStatusTypeFieldUpdateOperationsInput>;
 };
@@ -3433,6 +3129,7 @@ export type StatusUpdateWithWhereUniqueWithoutUserInput = {
 
 export type StatusUpdateWithoutPriorityTasksInput = {
   color?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   statusTasks?: InputMaybe<TaskUpdateManyWithoutStatusNestedInput>;
   type?: InputMaybe<EnumStatusTypeFieldUpdateOperationsInput>;
@@ -3441,6 +3138,7 @@ export type StatusUpdateWithoutPriorityTasksInput = {
 
 export type StatusUpdateWithoutStatusTasksInput = {
   color?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   priorityTasks?: InputMaybe<TaskUpdateManyWithoutPriorityNestedInput>;
   type?: InputMaybe<EnumStatusTypeFieldUpdateOperationsInput>;
@@ -3449,6 +3147,7 @@ export type StatusUpdateWithoutStatusTasksInput = {
 
 export type StatusUpdateWithoutUserInput = {
   color?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   priorityTasks?: InputMaybe<TaskUpdateManyWithoutPriorityNestedInput>;
   statusTasks?: InputMaybe<TaskUpdateManyWithoutStatusNestedInput>;
@@ -3478,7 +3177,7 @@ export type StatusWhereInput = {
   NOT?: InputMaybe<Array<StatusWhereInput>>;
   OR?: InputMaybe<Array<StatusWhereInput>>;
   color?: InputMaybe<StringFilter>;
-  id?: InputMaybe<IntFilter>;
+  id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringNullableFilter>;
   priorityTasks?: InputMaybe<TaskListRelationFilter>;
   statusTasks?: InputMaybe<TaskListRelationFilter>;
@@ -3492,7 +3191,7 @@ export type StatusWhereUniqueInput = {
   NOT?: InputMaybe<Array<StatusWhereInput>>;
   OR?: InputMaybe<Array<StatusWhereInput>>;
   color?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<StringNullableFilter>;
   priorityTasks?: InputMaybe<TaskListRelationFilter>;
   statusTasks?: InputMaybe<TaskListRelationFilter>;
@@ -3582,9 +3281,9 @@ export type Task = {
   name: Scalars['String']['output'];
   note?: Maybe<Scalars['String']['output']>;
   priority?: Maybe<Status>;
-  priorityId?: Maybe<Scalars['Int']['output']>;
+  priorityId?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Status>;
-  statusId?: Maybe<Scalars['Int']['output']>;
+  statusId?: Maybe<Scalars['String']['output']>;
   updatedAt: Scalars['DateTimeISO']['output'];
   workspace?: Maybe<Workspace>;
   workspaceId: Scalars['String']['output'];
@@ -3613,17 +3312,6 @@ export type TaskStatusArgs = {
 
 export type TaskWorkspaceArgs = {
   where?: InputMaybe<WorkspaceWhereInput>;
-};
-
-export type TaskAvgAggregate = {
-  __typename?: 'TaskAvgAggregate';
-  priorityId?: Maybe<Scalars['Float']['output']>;
-  statusId?: Maybe<Scalars['Float']['output']>;
-};
-
-export type TaskAvgOrderByAggregateInput = {
-  priorityId?: InputMaybe<SortOrder>;
-  statusId?: InputMaybe<SortOrder>;
 };
 
 export type TaskCount = {
@@ -3685,8 +3373,8 @@ export type TaskCreateManyInput = {
   message?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   note?: InputMaybe<Scalars['String']['input']>;
-  priorityId?: InputMaybe<Scalars['Int']['input']>;
-  statusId?: InputMaybe<Scalars['Int']['input']>;
+  priorityId?: InputMaybe<Scalars['String']['input']>;
+  statusId?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   workspaceId: Scalars['String']['input'];
 };
@@ -3698,7 +3386,7 @@ export type TaskCreateManyPriorityInput = {
   message?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   note?: InputMaybe<Scalars['String']['input']>;
-  statusId?: InputMaybe<Scalars['Int']['input']>;
+  statusId?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   workspaceId: Scalars['String']['input'];
 };
@@ -3715,7 +3403,7 @@ export type TaskCreateManyStatusInput = {
   message?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   note?: InputMaybe<Scalars['String']['input']>;
-  priorityId?: InputMaybe<Scalars['Int']['input']>;
+  priorityId?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   workspaceId: Scalars['String']['input'];
 };
@@ -3732,8 +3420,8 @@ export type TaskCreateManyWorkspaceInput = {
   message?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   note?: InputMaybe<Scalars['String']['input']>;
-  priorityId?: InputMaybe<Scalars['Int']['input']>;
-  statusId?: InputMaybe<Scalars['Int']['input']>;
+  priorityId?: InputMaybe<Scalars['String']['input']>;
+  statusId?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -3843,19 +3531,17 @@ export type TaskCreateWithoutWorkspaceInput = {
 
 export type TaskGroupBy = {
   __typename?: 'TaskGroupBy';
-  _avg?: Maybe<TaskAvgAggregate>;
   _count?: Maybe<TaskCountAggregate>;
   _max?: Maybe<TaskMaxAggregate>;
   _min?: Maybe<TaskMinAggregate>;
-  _sum?: Maybe<TaskSumAggregate>;
   createdAt: Scalars['DateTimeISO']['output'];
   dueDate?: Maybe<Scalars['DateTimeISO']['output']>;
   id: Scalars['String']['output'];
   message?: Maybe<Scalars['String']['output']>;
   name: Scalars['String']['output'];
   note?: Maybe<Scalars['String']['output']>;
-  priorityId?: Maybe<Scalars['Int']['output']>;
-  statusId?: Maybe<Scalars['Int']['output']>;
+  priorityId?: Maybe<Scalars['String']['output']>;
+  statusId?: Maybe<Scalars['String']['output']>;
   updatedAt: Scalars['DateTimeISO']['output'];
   workspaceId: Scalars['String']['output'];
 };
@@ -3874,8 +3560,8 @@ export type TaskMaxAggregate = {
   message?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   note?: Maybe<Scalars['String']['output']>;
-  priorityId?: Maybe<Scalars['Int']['output']>;
-  statusId?: Maybe<Scalars['Int']['output']>;
+  priorityId?: Maybe<Scalars['String']['output']>;
+  statusId?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
   workspaceId?: Maybe<Scalars['String']['output']>;
 };
@@ -3901,8 +3587,8 @@ export type TaskMinAggregate = {
   message?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   note?: Maybe<Scalars['String']['output']>;
-  priorityId?: Maybe<Scalars['Int']['output']>;
-  statusId?: Maybe<Scalars['Int']['output']>;
+  priorityId?: Maybe<Scalars['String']['output']>;
+  statusId?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTimeISO']['output']>;
   workspaceId?: Maybe<Scalars['String']['output']>;
 };
@@ -3930,11 +3616,9 @@ export type TaskOrderByRelationAggregateInput = {
 };
 
 export type TaskOrderByWithAggregationInput = {
-  _avg?: InputMaybe<TaskAvgOrderByAggregateInput>;
   _count?: InputMaybe<TaskCountOrderByAggregateInput>;
   _max?: InputMaybe<TaskMaxOrderByAggregateInput>;
   _min?: InputMaybe<TaskMinOrderByAggregateInput>;
-  _sum?: InputMaybe<TaskSumOrderByAggregateInput>;
   createdAt?: InputMaybe<SortOrder>;
   dueDate?: InputMaybe<SortOrderInput>;
   id?: InputMaybe<SortOrder>;
@@ -3987,8 +3671,8 @@ export type TaskScalarWhereInput = {
   message?: InputMaybe<StringNullableFilter>;
   name?: InputMaybe<StringFilter>;
   note?: InputMaybe<StringNullableFilter>;
-  priorityId?: InputMaybe<IntNullableFilter>;
-  statusId?: InputMaybe<IntNullableFilter>;
+  priorityId?: InputMaybe<StringNullableFilter>;
+  statusId?: InputMaybe<StringNullableFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   workspaceId?: InputMaybe<StringFilter>;
 };
@@ -4003,21 +3687,10 @@ export type TaskScalarWhereWithAggregatesInput = {
   message?: InputMaybe<StringNullableWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   note?: InputMaybe<StringNullableWithAggregatesFilter>;
-  priorityId?: InputMaybe<IntNullableWithAggregatesFilter>;
-  statusId?: InputMaybe<IntNullableWithAggregatesFilter>;
+  priorityId?: InputMaybe<StringNullableWithAggregatesFilter>;
+  statusId?: InputMaybe<StringNullableWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   workspaceId?: InputMaybe<StringWithAggregatesFilter>;
-};
-
-export type TaskSumAggregate = {
-  __typename?: 'TaskSumAggregate';
-  priorityId?: Maybe<Scalars['Int']['output']>;
-  statusId?: Maybe<Scalars['Int']['output']>;
-};
-
-export type TaskSumOrderByAggregateInput = {
-  priorityId?: InputMaybe<SortOrder>;
-  statusId?: InputMaybe<SortOrder>;
 };
 
 export type TaskUpdateInput = {
@@ -4219,9 +3892,9 @@ export type TaskWhereInput = {
   name?: InputMaybe<StringFilter>;
   note?: InputMaybe<StringNullableFilter>;
   priority?: InputMaybe<StatusNullableRelationFilter>;
-  priorityId?: InputMaybe<IntNullableFilter>;
+  priorityId?: InputMaybe<StringNullableFilter>;
   status?: InputMaybe<StatusNullableRelationFilter>;
-  statusId?: InputMaybe<IntNullableFilter>;
+  statusId?: InputMaybe<StringNullableFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   workspace?: InputMaybe<WorkspaceNullableRelationFilter>;
   workspaceId?: InputMaybe<StringFilter>;
@@ -4239,9 +3912,9 @@ export type TaskWhereUniqueInput = {
   name?: InputMaybe<StringFilter>;
   note?: InputMaybe<StringNullableFilter>;
   priority?: InputMaybe<StatusNullableRelationFilter>;
-  priorityId?: InputMaybe<IntNullableFilter>;
+  priorityId?: InputMaybe<StringNullableFilter>;
   status?: InputMaybe<StatusNullableRelationFilter>;
-  statusId?: InputMaybe<IntNullableFilter>;
+  statusId?: InputMaybe<StringNullableFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   workspace?: InputMaybe<WorkspaceNullableRelationFilter>;
   workspaceId?: InputMaybe<StringFilter>;
@@ -5705,11 +5378,11 @@ export type WorkspaceWhereUniqueInput = {
 
 export type FileFragment = { __typename?: 'File', id: number, url: string, fileId: string, name: string };
 
-export type StatusFragment = { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } };
+export type StatusFragment = { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } };
 
-export type TaskFragment = { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> };
+export type TaskFragment = { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> };
 
-export type WorkspaceFragment = { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null };
+export type WorkspaceFragment = { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null };
 
 export type CreateFileMutationVariables = Exact<{
   data: FileCreateInput;
@@ -5723,21 +5396,21 @@ export type CreateStatusMutationVariables = Exact<{
 }>;
 
 
-export type CreateStatusMutation = { __typename?: 'Mutation', createOneStatus: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } };
+export type CreateStatusMutation = { __typename?: 'Mutation', createOneStatus: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } };
 
 export type CreateTaskMutationVariables = Exact<{
   data: TaskCreateInput;
 }>;
 
 
-export type CreateTaskMutation = { __typename?: 'Mutation', createOneTask: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> } };
+export type CreateTaskMutation = { __typename?: 'Mutation', createOneTask: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> } };
 
 export type CreateWorkspaceMutationVariables = Exact<{
   data: WorkspaceCreateInput;
 }>;
 
 
-export type CreateWorkspaceMutation = { __typename?: 'Mutation', createOneWorkspace: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } };
+export type CreateWorkspaceMutation = { __typename?: 'Mutation', createOneWorkspace: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } };
 
 export type DeleteFileMutationVariables = Exact<{
   where: FileWhereUniqueInput;
@@ -5765,7 +5438,7 @@ export type DeleteWorkspaceMutationVariables = Exact<{
 }>;
 
 
-export type DeleteWorkspaceMutation = { __typename?: 'Mutation', deleteOneWorkspace?: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } | null };
+export type DeleteWorkspaceMutation = { __typename?: 'Mutation', deleteOneWorkspace?: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } | null };
 
 export type UpdateWorkspaceMutationVariables = Exact<{
   data: WorkspaceUpdateInput;
@@ -5773,7 +5446,7 @@ export type UpdateWorkspaceMutationVariables = Exact<{
 }>;
 
 
-export type UpdateWorkspaceMutation = { __typename?: 'Mutation', updateOneWorkspace?: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } | null };
+export type UpdateWorkspaceMutation = { __typename?: 'Mutation', updateOneWorkspace?: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } | null };
 
 export type UpdateStatusMutationVariables = Exact<{
   data: StatusUpdateInput;
@@ -5781,7 +5454,7 @@ export type UpdateStatusMutationVariables = Exact<{
 }>;
 
 
-export type UpdateStatusMutation = { __typename?: 'Mutation', updateOneStatus?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null };
+export type UpdateStatusMutation = { __typename?: 'Mutation', updateOneStatus?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null };
 
 export type UpdateTaskMutationVariables = Exact<{
   data: TaskUpdateInput;
@@ -5789,7 +5462,7 @@ export type UpdateTaskMutationVariables = Exact<{
 }>;
 
 
-export type UpdateTaskMutation = { __typename?: 'Mutation', updateOneTask?: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> } | null };
+export type UpdateTaskMutation = { __typename?: 'Mutation', updateOneTask?: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> } | null };
 
 export type AggregateTaskByDateQueryVariables = Exact<{
   where: TaskWhereInput;
@@ -5803,35 +5476,35 @@ export type StatusesQueryVariables = Exact<{
 }>;
 
 
-export type StatusesQuery = { __typename?: 'Query', statuses: Array<{ __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } }> };
+export type StatusesQuery = { __typename?: 'Query', statuses: Array<{ __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } }> };
 
 export type TaskQueryVariables = Exact<{
   where: TaskWhereUniqueInput;
 }>;
 
 
-export type TaskQuery = { __typename?: 'Query', task?: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> } | null };
+export type TaskQuery = { __typename?: 'Query', task?: { __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> } | null };
 
 export type TasksQueryVariables = Exact<{
   where: TaskWhereInput;
 }>;
 
 
-export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }> };
+export type TasksQuery = { __typename?: 'Query', tasks: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }> };
 
 export type WorkspaceQueryVariables = Exact<{
   where: WorkspaceWhereUniqueInput;
 }>;
 
 
-export type WorkspaceQuery = { __typename?: 'Query', workspace?: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } | null };
+export type WorkspaceQuery = { __typename?: 'Query', workspace?: { __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null } | null };
 
 export type WorkspacesQueryVariables = Exact<{
   where?: InputMaybe<WorkspaceWhereInput>;
 }>;
 
 
-export type WorkspacesQuery = { __typename?: 'Query', workspaces: Array<{ __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: number, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null }> };
+export type WorkspacesQuery = { __typename?: 'Query', workspaces: Array<{ __typename?: 'Workspace', id: string, name: string, description?: string | null, createdAt: any, updatedAt: any, task: Array<{ __typename?: 'Task', id: string, name: string, message?: string | null, note?: string | null, dueDate?: any | null, createdAt: any, updatedAt: any, status?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, priority?: { __typename?: 'Status', id: string, name?: string | null, color: string, type: StatusType, user: { __typename?: 'User', id: string } } | null, files: Array<{ __typename?: 'File', id: number, url: string, fileId: string, name: string }> }>, user?: { __typename?: 'User', id: string } | null }> };
 
 export const StatusFragmentDoc = gql`
     fragment Status on Status {

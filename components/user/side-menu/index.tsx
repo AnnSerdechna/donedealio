@@ -64,7 +64,7 @@ export const SideMenu: FC<{ collapsed?: boolean }> = ({ collapsed = false  }) =>
     }
   });
 
-  const activeKeys = [...items, ...bottomItems].filter((item) => pathname?.includes(`${item?.key}`)).map(item => item?.key) as string[];
+  const activeKeys = [...items, ...bottomItems].filter((item) => pathname === `/${item?.key}`).map(item => item?.key) as string[];
 
   const onMemuItemClick: MenuProps['onClick'] = (event) => {
     router.push(`/${event.key}`);
@@ -93,7 +93,11 @@ export const SideMenu: FC<{ collapsed?: boolean }> = ({ collapsed = false  }) =>
             rootClassName={styles.workspacesList}
             renderItem={(item) => (
               <List.Item className={styles.workspacesListItem}>
-                <Link href={`/workspace/${item.id}/table`}>{item.name}</Link>
+                <Link 
+                  href={`/workspace/${item.id}/table`}
+                >
+                  {item.name}
+                </Link>
               </List.Item>
             )}
           />

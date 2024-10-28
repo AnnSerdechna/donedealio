@@ -14,7 +14,7 @@ import { StatusFormList } from './statuses-form-list';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 
 type FormValuesProps = {
-  statuses: { id: number | undefined, color: string | Color, name: string }[]
+  statuses: { id: string | undefined, color: string | Color, name: string }[]
 }
 
 type StatusEditProps = {
@@ -38,7 +38,7 @@ export const StatusEdit: FC<StatusEditProps> = ({ statusType, onBack }) => {
   const [updateStatus, { loading: updateStatusLoading }] = useUpdateStatusMutation();
   const [deleteStatuses, { loading: deleteStatusLoading }] = useDeleteStatusesMutation();
 
-  const handleDeleteStatuses = async (deletedIds: number[]) => {
+  const handleDeleteStatuses = async (deletedIds: string[]) => {
     try {
       await deleteStatuses({
         variables: {
@@ -69,7 +69,7 @@ export const StatusEdit: FC<StatusEditProps> = ({ statusType, onBack }) => {
     }
   };
 
-  const handleUpdateStatus = async (id: number, name: string, color: string) => {
+  const handleUpdateStatus = async (id: string, name: string, color: string) => {
     try {
       await updateStatus({
         variables: {

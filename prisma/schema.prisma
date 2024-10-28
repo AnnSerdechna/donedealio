@@ -124,10 +124,10 @@ model Task  {
   updatedAt     DateTime  @updatedAt
 
   status Status?  @relation("TaskStatus", fields: [statusId], references: [id])
-  statusId Int?
+  statusId String?
 
   priority Status?  @relation("TaskPriority", fields: [priorityId], references: [id])
-  priorityId Int?
+  priorityId String?
   
   workspace Workspace? @relation(fields: [workspaceId], references: [id])
   workspaceId String
@@ -136,7 +136,7 @@ model Task  {
 }
 
 model Status {
-  id    Int @id @default(autoincrement())
+  id    String    @id @default(cuid())
   name  String?
   color String
   type  StatusType @default(STATUS)
@@ -146,13 +146,6 @@ model Status {
 
   priorityTasks Task[] @relation("TaskPriority")
   statusTasks Task[] @relation("TaskStatus")
-}
-
-model Priority {
-  id  Int @id @default(autoincrement())
-  name String 
-  color String
-
 }
 
 enum StatusType {

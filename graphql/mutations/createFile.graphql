@@ -1,0 +1,5 @@
+mutation createFile($data: FileCreateInput!) {
+  createOneFile(data: $data) {
+    ...File
+  }
+}

@@ -5,11 +5,17 @@ schema {
 
 type Account {
   access_token: String
+  createdAt: DateTimeISO!
   expires_at: Int
-  id: String!
+  id_token: String
   provider: String!
   providerAccountId: String!
+  refresh_token: String
+  scope: String
+  session_state: String
+  token_type: String
   type: String!
+  updatedAt: DateTimeISO!
   user: User!
   userId: String!
 }
@@ -25,51 +31,81 @@ input AccountAvgOrderByAggregateInput {
 type AccountCountAggregate {
   _all: Int!
   access_token: Int!
+  createdAt: Int!
   expires_at: Int!
-  id: Int!
+  id_token: Int!
   provider: Int!
   providerAccountId: Int!
+  refresh_token: Int!
+  scope: Int!
+  session_state: Int!
+  token_type: Int!
   type: Int!
+  updatedAt: Int!
   userId: Int!
 }
 
 input AccountCountOrderByAggregateInput {
   access_token: SortOrder
+  createdAt: SortOrder
   expires_at: SortOrder
-  id: SortOrder
+  id_token: SortOrder
   provider: SortOrder
   providerAccountId: SortOrder
+  refresh_token: SortOrder
+  scope: SortOrder
+  session_state: SortOrder
+  token_type: SortOrder
   type: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
 input AccountCreateInput {
   access_token: String
+  createdAt: DateTimeISO
   expires_at: Int
-  id: String
+  id_token: String
   provider: String!
   providerAccountId: String!
+  refresh_token: String
+  scope: String
+  session_state: String
+  token_type: String
   type: String!
+  updatedAt: DateTimeISO
   user: UserCreateNestedOneWithoutAccountsInput!
 }
 
 input AccountCreateManyInput {
   access_token: String
+  createdAt: DateTimeISO
   expires_at: Int
-  id: String
+  id_token: String
   provider: String!
   providerAccountId: String!
+  refresh_token: String
+  scope: String
+  session_state: String
+  token_type: String
   type: String!
+  updatedAt: DateTimeISO
   userId: String!
 }
 
 input AccountCreateManyUserInput {
   access_token: String
+  createdAt: DateTimeISO
   expires_at: Int
-  id: String
+  id_token: String
   provider: String!
   providerAccountId: String!
+  refresh_token: String
+  scope: String
+  session_state: String
+  token_type: String
   type: String!
+  updatedAt: DateTimeISO
 }
 
 input AccountCreateManyUserInputEnvelope {
@@ -91,11 +127,17 @@ input AccountCreateOrConnectWithoutUserInput {
 
 input AccountCreateWithoutUserInput {
   access_token: String
+  createdAt: DateTimeISO
   expires_at: Int
-  id: String
+  id_token: String
   provider: String!
   providerAccountId: String!
+  refresh_token: String
+  scope: String
+  session_state: String
+  token_type: String
   type: String!
+  updatedAt: DateTimeISO
 }
 
 type AccountGroupBy {
@@ -105,11 +147,17 @@ type AccountGroupBy {
   _min: AccountMinAggregate
   _sum: AccountSumAggregate
   access_token: String
+  createdAt: DateTimeISO!
   expires_at: Int
-  id: String!
+  id_token: String
   provider: String!
   providerAccountId: String!
+  refresh_token: String
+  scope: String
+  session_state: String
+  token_type: String
   type: String!
+  updatedAt: DateTimeISO!
   userId: String!
 }
 
@@ -121,41 +169,65 @@ input AccountListRelationFilter {
 
 type AccountMaxAggregate {
   access_token: String
+  createdAt: DateTimeISO
   expires_at: Int
-  id: String
+  id_token: String
   provider: String
   providerAccountId: String
+  refresh_token: String
+  scope: String
+  session_state: String
+  token_type: String
   type: String
+  updatedAt: DateTimeISO
   userId: String
 }
 
 input AccountMaxOrderByAggregateInput {
   access_token: SortOrder
+  createdAt: SortOrder
   expires_at: SortOrder
-  id: SortOrder
+  id_token: SortOrder
   provider: SortOrder
   providerAccountId: SortOrder
+  refresh_token: SortOrder
+  scope: SortOrder
+  session_state: SortOrder
+  token_type: SortOrder
   type: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
 type AccountMinAggregate {
   access_token: String
+  createdAt: DateTimeISO
   expires_at: Int
-  id: String
+  id_token: String
   provider: String
   providerAccountId: String
+  refresh_token: String
+  scope: String
+  session_state: String
+  token_type: String
   type: String
+  updatedAt: DateTimeISO
   userId: String
 }
 
 input AccountMinOrderByAggregateInput {
   access_token: SortOrder
+  createdAt: SortOrder
   expires_at: SortOrder
-  id: SortOrder
+  id_token: SortOrder
   provider: SortOrder
   providerAccountId: SortOrder
+  refresh_token: SortOrder
+  scope: SortOrder
+  session_state: SortOrder
+  token_type: SortOrder
   type: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
@@ -170,32 +242,55 @@ input AccountOrderByWithAggregationInput {
   _min: AccountMinOrderByAggregateInput
   _sum: AccountSumOrderByAggregateInput
   access_token: SortOrderInput
+  createdAt: SortOrder
   expires_at: SortOrderInput
-  id: SortOrder
+  id_token: SortOrderInput
   provider: SortOrder
   providerAccountId: SortOrder
+  refresh_token: SortOrderInput
+  scope: SortOrderInput
+  session_state: SortOrderInput
+  token_type: SortOrderInput
   type: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
 }
 
 input AccountOrderByWithRelationInput {
   access_token: SortOrderInput
+  createdAt: SortOrder
   expires_at: SortOrderInput
-  id: SortOrder
+  id_token: SortOrderInput
   provider: SortOrder
   providerAccountId: SortOrder
+  refresh_token: SortOrderInput
+  scope: SortOrderInput
+  session_state: SortOrderInput
+  token_type: SortOrderInput
   type: SortOrder
+  updatedAt: SortOrder
   user: UserOrderByWithRelationInput
   userId: SortOrder
 }
 
+input AccountProviderProviderAccountIdCompoundUniqueInput {
+  provider: String!
+  providerAccountId: String!
+}
+
 enum AccountScalarFieldEnum {
   access_token
+  createdAt
   expires_at
-  id
+  id_token
   provider
   providerAccountId
+  refresh_token
+  scope
+  session_state
+  token_type
   type
+  updatedAt
   userId
 }
 
@@ -204,11 +299,17 @@ input AccountScalarWhereInput {
   NOT: [AccountScalarWhereInput!]
   OR: [AccountScalarWhereInput!]
   access_token: StringNullableFilter
+  createdAt: DateTimeFilter
   expires_at: IntNullableFilter
-  id: StringFilter
+  id_token: StringNullableFilter
   provider: StringFilter
   providerAccountId: StringFilter
+  refresh_token: StringNullableFilter
+  scope: StringNullableFilter
+  session_state: StringNullableFilter
+  token_type: StringNullableFilter
   type: StringFilter
+  updatedAt: DateTimeFilter
   userId: StringFilter
 }
 
@@ -217,11 +318,17 @@ input AccountScalarWhereWithAggregatesInput {
   NOT: [AccountScalarWhereWithAggregatesInput!]
   OR: [AccountScalarWhereWithAggregatesInput!]
   access_token: StringNullableWithAggregatesFilter
+  createdAt: DateTimeWithAggregatesFilter
   expires_at: IntNullableWithAggregatesFilter
-  id: StringWithAggregatesFilter
+  id_token: StringNullableWithAggregatesFilter
   provider: StringWithAggregatesFilter
   providerAccountId: StringWithAggregatesFilter
+  refresh_token: StringNullableWithAggregatesFilter
+  scope: StringNullableWithAggregatesFilter
+  session_state: StringNullableWithAggregatesFilter
+  token_type: StringNullableWithAggregatesFilter
   type: StringWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
   userId: StringWithAggregatesFilter
 }
 
@@ -235,21 +342,33 @@ input AccountSumOrderByAggregateInput {
 
 input AccountUpdateInput {
   access_token: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
   expires_at: NullableIntFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
+  id_token: NullableStringFieldUpdateOperationsInput
   provider: StringFieldUpdateOperationsInput
   providerAccountId: StringFieldUpdateOperationsInput
+  refresh_token: NullableStringFieldUpdateOperationsInput
+  scope: NullableStringFieldUpdateOperationsInput
+  session_state: NullableStringFieldUpdateOperationsInput
+  token_type: NullableStringFieldUpdateOperationsInput
   type: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutAccountsNestedInput
 }
 
 input AccountUpdateManyMutationInput {
   access_token: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
   expires_at: NullableIntFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
+  id_token: NullableStringFieldUpdateOperationsInput
   provider: StringFieldUpdateOperationsInput
   providerAccountId: StringFieldUpdateOperationsInput
+  refresh_token: NullableStringFieldUpdateOperationsInput
+  scope: NullableStringFieldUpdateOperationsInput
+  session_state: NullableStringFieldUpdateOperationsInput
+  token_type: NullableStringFieldUpdateOperationsInput
   type: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input AccountUpdateManyWithWhereWithoutUserInput {
@@ -278,11 +397,17 @@ input AccountUpdateWithWhereUniqueWithoutUserInput {
 
 input AccountUpdateWithoutUserInput {
   access_token: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
   expires_at: NullableIntFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
+  id_token: NullableStringFieldUpdateOperationsInput
   provider: StringFieldUpdateOperationsInput
   providerAccountId: StringFieldUpdateOperationsInput
+  refresh_token: NullableStringFieldUpdateOperationsInput
+  scope: NullableStringFieldUpdateOperationsInput
+  session_state: NullableStringFieldUpdateOperationsInput
+  token_type: NullableStringFieldUpdateOperationsInput
   type: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input AccountUpsertWithWhereUniqueWithoutUserInput {
@@ -296,11 +421,17 @@ input AccountWhereInput {
   NOT: [AccountWhereInput!]
   OR: [AccountWhereInput!]
   access_token: StringNullableFilter
+  createdAt: DateTimeFilter
   expires_at: IntNullableFilter
-  id: StringFilter
+  id_token: StringNullableFilter
   provider: StringFilter
   providerAccountId: StringFilter
+  refresh_token: StringNullableFilter
+  scope: StringNullableFilter
+  session_state: StringNullableFilter
+  token_type: StringNullableFilter
   type: StringFilter
+  updatedAt: DateTimeFilter
   user: UserRelationFilter
   userId: StringFilter
 }
@@ -310,11 +441,18 @@ input AccountWhereUniqueInput {
   NOT: [AccountWhereInput!]
   OR: [AccountWhereInput!]
   access_token: StringNullableFilter
+  createdAt: DateTimeFilter
   expires_at: IntNullableFilter
-  id: String
+  id_token: StringNullableFilter
   provider: StringFilter
   providerAccountId: StringFilter
+  provider_providerAccountId: AccountProviderProviderAccountIdCompoundUniqueInput
+  refresh_token: StringNullableFilter
+  scope: StringNullableFilter
+  session_state: StringNullableFilter
+  token_type: StringNullableFilter
   type: StringFilter
+  updatedAt: DateTimeFilter
   user: UserRelationFilter
   userId: StringFilter
 }
@@ -339,34 +477,34 @@ type AggregateFile {
   _sum: FileSumAggregate
 }
 
-type AggregatePriority {
-  _avg: PriorityAvgAggregate
-  _count: PriorityCountAggregate
-  _max: PriorityMaxAggregate
-  _min: PriorityMinAggregate
-  _sum: PrioritySumAggregate
-}
-
-type AggregateSession {
-  _count: SessionCountAggregate
-  _max: SessionMaxAggregate
-  _min: SessionMinAggregate
+type AggregatePasswordResetToken {
+  _count: PasswordResetTokenCountAggregate
+  _max: PasswordResetTokenMaxAggregate
+  _min: PasswordResetTokenMinAggregate
 }
 
 type AggregateStatus {
-  _avg: StatusAvgAggregate
   _count: StatusCountAggregate
   _max: StatusMaxAggregate
   _min: StatusMinAggregate
-  _sum: StatusSumAggregate
 }
 
 type AggregateTask {
-  _avg: TaskAvgAggregate
   _count: TaskCountAggregate
   _max: TaskMaxAggregate
   _min: TaskMinAggregate
-  _sum: TaskSumAggregate
+}
+
+type AggregateTwoFactorConfirnation {
+  _count: TwoFactorConfirnationCountAggregate
+  _max: TwoFactorConfirnationMaxAggregate
+  _min: TwoFactorConfirnationMinAggregate
+}
+
+type AggregateTwoFactorToken {
+  _count: TwoFactorTokenCountAggregate
+  _max: TwoFactorTokenMaxAggregate
+  _min: TwoFactorTokenMinAggregate
 }
 
 type AggregateUser {
@@ -375,48 +513,75 @@ type AggregateUser {
   _min: UserMinAggregate
 }
 
+type AggregateVerificationToken {
+  _count: VerificationTokenCountAggregate
+  _max: VerificationTokenMaxAggregate
+  _min: VerificationTokenMinAggregate
+}
+
 type AggregateWorkspace {
   _count: WorkspaceCountAggregate
   _max: WorkspaceMaxAggregate
   _min: WorkspaceMinAggregate
 }
 
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input BoolWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedBoolFilter
+  _min: NestedBoolFilter
+  equals: Boolean
+  not: NestedBoolWithAggregatesFilter
+}
+
 type CreateManyAndReturnAccount {
   access_token: String
+  createdAt: DateTimeISO!
   expires_at: Int
-  id: String!
+  id_token: String
   provider: String!
   providerAccountId: String!
+  refresh_token: String
+  scope: String
+  session_state: String
+  token_type: String
   type: String!
+  updatedAt: DateTimeISO!
   user: User!
   userId: String!
 }
 
 type CreateManyAndReturnFile {
-  file: String!
-  id: Int!
-  task(where: TaskWhereInput): Task
-  taskId: String
-}
-
-type CreateManyAndReturnPriority {
-  color: String!
+  fileId: String!
   id: Int!
   name: String!
+  task(where: TaskWhereInput): Task
+  taskId: String
+  url: String!
 }
 
-type CreateManyAndReturnSession {
+type CreateManyAndReturnPasswordResetToken {
+  email: String!
   expires: DateTimeISO!
   id: String!
-  sessionToken: String!
-  user: User!
-  userId: String!
+  token: String!
 }
 
 type CreateManyAndReturnStatus {
   color: String!
-  id: Int!
-  name: String!
+  id: String!
+  name: String
+  type: StatusType!
+  user: User!
+  userId: String!
 }
 
 type CreateManyAndReturnTask {
@@ -426,31 +591,52 @@ type CreateManyAndReturnTask {
   message: String
   name: String!
   note: String
-  priority(where: PriorityWhereInput): Priority
-  priorityId: Int
+  priority(where: StatusWhereInput): Status
+  priorityId: String
   status(where: StatusWhereInput): Status
-  statusId: Int
+  statusId: String
   updatedAt: DateTimeISO!
-  workspace: Workspace!
+  workspace(where: WorkspaceWhereInput): Workspace
   workspaceId: String!
+}
+
+type CreateManyAndReturnTwoFactorConfirnation {
+  id: String!
+  user: User!
+  userId: String!
+}
+
+type CreateManyAndReturnTwoFactorToken {
+  email: String!
+  expires: DateTimeISO!
+  id: String!
+  token: String!
 }
 
 type CreateManyAndReturnUser {
   createdAt: DateTimeISO!
   email: String!
   emailVerified: DateTimeISO
-  firstName: String!
   id: String!
   image: String
-  lastName: String!
-  password: String!
+  imageId: String
+  isTwoFactorEnable: Boolean!
+  name: String!
+  password: String
   role: Role!
   updatedAt: DateTimeISO!
 }
 
+type CreateManyAndReturnVerificationToken {
+  email: String!
+  expires: DateTimeISO!
+  id: String!
+  token: String!
+}
+
 type CreateManyAndReturnWorkspace {
   createdAt: DateTimeISO!
-  description: String!
+  description: String
   id: String!
   name: String!
   updatedAt: DateTimeISO!
@@ -538,11 +724,34 @@ input EnumRoleWithAggregatesFilter {
   notIn: [Role!]
 }
 
+input EnumStatusTypeFieldUpdateOperationsInput {
+  set: StatusType
+}
+
+input EnumStatusTypeFilter {
+  equals: StatusType
+  in: [StatusType!]
+  not: NestedEnumStatusTypeFilter
+  notIn: [StatusType!]
+}
+
+input EnumStatusTypeWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumStatusTypeFilter
+  _min: NestedEnumStatusTypeFilter
+  equals: StatusType
+  in: [StatusType!]
+  not: NestedEnumStatusTypeWithAggregatesFilter
+  notIn: [StatusType!]
+}
+
 type File {
-  file: String!
+  fileId: String!
   id: Int!
+  name: String!
   task(where: TaskWhereInput): Task
   taskId: String
+  url: String!
 }
 
 type FileAvgAggregate {
@@ -555,31 +764,41 @@ input FileAvgOrderByAggregateInput {
 
 type FileCountAggregate {
   _all: Int!
-  file: Int!
+  fileId: Int!
   id: Int!
+  name: Int!
   taskId: Int!
+  url: Int!
 }
 
 input FileCountOrderByAggregateInput {
-  file: SortOrder
+  fileId: SortOrder
   id: SortOrder
+  name: SortOrder
   taskId: SortOrder
+  url: SortOrder
 }
 
 input FileCreateInput {
-  file: String!
+  fileId: String!
+  name: String!
   task: TaskCreateNestedOneWithoutFilesInput
+  url: String!
 }
 
 input FileCreateManyInput {
-  file: String!
+  fileId: String!
   id: Int
+  name: String!
   taskId: String
+  url: String!
 }
 
 input FileCreateManyTaskInput {
-  file: String!
+  fileId: String!
   id: Int
+  name: String!
+  url: String!
 }
 
 input FileCreateManyTaskInputEnvelope {
@@ -600,7 +819,9 @@ input FileCreateOrConnectWithoutTaskInput {
 }
 
 input FileCreateWithoutTaskInput {
-  file: String!
+  fileId: String!
+  name: String!
+  url: String!
 }
 
 type FileGroupBy {
@@ -609,9 +830,11 @@ type FileGroupBy {
   _max: FileMaxAggregate
   _min: FileMinAggregate
   _sum: FileSumAggregate
-  file: String!
+  fileId: String!
   id: Int!
+  name: String!
   taskId: String
+  url: String!
 }
 
 input FileListRelationFilter {
@@ -621,27 +844,35 @@ input FileListRelationFilter {
 }
 
 type FileMaxAggregate {
-  file: String
+  fileId: String
   id: Int
+  name: String
   taskId: String
+  url: String
 }
 
 input FileMaxOrderByAggregateInput {
-  file: SortOrder
+  fileId: SortOrder
   id: SortOrder
+  name: SortOrder
   taskId: SortOrder
+  url: SortOrder
 }
 
 type FileMinAggregate {
-  file: String
+  fileId: String
   id: Int
+  name: String
   taskId: String
+  url: String
 }
 
 input FileMinOrderByAggregateInput {
-  file: SortOrder
+  fileId: SortOrder
   id: SortOrder
+  name: SortOrder
   taskId: SortOrder
+  url: SortOrder
 }
 
 input FileOrderByRelationAggregateInput {
@@ -654,40 +885,50 @@ input FileOrderByWithAggregationInput {
   _max: FileMaxOrderByAggregateInput
   _min: FileMinOrderByAggregateInput
   _sum: FileSumOrderByAggregateInput
-  file: SortOrder
+  fileId: SortOrder
   id: SortOrder
+  name: SortOrder
   taskId: SortOrderInput
+  url: SortOrder
 }
 
 input FileOrderByWithRelationInput {
-  file: SortOrder
+  fileId: SortOrder
   id: SortOrder
+  name: SortOrder
   task: TaskOrderByWithRelationInput
   taskId: SortOrderInput
+  url: SortOrder
 }
 
 enum FileScalarFieldEnum {
-  file
+  fileId
   id
+  name
   taskId
+  url
 }
 
 input FileScalarWhereInput {
   AND: [FileScalarWhereInput!]
   NOT: [FileScalarWhereInput!]
   OR: [FileScalarWhereInput!]
-  file: StringFilter
+  fileId: StringFilter
   id: IntFilter
+  name: StringFilter
   taskId: StringNullableFilter
+  url: StringFilter
 }
 
 input FileScalarWhereWithAggregatesInput {
   AND: [FileScalarWhereWithAggregatesInput!]
   NOT: [FileScalarWhereWithAggregatesInput!]
   OR: [FileScalarWhereWithAggregatesInput!]
-  file: StringWithAggregatesFilter
+  fileId: StringWithAggregatesFilter
   id: IntWithAggregatesFilter
+  name: StringWithAggregatesFilter
   taskId: StringNullableWithAggregatesFilter
+  url: StringWithAggregatesFilter
 }
 
 type FileSumAggregate {
@@ -699,12 +940,16 @@ input FileSumOrderByAggregateInput {
 }
 
 input FileUpdateInput {
-  file: StringFieldUpdateOperationsInput
+  fileId: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
   task: TaskUpdateOneWithoutFilesNestedInput
+  url: StringFieldUpdateOperationsInput
 }
 
 input FileUpdateManyMutationInput {
-  file: StringFieldUpdateOperationsInput
+  fileId: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  url: StringFieldUpdateOperationsInput
 }
 
 input FileUpdateManyWithWhereWithoutTaskInput {
@@ -732,7 +977,9 @@ input FileUpdateWithWhereUniqueWithoutTaskInput {
 }
 
 input FileUpdateWithoutTaskInput {
-  file: StringFieldUpdateOperationsInput
+  fileId: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  url: StringFieldUpdateOperationsInput
 }
 
 input FileUpsertWithWhereUniqueWithoutTaskInput {
@@ -745,20 +992,24 @@ input FileWhereInput {
   AND: [FileWhereInput!]
   NOT: [FileWhereInput!]
   OR: [FileWhereInput!]
-  file: StringFilter
+  fileId: StringFilter
   id: IntFilter
+  name: StringFilter
   task: TaskNullableRelationFilter
   taskId: StringNullableFilter
+  url: StringFilter
 }
 
 input FileWhereUniqueInput {
   AND: [FileWhereInput!]
   NOT: [FileWhereInput!]
   OR: [FileWhereInput!]
-  file: StringFilter
+  fileId: String
   id: Int
+  name: StringFilter
   task: TaskNullableRelationFilter
   taskId: StringNullableFilter
+  url: StringFilter
 }
 
 input IntFilter {
@@ -819,67 +1070,96 @@ type Mutation {
   createManyAccount(data: [AccountCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyAndReturnAccount(data: [AccountCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnAccount!]!
   createManyAndReturnFile(data: [FileCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnFile!]!
-  createManyAndReturnPriority(data: [PriorityCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnPriority!]!
-  createManyAndReturnSession(data: [SessionCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnSession!]!
+  createManyAndReturnPasswordResetToken(data: [PasswordResetTokenCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnPasswordResetToken!]!
   createManyAndReturnStatus(data: [StatusCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnStatus!]!
   createManyAndReturnTask(data: [TaskCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnTask!]!
+  createManyAndReturnTwoFactorConfirnation(data: [TwoFactorConfirnationCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnTwoFactorConfirnation!]!
+  createManyAndReturnTwoFactorToken(data: [TwoFactorTokenCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnTwoFactorToken!]!
   createManyAndReturnUser(data: [UserCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnUser!]!
+  createManyAndReturnVerificationToken(data: [VerificationTokenCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnVerificationToken!]!
   createManyAndReturnWorkspace(data: [WorkspaceCreateManyInput!]!, skipDuplicates: Boolean): [CreateManyAndReturnWorkspace!]!
   createManyFile(data: [FileCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
-  createManyPriority(data: [PriorityCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
-  createManySession(data: [SessionCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyPasswordResetToken(data: [PasswordResetTokenCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyStatus(data: [StatusCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyTask(data: [TaskCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyTwoFactorConfirnation(data: [TwoFactorConfirnationCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyTwoFactorToken(data: [TwoFactorTokenCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyUser(data: [UserCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyVerificationToken(data: [VerificationTokenCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyWorkspace(data: [WorkspaceCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createOneAccount(data: AccountCreateInput!): Account!
   createOneFile(data: FileCreateInput!): File!
-  createOnePriority(data: PriorityCreateInput!): Priority!
-  createOneSession(data: SessionCreateInput!): Session!
+  createOnePasswordResetToken(data: PasswordResetTokenCreateInput!): PasswordResetToken!
   createOneStatus(data: StatusCreateInput!): Status!
   createOneTask(data: TaskCreateInput!): Task!
+  createOneTwoFactorConfirnation(data: TwoFactorConfirnationCreateInput!): TwoFactorConfirnation!
+  createOneTwoFactorToken(data: TwoFactorTokenCreateInput!): TwoFactorToken!
   createOneUser(data: UserCreateInput!): User!
+  createOneVerificationToken(data: VerificationTokenCreateInput!): VerificationToken!
   createOneWorkspace(data: WorkspaceCreateInput!): Workspace!
   deleteManyAccount(where: AccountWhereInput): AffectedRowsOutput!
   deleteManyFile(where: FileWhereInput): AffectedRowsOutput!
-  deleteManyPriority(where: PriorityWhereInput): AffectedRowsOutput!
-  deleteManySession(where: SessionWhereInput): AffectedRowsOutput!
+  deleteManyPasswordResetToken(where: PasswordResetTokenWhereInput): AffectedRowsOutput!
   deleteManyStatus(where: StatusWhereInput): AffectedRowsOutput!
   deleteManyTask(where: TaskWhereInput): AffectedRowsOutput!
+  deleteManyTwoFactorConfirnation(where: TwoFactorConfirnationWhereInput): AffectedRowsOutput!
+  deleteManyTwoFactorToken(where: TwoFactorTokenWhereInput): AffectedRowsOutput!
   deleteManyUser(where: UserWhereInput): AffectedRowsOutput!
+  deleteManyVerificationToken(where: VerificationTokenWhereInput): AffectedRowsOutput!
   deleteManyWorkspace(where: WorkspaceWhereInput): AffectedRowsOutput!
   deleteOneAccount(where: AccountWhereUniqueInput!): Account
   deleteOneFile(where: FileWhereUniqueInput!): File
-  deleteOnePriority(where: PriorityWhereUniqueInput!): Priority
-  deleteOneSession(where: SessionWhereUniqueInput!): Session
+  deleteOnePasswordResetToken(where: PasswordResetTokenWhereUniqueInput!): PasswordResetToken
   deleteOneStatus(where: StatusWhereUniqueInput!): Status
   deleteOneTask(where: TaskWhereUniqueInput!): Task
+  deleteOneTwoFactorConfirnation(where: TwoFactorConfirnationWhereUniqueInput!): TwoFactorConfirnation
+  deleteOneTwoFactorToken(where: TwoFactorTokenWhereUniqueInput!): TwoFactorToken
   deleteOneUser(where: UserWhereUniqueInput!): User
+  deleteOneVerificationToken(where: VerificationTokenWhereUniqueInput!): VerificationToken
   deleteOneWorkspace(where: WorkspaceWhereUniqueInput!): Workspace
   updateManyAccount(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): AffectedRowsOutput!
   updateManyFile(data: FileUpdateManyMutationInput!, where: FileWhereInput): AffectedRowsOutput!
-  updateManyPriority(data: PriorityUpdateManyMutationInput!, where: PriorityWhereInput): AffectedRowsOutput!
-  updateManySession(data: SessionUpdateManyMutationInput!, where: SessionWhereInput): AffectedRowsOutput!
+  updateManyPasswordResetToken(data: PasswordResetTokenUpdateManyMutationInput!, where: PasswordResetTokenWhereInput): AffectedRowsOutput!
   updateManyStatus(data: StatusUpdateManyMutationInput!, where: StatusWhereInput): AffectedRowsOutput!
   updateManyTask(data: TaskUpdateManyMutationInput!, where: TaskWhereInput): AffectedRowsOutput!
+  updateManyTwoFactorConfirnation(data: TwoFactorConfirnationUpdateManyMutationInput!, where: TwoFactorConfirnationWhereInput): AffectedRowsOutput!
+  updateManyTwoFactorToken(data: TwoFactorTokenUpdateManyMutationInput!, where: TwoFactorTokenWhereInput): AffectedRowsOutput!
   updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): AffectedRowsOutput!
+  updateManyVerificationToken(data: VerificationTokenUpdateManyMutationInput!, where: VerificationTokenWhereInput): AffectedRowsOutput!
   updateManyWorkspace(data: WorkspaceUpdateManyMutationInput!, where: WorkspaceWhereInput): AffectedRowsOutput!
   updateOneAccount(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
   updateOneFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
-  updateOnePriority(data: PriorityUpdateInput!, where: PriorityWhereUniqueInput!): Priority
-  updateOneSession(data: SessionUpdateInput!, where: SessionWhereUniqueInput!): Session
+  updateOnePasswordResetToken(data: PasswordResetTokenUpdateInput!, where: PasswordResetTokenWhereUniqueInput!): PasswordResetToken
   updateOneStatus(data: StatusUpdateInput!, where: StatusWhereUniqueInput!): Status
   updateOneTask(data: TaskUpdateInput!, where: TaskWhereUniqueInput!): Task
+  updateOneTwoFactorConfirnation(data: TwoFactorConfirnationUpdateInput!, where: TwoFactorConfirnationWhereUniqueInput!): TwoFactorConfirnation
+  updateOneTwoFactorToken(data: TwoFactorTokenUpdateInput!, where: TwoFactorTokenWhereUniqueInput!): TwoFactorToken
   updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateOneVerificationToken(data: VerificationTokenUpdateInput!, where: VerificationTokenWhereUniqueInput!): VerificationToken
   updateOneWorkspace(data: WorkspaceUpdateInput!, where: WorkspaceWhereUniqueInput!): Workspace
   upsertOneAccount(create: AccountCreateInput!, update: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account!
   upsertOneFile(create: FileCreateInput!, update: FileUpdateInput!, where: FileWhereUniqueInput!): File!
-  upsertOnePriority(create: PriorityCreateInput!, update: PriorityUpdateInput!, where: PriorityWhereUniqueInput!): Priority!
-  upsertOneSession(create: SessionCreateInput!, update: SessionUpdateInput!, where: SessionWhereUniqueInput!): Session!
+  upsertOnePasswordResetToken(create: PasswordResetTokenCreateInput!, update: PasswordResetTokenUpdateInput!, where: PasswordResetTokenWhereUniqueInput!): PasswordResetToken!
   upsertOneStatus(create: StatusCreateInput!, update: StatusUpdateInput!, where: StatusWhereUniqueInput!): Status!
   upsertOneTask(create: TaskCreateInput!, update: TaskUpdateInput!, where: TaskWhereUniqueInput!): Task!
+  upsertOneTwoFactorConfirnation(create: TwoFactorConfirnationCreateInput!, update: TwoFactorConfirnationUpdateInput!, where: TwoFactorConfirnationWhereUniqueInput!): TwoFactorConfirnation!
+  upsertOneTwoFactorToken(create: TwoFactorTokenCreateInput!, update: TwoFactorTokenUpdateInput!, where: TwoFactorTokenWhereUniqueInput!): TwoFactorToken!
   upsertOneUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+  upsertOneVerificationToken(create: VerificationTokenCreateInput!, update: VerificationTokenUpdateInput!, where: VerificationTokenWhereUniqueInput!): VerificationToken!
   upsertOneWorkspace(create: WorkspaceCreateInput!, update: WorkspaceUpdateInput!, where: WorkspaceWhereUniqueInput!): Workspace!
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedBoolWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedBoolFilter
+  _min: NestedBoolFilter
+  equals: Boolean
+  not: NestedBoolWithAggregatesFilter
 }
 
 input NestedDateTimeFilter {
@@ -947,6 +1227,23 @@ input NestedEnumRoleWithAggregatesFilter {
   in: [Role!]
   not: NestedEnumRoleWithAggregatesFilter
   notIn: [Role!]
+}
+
+input NestedEnumStatusTypeFilter {
+  equals: StatusType
+  in: [StatusType!]
+  not: NestedEnumStatusTypeFilter
+  notIn: [StatusType!]
+}
+
+input NestedEnumStatusTypeWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumStatusTypeFilter
+  _min: NestedEnumStatusTypeFilter
+  equals: StatusType
+  in: [StatusType!]
+  not: NestedEnumStatusTypeWithAggregatesFilter
+  notIn: [StatusType!]
 }
 
 input NestedFloatFilter {
@@ -1108,203 +1405,152 @@ enum NullsOrder {
   last
 }
 
-type Priority {
-  _count: PriorityCount
-  color: String!
-  id: Int!
-  name: String!
-  task(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
+type PasswordResetToken {
+  email: String!
+  expires: DateTimeISO!
+  id: String!
+  token: String!
 }
 
-type PriorityAvgAggregate {
-  id: Float
-}
-
-input PriorityAvgOrderByAggregateInput {
-  id: SortOrder
-}
-
-type PriorityCount {
-  task(where: TaskWhereInput): Int!
-}
-
-type PriorityCountAggregate {
+type PasswordResetTokenCountAggregate {
   _all: Int!
-  color: Int!
+  email: Int!
+  expires: Int!
   id: Int!
-  name: Int!
+  token: Int!
 }
 
-input PriorityCountOrderByAggregateInput {
-  color: SortOrder
+input PasswordResetTokenCountOrderByAggregateInput {
+  email: SortOrder
+  expires: SortOrder
   id: SortOrder
-  name: SortOrder
+  token: SortOrder
 }
 
-input PriorityCreateInput {
-  color: String!
-  name: String!
-  task: TaskCreateNestedManyWithoutPriorityInput
+input PasswordResetTokenCreateInput {
+  email: String!
+  expires: DateTimeISO!
+  id: String
+  token: String!
 }
 
-input PriorityCreateManyInput {
-  color: String!
-  id: Int
-  name: String!
+input PasswordResetTokenCreateManyInput {
+  email: String!
+  expires: DateTimeISO!
+  id: String
+  token: String!
 }
 
-input PriorityCreateNestedOneWithoutTaskInput {
-  connect: PriorityWhereUniqueInput
-  connectOrCreate: PriorityCreateOrConnectWithoutTaskInput
-  create: PriorityCreateWithoutTaskInput
+input PasswordResetTokenEmailTokenCompoundUniqueInput {
+  email: String!
+  token: String!
 }
 
-input PriorityCreateOrConnectWithoutTaskInput {
-  create: PriorityCreateWithoutTaskInput!
-  where: PriorityWhereUniqueInput!
+type PasswordResetTokenGroupBy {
+  _count: PasswordResetTokenCountAggregate
+  _max: PasswordResetTokenMaxAggregate
+  _min: PasswordResetTokenMinAggregate
+  email: String!
+  expires: DateTimeISO!
+  id: String!
+  token: String!
 }
 
-input PriorityCreateWithoutTaskInput {
-  color: String!
-  name: String!
+type PasswordResetTokenMaxAggregate {
+  email: String
+  expires: DateTimeISO
+  id: String
+  token: String
 }
 
-type PriorityGroupBy {
-  _avg: PriorityAvgAggregate
-  _count: PriorityCountAggregate
-  _max: PriorityMaxAggregate
-  _min: PriorityMinAggregate
-  _sum: PrioritySumAggregate
-  color: String!
-  id: Int!
-  name: String!
-}
-
-type PriorityMaxAggregate {
-  color: String
-  id: Int
-  name: String
-}
-
-input PriorityMaxOrderByAggregateInput {
-  color: SortOrder
+input PasswordResetTokenMaxOrderByAggregateInput {
+  email: SortOrder
+  expires: SortOrder
   id: SortOrder
-  name: SortOrder
+  token: SortOrder
 }
 
-type PriorityMinAggregate {
-  color: String
-  id: Int
-  name: String
+type PasswordResetTokenMinAggregate {
+  email: String
+  expires: DateTimeISO
+  id: String
+  token: String
 }
 
-input PriorityMinOrderByAggregateInput {
-  color: SortOrder
+input PasswordResetTokenMinOrderByAggregateInput {
+  email: SortOrder
+  expires: SortOrder
   id: SortOrder
-  name: SortOrder
+  token: SortOrder
 }
 
-input PriorityNullableRelationFilter {
-  is: PriorityWhereInput
-  isNot: PriorityWhereInput
-}
-
-input PriorityOrderByWithAggregationInput {
-  _avg: PriorityAvgOrderByAggregateInput
-  _count: PriorityCountOrderByAggregateInput
-  _max: PriorityMaxOrderByAggregateInput
-  _min: PriorityMinOrderByAggregateInput
-  _sum: PrioritySumOrderByAggregateInput
-  color: SortOrder
+input PasswordResetTokenOrderByWithAggregationInput {
+  _count: PasswordResetTokenCountOrderByAggregateInput
+  _max: PasswordResetTokenMaxOrderByAggregateInput
+  _min: PasswordResetTokenMinOrderByAggregateInput
+  email: SortOrder
+  expires: SortOrder
   id: SortOrder
-  name: SortOrder
+  token: SortOrder
 }
 
-input PriorityOrderByWithRelationInput {
-  color: SortOrder
+input PasswordResetTokenOrderByWithRelationInput {
+  email: SortOrder
+  expires: SortOrder
   id: SortOrder
-  name: SortOrder
-  task: TaskOrderByRelationAggregateInput
+  token: SortOrder
 }
 
-enum PriorityScalarFieldEnum {
-  color
+enum PasswordResetTokenScalarFieldEnum {
+  email
+  expires
   id
-  name
+  token
 }
 
-input PriorityScalarWhereWithAggregatesInput {
-  AND: [PriorityScalarWhereWithAggregatesInput!]
-  NOT: [PriorityScalarWhereWithAggregatesInput!]
-  OR: [PriorityScalarWhereWithAggregatesInput!]
-  color: StringWithAggregatesFilter
-  id: IntWithAggregatesFilter
-  name: StringWithAggregatesFilter
+input PasswordResetTokenScalarWhereWithAggregatesInput {
+  AND: [PasswordResetTokenScalarWhereWithAggregatesInput!]
+  NOT: [PasswordResetTokenScalarWhereWithAggregatesInput!]
+  OR: [PasswordResetTokenScalarWhereWithAggregatesInput!]
+  email: StringWithAggregatesFilter
+  expires: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  token: StringWithAggregatesFilter
 }
 
-type PrioritySumAggregate {
-  id: Int
+input PasswordResetTokenUpdateInput {
+  email: StringFieldUpdateOperationsInput
+  expires: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  token: StringFieldUpdateOperationsInput
 }
 
-input PrioritySumOrderByAggregateInput {
-  id: SortOrder
+input PasswordResetTokenUpdateManyMutationInput {
+  email: StringFieldUpdateOperationsInput
+  expires: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  token: StringFieldUpdateOperationsInput
 }
 
-input PriorityUpdateInput {
-  color: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  task: TaskUpdateManyWithoutPriorityNestedInput
+input PasswordResetTokenWhereInput {
+  AND: [PasswordResetTokenWhereInput!]
+  NOT: [PasswordResetTokenWhereInput!]
+  OR: [PasswordResetTokenWhereInput!]
+  email: StringFilter
+  expires: DateTimeFilter
+  id: StringFilter
+  token: StringFilter
 }
 
-input PriorityUpdateManyMutationInput {
-  color: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-}
-
-input PriorityUpdateOneWithoutTaskNestedInput {
-  connect: PriorityWhereUniqueInput
-  connectOrCreate: PriorityCreateOrConnectWithoutTaskInput
-  create: PriorityCreateWithoutTaskInput
-  delete: PriorityWhereInput
-  disconnect: PriorityWhereInput
-  update: PriorityUpdateToOneWithWhereWithoutTaskInput
-  upsert: PriorityUpsertWithoutTaskInput
-}
-
-input PriorityUpdateToOneWithWhereWithoutTaskInput {
-  data: PriorityUpdateWithoutTaskInput!
-  where: PriorityWhereInput
-}
-
-input PriorityUpdateWithoutTaskInput {
-  color: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-}
-
-input PriorityUpsertWithoutTaskInput {
-  create: PriorityCreateWithoutTaskInput!
-  update: PriorityUpdateWithoutTaskInput!
-  where: PriorityWhereInput
-}
-
-input PriorityWhereInput {
-  AND: [PriorityWhereInput!]
-  NOT: [PriorityWhereInput!]
-  OR: [PriorityWhereInput!]
-  color: StringFilter
-  id: IntFilter
-  name: StringFilter
-  task: TaskListRelationFilter
-}
-
-input PriorityWhereUniqueInput {
-  AND: [PriorityWhereInput!]
-  NOT: [PriorityWhereInput!]
-  OR: [PriorityWhereInput!]
-  color: StringFilter
-  id: Int
-  name: String
-  task: TaskListRelationFilter
+input PasswordResetTokenWhereUniqueInput {
+  AND: [PasswordResetTokenWhereInput!]
+  NOT: [PasswordResetTokenWhereInput!]
+  OR: [PasswordResetTokenWhereInput!]
+  email: StringFilter
+  email_token: PasswordResetTokenEmailTokenCompoundUniqueInput
+  expires: DateTimeFilter
+  id: String
+  token: String
 }
 
 type Query {
@@ -1312,11 +1558,13 @@ type Query {
   accounts(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): [Account!]!
   aggregateAccount(cursor: AccountWhereUniqueInput, orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): AggregateAccount!
   aggregateFile(cursor: FileWhereUniqueInput, orderBy: [FileOrderByWithRelationInput!], skip: Int, take: Int, where: FileWhereInput): AggregateFile!
-  aggregatePriority(cursor: PriorityWhereUniqueInput, orderBy: [PriorityOrderByWithRelationInput!], skip: Int, take: Int, where: PriorityWhereInput): AggregatePriority!
-  aggregateSession(cursor: SessionWhereUniqueInput, orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): AggregateSession!
+  aggregatePasswordResetToken(cursor: PasswordResetTokenWhereUniqueInput, orderBy: [PasswordResetTokenOrderByWithRelationInput!], skip: Int, take: Int, where: PasswordResetTokenWhereInput): AggregatePasswordResetToken!
   aggregateStatus(cursor: StatusWhereUniqueInput, orderBy: [StatusOrderByWithRelationInput!], skip: Int, take: Int, where: StatusWhereInput): AggregateStatus!
   aggregateTask(cursor: TaskWhereUniqueInput, orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): AggregateTask!
+  aggregateTwoFactorConfirnation(cursor: TwoFactorConfirnationWhereUniqueInput, orderBy: [TwoFactorConfirnationOrderByWithRelationInput!], skip: Int, take: Int, where: TwoFactorConfirnationWhereInput): AggregateTwoFactorConfirnation!
+  aggregateTwoFactorToken(cursor: TwoFactorTokenWhereUniqueInput, orderBy: [TwoFactorTokenOrderByWithRelationInput!], skip: Int, take: Int, where: TwoFactorTokenWhereInput): AggregateTwoFactorToken!
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
+  aggregateVerificationToken(cursor: VerificationTokenWhereUniqueInput, orderBy: [VerificationTokenOrderByWithRelationInput!], skip: Int, take: Int, where: VerificationTokenWhereInput): AggregateVerificationToken!
   aggregateWorkspace(cursor: WorkspaceWhereUniqueInput, orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): AggregateWorkspace!
   file(where: FileWhereUniqueInput!): File
   files(cursor: FileWhereUniqueInput, distinct: [FileScalarFieldEnum!], orderBy: [FileOrderByWithRelationInput!], skip: Int, take: Int, where: FileWhereInput): [File!]!
@@ -1324,44 +1572,56 @@ type Query {
   findFirstAccountOrThrow(cursor: AccountWhereUniqueInput, distinct: [AccountScalarFieldEnum!], orderBy: [AccountOrderByWithRelationInput!], skip: Int, take: Int, where: AccountWhereInput): Account
   findFirstFile(cursor: FileWhereUniqueInput, distinct: [FileScalarFieldEnum!], orderBy: [FileOrderByWithRelationInput!], skip: Int, take: Int, where: FileWhereInput): File
   findFirstFileOrThrow(cursor: FileWhereUniqueInput, distinct: [FileScalarFieldEnum!], orderBy: [FileOrderByWithRelationInput!], skip: Int, take: Int, where: FileWhereInput): File
-  findFirstPriority(cursor: PriorityWhereUniqueInput, distinct: [PriorityScalarFieldEnum!], orderBy: [PriorityOrderByWithRelationInput!], skip: Int, take: Int, where: PriorityWhereInput): Priority
-  findFirstPriorityOrThrow(cursor: PriorityWhereUniqueInput, distinct: [PriorityScalarFieldEnum!], orderBy: [PriorityOrderByWithRelationInput!], skip: Int, take: Int, where: PriorityWhereInput): Priority
-  findFirstSession(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): Session
-  findFirstSessionOrThrow(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): Session
+  findFirstPasswordResetToken(cursor: PasswordResetTokenWhereUniqueInput, distinct: [PasswordResetTokenScalarFieldEnum!], orderBy: [PasswordResetTokenOrderByWithRelationInput!], skip: Int, take: Int, where: PasswordResetTokenWhereInput): PasswordResetToken
+  findFirstPasswordResetTokenOrThrow(cursor: PasswordResetTokenWhereUniqueInput, distinct: [PasswordResetTokenScalarFieldEnum!], orderBy: [PasswordResetTokenOrderByWithRelationInput!], skip: Int, take: Int, where: PasswordResetTokenWhereInput): PasswordResetToken
   findFirstStatus(cursor: StatusWhereUniqueInput, distinct: [StatusScalarFieldEnum!], orderBy: [StatusOrderByWithRelationInput!], skip: Int, take: Int, where: StatusWhereInput): Status
   findFirstStatusOrThrow(cursor: StatusWhereUniqueInput, distinct: [StatusScalarFieldEnum!], orderBy: [StatusOrderByWithRelationInput!], skip: Int, take: Int, where: StatusWhereInput): Status
   findFirstTask(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): Task
   findFirstTaskOrThrow(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): Task
+  findFirstTwoFactorConfirnation(cursor: TwoFactorConfirnationWhereUniqueInput, distinct: [TwoFactorConfirnationScalarFieldEnum!], orderBy: [TwoFactorConfirnationOrderByWithRelationInput!], skip: Int, take: Int, where: TwoFactorConfirnationWhereInput): TwoFactorConfirnation
+  findFirstTwoFactorConfirnationOrThrow(cursor: TwoFactorConfirnationWhereUniqueInput, distinct: [TwoFactorConfirnationScalarFieldEnum!], orderBy: [TwoFactorConfirnationOrderByWithRelationInput!], skip: Int, take: Int, where: TwoFactorConfirnationWhereInput): TwoFactorConfirnation
+  findFirstTwoFactorToken(cursor: TwoFactorTokenWhereUniqueInput, distinct: [TwoFactorTokenScalarFieldEnum!], orderBy: [TwoFactorTokenOrderByWithRelationInput!], skip: Int, take: Int, where: TwoFactorTokenWhereInput): TwoFactorToken
+  findFirstTwoFactorTokenOrThrow(cursor: TwoFactorTokenWhereUniqueInput, distinct: [TwoFactorTokenScalarFieldEnum!], orderBy: [TwoFactorTokenOrderByWithRelationInput!], skip: Int, take: Int, where: TwoFactorTokenWhereInput): TwoFactorToken
   findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
   findFirstUserOrThrow(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
+  findFirstVerificationToken(cursor: VerificationTokenWhereUniqueInput, distinct: [VerificationTokenScalarFieldEnum!], orderBy: [VerificationTokenOrderByWithRelationInput!], skip: Int, take: Int, where: VerificationTokenWhereInput): VerificationToken
+  findFirstVerificationTokenOrThrow(cursor: VerificationTokenWhereUniqueInput, distinct: [VerificationTokenScalarFieldEnum!], orderBy: [VerificationTokenOrderByWithRelationInput!], skip: Int, take: Int, where: VerificationTokenWhereInput): VerificationToken
   findFirstWorkspace(cursor: WorkspaceWhereUniqueInput, distinct: [WorkspaceScalarFieldEnum!], orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): Workspace
   findFirstWorkspaceOrThrow(cursor: WorkspaceWhereUniqueInput, distinct: [WorkspaceScalarFieldEnum!], orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): Workspace
   getAccount(where: AccountWhereUniqueInput!): Account
   getFile(where: FileWhereUniqueInput!): File
-  getPriority(where: PriorityWhereUniqueInput!): Priority
-  getSession(where: SessionWhereUniqueInput!): Session
+  getPasswordResetToken(where: PasswordResetTokenWhereUniqueInput!): PasswordResetToken
   getStatus(where: StatusWhereUniqueInput!): Status
   getTask(where: TaskWhereUniqueInput!): Task
+  getTwoFactorConfirnation(where: TwoFactorConfirnationWhereUniqueInput!): TwoFactorConfirnation
+  getTwoFactorToken(where: TwoFactorTokenWhereUniqueInput!): TwoFactorToken
   getUser(where: UserWhereUniqueInput!): User
+  getVerificationToken(where: VerificationTokenWhereUniqueInput!): VerificationToken
   getWorkspace(where: WorkspaceWhereUniqueInput!): Workspace
   groupByAccount(by: [AccountScalarFieldEnum!]!, having: AccountScalarWhereWithAggregatesInput, orderBy: [AccountOrderByWithAggregationInput!], skip: Int, take: Int, where: AccountWhereInput): [AccountGroupBy!]!
   groupByFile(by: [FileScalarFieldEnum!]!, having: FileScalarWhereWithAggregatesInput, orderBy: [FileOrderByWithAggregationInput!], skip: Int, take: Int, where: FileWhereInput): [FileGroupBy!]!
-  groupByPriority(by: [PriorityScalarFieldEnum!]!, having: PriorityScalarWhereWithAggregatesInput, orderBy: [PriorityOrderByWithAggregationInput!], skip: Int, take: Int, where: PriorityWhereInput): [PriorityGroupBy!]!
-  groupBySession(by: [SessionScalarFieldEnum!]!, having: SessionScalarWhereWithAggregatesInput, orderBy: [SessionOrderByWithAggregationInput!], skip: Int, take: Int, where: SessionWhereInput): [SessionGroupBy!]!
+  groupByPasswordResetToken(by: [PasswordResetTokenScalarFieldEnum!]!, having: PasswordResetTokenScalarWhereWithAggregatesInput, orderBy: [PasswordResetTokenOrderByWithAggregationInput!], skip: Int, take: Int, where: PasswordResetTokenWhereInput): [PasswordResetTokenGroupBy!]!
   groupByStatus(by: [StatusScalarFieldEnum!]!, having: StatusScalarWhereWithAggregatesInput, orderBy: [StatusOrderByWithAggregationInput!], skip: Int, take: Int, where: StatusWhereInput): [StatusGroupBy!]!
   groupByTask(by: [TaskScalarFieldEnum!]!, having: TaskScalarWhereWithAggregatesInput, orderBy: [TaskOrderByWithAggregationInput!], skip: Int, take: Int, where: TaskWhereInput): [TaskGroupBy!]!
+  groupByTwoFactorConfirnation(by: [TwoFactorConfirnationScalarFieldEnum!]!, having: TwoFactorConfirnationScalarWhereWithAggregatesInput, orderBy: [TwoFactorConfirnationOrderByWithAggregationInput!], skip: Int, take: Int, where: TwoFactorConfirnationWhereInput): [TwoFactorConfirnationGroupBy!]!
+  groupByTwoFactorToken(by: [TwoFactorTokenScalarFieldEnum!]!, having: TwoFactorTokenScalarWhereWithAggregatesInput, orderBy: [TwoFactorTokenOrderByWithAggregationInput!], skip: Int, take: Int, where: TwoFactorTokenWhereInput): [TwoFactorTokenGroupBy!]!
   groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
+  groupByVerificationToken(by: [VerificationTokenScalarFieldEnum!]!, having: VerificationTokenScalarWhereWithAggregatesInput, orderBy: [VerificationTokenOrderByWithAggregationInput!], skip: Int, take: Int, where: VerificationTokenWhereInput): [VerificationTokenGroupBy!]!
   groupByWorkspace(by: [WorkspaceScalarFieldEnum!]!, having: WorkspaceScalarWhereWithAggregatesInput, orderBy: [WorkspaceOrderByWithAggregationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): [WorkspaceGroupBy!]!
-  priorities(cursor: PriorityWhereUniqueInput, distinct: [PriorityScalarFieldEnum!], orderBy: [PriorityOrderByWithRelationInput!], skip: Int, take: Int, where: PriorityWhereInput): [Priority!]!
-  priority(where: PriorityWhereUniqueInput!): Priority
-  session(where: SessionWhereUniqueInput!): Session
-  sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
+  passwordResetToken(where: PasswordResetTokenWhereUniqueInput!): PasswordResetToken
+  passwordResetTokens(cursor: PasswordResetTokenWhereUniqueInput, distinct: [PasswordResetTokenScalarFieldEnum!], orderBy: [PasswordResetTokenOrderByWithRelationInput!], skip: Int, take: Int, where: PasswordResetTokenWhereInput): [PasswordResetToken!]!
   status(where: StatusWhereUniqueInput!): Status
   statuses(cursor: StatusWhereUniqueInput, distinct: [StatusScalarFieldEnum!], orderBy: [StatusOrderByWithRelationInput!], skip: Int, take: Int, where: StatusWhereInput): [Status!]!
   task(where: TaskWhereUniqueInput!): Task
   tasks(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
+  twoFactorConfirnation(where: TwoFactorConfirnationWhereUniqueInput!): TwoFactorConfirnation
+  twoFactorConfirnations(cursor: TwoFactorConfirnationWhereUniqueInput, distinct: [TwoFactorConfirnationScalarFieldEnum!], orderBy: [TwoFactorConfirnationOrderByWithRelationInput!], skip: Int, take: Int, where: TwoFactorConfirnationWhereInput): [TwoFactorConfirnation!]!
+  twoFactorToken(where: TwoFactorTokenWhereUniqueInput!): TwoFactorToken
+  twoFactorTokens(cursor: TwoFactorTokenWhereUniqueInput, distinct: [TwoFactorTokenScalarFieldEnum!], orderBy: [TwoFactorTokenOrderByWithRelationInput!], skip: Int, take: Int, where: TwoFactorTokenWhereInput): [TwoFactorToken!]!
   user(where: UserWhereUniqueInput!): User
   users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
+  verificationToken(where: VerificationTokenWhereUniqueInput!): VerificationToken
+  verificationTokens(cursor: VerificationTokenWhereUniqueInput, distinct: [VerificationTokenScalarFieldEnum!], orderBy: [VerificationTokenOrderByWithRelationInput!], skip: Int, take: Int, where: VerificationTokenWhereInput): [VerificationToken!]!
   workspace(where: WorkspaceWhereUniqueInput!): Workspace
   workspaces(cursor: WorkspaceWhereUniqueInput, distinct: [WorkspaceScalarFieldEnum!], orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): [Workspace!]!
 }
@@ -1377,236 +1637,6 @@ enum Role {
   USER
 }
 
-type Session {
-  expires: DateTimeISO!
-  id: String!
-  sessionToken: String!
-  user: User!
-  userId: String!
-}
-
-type SessionCountAggregate {
-  _all: Int!
-  expires: Int!
-  id: Int!
-  sessionToken: Int!
-  userId: Int!
-}
-
-input SessionCountOrderByAggregateInput {
-  expires: SortOrder
-  id: SortOrder
-  sessionToken: SortOrder
-  userId: SortOrder
-}
-
-input SessionCreateInput {
-  expires: DateTimeISO!
-  id: String
-  sessionToken: String!
-  user: UserCreateNestedOneWithoutSessionsInput!
-}
-
-input SessionCreateManyInput {
-  expires: DateTimeISO!
-  id: String
-  sessionToken: String!
-  userId: String!
-}
-
-input SessionCreateManyUserInput {
-  expires: DateTimeISO!
-  id: String
-  sessionToken: String!
-}
-
-input SessionCreateManyUserInputEnvelope {
-  data: [SessionCreateManyUserInput!]!
-  skipDuplicates: Boolean
-}
-
-input SessionCreateNestedManyWithoutUserInput {
-  connect: [SessionWhereUniqueInput!]
-  connectOrCreate: [SessionCreateOrConnectWithoutUserInput!]
-  create: [SessionCreateWithoutUserInput!]
-  createMany: SessionCreateManyUserInputEnvelope
-}
-
-input SessionCreateOrConnectWithoutUserInput {
-  create: SessionCreateWithoutUserInput!
-  where: SessionWhereUniqueInput!
-}
-
-input SessionCreateWithoutUserInput {
-  expires: DateTimeISO!
-  id: String
-  sessionToken: String!
-}
-
-type SessionGroupBy {
-  _count: SessionCountAggregate
-  _max: SessionMaxAggregate
-  _min: SessionMinAggregate
-  expires: DateTimeISO!
-  id: String!
-  sessionToken: String!
-  userId: String!
-}
-
-input SessionListRelationFilter {
-  every: SessionWhereInput
-  none: SessionWhereInput
-  some: SessionWhereInput
-}
-
-type SessionMaxAggregate {
-  expires: DateTimeISO
-  id: String
-  sessionToken: String
-  userId: String
-}
-
-input SessionMaxOrderByAggregateInput {
-  expires: SortOrder
-  id: SortOrder
-  sessionToken: SortOrder
-  userId: SortOrder
-}
-
-type SessionMinAggregate {
-  expires: DateTimeISO
-  id: String
-  sessionToken: String
-  userId: String
-}
-
-input SessionMinOrderByAggregateInput {
-  expires: SortOrder
-  id: SortOrder
-  sessionToken: SortOrder
-  userId: SortOrder
-}
-
-input SessionOrderByRelationAggregateInput {
-  _count: SortOrder
-}
-
-input SessionOrderByWithAggregationInput {
-  _count: SessionCountOrderByAggregateInput
-  _max: SessionMaxOrderByAggregateInput
-  _min: SessionMinOrderByAggregateInput
-  expires: SortOrder
-  id: SortOrder
-  sessionToken: SortOrder
-  userId: SortOrder
-}
-
-input SessionOrderByWithRelationInput {
-  expires: SortOrder
-  id: SortOrder
-  sessionToken: SortOrder
-  user: UserOrderByWithRelationInput
-  userId: SortOrder
-}
-
-enum SessionScalarFieldEnum {
-  expires
-  id
-  sessionToken
-  userId
-}
-
-input SessionScalarWhereInput {
-  AND: [SessionScalarWhereInput!]
-  NOT: [SessionScalarWhereInput!]
-  OR: [SessionScalarWhereInput!]
-  expires: DateTimeFilter
-  id: StringFilter
-  sessionToken: StringFilter
-  userId: StringFilter
-}
-
-input SessionScalarWhereWithAggregatesInput {
-  AND: [SessionScalarWhereWithAggregatesInput!]
-  NOT: [SessionScalarWhereWithAggregatesInput!]
-  OR: [SessionScalarWhereWithAggregatesInput!]
-  expires: DateTimeWithAggregatesFilter
-  id: StringWithAggregatesFilter
-  sessionToken: StringWithAggregatesFilter
-  userId: StringWithAggregatesFilter
-}
-
-input SessionUpdateInput {
-  expires: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  sessionToken: StringFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutSessionsNestedInput
-}
-
-input SessionUpdateManyMutationInput {
-  expires: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  sessionToken: StringFieldUpdateOperationsInput
-}
-
-input SessionUpdateManyWithWhereWithoutUserInput {
-  data: SessionUpdateManyMutationInput!
-  where: SessionScalarWhereInput!
-}
-
-input SessionUpdateManyWithoutUserNestedInput {
-  connect: [SessionWhereUniqueInput!]
-  connectOrCreate: [SessionCreateOrConnectWithoutUserInput!]
-  create: [SessionCreateWithoutUserInput!]
-  createMany: SessionCreateManyUserInputEnvelope
-  delete: [SessionWhereUniqueInput!]
-  deleteMany: [SessionScalarWhereInput!]
-  disconnect: [SessionWhereUniqueInput!]
-  set: [SessionWhereUniqueInput!]
-  update: [SessionUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [SessionUpdateManyWithWhereWithoutUserInput!]
-  upsert: [SessionUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input SessionUpdateWithWhereUniqueWithoutUserInput {
-  data: SessionUpdateWithoutUserInput!
-  where: SessionWhereUniqueInput!
-}
-
-input SessionUpdateWithoutUserInput {
-  expires: DateTimeFieldUpdateOperationsInput
-  id: StringFieldUpdateOperationsInput
-  sessionToken: StringFieldUpdateOperationsInput
-}
-
-input SessionUpsertWithWhereUniqueWithoutUserInput {
-  create: SessionCreateWithoutUserInput!
-  update: SessionUpdateWithoutUserInput!
-  where: SessionWhereUniqueInput!
-}
-
-input SessionWhereInput {
-  AND: [SessionWhereInput!]
-  NOT: [SessionWhereInput!]
-  OR: [SessionWhereInput!]
-  expires: DateTimeFilter
-  id: StringFilter
-  sessionToken: StringFilter
-  user: UserRelationFilter
-  userId: StringFilter
-}
-
-input SessionWhereUniqueInput {
-  AND: [SessionWhereInput!]
-  NOT: [SessionWhereInput!]
-  OR: [SessionWhereInput!]
-  expires: DateTimeFilter
-  id: String
-  sessionToken: String
-  user: UserRelationFilter
-  userId: StringFilter
-}
-
 enum SortOrder {
   asc
   desc
@@ -1620,21 +1650,18 @@ input SortOrderInput {
 type Status {
   _count: StatusCount
   color: String!
-  id: Int!
-  name: String!
-  task(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
-}
-
-type StatusAvgAggregate {
-  id: Float
-}
-
-input StatusAvgOrderByAggregateInput {
-  id: SortOrder
+  id: String!
+  name: String
+  priorityTasks(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
+  statusTasks(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
+  type: StatusType!
+  user: User!
+  userId: String!
 }
 
 type StatusCount {
-  task(where: TaskWhereInput): Int!
+  priorityTasks(where: TaskWhereInput): Int!
+  statusTasks(where: TaskWhereInput): Int!
 }
 
 type StatusCountAggregate {
@@ -1642,75 +1669,156 @@ type StatusCountAggregate {
   color: Int!
   id: Int!
   name: Int!
+  type: Int!
+  userId: Int!
 }
 
 input StatusCountOrderByAggregateInput {
   color: SortOrder
   id: SortOrder
   name: SortOrder
+  type: SortOrder
+  userId: SortOrder
 }
 
 input StatusCreateInput {
   color: String!
-  name: String!
-  task: TaskCreateNestedManyWithoutStatusInput
+  id: String
+  name: String
+  priorityTasks: TaskCreateNestedManyWithoutPriorityInput
+  statusTasks: TaskCreateNestedManyWithoutStatusInput
+  type: StatusType
+  user: UserCreateNestedOneWithoutStatusInput!
 }
 
 input StatusCreateManyInput {
   color: String!
-  id: Int
-  name: String!
+  id: String
+  name: String
+  type: StatusType
+  userId: String!
 }
 
-input StatusCreateNestedOneWithoutTaskInput {
+input StatusCreateManyUserInput {
+  color: String!
+  id: String
+  name: String
+  type: StatusType
+}
+
+input StatusCreateManyUserInputEnvelope {
+  data: [StatusCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input StatusCreateNestedManyWithoutUserInput {
+  connect: [StatusWhereUniqueInput!]
+  connectOrCreate: [StatusCreateOrConnectWithoutUserInput!]
+  create: [StatusCreateWithoutUserInput!]
+  createMany: StatusCreateManyUserInputEnvelope
+}
+
+input StatusCreateNestedOneWithoutPriorityTasksInput {
   connect: StatusWhereUniqueInput
-  connectOrCreate: StatusCreateOrConnectWithoutTaskInput
-  create: StatusCreateWithoutTaskInput
+  connectOrCreate: StatusCreateOrConnectWithoutPriorityTasksInput
+  create: StatusCreateWithoutPriorityTasksInput
 }
 
-input StatusCreateOrConnectWithoutTaskInput {
-  create: StatusCreateWithoutTaskInput!
+input StatusCreateNestedOneWithoutStatusTasksInput {
+  connect: StatusWhereUniqueInput
+  connectOrCreate: StatusCreateOrConnectWithoutStatusTasksInput
+  create: StatusCreateWithoutStatusTasksInput
+}
+
+input StatusCreateOrConnectWithoutPriorityTasksInput {
+  create: StatusCreateWithoutPriorityTasksInput!
   where: StatusWhereUniqueInput!
 }
 
-input StatusCreateWithoutTaskInput {
+input StatusCreateOrConnectWithoutStatusTasksInput {
+  create: StatusCreateWithoutStatusTasksInput!
+  where: StatusWhereUniqueInput!
+}
+
+input StatusCreateOrConnectWithoutUserInput {
+  create: StatusCreateWithoutUserInput!
+  where: StatusWhereUniqueInput!
+}
+
+input StatusCreateWithoutPriorityTasksInput {
   color: String!
-  name: String!
+  id: String
+  name: String
+  statusTasks: TaskCreateNestedManyWithoutStatusInput
+  type: StatusType
+  user: UserCreateNestedOneWithoutStatusInput!
+}
+
+input StatusCreateWithoutStatusTasksInput {
+  color: String!
+  id: String
+  name: String
+  priorityTasks: TaskCreateNestedManyWithoutPriorityInput
+  type: StatusType
+  user: UserCreateNestedOneWithoutStatusInput!
+}
+
+input StatusCreateWithoutUserInput {
+  color: String!
+  id: String
+  name: String
+  priorityTasks: TaskCreateNestedManyWithoutPriorityInput
+  statusTasks: TaskCreateNestedManyWithoutStatusInput
+  type: StatusType
 }
 
 type StatusGroupBy {
-  _avg: StatusAvgAggregate
   _count: StatusCountAggregate
   _max: StatusMaxAggregate
   _min: StatusMinAggregate
-  _sum: StatusSumAggregate
   color: String!
-  id: Int!
-  name: String!
+  id: String!
+  name: String
+  type: StatusType!
+  userId: String!
+}
+
+input StatusListRelationFilter {
+  every: StatusWhereInput
+  none: StatusWhereInput
+  some: StatusWhereInput
 }
 
 type StatusMaxAggregate {
   color: String
-  id: Int
+  id: String
   name: String
+  type: StatusType
+  userId: String
 }
 
 input StatusMaxOrderByAggregateInput {
   color: SortOrder
   id: SortOrder
   name: SortOrder
+  type: SortOrder
+  userId: SortOrder
 }
 
 type StatusMinAggregate {
   color: String
-  id: Int
+  id: String
   name: String
+  type: StatusType
+  userId: String
 }
 
 input StatusMinOrderByAggregateInput {
   color: SortOrder
   id: SortOrder
   name: SortOrder
+  type: SortOrder
+  userId: SortOrder
 }
 
 input StatusNullableRelationFilter {
@@ -1718,28 +1826,49 @@ input StatusNullableRelationFilter {
   isNot: StatusWhereInput
 }
 
+input StatusOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input StatusOrderByWithAggregationInput {
-  _avg: StatusAvgOrderByAggregateInput
   _count: StatusCountOrderByAggregateInput
   _max: StatusMaxOrderByAggregateInput
   _min: StatusMinOrderByAggregateInput
-  _sum: StatusSumOrderByAggregateInput
   color: SortOrder
   id: SortOrder
-  name: SortOrder
+  name: SortOrderInput
+  type: SortOrder
+  userId: SortOrder
 }
 
 input StatusOrderByWithRelationInput {
   color: SortOrder
   id: SortOrder
-  name: SortOrder
-  task: TaskOrderByRelationAggregateInput
+  name: SortOrderInput
+  priorityTasks: TaskOrderByRelationAggregateInput
+  statusTasks: TaskOrderByRelationAggregateInput
+  type: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrder
 }
 
 enum StatusScalarFieldEnum {
   color
   id
   name
+  type
+  userId
+}
+
+input StatusScalarWhereInput {
+  AND: [StatusScalarWhereInput!]
+  NOT: [StatusScalarWhereInput!]
+  OR: [StatusScalarWhereInput!]
+  color: StringFilter
+  id: StringFilter
+  name: StringNullableFilter
+  type: EnumStatusTypeFilter
+  userId: StringFilter
 }
 
 input StatusScalarWhereWithAggregatesInput {
@@ -1747,52 +1876,130 @@ input StatusScalarWhereWithAggregatesInput {
   NOT: [StatusScalarWhereWithAggregatesInput!]
   OR: [StatusScalarWhereWithAggregatesInput!]
   color: StringWithAggregatesFilter
-  id: IntWithAggregatesFilter
-  name: StringWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  name: StringNullableWithAggregatesFilter
+  type: EnumStatusTypeWithAggregatesFilter
+  userId: StringWithAggregatesFilter
 }
 
-type StatusSumAggregate {
-  id: Int
-}
-
-input StatusSumOrderByAggregateInput {
-  id: SortOrder
+enum StatusType {
+  PRIORITY
+  STATUS
 }
 
 input StatusUpdateInput {
   color: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  task: TaskUpdateManyWithoutStatusNestedInput
+  id: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  priorityTasks: TaskUpdateManyWithoutPriorityNestedInput
+  statusTasks: TaskUpdateManyWithoutStatusNestedInput
+  type: EnumStatusTypeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutStatusNestedInput
 }
 
 input StatusUpdateManyMutationInput {
   color: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  type: EnumStatusTypeFieldUpdateOperationsInput
 }
 
-input StatusUpdateOneWithoutTaskNestedInput {
+input StatusUpdateManyWithWhereWithoutUserInput {
+  data: StatusUpdateManyMutationInput!
+  where: StatusScalarWhereInput!
+}
+
+input StatusUpdateManyWithoutUserNestedInput {
+  connect: [StatusWhereUniqueInput!]
+  connectOrCreate: [StatusCreateOrConnectWithoutUserInput!]
+  create: [StatusCreateWithoutUserInput!]
+  createMany: StatusCreateManyUserInputEnvelope
+  delete: [StatusWhereUniqueInput!]
+  deleteMany: [StatusScalarWhereInput!]
+  disconnect: [StatusWhereUniqueInput!]
+  set: [StatusWhereUniqueInput!]
+  update: [StatusUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [StatusUpdateManyWithWhereWithoutUserInput!]
+  upsert: [StatusUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input StatusUpdateOneWithoutPriorityTasksNestedInput {
   connect: StatusWhereUniqueInput
-  connectOrCreate: StatusCreateOrConnectWithoutTaskInput
-  create: StatusCreateWithoutTaskInput
+  connectOrCreate: StatusCreateOrConnectWithoutPriorityTasksInput
+  create: StatusCreateWithoutPriorityTasksInput
   delete: StatusWhereInput
   disconnect: StatusWhereInput
-  update: StatusUpdateToOneWithWhereWithoutTaskInput
-  upsert: StatusUpsertWithoutTaskInput
+  update: StatusUpdateToOneWithWhereWithoutPriorityTasksInput
+  upsert: StatusUpsertWithoutPriorityTasksInput
 }
 
-input StatusUpdateToOneWithWhereWithoutTaskInput {
-  data: StatusUpdateWithoutTaskInput!
+input StatusUpdateOneWithoutStatusTasksNestedInput {
+  connect: StatusWhereUniqueInput
+  connectOrCreate: StatusCreateOrConnectWithoutStatusTasksInput
+  create: StatusCreateWithoutStatusTasksInput
+  delete: StatusWhereInput
+  disconnect: StatusWhereInput
+  update: StatusUpdateToOneWithWhereWithoutStatusTasksInput
+  upsert: StatusUpsertWithoutStatusTasksInput
+}
+
+input StatusUpdateToOneWithWhereWithoutPriorityTasksInput {
+  data: StatusUpdateWithoutPriorityTasksInput!
   where: StatusWhereInput
 }
 
-input StatusUpdateWithoutTaskInput {
-  color: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+input StatusUpdateToOneWithWhereWithoutStatusTasksInput {
+  data: StatusUpdateWithoutStatusTasksInput!
+  where: StatusWhereInput
 }
 
-input StatusUpsertWithoutTaskInput {
-  create: StatusCreateWithoutTaskInput!
-  update: StatusUpdateWithoutTaskInput!
+input StatusUpdateWithWhereUniqueWithoutUserInput {
+  data: StatusUpdateWithoutUserInput!
+  where: StatusWhereUniqueInput!
+}
+
+input StatusUpdateWithoutPriorityTasksInput {
+  color: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  statusTasks: TaskUpdateManyWithoutStatusNestedInput
+  type: EnumStatusTypeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutStatusNestedInput
+}
+
+input StatusUpdateWithoutStatusTasksInput {
+  color: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  priorityTasks: TaskUpdateManyWithoutPriorityNestedInput
+  type: EnumStatusTypeFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutStatusNestedInput
+}
+
+input StatusUpdateWithoutUserInput {
+  color: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  priorityTasks: TaskUpdateManyWithoutPriorityNestedInput
+  statusTasks: TaskUpdateManyWithoutStatusNestedInput
+  type: EnumStatusTypeFieldUpdateOperationsInput
+}
+
+input StatusUpsertWithWhereUniqueWithoutUserInput {
+  create: StatusCreateWithoutUserInput!
+  update: StatusUpdateWithoutUserInput!
+  where: StatusWhereUniqueInput!
+}
+
+input StatusUpsertWithoutPriorityTasksInput {
+  create: StatusCreateWithoutPriorityTasksInput!
+  update: StatusUpdateWithoutPriorityTasksInput!
+  where: StatusWhereInput
+}
+
+input StatusUpsertWithoutStatusTasksInput {
+  create: StatusCreateWithoutStatusTasksInput!
+  update: StatusUpdateWithoutStatusTasksInput!
   where: StatusWhereInput
 }
 
@@ -1801,9 +2008,13 @@ input StatusWhereInput {
   NOT: [StatusWhereInput!]
   OR: [StatusWhereInput!]
   color: StringFilter
-  id: IntFilter
-  name: StringFilter
-  task: TaskListRelationFilter
+  id: StringFilter
+  name: StringNullableFilter
+  priorityTasks: TaskListRelationFilter
+  statusTasks: TaskListRelationFilter
+  type: EnumStatusTypeFilter
+  user: UserRelationFilter
+  userId: StringFilter
 }
 
 input StatusWhereUniqueInput {
@@ -1811,9 +2022,13 @@ input StatusWhereUniqueInput {
   NOT: [StatusWhereInput!]
   OR: [StatusWhereInput!]
   color: StringFilter
-  id: Int
-  name: String
-  task: TaskListRelationFilter
+  id: String
+  name: StringNullableFilter
+  priorityTasks: TaskListRelationFilter
+  statusTasks: TaskListRelationFilter
+  type: EnumStatusTypeFilter
+  user: UserRelationFilter
+  userId: StringFilter
 }
 
 input StringFieldUpdateOperationsInput {
@@ -1895,23 +2110,13 @@ type Task {
   message: String
   name: String!
   note: String
-  priority(where: PriorityWhereInput): Priority
-  priorityId: Int
+  priority(where: StatusWhereInput): Status
+  priorityId: String
   status(where: StatusWhereInput): Status
-  statusId: Int
+  statusId: String
   updatedAt: DateTimeISO!
-  workspace: Workspace!
+  workspace(where: WorkspaceWhereInput): Workspace
   workspaceId: String!
-}
-
-type TaskAvgAggregate {
-  priorityId: Float
-  statusId: Float
-}
-
-input TaskAvgOrderByAggregateInput {
-  priorityId: SortOrder
-  statusId: SortOrder
 }
 
 type TaskCount {
@@ -1953,10 +2158,10 @@ input TaskCreateInput {
   message: String
   name: String!
   note: String
-  priority: PriorityCreateNestedOneWithoutTaskInput
-  status: StatusCreateNestedOneWithoutTaskInput
+  priority: StatusCreateNestedOneWithoutPriorityTasksInput
+  status: StatusCreateNestedOneWithoutStatusTasksInput
   updatedAt: DateTimeISO
-  workspace: WorkspaceCreateNestedOneWithoutTaskInput!
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput
 }
 
 input TaskCreateManyInput {
@@ -1966,8 +2171,8 @@ input TaskCreateManyInput {
   message: String
   name: String!
   note: String
-  priorityId: Int
-  statusId: Int
+  priorityId: String
+  statusId: String
   updatedAt: DateTimeISO
   workspaceId: String!
 }
@@ -1979,7 +2184,7 @@ input TaskCreateManyPriorityInput {
   message: String
   name: String!
   note: String
-  statusId: Int
+  statusId: String
   updatedAt: DateTimeISO
   workspaceId: String!
 }
@@ -1996,7 +2201,7 @@ input TaskCreateManyStatusInput {
   message: String
   name: String!
   note: String
-  priorityId: Int
+  priorityId: String
   updatedAt: DateTimeISO
   workspaceId: String!
 }
@@ -2013,8 +2218,8 @@ input TaskCreateManyWorkspaceInput {
   message: String
   name: String!
   note: String
-  priorityId: Int
-  statusId: Int
+  priorityId: String
+  statusId: String
   updatedAt: DateTimeISO
 }
 
@@ -2077,10 +2282,10 @@ input TaskCreateWithoutFilesInput {
   message: String
   name: String!
   note: String
-  priority: PriorityCreateNestedOneWithoutTaskInput
-  status: StatusCreateNestedOneWithoutTaskInput
+  priority: StatusCreateNestedOneWithoutPriorityTasksInput
+  status: StatusCreateNestedOneWithoutStatusTasksInput
   updatedAt: DateTimeISO
-  workspace: WorkspaceCreateNestedOneWithoutTaskInput!
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput
 }
 
 input TaskCreateWithoutPriorityInput {
@@ -2091,9 +2296,9 @@ input TaskCreateWithoutPriorityInput {
   message: String
   name: String!
   note: String
-  status: StatusCreateNestedOneWithoutTaskInput
+  status: StatusCreateNestedOneWithoutStatusTasksInput
   updatedAt: DateTimeISO
-  workspace: WorkspaceCreateNestedOneWithoutTaskInput!
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput
 }
 
 input TaskCreateWithoutStatusInput {
@@ -2104,9 +2309,9 @@ input TaskCreateWithoutStatusInput {
   message: String
   name: String!
   note: String
-  priority: PriorityCreateNestedOneWithoutTaskInput
+  priority: StatusCreateNestedOneWithoutPriorityTasksInput
   updatedAt: DateTimeISO
-  workspace: WorkspaceCreateNestedOneWithoutTaskInput!
+  workspace: WorkspaceCreateNestedOneWithoutTaskInput
 }
 
 input TaskCreateWithoutWorkspaceInput {
@@ -2117,25 +2322,23 @@ input TaskCreateWithoutWorkspaceInput {
   message: String
   name: String!
   note: String
-  priority: PriorityCreateNestedOneWithoutTaskInput
-  status: StatusCreateNestedOneWithoutTaskInput
+  priority: StatusCreateNestedOneWithoutPriorityTasksInput
+  status: StatusCreateNestedOneWithoutStatusTasksInput
   updatedAt: DateTimeISO
 }
 
 type TaskGroupBy {
-  _avg: TaskAvgAggregate
   _count: TaskCountAggregate
   _max: TaskMaxAggregate
   _min: TaskMinAggregate
-  _sum: TaskSumAggregate
   createdAt: DateTimeISO!
   dueDate: DateTimeISO
   id: String!
   message: String
   name: String!
   note: String
-  priorityId: Int
-  statusId: Int
+  priorityId: String
+  statusId: String
   updatedAt: DateTimeISO!
   workspaceId: String!
 }
@@ -2153,8 +2356,8 @@ type TaskMaxAggregate {
   message: String
   name: String
   note: String
-  priorityId: Int
-  statusId: Int
+  priorityId: String
+  statusId: String
   updatedAt: DateTimeISO
   workspaceId: String
 }
@@ -2179,8 +2382,8 @@ type TaskMinAggregate {
   message: String
   name: String
   note: String
-  priorityId: Int
-  statusId: Int
+  priorityId: String
+  statusId: String
   updatedAt: DateTimeISO
   workspaceId: String
 }
@@ -2208,11 +2411,9 @@ input TaskOrderByRelationAggregateInput {
 }
 
 input TaskOrderByWithAggregationInput {
-  _avg: TaskAvgOrderByAggregateInput
   _count: TaskCountOrderByAggregateInput
   _max: TaskMaxOrderByAggregateInput
   _min: TaskMinOrderByAggregateInput
-  _sum: TaskSumOrderByAggregateInput
   createdAt: SortOrder
   dueDate: SortOrderInput
   id: SortOrder
@@ -2233,7 +2434,7 @@ input TaskOrderByWithRelationInput {
   message: SortOrderInput
   name: SortOrder
   note: SortOrderInput
-  priority: PriorityOrderByWithRelationInput
+  priority: StatusOrderByWithRelationInput
   priorityId: SortOrderInput
   status: StatusOrderByWithRelationInput
   statusId: SortOrderInput
@@ -2265,8 +2466,8 @@ input TaskScalarWhereInput {
   message: StringNullableFilter
   name: StringFilter
   note: StringNullableFilter
-  priorityId: IntNullableFilter
-  statusId: IntNullableFilter
+  priorityId: StringNullableFilter
+  statusId: StringNullableFilter
   updatedAt: DateTimeFilter
   workspaceId: StringFilter
 }
@@ -2281,20 +2482,10 @@ input TaskScalarWhereWithAggregatesInput {
   message: StringNullableWithAggregatesFilter
   name: StringWithAggregatesFilter
   note: StringNullableWithAggregatesFilter
-  priorityId: IntNullableWithAggregatesFilter
-  statusId: IntNullableWithAggregatesFilter
+  priorityId: StringNullableWithAggregatesFilter
+  statusId: StringNullableWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
   workspaceId: StringWithAggregatesFilter
-}
-
-type TaskSumAggregate {
-  priorityId: Int
-  statusId: Int
-}
-
-input TaskSumOrderByAggregateInput {
-  priorityId: SortOrder
-  statusId: SortOrder
 }
 
 input TaskUpdateInput {
@@ -2305,10 +2496,10 @@ input TaskUpdateInput {
   message: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   note: NullableStringFieldUpdateOperationsInput
-  priority: PriorityUpdateOneWithoutTaskNestedInput
-  status: StatusUpdateOneWithoutTaskNestedInput
+  priority: StatusUpdateOneWithoutPriorityTasksNestedInput
+  status: StatusUpdateOneWithoutStatusTasksNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  workspace: WorkspaceUpdateOneRequiredWithoutTaskNestedInput
+  workspace: WorkspaceUpdateOneWithoutTaskNestedInput
 }
 
 input TaskUpdateManyMutationInput {
@@ -2415,10 +2606,10 @@ input TaskUpdateWithoutFilesInput {
   message: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   note: NullableStringFieldUpdateOperationsInput
-  priority: PriorityUpdateOneWithoutTaskNestedInput
-  status: StatusUpdateOneWithoutTaskNestedInput
+  priority: StatusUpdateOneWithoutPriorityTasksNestedInput
+  status: StatusUpdateOneWithoutStatusTasksNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  workspace: WorkspaceUpdateOneRequiredWithoutTaskNestedInput
+  workspace: WorkspaceUpdateOneWithoutTaskNestedInput
 }
 
 input TaskUpdateWithoutPriorityInput {
@@ -2429,9 +2620,9 @@ input TaskUpdateWithoutPriorityInput {
   message: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   note: NullableStringFieldUpdateOperationsInput
-  status: StatusUpdateOneWithoutTaskNestedInput
+  status: StatusUpdateOneWithoutStatusTasksNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  workspace: WorkspaceUpdateOneRequiredWithoutTaskNestedInput
+  workspace: WorkspaceUpdateOneWithoutTaskNestedInput
 }
 
 input TaskUpdateWithoutStatusInput {
@@ -2442,9 +2633,9 @@ input TaskUpdateWithoutStatusInput {
   message: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   note: NullableStringFieldUpdateOperationsInput
-  priority: PriorityUpdateOneWithoutTaskNestedInput
+  priority: StatusUpdateOneWithoutPriorityTasksNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  workspace: WorkspaceUpdateOneRequiredWithoutTaskNestedInput
+  workspace: WorkspaceUpdateOneWithoutTaskNestedInput
 }
 
 input TaskUpdateWithoutWorkspaceInput {
@@ -2455,8 +2646,8 @@ input TaskUpdateWithoutWorkspaceInput {
   message: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   note: NullableStringFieldUpdateOperationsInput
-  priority: PriorityUpdateOneWithoutTaskNestedInput
-  status: StatusUpdateOneWithoutTaskNestedInput
+  priority: StatusUpdateOneWithoutPriorityTasksNestedInput
+  status: StatusUpdateOneWithoutStatusTasksNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2495,12 +2686,12 @@ input TaskWhereInput {
   message: StringNullableFilter
   name: StringFilter
   note: StringNullableFilter
-  priority: PriorityNullableRelationFilter
-  priorityId: IntNullableFilter
+  priority: StatusNullableRelationFilter
+  priorityId: StringNullableFilter
   status: StatusNullableRelationFilter
-  statusId: IntNullableFilter
+  statusId: StringNullableFilter
   updatedAt: DateTimeFilter
-  workspace: WorkspaceRelationFilter
+  workspace: WorkspaceNullableRelationFilter
   workspaceId: StringFilter
 }
 
@@ -2515,13 +2706,315 @@ input TaskWhereUniqueInput {
   message: StringNullableFilter
   name: StringFilter
   note: StringNullableFilter
-  priority: PriorityNullableRelationFilter
-  priorityId: IntNullableFilter
+  priority: StatusNullableRelationFilter
+  priorityId: StringNullableFilter
   status: StatusNullableRelationFilter
-  statusId: IntNullableFilter
+  statusId: StringNullableFilter
   updatedAt: DateTimeFilter
-  workspace: WorkspaceRelationFilter
+  workspace: WorkspaceNullableRelationFilter
   workspaceId: StringFilter
+}
+
+type TwoFactorConfirnation {
+  id: String!
+  user: User!
+  userId: String!
+}
+
+type TwoFactorConfirnationCountAggregate {
+  _all: Int!
+  id: Int!
+  userId: Int!
+}
+
+input TwoFactorConfirnationCountOrderByAggregateInput {
+  id: SortOrder
+  userId: SortOrder
+}
+
+input TwoFactorConfirnationCreateInput {
+  id: String
+  user: UserCreateNestedOneWithoutTwoFactorConfirnationInput!
+}
+
+input TwoFactorConfirnationCreateManyInput {
+  id: String
+  userId: String!
+}
+
+input TwoFactorConfirnationCreateNestedOneWithoutUserInput {
+  connect: TwoFactorConfirnationWhereUniqueInput
+  connectOrCreate: TwoFactorConfirnationCreateOrConnectWithoutUserInput
+  create: TwoFactorConfirnationCreateWithoutUserInput
+}
+
+input TwoFactorConfirnationCreateOrConnectWithoutUserInput {
+  create: TwoFactorConfirnationCreateWithoutUserInput!
+  where: TwoFactorConfirnationWhereUniqueInput!
+}
+
+input TwoFactorConfirnationCreateWithoutUserInput {
+  id: String
+}
+
+type TwoFactorConfirnationGroupBy {
+  _count: TwoFactorConfirnationCountAggregate
+  _max: TwoFactorConfirnationMaxAggregate
+  _min: TwoFactorConfirnationMinAggregate
+  id: String!
+  userId: String!
+}
+
+type TwoFactorConfirnationMaxAggregate {
+  id: String
+  userId: String
+}
+
+input TwoFactorConfirnationMaxOrderByAggregateInput {
+  id: SortOrder
+  userId: SortOrder
+}
+
+type TwoFactorConfirnationMinAggregate {
+  id: String
+  userId: String
+}
+
+input TwoFactorConfirnationMinOrderByAggregateInput {
+  id: SortOrder
+  userId: SortOrder
+}
+
+input TwoFactorConfirnationNullableRelationFilter {
+  is: TwoFactorConfirnationWhereInput
+  isNot: TwoFactorConfirnationWhereInput
+}
+
+input TwoFactorConfirnationOrderByWithAggregationInput {
+  _count: TwoFactorConfirnationCountOrderByAggregateInput
+  _max: TwoFactorConfirnationMaxOrderByAggregateInput
+  _min: TwoFactorConfirnationMinOrderByAggregateInput
+  id: SortOrder
+  userId: SortOrder
+}
+
+input TwoFactorConfirnationOrderByWithRelationInput {
+  id: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrder
+}
+
+enum TwoFactorConfirnationScalarFieldEnum {
+  id
+  userId
+}
+
+input TwoFactorConfirnationScalarWhereWithAggregatesInput {
+  AND: [TwoFactorConfirnationScalarWhereWithAggregatesInput!]
+  NOT: [TwoFactorConfirnationScalarWhereWithAggregatesInput!]
+  OR: [TwoFactorConfirnationScalarWhereWithAggregatesInput!]
+  id: StringWithAggregatesFilter
+  userId: StringWithAggregatesFilter
+}
+
+input TwoFactorConfirnationUpdateInput {
+  id: StringFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutTwoFactorConfirnationNestedInput
+}
+
+input TwoFactorConfirnationUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
+}
+
+input TwoFactorConfirnationUpdateOneWithoutUserNestedInput {
+  connect: TwoFactorConfirnationWhereUniqueInput
+  connectOrCreate: TwoFactorConfirnationCreateOrConnectWithoutUserInput
+  create: TwoFactorConfirnationCreateWithoutUserInput
+  delete: TwoFactorConfirnationWhereInput
+  disconnect: TwoFactorConfirnationWhereInput
+  update: TwoFactorConfirnationUpdateToOneWithWhereWithoutUserInput
+  upsert: TwoFactorConfirnationUpsertWithoutUserInput
+}
+
+input TwoFactorConfirnationUpdateToOneWithWhereWithoutUserInput {
+  data: TwoFactorConfirnationUpdateWithoutUserInput!
+  where: TwoFactorConfirnationWhereInput
+}
+
+input TwoFactorConfirnationUpdateWithoutUserInput {
+  id: StringFieldUpdateOperationsInput
+}
+
+input TwoFactorConfirnationUpsertWithoutUserInput {
+  create: TwoFactorConfirnationCreateWithoutUserInput!
+  update: TwoFactorConfirnationUpdateWithoutUserInput!
+  where: TwoFactorConfirnationWhereInput
+}
+
+input TwoFactorConfirnationWhereInput {
+  AND: [TwoFactorConfirnationWhereInput!]
+  NOT: [TwoFactorConfirnationWhereInput!]
+  OR: [TwoFactorConfirnationWhereInput!]
+  id: StringFilter
+  user: UserRelationFilter
+  userId: StringFilter
+}
+
+input TwoFactorConfirnationWhereUniqueInput {
+  AND: [TwoFactorConfirnationWhereInput!]
+  NOT: [TwoFactorConfirnationWhereInput!]
+  OR: [TwoFactorConfirnationWhereInput!]
+  id: String
+  user: UserRelationFilter
+  userId: String
+}
+
+type TwoFactorToken {
+  email: String!
+  expires: DateTimeISO!
+  id: String!
+  token: String!
+}
+
+type TwoFactorTokenCountAggregate {
+  _all: Int!
+  email: Int!
+  expires: Int!
+  id: Int!
+  token: Int!
+}
+
+input TwoFactorTokenCountOrderByAggregateInput {
+  email: SortOrder
+  expires: SortOrder
+  id: SortOrder
+  token: SortOrder
+}
+
+input TwoFactorTokenCreateInput {
+  email: String!
+  expires: DateTimeISO!
+  id: String
+  token: String!
+}
+
+input TwoFactorTokenCreateManyInput {
+  email: String!
+  expires: DateTimeISO!
+  id: String
+  token: String!
+}
+
+input TwoFactorTokenEmailTokenCompoundUniqueInput {
+  email: String!
+  token: String!
+}
+
+type TwoFactorTokenGroupBy {
+  _count: TwoFactorTokenCountAggregate
+  _max: TwoFactorTokenMaxAggregate
+  _min: TwoFactorTokenMinAggregate
+  email: String!
+  expires: DateTimeISO!
+  id: String!
+  token: String!
+}
+
+type TwoFactorTokenMaxAggregate {
+  email: String
+  expires: DateTimeISO
+  id: String
+  token: String
+}
+
+input TwoFactorTokenMaxOrderByAggregateInput {
+  email: SortOrder
+  expires: SortOrder
+  id: SortOrder
+  token: SortOrder
+}
+
+type TwoFactorTokenMinAggregate {
+  email: String
+  expires: DateTimeISO
+  id: String
+  token: String
+}
+
+input TwoFactorTokenMinOrderByAggregateInput {
+  email: SortOrder
+  expires: SortOrder
+  id: SortOrder
+  token: SortOrder
+}
+
+input TwoFactorTokenOrderByWithAggregationInput {
+  _count: TwoFactorTokenCountOrderByAggregateInput
+  _max: TwoFactorTokenMaxOrderByAggregateInput
+  _min: TwoFactorTokenMinOrderByAggregateInput
+  email: SortOrder
+  expires: SortOrder
+  id: SortOrder
+  token: SortOrder
+}
+
+input TwoFactorTokenOrderByWithRelationInput {
+  email: SortOrder
+  expires: SortOrder
+  id: SortOrder
+  token: SortOrder
+}
+
+enum TwoFactorTokenScalarFieldEnum {
+  email
+  expires
+  id
+  token
+}
+
+input TwoFactorTokenScalarWhereWithAggregatesInput {
+  AND: [TwoFactorTokenScalarWhereWithAggregatesInput!]
+  NOT: [TwoFactorTokenScalarWhereWithAggregatesInput!]
+  OR: [TwoFactorTokenScalarWhereWithAggregatesInput!]
+  email: StringWithAggregatesFilter
+  expires: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  token: StringWithAggregatesFilter
+}
+
+input TwoFactorTokenUpdateInput {
+  email: StringFieldUpdateOperationsInput
+  expires: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  token: StringFieldUpdateOperationsInput
+}
+
+input TwoFactorTokenUpdateManyMutationInput {
+  email: StringFieldUpdateOperationsInput
+  expires: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  token: StringFieldUpdateOperationsInput
+}
+
+input TwoFactorTokenWhereInput {
+  AND: [TwoFactorTokenWhereInput!]
+  NOT: [TwoFactorTokenWhereInput!]
+  OR: [TwoFactorTokenWhereInput!]
+  email: StringFilter
+  expires: DateTimeFilter
+  id: StringFilter
+  token: StringFilter
+}
+
+input TwoFactorTokenWhereUniqueInput {
+  AND: [TwoFactorTokenWhereInput!]
+  NOT: [TwoFactorTokenWhereInput!]
+  OR: [TwoFactorTokenWhereInput!]
+  email: StringFilter
+  email_token: TwoFactorTokenEmailTokenCompoundUniqueInput
+  expires: DateTimeFilter
+  id: String
+  token: String
 }
 
 type User {
@@ -2530,20 +3023,22 @@ type User {
   createdAt: DateTimeISO!
   email: String!
   emailVerified: DateTimeISO
-  firstName: String!
   id: String!
   image: String
-  lastName: String!
-  password: String!
+  imageId: String
+  isTwoFactorEnable: Boolean!
+  name: String!
+  password: String
   role: Role!
-  sessions(cursor: SessionWhereUniqueInput, distinct: [SessionScalarFieldEnum!], orderBy: [SessionOrderByWithRelationInput!], skip: Int, take: Int, where: SessionWhereInput): [Session!]!
+  status(cursor: StatusWhereUniqueInput, distinct: [StatusScalarFieldEnum!], orderBy: [StatusOrderByWithRelationInput!], skip: Int, take: Int, where: StatusWhereInput): [Status!]!
+  twoFactorConfirnation(where: TwoFactorConfirnationWhereInput): TwoFactorConfirnation
   updatedAt: DateTimeISO!
   workspaces(cursor: WorkspaceWhereUniqueInput, distinct: [WorkspaceScalarFieldEnum!], orderBy: [WorkspaceOrderByWithRelationInput!], skip: Int, take: Int, where: WorkspaceWhereInput): [Workspace!]!
 }
 
 type UserCount {
   accounts(where: AccountWhereInput): Int!
-  sessions(where: SessionWhereInput): Int!
+  status(where: StatusWhereInput): Int!
   workspaces(where: WorkspaceWhereInput): Int!
 }
 
@@ -2552,10 +3047,11 @@ type UserCountAggregate {
   createdAt: Int!
   email: Int!
   emailVerified: Int!
-  firstName: Int!
   id: Int!
   image: Int!
-  lastName: Int!
+  imageId: Int!
+  isTwoFactorEnable: Int!
+  name: Int!
   password: Int!
   role: Int!
   updatedAt: Int!
@@ -2565,10 +3061,11 @@ input UserCountOrderByAggregateInput {
   createdAt: SortOrder
   email: SortOrder
   emailVerified: SortOrder
-  firstName: SortOrder
   id: SortOrder
   image: SortOrder
-  lastName: SortOrder
+  imageId: SortOrder
+  isTwoFactorEnable: SortOrder
+  name: SortOrder
   password: SortOrder
   role: SortOrder
   updatedAt: SortOrder
@@ -2579,13 +3076,15 @@ input UserCreateInput {
   createdAt: DateTimeISO
   email: String!
   emailVerified: DateTimeISO
-  firstName: String!
   id: String
   image: String
-  lastName: String!
-  password: String!
+  imageId: String
+  isTwoFactorEnable: Boolean
+  name: String!
+  password: String
   role: Role
-  sessions: SessionCreateNestedManyWithoutUserInput
+  status: StatusCreateNestedManyWithoutUserInput
+  twoFactorConfirnation: TwoFactorConfirnationCreateNestedOneWithoutUserInput
   updatedAt: DateTimeISO
   workspaces: WorkspaceCreateNestedManyWithoutUserInput
 }
@@ -2594,11 +3093,12 @@ input UserCreateManyInput {
   createdAt: DateTimeISO
   email: String!
   emailVerified: DateTimeISO
-  firstName: String!
   id: String
   image: String
-  lastName: String!
-  password: String!
+  imageId: String
+  isTwoFactorEnable: Boolean
+  name: String!
+  password: String
   role: Role
   updatedAt: DateTimeISO
 }
@@ -2609,10 +3109,16 @@ input UserCreateNestedOneWithoutAccountsInput {
   create: UserCreateWithoutAccountsInput
 }
 
-input UserCreateNestedOneWithoutSessionsInput {
+input UserCreateNestedOneWithoutStatusInput {
   connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutSessionsInput
-  create: UserCreateWithoutSessionsInput
+  connectOrCreate: UserCreateOrConnectWithoutStatusInput
+  create: UserCreateWithoutStatusInput
+}
+
+input UserCreateNestedOneWithoutTwoFactorConfirnationInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutTwoFactorConfirnationInput
+  create: UserCreateWithoutTwoFactorConfirnationInput
 }
 
 input UserCreateNestedOneWithoutWorkspacesInput {
@@ -2626,8 +3132,13 @@ input UserCreateOrConnectWithoutAccountsInput {
   where: UserWhereUniqueInput!
 }
 
-input UserCreateOrConnectWithoutSessionsInput {
-  create: UserCreateWithoutSessionsInput!
+input UserCreateOrConnectWithoutStatusInput {
+  create: UserCreateWithoutStatusInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateOrConnectWithoutTwoFactorConfirnationInput {
+  create: UserCreateWithoutTwoFactorConfirnationInput!
   where: UserWhereUniqueInput!
 }
 
@@ -2640,28 +3151,49 @@ input UserCreateWithoutAccountsInput {
   createdAt: DateTimeISO
   email: String!
   emailVerified: DateTimeISO
-  firstName: String!
   id: String
   image: String
-  lastName: String!
-  password: String!
+  imageId: String
+  isTwoFactorEnable: Boolean
+  name: String!
+  password: String
   role: Role
-  sessions: SessionCreateNestedManyWithoutUserInput
+  status: StatusCreateNestedManyWithoutUserInput
+  twoFactorConfirnation: TwoFactorConfirnationCreateNestedOneWithoutUserInput
   updatedAt: DateTimeISO
   workspaces: WorkspaceCreateNestedManyWithoutUserInput
 }
 
-input UserCreateWithoutSessionsInput {
+input UserCreateWithoutStatusInput {
   accounts: AccountCreateNestedManyWithoutUserInput
   createdAt: DateTimeISO
   email: String!
   emailVerified: DateTimeISO
-  firstName: String!
   id: String
   image: String
-  lastName: String!
-  password: String!
+  imageId: String
+  isTwoFactorEnable: Boolean
+  name: String!
+  password: String
   role: Role
+  twoFactorConfirnation: TwoFactorConfirnationCreateNestedOneWithoutUserInput
+  updatedAt: DateTimeISO
+  workspaces: WorkspaceCreateNestedManyWithoutUserInput
+}
+
+input UserCreateWithoutTwoFactorConfirnationInput {
+  accounts: AccountCreateNestedManyWithoutUserInput
+  createdAt: DateTimeISO
+  email: String!
+  emailVerified: DateTimeISO
+  id: String
+  image: String
+  imageId: String
+  isTwoFactorEnable: Boolean
+  name: String!
+  password: String
+  role: Role
+  status: StatusCreateNestedManyWithoutUserInput
   updatedAt: DateTimeISO
   workspaces: WorkspaceCreateNestedManyWithoutUserInput
 }
@@ -2671,13 +3203,15 @@ input UserCreateWithoutWorkspacesInput {
   createdAt: DateTimeISO
   email: String!
   emailVerified: DateTimeISO
-  firstName: String!
   id: String
   image: String
-  lastName: String!
-  password: String!
+  imageId: String
+  isTwoFactorEnable: Boolean
+  name: String!
+  password: String
   role: Role
-  sessions: SessionCreateNestedManyWithoutUserInput
+  status: StatusCreateNestedManyWithoutUserInput
+  twoFactorConfirnation: TwoFactorConfirnationCreateNestedOneWithoutUserInput
   updatedAt: DateTimeISO
 }
 
@@ -2688,11 +3222,12 @@ type UserGroupBy {
   createdAt: DateTimeISO!
   email: String!
   emailVerified: DateTimeISO
-  firstName: String!
   id: String!
   image: String
-  lastName: String!
-  password: String!
+  imageId: String
+  isTwoFactorEnable: Boolean!
+  name: String!
+  password: String
   role: Role!
   updatedAt: DateTimeISO!
 }
@@ -2701,10 +3236,11 @@ type UserMaxAggregate {
   createdAt: DateTimeISO
   email: String
   emailVerified: DateTimeISO
-  firstName: String
   id: String
   image: String
-  lastName: String
+  imageId: String
+  isTwoFactorEnable: Boolean
+  name: String
   password: String
   role: Role
   updatedAt: DateTimeISO
@@ -2714,10 +3250,11 @@ input UserMaxOrderByAggregateInput {
   createdAt: SortOrder
   email: SortOrder
   emailVerified: SortOrder
-  firstName: SortOrder
   id: SortOrder
   image: SortOrder
-  lastName: SortOrder
+  imageId: SortOrder
+  isTwoFactorEnable: SortOrder
+  name: SortOrder
   password: SortOrder
   role: SortOrder
   updatedAt: SortOrder
@@ -2727,10 +3264,11 @@ type UserMinAggregate {
   createdAt: DateTimeISO
   email: String
   emailVerified: DateTimeISO
-  firstName: String
   id: String
   image: String
-  lastName: String
+  imageId: String
+  isTwoFactorEnable: Boolean
+  name: String
   password: String
   role: Role
   updatedAt: DateTimeISO
@@ -2740,10 +3278,11 @@ input UserMinOrderByAggregateInput {
   createdAt: SortOrder
   email: SortOrder
   emailVerified: SortOrder
-  firstName: SortOrder
   id: SortOrder
   image: SortOrder
-  lastName: SortOrder
+  imageId: SortOrder
+  isTwoFactorEnable: SortOrder
+  name: SortOrder
   password: SortOrder
   role: SortOrder
   updatedAt: SortOrder
@@ -2761,11 +3300,12 @@ input UserOrderByWithAggregationInput {
   createdAt: SortOrder
   email: SortOrder
   emailVerified: SortOrderInput
-  firstName: SortOrder
   id: SortOrder
   image: SortOrderInput
-  lastName: SortOrder
-  password: SortOrder
+  imageId: SortOrderInput
+  isTwoFactorEnable: SortOrder
+  name: SortOrder
+  password: SortOrderInput
   role: SortOrder
   updatedAt: SortOrder
 }
@@ -2775,13 +3315,15 @@ input UserOrderByWithRelationInput {
   createdAt: SortOrder
   email: SortOrder
   emailVerified: SortOrderInput
-  firstName: SortOrder
   id: SortOrder
   image: SortOrderInput
-  lastName: SortOrder
-  password: SortOrder
+  imageId: SortOrderInput
+  isTwoFactorEnable: SortOrder
+  name: SortOrder
+  password: SortOrderInput
   role: SortOrder
-  sessions: SessionOrderByRelationAggregateInput
+  status: StatusOrderByRelationAggregateInput
+  twoFactorConfirnation: TwoFactorConfirnationOrderByWithRelationInput
   updatedAt: SortOrder
   workspaces: WorkspaceOrderByRelationAggregateInput
 }
@@ -2795,10 +3337,11 @@ enum UserScalarFieldEnum {
   createdAt
   email
   emailVerified
-  firstName
   id
   image
-  lastName
+  imageId
+  isTwoFactorEnable
+  name
   password
   role
   updatedAt
@@ -2811,11 +3354,12 @@ input UserScalarWhereWithAggregatesInput {
   createdAt: DateTimeWithAggregatesFilter
   email: StringWithAggregatesFilter
   emailVerified: DateTimeNullableWithAggregatesFilter
-  firstName: StringWithAggregatesFilter
   id: StringWithAggregatesFilter
   image: StringNullableWithAggregatesFilter
-  lastName: StringWithAggregatesFilter
-  password: StringWithAggregatesFilter
+  imageId: StringNullableWithAggregatesFilter
+  isTwoFactorEnable: BoolWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  password: StringNullableWithAggregatesFilter
   role: EnumRoleWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
@@ -2825,13 +3369,15 @@ input UserUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
-  firstName: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
-  lastName: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
+  imageId: NullableStringFieldUpdateOperationsInput
+  isTwoFactorEnable: BoolFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
-  sessions: SessionUpdateManyWithoutUserNestedInput
+  status: StatusUpdateManyWithoutUserNestedInput
+  twoFactorConfirnation: TwoFactorConfirnationUpdateOneWithoutUserNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   workspaces: WorkspaceUpdateManyWithoutUserNestedInput
 }
@@ -2840,11 +3386,12 @@ input UserUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
-  firstName: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
-  lastName: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
+  imageId: NullableStringFieldUpdateOperationsInput
+  isTwoFactorEnable: BoolFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -2857,12 +3404,20 @@ input UserUpdateOneRequiredWithoutAccountsNestedInput {
   upsert: UserUpsertWithoutAccountsInput
 }
 
-input UserUpdateOneRequiredWithoutSessionsNestedInput {
+input UserUpdateOneRequiredWithoutStatusNestedInput {
   connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutSessionsInput
-  create: UserCreateWithoutSessionsInput
-  update: UserUpdateToOneWithWhereWithoutSessionsInput
-  upsert: UserUpsertWithoutSessionsInput
+  connectOrCreate: UserCreateOrConnectWithoutStatusInput
+  create: UserCreateWithoutStatusInput
+  update: UserUpdateToOneWithWhereWithoutStatusInput
+  upsert: UserUpsertWithoutStatusInput
+}
+
+input UserUpdateOneRequiredWithoutTwoFactorConfirnationNestedInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutTwoFactorConfirnationInput
+  create: UserCreateWithoutTwoFactorConfirnationInput
+  update: UserUpdateToOneWithWhereWithoutTwoFactorConfirnationInput
+  upsert: UserUpsertWithoutTwoFactorConfirnationInput
 }
 
 input UserUpdateOneWithoutWorkspacesNestedInput {
@@ -2880,8 +3435,13 @@ input UserUpdateToOneWithWhereWithoutAccountsInput {
   where: UserWhereInput
 }
 
-input UserUpdateToOneWithWhereWithoutSessionsInput {
-  data: UserUpdateWithoutSessionsInput!
+input UserUpdateToOneWithWhereWithoutStatusInput {
+  data: UserUpdateWithoutStatusInput!
+  where: UserWhereInput
+}
+
+input UserUpdateToOneWithWhereWithoutTwoFactorConfirnationInput {
+  data: UserUpdateWithoutTwoFactorConfirnationInput!
   where: UserWhereInput
 }
 
@@ -2894,28 +3454,49 @@ input UserUpdateWithoutAccountsInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
-  firstName: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
-  lastName: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
+  imageId: NullableStringFieldUpdateOperationsInput
+  isTwoFactorEnable: BoolFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
-  sessions: SessionUpdateManyWithoutUserNestedInput
+  status: StatusUpdateManyWithoutUserNestedInput
+  twoFactorConfirnation: TwoFactorConfirnationUpdateOneWithoutUserNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   workspaces: WorkspaceUpdateManyWithoutUserNestedInput
 }
 
-input UserUpdateWithoutSessionsInput {
+input UserUpdateWithoutStatusInput {
   accounts: AccountUpdateManyWithoutUserNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
-  firstName: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
-  lastName: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
+  imageId: NullableStringFieldUpdateOperationsInput
+  isTwoFactorEnable: BoolFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
+  twoFactorConfirnation: TwoFactorConfirnationUpdateOneWithoutUserNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  workspaces: WorkspaceUpdateManyWithoutUserNestedInput
+}
+
+input UserUpdateWithoutTwoFactorConfirnationInput {
+  accounts: AccountUpdateManyWithoutUserNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerified: NullableDateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
+  imageId: NullableStringFieldUpdateOperationsInput
+  isTwoFactorEnable: BoolFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
+  status: StatusUpdateManyWithoutUserNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   workspaces: WorkspaceUpdateManyWithoutUserNestedInput
 }
@@ -2925,13 +3506,15 @@ input UserUpdateWithoutWorkspacesInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   emailVerified: NullableDateTimeFieldUpdateOperationsInput
-  firstName: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   image: NullableStringFieldUpdateOperationsInput
-  lastName: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
+  imageId: NullableStringFieldUpdateOperationsInput
+  isTwoFactorEnable: BoolFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
-  sessions: SessionUpdateManyWithoutUserNestedInput
+  status: StatusUpdateManyWithoutUserNestedInput
+  twoFactorConfirnation: TwoFactorConfirnationUpdateOneWithoutUserNestedInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2941,9 +3524,15 @@ input UserUpsertWithoutAccountsInput {
   where: UserWhereInput
 }
 
-input UserUpsertWithoutSessionsInput {
-  create: UserCreateWithoutSessionsInput!
-  update: UserUpdateWithoutSessionsInput!
+input UserUpsertWithoutStatusInput {
+  create: UserCreateWithoutStatusInput!
+  update: UserUpdateWithoutStatusInput!
+  where: UserWhereInput
+}
+
+input UserUpsertWithoutTwoFactorConfirnationInput {
+  create: UserCreateWithoutTwoFactorConfirnationInput!
+  update: UserUpdateWithoutTwoFactorConfirnationInput!
   where: UserWhereInput
 }
 
@@ -2961,13 +3550,15 @@ input UserWhereInput {
   createdAt: DateTimeFilter
   email: StringFilter
   emailVerified: DateTimeNullableFilter
-  firstName: StringFilter
   id: StringFilter
   image: StringNullableFilter
-  lastName: StringFilter
-  password: StringFilter
+  imageId: StringNullableFilter
+  isTwoFactorEnable: BoolFilter
+  name: StringFilter
+  password: StringNullableFilter
   role: EnumRoleFilter
-  sessions: SessionListRelationFilter
+  status: StatusListRelationFilter
+  twoFactorConfirnation: TwoFactorConfirnationNullableRelationFilter
   updatedAt: DateTimeFilter
   workspaces: WorkspaceListRelationFilter
 }
@@ -2980,21 +3571,171 @@ input UserWhereUniqueInput {
   createdAt: DateTimeFilter
   email: String
   emailVerified: DateTimeNullableFilter
-  firstName: StringFilter
   id: String
   image: StringNullableFilter
-  lastName: StringFilter
-  password: StringFilter
+  imageId: StringNullableFilter
+  isTwoFactorEnable: BoolFilter
+  name: StringFilter
+  password: StringNullableFilter
   role: EnumRoleFilter
-  sessions: SessionListRelationFilter
+  status: StatusListRelationFilter
+  twoFactorConfirnation: TwoFactorConfirnationNullableRelationFilter
   updatedAt: DateTimeFilter
   workspaces: WorkspaceListRelationFilter
+}
+
+type VerificationToken {
+  email: String!
+  expires: DateTimeISO!
+  id: String!
+  token: String!
+}
+
+type VerificationTokenCountAggregate {
+  _all: Int!
+  email: Int!
+  expires: Int!
+  id: Int!
+  token: Int!
+}
+
+input VerificationTokenCountOrderByAggregateInput {
+  email: SortOrder
+  expires: SortOrder
+  id: SortOrder
+  token: SortOrder
+}
+
+input VerificationTokenCreateInput {
+  email: String!
+  expires: DateTimeISO!
+  id: String
+  token: String!
+}
+
+input VerificationTokenCreateManyInput {
+  email: String!
+  expires: DateTimeISO!
+  id: String
+  token: String!
+}
+
+input VerificationTokenEmailTokenCompoundUniqueInput {
+  email: String!
+  token: String!
+}
+
+type VerificationTokenGroupBy {
+  _count: VerificationTokenCountAggregate
+  _max: VerificationTokenMaxAggregate
+  _min: VerificationTokenMinAggregate
+  email: String!
+  expires: DateTimeISO!
+  id: String!
+  token: String!
+}
+
+type VerificationTokenMaxAggregate {
+  email: String
+  expires: DateTimeISO
+  id: String
+  token: String
+}
+
+input VerificationTokenMaxOrderByAggregateInput {
+  email: SortOrder
+  expires: SortOrder
+  id: SortOrder
+  token: SortOrder
+}
+
+type VerificationTokenMinAggregate {
+  email: String
+  expires: DateTimeISO
+  id: String
+  token: String
+}
+
+input VerificationTokenMinOrderByAggregateInput {
+  email: SortOrder
+  expires: SortOrder
+  id: SortOrder
+  token: SortOrder
+}
+
+input VerificationTokenOrderByWithAggregationInput {
+  _count: VerificationTokenCountOrderByAggregateInput
+  _max: VerificationTokenMaxOrderByAggregateInput
+  _min: VerificationTokenMinOrderByAggregateInput
+  email: SortOrder
+  expires: SortOrder
+  id: SortOrder
+  token: SortOrder
+}
+
+input VerificationTokenOrderByWithRelationInput {
+  email: SortOrder
+  expires: SortOrder
+  id: SortOrder
+  token: SortOrder
+}
+
+enum VerificationTokenScalarFieldEnum {
+  email
+  expires
+  id
+  token
+}
+
+input VerificationTokenScalarWhereWithAggregatesInput {
+  AND: [VerificationTokenScalarWhereWithAggregatesInput!]
+  NOT: [VerificationTokenScalarWhereWithAggregatesInput!]
+  OR: [VerificationTokenScalarWhereWithAggregatesInput!]
+  email: StringWithAggregatesFilter
+  expires: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  token: StringWithAggregatesFilter
+}
+
+input VerificationTokenUpdateInput {
+  email: StringFieldUpdateOperationsInput
+  expires: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  token: StringFieldUpdateOperationsInput
+}
+
+input VerificationTokenUpdateManyMutationInput {
+  email: StringFieldUpdateOperationsInput
+  expires: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  token: StringFieldUpdateOperationsInput
+}
+
+input VerificationTokenWhereInput {
+  AND: [VerificationTokenWhereInput!]
+  NOT: [VerificationTokenWhereInput!]
+  OR: [VerificationTokenWhereInput!]
+  email: StringFilter
+  expires: DateTimeFilter
+  id: StringFilter
+  token: StringFilter
+}
+
+input VerificationTokenWhereUniqueInput {
+  AND: [VerificationTokenWhereInput!]
+  NOT: [VerificationTokenWhereInput!]
+  OR: [VerificationTokenWhereInput!]
+  email: StringFilter
+  email_token: VerificationTokenEmailTokenCompoundUniqueInput
+  expires: DateTimeFilter
+  id: String
+  token: String
 }
 
 type Workspace {
   _count: WorkspaceCount
   createdAt: DateTimeISO!
-  description: String!
+  description: String
   id: String!
   name: String!
   task(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
@@ -3028,7 +3769,7 @@ input WorkspaceCountOrderByAggregateInput {
 
 input WorkspaceCreateInput {
   createdAt: DateTimeISO
-  description: String!
+  description: String
   id: String
   name: String!
   task: TaskCreateNestedManyWithoutWorkspaceInput
@@ -3038,7 +3779,7 @@ input WorkspaceCreateInput {
 
 input WorkspaceCreateManyInput {
   createdAt: DateTimeISO
-  description: String!
+  description: String
   id: String
   name: String!
   updatedAt: DateTimeISO
@@ -3047,7 +3788,7 @@ input WorkspaceCreateManyInput {
 
 input WorkspaceCreateManyUserInput {
   createdAt: DateTimeISO
-  description: String!
+  description: String
   id: String
   name: String!
   updatedAt: DateTimeISO
@@ -3083,7 +3824,7 @@ input WorkspaceCreateOrConnectWithoutUserInput {
 
 input WorkspaceCreateWithoutTaskInput {
   createdAt: DateTimeISO
-  description: String!
+  description: String
   id: String
   name: String!
   updatedAt: DateTimeISO
@@ -3092,7 +3833,7 @@ input WorkspaceCreateWithoutTaskInput {
 
 input WorkspaceCreateWithoutUserInput {
   createdAt: DateTimeISO
-  description: String!
+  description: String
   id: String
   name: String!
   task: TaskCreateNestedManyWithoutWorkspaceInput
@@ -3104,7 +3845,7 @@ type WorkspaceGroupBy {
   _max: WorkspaceMaxAggregate
   _min: WorkspaceMinAggregate
   createdAt: DateTimeISO!
-  description: String!
+  description: String
   id: String!
   name: String!
   updatedAt: DateTimeISO!
@@ -3153,6 +3894,11 @@ input WorkspaceMinOrderByAggregateInput {
   userId: SortOrder
 }
 
+input WorkspaceNullableRelationFilter {
+  is: WorkspaceWhereInput
+  isNot: WorkspaceWhereInput
+}
+
 input WorkspaceOrderByRelationAggregateInput {
   _count: SortOrder
 }
@@ -3162,7 +3908,7 @@ input WorkspaceOrderByWithAggregationInput {
   _max: WorkspaceMaxOrderByAggregateInput
   _min: WorkspaceMinOrderByAggregateInput
   createdAt: SortOrder
-  description: SortOrder
+  description: SortOrderInput
   id: SortOrder
   name: SortOrder
   updatedAt: SortOrder
@@ -3171,18 +3917,13 @@ input WorkspaceOrderByWithAggregationInput {
 
 input WorkspaceOrderByWithRelationInput {
   createdAt: SortOrder
-  description: SortOrder
+  description: SortOrderInput
   id: SortOrder
   name: SortOrder
   task: TaskOrderByRelationAggregateInput
   updatedAt: SortOrder
   user: UserOrderByWithRelationInput
   userId: SortOrderInput
-}
-
-input WorkspaceRelationFilter {
-  is: WorkspaceWhereInput
-  isNot: WorkspaceWhereInput
 }
 
 enum WorkspaceScalarFieldEnum {
@@ -3199,7 +3940,7 @@ input WorkspaceScalarWhereInput {
   NOT: [WorkspaceScalarWhereInput!]
   OR: [WorkspaceScalarWhereInput!]
   createdAt: DateTimeFilter
-  description: StringFilter
+  description: StringNullableFilter
   id: StringFilter
   name: StringFilter
   updatedAt: DateTimeFilter
@@ -3211,7 +3952,7 @@ input WorkspaceScalarWhereWithAggregatesInput {
   NOT: [WorkspaceScalarWhereWithAggregatesInput!]
   OR: [WorkspaceScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
-  description: StringWithAggregatesFilter
+  description: StringNullableWithAggregatesFilter
   id: StringWithAggregatesFilter
   name: StringWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
@@ -3220,7 +3961,7 @@ input WorkspaceScalarWhereWithAggregatesInput {
 
 input WorkspaceUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   task: TaskUpdateManyWithoutWorkspaceNestedInput
@@ -3230,7 +3971,7 @@ input WorkspaceUpdateInput {
 
 input WorkspaceUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -3255,10 +3996,12 @@ input WorkspaceUpdateManyWithoutUserNestedInput {
   upsert: [WorkspaceUpsertWithWhereUniqueWithoutUserInput!]
 }
 
-input WorkspaceUpdateOneRequiredWithoutTaskNestedInput {
+input WorkspaceUpdateOneWithoutTaskNestedInput {
   connect: WorkspaceWhereUniqueInput
   connectOrCreate: WorkspaceCreateOrConnectWithoutTaskInput
   create: WorkspaceCreateWithoutTaskInput
+  delete: WorkspaceWhereInput
+  disconnect: WorkspaceWhereInput
   update: WorkspaceUpdateToOneWithWhereWithoutTaskInput
   upsert: WorkspaceUpsertWithoutTaskInput
 }
@@ -3275,7 +4018,7 @@ input WorkspaceUpdateWithWhereUniqueWithoutUserInput {
 
 input WorkspaceUpdateWithoutTaskInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -3284,7 +4027,7 @@ input WorkspaceUpdateWithoutTaskInput {
 
 input WorkspaceUpdateWithoutUserInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   task: TaskUpdateManyWithoutWorkspaceNestedInput
@@ -3308,7 +4051,7 @@ input WorkspaceWhereInput {
   NOT: [WorkspaceWhereInput!]
   OR: [WorkspaceWhereInput!]
   createdAt: DateTimeFilter
-  description: StringFilter
+  description: StringNullableFilter
   id: StringFilter
   name: StringFilter
   task: TaskListRelationFilter
@@ -3322,7 +4065,7 @@ input WorkspaceWhereUniqueInput {
   NOT: [WorkspaceWhereInput!]
   OR: [WorkspaceWhereInput!]
   createdAt: DateTimeFilter
-  description: StringFilter
+  description: StringNullableFilter
   id: String
   name: StringFilter
   task: TaskListRelationFilter

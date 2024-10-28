@@ -1,0 +1,13 @@
+fragment Workspace on Workspace {
+  id
+  name
+  description
+  createdAt
+  updatedAt
+  task {
+    ...Task
+  }
+  user {
+    id
+  }
+}

@@ -2,13 +2,13 @@ import { FC } from 'react';
 import { Popover, Avatar } from 'antd';
 import { UserAddOutlined } from '@ant-design/icons'
 
-import { InviteMember } from '../../invite-member';
+import { OwnerPopup } from './ovner-popup';
 
 export const OwnerField: FC = () => (
   <Popover
     overlayStyle={{ width: 400 }}
     overlayInnerStyle={{ padding: 24 }}
-    content={<InviteMember />}
+    content={<OwnerPopup />}
     trigger={'click'}
     placement={'bottom'}
   >

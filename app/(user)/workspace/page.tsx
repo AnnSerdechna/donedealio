@@ -1,8 +1,6 @@
-import { auth } from '@/auth';
-import { Workspaces } from '@/components/user';
+import { Workspaces } from '@/components/user/workspace';
 
 export default async function WorkspacesPage() {
-  const session = await auth();
 
-  return <Workspaces userId={session?.user?.id ?? ''} />
+  return <Workspaces />
 };

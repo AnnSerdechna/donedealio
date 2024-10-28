@@ -1,7 +1,5 @@
-query Statuses($where: StatusWhereInput) {
+query statuses($where: StatusWhereInput) {
   statuses(where: $where) {
-    id
-    name
-    color
+    ...Status
   }
 }

@@ -1,0 +1,14 @@
+query aggregateTaskByDate($where: TaskWhereInput!) {
+  tasks(where: $where) {
+    workspaceId
+    dueDate
+  }
+  aggregateTask {
+    _min {
+      dueDate
+    }
+    _max {
+      dueDate
+    }
+  }
+}

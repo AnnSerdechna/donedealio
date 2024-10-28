@@ -1,25 +1,5 @@
-query Tasks($workspaceId: String!) {
-  tasks(where: { workspaceId: { equals: $workspaceId } }, orderBy: {createdAt: asc}) {
-    id
-    name
-    message
-    note
-    dueDate
-    files {
-      id
-    }
-    status {
-      id
-      name
-      color
-    }
-     priority {
-      id
-      name
-      color
-    }
-    workspace {
-      id
-    }
+query tasks($where: TaskWhereInput!) {
+  tasks(where: $where) {
+    ...Task
   }
 }

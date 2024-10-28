@@ -1,4 +1,4 @@
-mutation DeleteManyTask($where: TaskWhereInput) {
+mutation deleteTasks($where: TaskWhereInput) {
   deleteManyTask(where: $where) {
     count
   }

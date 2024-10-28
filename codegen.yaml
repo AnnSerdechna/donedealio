@@ -1,13 +1,14 @@
 overwrite: true
 schema: 
-  - src/graphql/schema.graphql
+  - graphql/schema.graphql
 require:
   - ts-node/register
 documents: 
-  - src/graphql/**/*.graphql
+  - graphql/**/*.graphql
 generates: 
-  src/graphql/types.ts:
+  graphql/types.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
       - "typescript-react-apollo"
+

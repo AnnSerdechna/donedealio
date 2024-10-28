@@ -3,34 +3,45 @@
 import cloudinary from 'cloudinary';
 
 cloudinary.v2.config({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
-  api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export async function uploadImage(image: string) {
+
+type ResponseProps = {
+  url: string
+  id: string
+  format?: string
+  name?: string
+  size?: number
+}
+
+export async function uploadFile(
+  file: string, 
+): Promise<ResponseProps> {
   try {
-    const response = await cloudinary.v2.uploader.upload(image, {
-      upload_preset: 'donedealio',
-    });
-    return response.secure_url; 
-  } catch (error) {
-    console.error('Error uploading image:', error);
-    throw new Error('Image upload failed');
+    const response = await cloudinary.v2.uploader.upload(
+      file, 
+      {
+        resource_type: 'image', 
+        upload_preset: 'donedealio', 
+      }
+    );
+
+    return { url: response.secure_url, id: response.public_id, name: response.signature }; 
+  } catch {
+    throw new Error('File upload failed');
   }
 };
 
-export async function uploadFile(file: string) {
+export async function removeFile(publicId: string) {
   try {
-    const response = await cloudinary.v2.uploader.upload(file, {
-      resource_type: 'raw', 
-      upload_preset: 'donedealio', 
-    });
-
-    // response.public_id 
-    return response.secure_url; 
-  } catch (error) {
-    console.error('Error uploading file:', error);
-    throw new Error('File upload failed');
+    await cloudinary.v2.uploader.destroy(
+      publicId, 
+      { resource_type: 'image' }
+    );
+  } catch {
+    throw new Error('File remove failed');
   }
 };

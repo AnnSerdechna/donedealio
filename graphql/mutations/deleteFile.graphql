@@ -1,0 +1,5 @@
+mutation deleteFile($where: FileWhereUniqueInput!) {
+  deleteOneFile(where: $where) {
+    ...File
+  }
+}

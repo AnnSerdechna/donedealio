@@ -1,13 +1,11 @@
 import React, { FC } from 'react';
 import {
-  BellOutlined,
-  SearchOutlined,
   MenuOutlined,
 } from '@ant-design/icons';
-import { App, Badge, Col, Flex, Input, Layout } from 'antd';
+import { App, Col, Flex, Layout } from 'antd';
 import { signOut } from 'next-auth/react';
 
-import { Button, Icon } from '@/components/ui';
+import { Button } from '@/components/ui';
 import variables from '@/styles/variables.module.scss';
 import styles from './index.module.scss';
 import { AvaratBtn } from '@/components/user';
@@ -39,7 +37,7 @@ export const UserHeader: FC<TasksHeaderProps> = ({ onShowMobileDrawer }) => {
 
   return (
     <Header style={{ padding: `0 ${variables.sizeSm}` }} className={styles.taskHeader}>
-      <Flex justify={'space-between'} align={'center'} gap={16}>
+      <Flex justify={'space-between'} align={'center'} style={{height: '100%'}} gap={16}>
         <div className={styles.menuBtnWrap}>
           <Button
             type={'text'}
@@ -50,18 +48,10 @@ export const UserHeader: FC<TasksHeaderProps> = ({ onShowMobileDrawer }) => {
         </div>
 
         <Col sm={16} md={8} lg={6}>
-          <Input
-            size={'small'}
-            suffix={<Icon icon={<SearchOutlined />} />}
-          />
+          {/* Search input */}
         </Col>
-        <Flex align={'center'} gap={16}>
-          <Badge count={5} size={'small'}>
-            <Icon icon={<BellOutlined />} size='1.4em' />
-          </Badge>
-
-          <AvaratBtn onLogout={hanldeConfirmLogout} />
-        </Flex>
+        
+        <AvaratBtn onLogout={hanldeConfirmLogout} />
       </Flex>
     </Header>
   )

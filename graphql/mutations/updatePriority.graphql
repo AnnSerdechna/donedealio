@@ -1,7 +1,0 @@
-mutation updateOnePriority($data: PriorityUpdateInput!, $where: PriorityWhereUniqueInput!) {
-  updateOnePriority(data: $data, where: $where) {
-    id
-    name
-    color
-  }
-}

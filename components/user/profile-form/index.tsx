@@ -1,40 +1,55 @@
 'use client';
 
-import { Flex, Form as AntForm, Input, Col, Grid, Switch } from 'antd';
-import { FC, Fragment, useState, useTransition } from 'react';
+import { Flex, Form as AntForm, Input, Col, Grid, Switch, Upload, App } from 'antd';
+import { FC, Fragment, useTransition } from 'react';
 import { useSession } from 'next-auth/react';
 
-import { Button, Form, FormItem, Text, VSpace } from '@/components/ui';
+import { Button, Form, FormItem, Text } from '@/components/ui';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
-import { UploadPhoto } from '@/components/user';
-import { MessageProps } from '@/types';
 import { profile } from '@/actions/profile';
 import { ProfileValuesProps } from '@/schemas/types';
-import { AlertMessage } from '@/components/elements/alert-message';
+import { useUploadFile } from '@/hooks/useUploadFiles';
+import ImgCrop from 'antd-img-crop';
 
 const { Password } = Input;
 const { useBreakpoint } = Grid;
 
 export const ProfileForm: FC = () => {
-  const [form] = AntForm.useForm();
   const user = useCurrentUser();
+  const [form] = AntForm.useForm();
   const { update } = useSession();
+  const { message } = App.useApp()
   const screens = useBreakpoint();
   const [isPending, startTransition] = useTransition();
-  const [message, setMessage] = useState<MessageProps | null>(null);
+  const { uploadProps, uploadedFile, handleUploadFile } = useUploadFile();
 
   const onSubmit = async (values: ProfileValuesProps) => {
-    startTransition(() => {
-      profile({ ...values })
-        .then((data) => {
-          setMessage(data);
-          update();
+    try {
+      const file = await handleUploadFile();
+
+      startTransition(() => {
+        profile({
+          ...values,
+          image: file?.url || uploadedFile?.url || null,
+          imageId: file?.id || uploadedFile?.id || null,
         })
-        .catch(() => {
-          setMessage({ status: 'error', content: 'Something went wrong!' });
-        });
-    });
-    setMessage(null);
+          .then((data) => {
+            if (data?.status === 'success') {
+              message.success(data?.content);
+              update();
+            }
+
+            if (data?.status === 'error') {
+              message.error(data?.content);
+            }
+          })
+          .catch(() => {
+            message.error('Profile update failed!');
+          })
+      });
+    } catch {
+      message.error('Error while saving the profile!');
+    }
   };
 
   return (
@@ -134,18 +149,14 @@ export const ProfileForm: FC = () => {
               </Fragment>
             )}
 
-            <VSpace size={24}>
-              <AlertMessage data={message} />
-
-              <FormItem>
-                <Button
-                  text={'Save'}
-                  htmlType={'submit'}
-                  loading={isPending}
-                  wide
-                />
-              </FormItem>
-            </VSpace>
+            <FormItem>
+              <Button
+                text={'Save'}
+                htmlType={'submit'}
+                loading={isPending}
+                wide
+              />
+            </FormItem>
           </Flex>
         </Col>
         <Col
@@ -153,7 +164,11 @@ export const ProfileForm: FC = () => {
           lg={{ span: 11, offset: 2, order: 2 }}
         >
           <FormItem>
-            <UploadPhoto form={form} />
+            <ImgCrop rotationSlider>
+              <Upload {...uploadProps}>
+                {'+ Upload'}
+              </Upload>
+            </ImgCrop>
           </FormItem>
         </Col>
       </Flex>

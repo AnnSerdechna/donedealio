@@ -16,11 +16,21 @@ export const DueDateField: FC<DueDateProps> = ({ dueDate, statusName, ...props }
   const renderIcon = useMemo(() => {
     switch (true) {
       case statusName?.toLowerCase() === 'done':
-        return <CheckCircleTwoTone twoToneColor="#36ba98" style={{ fontSize: 16 }} />;
+        return (
+          <CheckCircleTwoTone 
+            twoToneColor="#36ba98" 
+            style={{ fontSize: 16 }} 
+          />
+        );
       case diffInDays <= 0:
         return (
-          <Tooltip title={`${Math.abs(diffInDays)} days have passed since the due date!`}>
-            <InfoCircleTwoTone twoToneColor="#e76f51" style={{ fontSize: 16 }} />
+          <Tooltip 
+            title={`${Math.abs(diffInDays)} days have passed since the due date!`}
+          >
+            <InfoCircleTwoTone 
+              twoToneColor="#e76f51" 
+              style={{ fontSize: 16 }} 
+            />
           </Tooltip>
         );
       case diffInDays > 0 && diffInDays < 8 && statusName?.toLowerCase() !== 'done':

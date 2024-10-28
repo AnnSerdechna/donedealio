@@ -1,0 +1,5 @@
+query task($where: TaskWhereUniqueInput!) {
+  task(where: $where) {
+    ...Task
+  }
+}

@@ -50,7 +50,7 @@ export const UserLayout: FC<PropsWithChildren> = ({ children }) => {
         >
           {logo}
 
-          <SideMenu />
+          <SideMenu collapsed={collapsed} />
 
           <IconWrap>
             <Button

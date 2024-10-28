@@ -5,10 +5,14 @@ import {
   UserOutlined,
   BulbOutlined,
 } from '@ant-design/icons';
-import { Flex, Menu, MenuProps } from 'antd';
+import { Flex, List, Menu, MenuProps } from 'antd';
 import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 import { MenuItemProps } from '@/types';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { useWorkspacesQuery } from '@/graphql/types';
+import { VSpace } from '@/components/ui';
 import styles from './index.module.scss';
 
 function getItem(
@@ -48,11 +52,19 @@ export const HomeMenu: FC = () => (
   <Menu items={items} mode={'horizontal'} />
 );
 
-export const SideMenu: FC = () => {
+export const SideMenu: FC<{ collapsed?: boolean }> = ({ collapsed = false  }) => {
   const router = useRouter();
   const pathname = usePathname();
+  const user = useCurrentUser();
+  const { data: workspacesData } = useWorkspacesQuery({
+    variables: {
+      where: {
+        userId: { equals: user.id ?? ''}
+      }
+    }
+  });
 
-  const activeKeys = [...items, ...bottomItems].filter((item) => pathname?.includes(`${item?.key}`)).map(item => item?.key) as string[];
+  const activeKeys = [...items, ...bottomItems].filter((item) => pathname === `/${item?.key}`).map(item => item?.key) as string[];
 
   const onMemuItemClick: MenuProps['onClick'] = (event) => {
     router.push(`/${event.key}`);
@@ -72,7 +84,26 @@ export const SideMenu: FC = () => {
 
   return (
     <Flex vertical justify={'space-between'} className={styles.menuContainer}>
-      {menu(items)}
+      <VSpace size={8}>
+        {menu(items)}
+
+        {!collapsed && (
+          <List
+            dataSource={workspacesData?.workspaces}
+            rootClassName={styles.workspacesList}
+            renderItem={(item) => (
+              <List.Item className={styles.workspacesListItem}>
+                <Link 
+                  href={`/workspace/${item.id}/table`}
+                >
+                  {item.name}
+                </Link>
+              </List.Item>
+            )}
+          />
+        )}
+      </VSpace>
+
       {menu(bottomItems)}
     </Flex>
   )

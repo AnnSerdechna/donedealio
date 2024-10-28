@@ -2,14 +2,18 @@
 
 import { FC, Fragment, useState } from 'react';
 
-import { StatusPopover } from './status-popover';
-import { StatusChange, StatusChangeProps } from './status-change';
-import { StatusEdit } from './status-edit';
-import { PriorityEdit } from './priority-edit';
-import { Priority, Status } from '@/graphql/types';
-import { StatusBtnProps } from './status-btn';
+import { 
+  StatusPopover, 
+  StatusEdit, 
+  StatusBtnProps, 
+  StatusChange, 
+  StatusChangeProps 
+} from '@/components/user/tasks';
+import { Status, StatusType } from '@/graphql/types';
 
-type StatusFieldProps = Omit<StatusChangeProps, 'onEdit'> & Pick<StatusBtnProps, 'size'> & { status: Status | Priority };
+type StatusFieldProps = Omit<StatusChangeProps, 'onEdit'> & Pick<StatusBtnProps, 'size'> & { 
+  status: Status 
+};
 
 export const StatusField: FC<StatusFieldProps> = ({
   data, 
@@ -37,16 +41,17 @@ export const StatusField: FC<StatusFieldProps> = ({
               <StatusChange
                 form={form}
                 taskId={taskId}
+                updatedField={updatedField}
                 data={data}
                 refetchTask={refetchTask}
                 onEdit={handleSetContentAsEdit}
-                updatedField={updatedField}
               />
             )
             : (
-              updatedField === 'status'
-                ? <StatusEdit onBack={handleSetContentAsChange} />
-                : <PriorityEdit onBack={handleSetContentAsChange} />
+              <StatusEdit
+                statusType={updatedField === 'status' ? StatusType.Status : StatusType.Priority}
+                onBack={handleSetContentAsChange}
+              />
             )
           }
         </Fragment>

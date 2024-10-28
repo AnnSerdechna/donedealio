@@ -1,34 +1,24 @@
-import { App, Flex, Form, FormInstance } from 'antd';
+import { App } from 'antd';
 import { FC } from 'react';
-import { Dayjs } from 'dayjs';
 
-import { Priority, Status, useUpdateOneTaskMutation } from '@/graphql/types';
-import { Button } from '@/components/ui';
 import { getFormattedDate } from '@/functions/getFormattedDate';
-import { TaskFormContent } from '../task-form-content';
+import { FormData, TaskForm, TaskFormProps } from '@/components/user/tasks';
+import { useUpdateTaskMutation } from '@/graphql/types';
 
-type CreateTaskFormProps = {
-  taskId: string
-  form: FormInstance
-  refetchTasks: VoidFunction
-  onCloseForm: VoidFunction
-};
-
-type FormData = {
-  task: string
-  status: Status
-  priority: Priority
-  dueDate: Dayjs
-  notes: string
-};
-
-export const UpdateTaskForm: FC<CreateTaskFormProps> = ({ form, taskId, refetchTasks, onCloseForm }) => {
+export const UpdateTaskForm: FC<Omit<TaskFormProps, 'action' | 'submitLoading'>> = ({ 
+  form, 
+  files, 
+  taskId, 
+  refetchTasks, 
+  onCancel,
+  ...props
+}) => {
   const { message } = App.useApp();
-  const [updateTask, { loading }] = useUpdateOneTaskMutation();
+  const [updateTask, { loading }] = useUpdateTaskMutation();
 
   const handleCloseForm = () => {
     form.resetFields();
-    onCloseForm();
+    onCancel();
   };
 
   const hanldeUpdateTask = async (values: FormData) => {
@@ -67,30 +57,16 @@ export const UpdateTaskForm: FC<CreateTaskFormProps> = ({ form, taskId, refetchT
   };
 
   return (
-    <Form
+    <TaskForm
       form={form}
+      taskId={taskId}
+      files={files}
+      action={'update'}
+      submitLoading={loading}
+      onCancel={onCancel}
+      refetchTasks={refetchTasks}
       onFinish={hanldeUpdateTask}
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      labelAlign={'left'}
-      colon={false}
-      size={'large'}
-      requiredMark={false}
-    >
-      <Flex vertical gap={32}>
-        <TaskFormContent form={form} />
-
-        <Flex justify={'end'} gap={8}>
-          <Button text={'Cancel'} type={'default'} onClick={handleCloseForm} wide={false} />
-          <Button
-            text={'Update'}
-            type={'primary'}
-            htmlType={'submit'}
-            wide={false}
-            loading={loading}
-          />
-        </Flex>
-      </Flex>
-    </Form>
+      {...props}
+     />
   )
 }

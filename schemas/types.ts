@@ -5,7 +5,8 @@ import {
   LoginSchema, 
   ForgotPasswordSchema, 
   NewPasswordSchema, 
-  ProfileSchema 
+  ProfileSchema, 
+  WorkspaceSchema
 } from '@/schemas';
 
 export type LoginValuesProps = z.infer<typeof LoginSchema>;
@@ -17,3 +18,5 @@ export type ForgotPasswordValuesProps = z.infer<typeof ForgotPasswordSchema>;
 export type NewPasswordValuesProps = z.infer<typeof NewPasswordSchema>;
 
 export type ProfileValuesProps = z.infer<typeof ProfileSchema>;
+
+export type WorkspaceValuesProps = z.infer<typeof WorkspaceSchema>;

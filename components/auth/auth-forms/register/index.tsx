@@ -1,14 +1,16 @@
 'use client';
+'use client';
 
 import { FC, useState, useTransition } from 'react';
-import { Flex, Input, Form as AntForm } from 'antd';
+import { Flex, Input } from 'antd';
+import { Form as AntForm } from 'antd';
 
-import { register } from '@/actions/register';
 import { Button, Form, FormItem } from '@/components/ui';
-import { RegisterValuesProps } from '@/schemas/types';
 import { AlertMessage } from '@/components/elements/alert-message';
 import { MessageProps } from '@/types';
-import { AuthCard } from '../../auth-card';
+import { AuthCard } from '@/components/auth/auth-card';
+import { register } from '@/actions/register';
+import { RegisterValuesProps } from '@/schemas/types';
 
 const { Password } = Input;
 
@@ -31,13 +33,13 @@ export const RegisterForm: FC = () => {
 
   return (
     <AuthCard
-        title={'Sign up'}
-        description={'Already have account?'}
-        backLinkUrl={'/auth/login'}
-        backLinkLabel={'Sign in'}
-        hasSocials
-      >
-      <Form form={form} onFinish={handleRegister}>
+      title={'Sign up'}
+      description={'Already have account?'}
+      backLinkUrl={'/auth/login'}
+      backLinkLabel={'Sign in'}
+      hasSocials
+    >
+      <Form form={form} onFinish={handleRegister} >
         <Flex gap={24} vertical>
           <FormItem
             name={'name'}
@@ -120,7 +122,6 @@ export const RegisterForm: FC = () => {
           </FormItem>
         </Flex>
       </Form>
-      </AuthCard >
-   
+    </AuthCard >
   )
 }

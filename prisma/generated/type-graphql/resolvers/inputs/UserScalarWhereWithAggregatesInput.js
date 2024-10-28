@@ -40,6 +40,12 @@ tslib_1.__decorate([
         nullable: true
     }),
     tslib_1.__metadata("design:type", StringWithAggregatesFilter_1.StringWithAggregatesFilter)
+], UserScalarWhereWithAggregatesInput.prototype, "name", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StringWithAggregatesFilter_1.StringWithAggregatesFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StringWithAggregatesFilter_1.StringWithAggregatesFilter)
 ], UserScalarWhereWithAggregatesInput.prototype, "email", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => DateTimeNullableWithAggregatesFilter_1.DateTimeNullableWithAggregatesFilter, {
@@ -48,22 +54,10 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", DateTimeNullableWithAggregatesFilter_1.DateTimeNullableWithAggregatesFilter)
 ], UserScalarWhereWithAggregatesInput.prototype, "emailVerified", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => StringWithAggregatesFilter_1.StringWithAggregatesFilter, {
+    TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter_1.StringNullableWithAggregatesFilter, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", StringWithAggregatesFilter_1.StringWithAggregatesFilter)
-], UserScalarWhereWithAggregatesInput.prototype, "firstName", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => StringWithAggregatesFilter_1.StringWithAggregatesFilter, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", StringWithAggregatesFilter_1.StringWithAggregatesFilter)
-], UserScalarWhereWithAggregatesInput.prototype, "lastName", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => StringWithAggregatesFilter_1.StringWithAggregatesFilter, {
-        nullable: true
-    }),
-    tslib_1.__metadata("design:type", StringWithAggregatesFilter_1.StringWithAggregatesFilter)
+    tslib_1.__metadata("design:type", StringNullableWithAggregatesFilter_1.StringNullableWithAggregatesFilter)
 ], UserScalarWhereWithAggregatesInput.prototype, "password", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => EnumRoleWithAggregatesFilter_1.EnumRoleWithAggregatesFilter, {

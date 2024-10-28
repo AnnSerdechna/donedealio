@@ -6,7 +6,7 @@ export declare class TaskCountOrderByAggregateInput {
     dueDate?: "asc" | "desc" | undefined;
     createdAt?: "asc" | "desc" | undefined;
     updatedAt?: "asc" | "desc" | undefined;
-    statusid?: "asc" | "desc" | undefined;
+    statusId?: "asc" | "desc" | undefined;
     priorityId?: "asc" | "desc" | undefined;
     workspaceId?: "asc" | "desc" | undefined;
 }

@@ -3,7 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountWhereUniqueInput = void 0;
 const tslib_1 = require("tslib");
 const TypeGraphQL = tslib_1.__importStar(require("type-graphql"));
+const AccountProviderProviderAccountIdCompoundUniqueInput_1 = require("../inputs/AccountProviderProviderAccountIdCompoundUniqueInput");
 const AccountWhereInput_1 = require("../inputs/AccountWhereInput");
+const DateTimeFilter_1 = require("../inputs/DateTimeFilter");
 const IntNullableFilter_1 = require("../inputs/IntNullableFilter");
 const StringFilter_1 = require("../inputs/StringFilter");
 const StringNullableFilter_1 = require("../inputs/StringNullableFilter");
@@ -12,11 +14,11 @@ let AccountWhereUniqueInput = class AccountWhereUniqueInput {
 };
 exports.AccountWhereUniqueInput = AccountWhereUniqueInput;
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => String, {
+    TypeGraphQL.Field(_type => AccountProviderProviderAccountIdCompoundUniqueInput_1.AccountProviderProviderAccountIdCompoundUniqueInput, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", String)
-], AccountWhereUniqueInput.prototype, "id", void 0);
+    tslib_1.__metadata("design:type", AccountProviderProviderAccountIdCompoundUniqueInput_1.AccountProviderProviderAccountIdCompoundUniqueInput)
+], AccountWhereUniqueInput.prototype, "provider_providerAccountId", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => [AccountWhereInput_1.AccountWhereInput], {
         nullable: true
@@ -46,6 +48,12 @@ tslib_1.__decorate([
         nullable: true
     }),
     tslib_1.__metadata("design:type", StringFilter_1.StringFilter)
+], AccountWhereUniqueInput.prototype, "type", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StringFilter_1.StringFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StringFilter_1.StringFilter)
 ], AccountWhereUniqueInput.prototype, "provider", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => StringFilter_1.StringFilter, {
@@ -54,11 +62,11 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", StringFilter_1.StringFilter)
 ], AccountWhereUniqueInput.prototype, "providerAccountId", void 0);
 tslib_1.__decorate([
-    TypeGraphQL.Field(_type => StringFilter_1.StringFilter, {
+    TypeGraphQL.Field(_type => StringNullableFilter_1.StringNullableFilter, {
         nullable: true
     }),
-    tslib_1.__metadata("design:type", StringFilter_1.StringFilter)
-], AccountWhereUniqueInput.prototype, "type", void 0);
+    tslib_1.__metadata("design:type", StringNullableFilter_1.StringNullableFilter)
+], AccountWhereUniqueInput.prototype, "refresh_token", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => StringNullableFilter_1.StringNullableFilter, {
         nullable: true
@@ -71,6 +79,42 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", IntNullableFilter_1.IntNullableFilter)
 ], AccountWhereUniqueInput.prototype, "expires_at", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StringNullableFilter_1.StringNullableFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StringNullableFilter_1.StringNullableFilter)
+], AccountWhereUniqueInput.prototype, "token_type", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StringNullableFilter_1.StringNullableFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StringNullableFilter_1.StringNullableFilter)
+], AccountWhereUniqueInput.prototype, "scope", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StringNullableFilter_1.StringNullableFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StringNullableFilter_1.StringNullableFilter)
+], AccountWhereUniqueInput.prototype, "id_token", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => StringNullableFilter_1.StringNullableFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", StringNullableFilter_1.StringNullableFilter)
+], AccountWhereUniqueInput.prototype, "session_state", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => DateTimeFilter_1.DateTimeFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", DateTimeFilter_1.DateTimeFilter)
+], AccountWhereUniqueInput.prototype, "createdAt", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => DateTimeFilter_1.DateTimeFilter, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", DateTimeFilter_1.DateTimeFilter)
+], AccountWhereUniqueInput.prototype, "updatedAt", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => UserRelationFilter_1.UserRelationFilter, {
         nullable: true

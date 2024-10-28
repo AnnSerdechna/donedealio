@@ -8,11 +8,10 @@ export declare class UserScalarWhereWithAggregatesInput {
     OR?: UserScalarWhereWithAggregatesInput[] | undefined;
     NOT?: UserScalarWhereWithAggregatesInput[] | undefined;
     id?: StringWithAggregatesFilter | undefined;
+    name?: StringWithAggregatesFilter | undefined;
     email?: StringWithAggregatesFilter | undefined;
     emailVerified?: DateTimeNullableWithAggregatesFilter | undefined;
-    firstName?: StringWithAggregatesFilter | undefined;
-    lastName?: StringWithAggregatesFilter | undefined;
-    password?: StringWithAggregatesFilter | undefined;
+    password?: StringNullableWithAggregatesFilter | undefined;
     role?: EnumRoleWithAggregatesFilter | undefined;
     image?: StringNullableWithAggregatesFilter | undefined;
     createdAt?: DateTimeWithAggregatesFilter | undefined;

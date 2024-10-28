@@ -1,0 +1,12 @@
+@import '@/styles/variables.module.scss';
+
+.menuContainer {
+  display: flex;
+  height: calc(100% - ($header-height * 2));
+
+  @media only screen and (max-width: $screen-md) {
+    height: 100%;
+  }
+}
+
+

@@ -76,7 +76,7 @@ tslib_1.__decorate([
         nullable: true
     }),
     tslib_1.__metadata("design:type", IntNullableWithAggregatesFilter_1.IntNullableWithAggregatesFilter)
-], TaskScalarWhereWithAggregatesInput.prototype, "statusid", void 0);
+], TaskScalarWhereWithAggregatesInput.prototype, "statusId", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => IntNullableWithAggregatesFilter_1.IntNullableWithAggregatesFilter, {
         nullable: true

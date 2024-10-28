@@ -1,0 +1,7 @@
+query Priorities($where: PriorityWhereInput) {
+  priorities(where: $where) {
+    id
+    name
+    color
+  }
+}

@@ -6,6 +6,6 @@ export declare class TaskCreateManyPriorityInput {
     dueDate?: Date | undefined;
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
-    statusid?: number | undefined;
+    statusId?: number | undefined;
     workspaceId: string;
 }

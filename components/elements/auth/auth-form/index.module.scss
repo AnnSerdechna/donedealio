@@ -1,0 +1,9 @@
+@import '@/styles/variables.module.scss';
+
+.authForm {
+  width: 100%;
+  max-width: 600px;
+  padding: 40px !important;
+  border: 1px solid $primary-color;
+  border-radius: 8px;
+}

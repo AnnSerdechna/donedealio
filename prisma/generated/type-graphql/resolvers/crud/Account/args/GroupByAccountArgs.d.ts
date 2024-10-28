@@ -4,7 +4,7 @@ import { AccountWhereInput } from "../../../inputs/AccountWhereInput";
 export declare class GroupByAccountArgs {
     where?: AccountWhereInput | undefined;
     orderBy?: AccountOrderByWithAggregationInput[] | undefined;
-    by: Array<"id" | "userId" | "provider" | "providerAccountId" | "type" | "access_token" | "expires_at">;
+    by: Array<"userId" | "type" | "provider" | "providerAccountId" | "refresh_token" | "access_token" | "expires_at" | "token_type" | "scope" | "id_token" | "session_state" | "createdAt" | "updatedAt">;
     having?: AccountScalarWhereWithAggregatesInput | undefined;
     take?: number | undefined;
     skip?: number | undefined;

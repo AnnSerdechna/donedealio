@@ -18,7 +18,7 @@ export declare class TaskWhereInput {
     dueDate?: DateTimeNullableFilter | undefined;
     createdAt?: DateTimeFilter | undefined;
     updatedAt?: DateTimeFilter | undefined;
-    statusid?: IntNullableFilter | undefined;
+    statusId?: IntNullableFilter | undefined;
     priorityId?: IntNullableFilter | undefined;
     workspaceId?: StringFilter | undefined;
     status?: StatusNullableRelationFilter | undefined;

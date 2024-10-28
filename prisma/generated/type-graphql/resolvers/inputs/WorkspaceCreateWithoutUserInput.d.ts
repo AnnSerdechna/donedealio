@@ -2,7 +2,7 @@ import { TaskCreateNestedManyWithoutWorkspaceInput } from "../inputs/TaskCreateN
 export declare class WorkspaceCreateWithoutUserInput {
     id?: string | undefined;
     name: string;
-    description: string;
+    description?: string | undefined;
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
     task?: TaskCreateNestedManyWithoutWorkspaceInput | undefined;

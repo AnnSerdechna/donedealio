@@ -1,7 +1,0 @@
-query Statuses {
-  statuses {
-    id
-    name
-    color
-  }
-}

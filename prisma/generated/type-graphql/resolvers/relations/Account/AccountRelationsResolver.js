@@ -11,7 +11,10 @@ let AccountRelationsResolver = class AccountRelationsResolver {
         const { _count } = (0, helpers_1.transformInfoIntoPrismaArgs)(info);
         return (0, helpers_1.getPrismaFromContext)(ctx).account.findUniqueOrThrow({
             where: {
-                id: account.id,
+                provider_providerAccountId: {
+                    provider: account.provider,
+                    providerAccountId: account.providerAccountId,
+                },
             },
         }).user({
             ...(_count && (0, helpers_1.transformCountFieldIntoSelectRelationsCount)(_count)),

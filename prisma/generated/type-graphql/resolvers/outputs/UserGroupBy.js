@@ -21,6 +21,12 @@ tslib_1.__decorate([
         nullable: false
     }),
     tslib_1.__metadata("design:type", String)
+], UserGroupBy.prototype, "name", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => String, {
+        nullable: false
+    }),
+    tslib_1.__metadata("design:type", String)
 ], UserGroupBy.prototype, "email", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => Date, {
@@ -30,19 +36,7 @@ tslib_1.__decorate([
 ], UserGroupBy.prototype, "emailVerified", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => String, {
-        nullable: false
-    }),
-    tslib_1.__metadata("design:type", String)
-], UserGroupBy.prototype, "firstName", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => String, {
-        nullable: false
-    }),
-    tslib_1.__metadata("design:type", String)
-], UserGroupBy.prototype, "lastName", void 0);
-tslib_1.__decorate([
-    TypeGraphQL.Field(_type => String, {
-        nullable: false
+        nullable: true
     }),
     tslib_1.__metadata("design:type", String)
 ], UserGroupBy.prototype, "password", void 0);

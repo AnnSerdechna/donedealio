@@ -4,7 +4,7 @@ import { WorkspaceCount } from "../resolvers/outputs/WorkspaceCount";
 export declare class Workspace {
     id: string;
     name: string;
-    description: string;
+    description?: string | null;
     createdAt: Date;
     updatedAt: Date;
     task?: Task[];

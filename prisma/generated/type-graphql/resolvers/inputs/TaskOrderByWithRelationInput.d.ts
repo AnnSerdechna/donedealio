@@ -11,7 +11,7 @@ export declare class TaskOrderByWithRelationInput {
     dueDate?: SortOrderInput | undefined;
     createdAt?: "asc" | "desc" | undefined;
     updatedAt?: "asc" | "desc" | undefined;
-    statusid?: SortOrderInput | undefined;
+    statusId?: SortOrderInput | undefined;
     priorityId?: SortOrderInput | undefined;
     workspaceId?: "asc" | "desc" | undefined;
     status?: StatusOrderByWithRelationInput | undefined;

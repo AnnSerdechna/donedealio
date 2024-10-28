@@ -12,13 +12,13 @@ tslib_1.__decorate([
         nullable: true
     }),
     tslib_1.__metadata("design:type", String)
-], AccountMaxOrderByAggregateInput.prototype, "id", void 0);
+], AccountMaxOrderByAggregateInput.prototype, "userId", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
         nullable: true
     }),
     tslib_1.__metadata("design:type", String)
-], AccountMaxOrderByAggregateInput.prototype, "userId", void 0);
+], AccountMaxOrderByAggregateInput.prototype, "type", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
         nullable: true
@@ -36,7 +36,7 @@ tslib_1.__decorate([
         nullable: true
     }),
     tslib_1.__metadata("design:type", String)
-], AccountMaxOrderByAggregateInput.prototype, "type", void 0);
+], AccountMaxOrderByAggregateInput.prototype, "refresh_token", void 0);
 tslib_1.__decorate([
     TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
         nullable: true
@@ -49,6 +49,42 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", String)
 ], AccountMaxOrderByAggregateInput.prototype, "expires_at", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountMaxOrderByAggregateInput.prototype, "token_type", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountMaxOrderByAggregateInput.prototype, "scope", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountMaxOrderByAggregateInput.prototype, "id_token", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountMaxOrderByAggregateInput.prototype, "session_state", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountMaxOrderByAggregateInput.prototype, "createdAt", void 0);
+tslib_1.__decorate([
+    TypeGraphQL.Field(_type => SortOrder_1.SortOrder, {
+        nullable: true
+    }),
+    tslib_1.__metadata("design:type", String)
+], AccountMaxOrderByAggregateInput.prototype, "updatedAt", void 0);
 exports.AccountMaxOrderByAggregateInput = AccountMaxOrderByAggregateInput = tslib_1.__decorate([
     TypeGraphQL.InputType("AccountMaxOrderByAggregateInput", {})
 ], AccountMaxOrderByAggregateInput);
